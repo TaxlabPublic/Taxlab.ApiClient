@@ -1,0 +1,25 @@
+{
+  "documentGenerator": {
+    "fromDocument": {
+      "url": "https://taxlab-api-uat.azurewebsites.net/api-internal/swagger/openapiv1/swagger.json",
+      "newLineBehavior": "Auto"
+    }
+  },
+  "codeGenerators": {
+    "openApiToCSharpClient": {
+      "serviceHost": ".",
+      "output": "./Proxy/TaxlabApiClient.cs",
+      "useHttpClientCreationMethod": true,
+      "className": "TaxlabApiClient",
+      "namespace": "Taxlab.ApiClientLibrary",
+      "generateClientClasses": true,
+      "generateClientInterfaces": true,
+      "generateExceptionClasses": true,
+      "generateOptionalParameters": true,
+      "disposeHttpClient": false,
+      "injectHttpClient": true,
+      "classType": "Poco",
+      "operationGenerationMode": "SingleClientFromOperationId"
+    }
+  }
+}
