@@ -1,2 +1,6 @@
 # Taxlab.ApiClient
-A client for connecting to our public API's
+A sample client for connecting to Taxlab's public API's.
+
+# Requirements
+
+1. 

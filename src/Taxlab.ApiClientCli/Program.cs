@@ -28,7 +28,14 @@ namespace Taxlab.ApiClientCli
             Console.WriteLine("== Step 1: Get Workpaper ==========================================================");
 
             var workpaperResponse = await Client
-                .Workpapers_GetPersonalSuperannuationContributionWorkpaperAsync(TaxpayerId, TaxYear, AccountRecordId, null, null, null, CancellationToken.None)
+                .Workpapers_GetPersonalSuperannuationContributionWorkpaperAsync(
+                    TaxpayerId,
+                    TaxYear,
+                    AccountRecordId,
+                    null,
+                    null,
+                    null,
+                    CancellationToken.None)
                 .ConfigureAwait(false);
 
             var jsonString = JsonConvert.SerializeObject(workpaperResponse.Workpaper, Formatting.Indented);
@@ -42,13 +49,10 @@ namespace Taxlab.ApiClientCli
 
             var command = new UpsertPersonalSuperannuationContributionWorkpaperCommand()
             {
-                WorkpaperDto = new AdjustmentWorkpaperDtoOfPersonalSuperannuationContributionWorkpaper()
-                {
-                    TaxpayerId = TaxpayerId,
-                    TaxYear = TaxYear,
-                    AccountRecordId = AccountRecordId,
-                    Workpaper = workpaperResponse.Workpaper
-                }
+                TaxpayerId = TaxpayerId,
+                TaxYear = TaxYear,
+                AccountRecordId = AccountRecordId,
+                Workpaper = workpaperResponse.Workpaper
             };
 
             var commandResponse = await Client.Workpapers_PostPersonalSuperannuationContributionWorkpaperAsync(command)
