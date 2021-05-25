@@ -14,9 +14,9 @@ namespace Taxlab.ApiClientCli
         private const string BaseUrl = "https://preview.taxlab.online/api-internal";
         private static TaxlabApiClient Client;
 
-        private static readonly Guid TaxpayerId = new Guid("0e9dd2d5-d3a2-4e93-ae38-bc3d362fd744");
-        private static readonly Guid AccountRecordId = new Guid("5ac1b646-2288-42d3-ae9b-dae931bf85f3");
-        private const int TaxYear = 2021;
+        private static readonly Guid TaxpayerId = new Guid("0e9dd2d5-d3a2-4e93-ae38-bc3d362fd744");   // Change this to your taxpayer Id
+        private static readonly Guid AccountRecordId = new Guid("5ac1b646-2288-42d3-ae9b-dae931bf85f3"); // Change this to your AccountRecordId
+        private const int TaxYear = 2021;  // Change this to your taxYear
 
         private static async Task Main(string[] args)
         {
@@ -24,6 +24,58 @@ namespace Taxlab.ApiClientCli
 
             var authService = new AuthService();
             Client = new TaxlabApiClient(BaseUrl, HttpClient, authService);
+
+            Console.WriteLine("== Step1: Get TaxpayerDetails workpaper ==========================================================");
+            var taxpayerDetailsWorkpaperResponse = await Client
+                .Workpapers_GetTaxpayerDetailsWorkpaperAsync(
+                    TaxpayerId,
+                    TaxYear,
+                    WorkpaperType.TaxpayerDetailsWorkpaper,
+                    Guid.Empty,
+                    false,
+                    false,
+                    null,
+                    null,
+                    null,
+                    CancellationToken.None)
+                .ConfigureAwait(false);
+
+            var jsonString = JsonConvert.SerializeObject(taxpayerDetailsWorkpaperResponse.Workpaper, Formatting.Indented);
+            Console.Write(jsonString);
+
+            taxpayerDetailsWorkpaperResponse.Workpaper.BankAccountName = "Test bank Account Name";
+            Console.WriteLine(Environment.NewLine);
+
+            Console.WriteLine("== Step 2: Post TaxpayerDetails Workpaper ==========================================================");
+
+            var upsertTaxpayerDetailsCommand = new UpsertTaxpayerDetailsWorkpaperCommand()
+            {
+                TaxpayerId = TaxpayerId,
+                TaxYear = TaxYear,
+                DocumentIndexId = taxpayerDetailsWorkpaperResponse.DocumentIndexId,
+                CompositeRequest = false,
+                WorkpaperType = WorkpaperType.TaxpayerDetailsWorkpaper,
+                Workpaper = taxpayerDetailsWorkpaperResponse.Workpaper
+            };
+
+            var UpsertTaxpayerDetailsResponse = await Client.Workpapers_PostTaxpayerDetailsWorkpaperAsync(upsertTaxpayerDetailsCommand)
+                .ConfigureAwait(false);
+            jsonString = JsonConvert.SerializeObject(UpsertTaxpayerDetailsResponse.Workpaper, Formatting.Indented);
+            Console.Write(jsonString);
+
+            Console.WriteLine(Environment.NewLine);
+
+            Console.WriteLine("== Step: Get All adjustment workpapers ==========================================================");
+            var allAdjustmentWorkpapers = await Client.Workpapers_AdjustmentWorkpapersAsync(TaxpayerId, TaxYear)
+                .ConfigureAwait(false);
+
+            Console.WriteLine(Environment.NewLine);
+
+            Console.WriteLine("== Step: Get All Taxyear workpapers ==========================================================");
+            var allATaxYearWorkpapers = await Client.Workpapers_TaxYearWorkpapersAsync(TaxpayerId, TaxYear)
+                .ConfigureAwait(false);
+
+            Console.WriteLine(Environment.NewLine);
 
             Console.WriteLine("== Step 1: Get Workpaper ==========================================================");
 
@@ -38,7 +90,7 @@ namespace Taxlab.ApiClientCli
                     CancellationToken.None)
                 .ConfigureAwait(false);
 
-            var jsonString = JsonConvert.SerializeObject(workpaperResponse.Workpaper, Formatting.Indented);
+            jsonString = JsonConvert.SerializeObject(workpaperResponse.Workpaper, Formatting.Indented);
             Console.Write(jsonString);
 
             var newValue = workpaperResponse.Workpaper.PersonalSuperannuationContribution.Value + -500;
