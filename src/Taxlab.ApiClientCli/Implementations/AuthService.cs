@@ -6,7 +6,7 @@ namespace Taxlab.ApiClientCli.Implementations
     {
         public string GetBearerToken()
         {
-            var result = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJkYXJyZWxAdGF4bGFiLm9ubGluZSIsImVtYWlsIjoiZGFycmVsQHRheGxhYi5vbmxpbmUiLCJVc2VybmFtZSI6ImRhcnJlbEB0YXhsYWIub25saW5lIiwiVGF4cGF5ZXJJZCI6IjBlOWRkMmQ1LWQzYTItNGU5My1hZTM4LWJjM2QzNjJmZDc0NCIsIlZlcnNpb24iOiIiLCJUYXhZZWFyIjoiMjAyMSIsIlVzZXJJZCI6IjgxNzEiLCJuYmYiOjE2MTg4MDM3NzQsImV4cCI6MTYxODgwNzM3NCwiaWF0IjoxNjE4ODAzNzc0fQ.3E1PQkMvqzAwkEAurfgXP1P1aTBVLZ0mUzD_-3Bsam8";
+            var result = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJpbHlhQHRheGxhYi5jby5ueiIsImVtYWlsIjoiaWx5YUB0YXhsYWIuY28ubnoiLCJVc2VybmFtZSI6ImlseWFAdGF4bGFiLmNvLm56IiwiVGF4cGF5ZXJJZCI6IjRkMGNiZDEwLTBmZDktNDVhMy1hNGQ1LWM4NWIyZTZkM2U5YyIsIlZlcnNpb24iOiIiLCJUYXhZZWFyIjoiMjAyMCIsIlVzZXJJZCI6Ijc0ODEiLCJuYmYiOjE2MjE5MTQ4MTksImV4cCI6MTYyMTkxODQxOSwiaWF0IjoxNjIxOTE0ODE5fQ.7kDVp2YOPQe5nK6Dsh-8cGOThcchuUt8p0AzNwU3O9k";
             return result;
         }
     }
