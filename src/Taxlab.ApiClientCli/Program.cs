@@ -26,6 +26,10 @@ namespace Taxlab.ApiClientCli
             Client = new TaxlabApiClient(BaseUrl, HttpClient, authService);
 
             Console.WriteLine("== Step1: Get TaxpayerDetails workpaper ==========================================================");
+
+            // To create a new empty workpaper we will call Get.
+            // Get will create and return a new workpaper if it does not exist. (please use a new taxpayer here if you want to test this multiple times.)
+            // We pass a empty DocumentIndexId here as an example of how you would do this.
             var taxpayerDetailsWorkpaperResponse = await Client
                 .Workpapers_GetTaxpayerDetailsWorkpaperAsync(
                     TaxpayerId,
@@ -43,11 +47,13 @@ namespace Taxlab.ApiClientCli
             var jsonString = JsonConvert.SerializeObject(taxpayerDetailsWorkpaperResponse.Workpaper, Formatting.Indented);
             Console.Write(jsonString);
 
+            // We are updating BankAccountName property on our new Workpaper.
+            // Post below will upsert this workpaper with our new property.
             taxpayerDetailsWorkpaperResponse.Workpaper.BankAccountName = "Test bank Account Name";
             Console.WriteLine(Environment.NewLine);
 
             Console.WriteLine("== Step 2: Post TaxpayerDetails Workpaper ==========================================================");
-
+            // Update command for our new workpaper
             var upsertTaxpayerDetailsCommand = new UpsertTaxpayerDetailsWorkpaperCommand()
             {
                 TaxpayerId = TaxpayerId,
@@ -66,12 +72,16 @@ namespace Taxlab.ApiClientCli
             Console.WriteLine(Environment.NewLine);
 
             Console.WriteLine("== Step: Get All adjustment workpapers ==========================================================");
+            // Gets a list of all adjustment workpapers for this taxpayer. 
+            // This does not create any new workpapers.
             var allAdjustmentWorkpapers = await Client.Workpapers_AdjustmentWorkpapersAsync(TaxpayerId, TaxYear)
                 .ConfigureAwait(false);
 
             Console.WriteLine(Environment.NewLine);
 
             Console.WriteLine("== Step: Get All Taxyear workpapers ==========================================================");
+            // Gets a list of all Taxyear workpapers for this taxpayer. 
+            // This does not create any new workpapers.
             var allATaxYearWorkpapers = await Client.Workpapers_TaxYearWorkpapersAsync(TaxpayerId, TaxYear)
                 .ConfigureAwait(false);
 
