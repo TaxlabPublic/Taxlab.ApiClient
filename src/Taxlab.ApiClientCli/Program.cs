@@ -32,8 +32,7 @@ namespace Taxlab.ApiClientCli
             var getAllTaxpayers = await Client.Taxpayers_GetTaxpayersAsync().ConfigureAwait(false);
 
             //see if taxpayerName exisits in list.
-            var taxPayerName = "TestTaxpayerFirstName";
-
+            var taxPayerName = "TestTaxpayerFirstName2";
 
             //Logic to check if taxpayer exists
             var existingTaxpayer = getAllTaxpayers.TaxpayerListItems.FirstOrDefault(_ => _.TaxpayerName.Contains(taxPayerName));
@@ -45,7 +44,7 @@ namespace Taxlab.ApiClientCli
                     EntityType = EntityType.IndividualAU,
                     TaxpayerId = Guid.Empty,
                     TaxpayerOrFirstName = taxPayerName,
-                    LastName = "ilyaTestLastName3",
+                    LastName = "TestTaxpayerLastName2",
                     TaxFileNumber = "123123123",
                     TaxYear = 2020
                 };
