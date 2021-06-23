@@ -13,4 +13,8 @@
     <Folder Include="Implementations\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="NodaTime" Version="3.0.5" />
+  </ItemGroup>
+
 </Project>

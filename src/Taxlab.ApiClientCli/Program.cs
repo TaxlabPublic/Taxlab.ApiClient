@@ -1,10 +1,13 @@
 ﻿using Newtonsoft.Json;
+using NodaTime;
 using System;
+using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Taxlab.ApiClientCli.Implementations;
 using Taxlab.ApiClientLibrary;
+using TaxLab;
 
 namespace Taxlab.ApiClientCli
 {
@@ -22,37 +25,77 @@ namespace Taxlab.ApiClientCli
         {
             Console.WriteLine("Starting Taxlab Client Cli!");
 
+            TaxpayerDto taxPayer;
             var authService = new AuthService();
             Client = new TaxlabApiClient(BaseUrl, HttpClient, authService);
-            
+
 
             // Get all taxpayers for this user.
             var getAllTaxpayers = await Client.Taxpayers_GetTaxpayersAsync().ConfigureAwait(false);
-                        
-            //Create a new Taxpayer. This can also be reused to get a single taxpayers information
-            var newtaxpayerCommand = new UpsertTaxpayerCommand
+
+            //see if taxpayerName exisits in list.
+            var taxPayerName = "ilyaTestFirstName1";
+
+            //Logic to check if taxpayer exists
+            var existingTaxpayer = getAllTaxpayers.TaxpayerListItems.FirstOrDefault(_ => _.TaxpayerName.Contains(taxPayerName));
+            if (existingTaxpayer != null)
             {
-                EntityType = EntityType.IndividualAU,
-                TaxpayerId = Guid.Empty,
-                TaxpayerOrFirstName = "TestFirst",
-                LastName = "TestLast",
-                TaxFileNumber = "123123123",
-                TaxYear = 2020
+                //upsert new Taxpayer Command.
+                var newtaxpayerCommand = new UpsertTaxpayerCommand
+                {
+                    EntityType = EntityType.IndividualAU,
+                    TaxpayerId = existingTaxpayer.Id,
+                    TaxpayerOrFirstName = taxPayerName,
+                    LastName = "ilyaTestLastName3",  
+                    TaxFileNumber = "123123124",
+                    TaxYear = 2020
+                };
+
+                var updateTaxpayerResponse = await Client.Taxpayers_PutTaxpayerAsync(newtaxpayerCommand)
+                    .ConfigureAwait(false);
+
+                taxPayer = updateTaxpayerResponse.Content;
+            }
+            //Create a new taxpayer if not found
+            else
+            {
+                //upsert new Taxpayer Command.
+                var newtaxpayerCommand = new UpsertTaxpayerCommand
+                {
+                    EntityType = EntityType.IndividualAU,
+                    TaxpayerId = Guid.Empty,
+                    TaxpayerOrFirstName = taxPayerName,
+                    LastName = "ilyaTestLastName2",
+                    TaxFileNumber = "123123123",
+                    TaxYear = 2020
+                };
+
+                var newTaxpayerResponse = await Client.Taxpayers_PutTaxpayerAsync(newtaxpayerCommand)
+                    .ConfigureAwait(false);
+
+                taxPayer = newTaxpayerResponse.Content;
+            }
+
+            var balanceDate = new LocalDate(2020, 3, 1);
+            var startDate = balanceDate.PlusYears(-1).PlusDays(-1);
+            var newTaxReturnCommand = new UpsertTaxReturnCommand()
+            {
+                TaxpayerId = taxPayer.Id,
+                TaxYear = TaxYear,
+                BalanceDate = balanceDate.ToAtoDateString(),
+                StartDate = startDate.ToAtoDateString()
             };
 
+            var taxReturnResponse = await Client.Taxpayers_PutTaxReturnAsync(newTaxReturnCommand).ConfigureAwait(false);
+            var taxReturn = taxReturnResponse.TaxReturnDetail;
 
-            var newTaxpayerResponse = await Client.Taxpayers_PutTaxpayerAsync(newtaxpayerCommand)
-                .ConfigureAwait(false);
-
-            //This has the new taxpayer information we are after. Can pass this taxpayers Id and taxYear to the workpapers we want to create.
-            var newTaxpayer = newTaxpayerResponse.Content;
 
             Console.WriteLine("== Step1: Get TaxpayerDetails workpaper ==========================================================");
             // To create a new empty workpaper we will call Get.
             // Get will create and return a new workpaper if it does not exist. (please use a new taxpayer here if you want to test this multiple times.)
             // We pass a empty DocumentIndexId here as an example of how you would do this.
             var taxpayerDetailsWorkpaperResponse = await Client
-                .Workpapers_GetDividendIncomeWorkpaperAsync(TaxpayerId, TaxYear, Guid.NewGuid());
+                .Workpapers_GetDividendIncomeWorkpaperAsync(taxPayer.Id, taxReturn.TaxYear, Guid.NewGuid());
 
             var jsonString = JsonConvert.SerializeObject(taxpayerDetailsWorkpaperResponse.Workpaper, Formatting.Indented);
             Console.Write(jsonString);
