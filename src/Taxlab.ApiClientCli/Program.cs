@@ -32,7 +32,7 @@ namespace Taxlab.ApiClientCli
             var getAllTaxpayers = await Client.Taxpayers_GetTaxpayersAsync().ConfigureAwait(false);
 
             //see if taxpayerName exisits in list.
-            var taxPayerName = "TestTaxpayerFirstName5";
+            var taxPayerName = "TestTaxpayerFirstName6";
 
             //Logic to check if taxpayer exists
             var existingTaxpayer = getAllTaxpayers.TaxpayerListItems.FirstOrDefault(_ => _.TaxpayerName.Contains(taxPayerName));
@@ -69,6 +69,7 @@ namespace Taxlab.ApiClientCli
             else
             {
                 taxPayer = existingTaxpayer;
+                var taxReturnResponse = await Client.Taxpayers_GetTaxReturnAsync(taxPayer.Id,TaxYear).ConfigureAwait(false);
             }
 
             Console.WriteLine("== Step1: Get TaxpayerDetails workpaper ==========================================================");
@@ -77,7 +78,7 @@ namespace Taxlab.ApiClientCli
             // We pass a empty DocumentIndexId here as an example of how you would do this.
             var taxpayerDetailsWorkpaperResponse = await Client
                 .Workpapers_GetTaxpayerDetailsWorkpaperAsync(taxPayer.Id, TaxYear, WorkpaperType.TaxpayerDetailsWorkpaper, Guid.Empty, false, false)
-                .ConfigureAwait(false); ;
+                .ConfigureAwait(false);
 
             var jsonString = JsonConvert.SerializeObject(taxpayerDetailsWorkpaperResponse.Workpaper, Formatting.Indented);
             Console.Write(jsonString);
