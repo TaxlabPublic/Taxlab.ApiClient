@@ -32,7 +32,7 @@ namespace Taxlab.ApiClientCli
             var getAllTaxpayers = await Client.Taxpayers_GetTaxpayersAsync().ConfigureAwait(false);
 
             //see if taxpayerName exisits in list.
-            var taxPayerName = "TestTaxpayerFirstName2";
+            var taxPayerName = "TestTaxpayerFirstName5";
 
             //Logic to check if taxpayer exists
             var existingTaxpayer = getAllTaxpayers.TaxpayerListItems.FirstOrDefault(_ => _.TaxpayerName.Contains(taxPayerName));
@@ -44,7 +44,7 @@ namespace Taxlab.ApiClientCli
                     EntityType = EntityType.IndividualAU,
                     TaxpayerId = Guid.Empty,
                     TaxpayerOrFirstName = taxPayerName,
-                    LastName = "TestTaxpayerLastName2",
+                    LastName = "TestTaxpayerLastName",
                     TaxFileNumber = "123123123",
                     TaxYear = 2020
                 };
@@ -131,7 +131,7 @@ namespace Taxlab.ApiClientCli
                 .Workpapers_GetPersonalSuperannuationContributionWorkpaperAsync(
                     taxPayer.Id,
                     TaxYear,
-                    Guid.Empty,
+                    Guid.NewGuid(),
                     null,
                     null,
                     null,
