@@ -69,7 +69,7 @@ namespace Taxlab.ApiClientCli
             else
             {
                 taxPayer = existingTaxpayer;
-                var taxReturnResponse = await Client.Taxpayers_GetTaxReturnAsync(taxPayer.Id,TaxYear).ConfigureAwait(false);
+                var taxReturnResponse = await Client.Taxpayers_GetTaxReturnsAsync(taxPayer.Id).ConfigureAwait(false);
             }
 
             Console.WriteLine("== Step1: Get TaxpayerDetails workpaper ==========================================================");
