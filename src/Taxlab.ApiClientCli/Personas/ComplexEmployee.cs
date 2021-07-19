@@ -27,6 +27,8 @@ namespace Taxlab.ApiClientCli.Personas
                 taxFileNumber);
 
             var taxpayer = taxpayerResponse.Content;
+            client.TaxpayerId = taxpayer.Id;
+            client.Taxyear = taxYear;
 
             Console.WriteLine("== Step: Creating tax return ==========================================================");
             var taxReturnRepository = new TaxReturnRepository(client);

@@ -8,7 +8,7 @@ using Taxlab.ApiClientCli.Workpapers.TaxYearWorkpapers;
 
 namespace Taxlab.ApiClientCli.Personas
 {
-    public class DeseasedEmployeePersona
+    public class DeceasedEmployeePersona
     {
 
         public async Task<TaxpayerDto> CreateAsync(TaxlabApiClient client)
@@ -28,6 +28,8 @@ namespace Taxlab.ApiClientCli.Personas
                 taxFileNumber);
 
             var taxpayer = taxpayerResponse.Content;
+            client.TaxpayerId = taxpayer.Id;
+            client.Taxyear = taxYear;
 
             Console.WriteLine("== Step: Creating tax return ==========================================================");
             var taxReturnRepository = new TaxReturnRepository(client);
