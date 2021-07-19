@@ -8,8 +8,11 @@ namespace Taxlab.ApiClientLibrary
     public partial class TaxlabApiClient
     {
         private readonly IAuthService _authService;
-
-        public TaxlabApiClient(string baseUrl, HttpClient httpClient, IAuthService authService)
+        public Guid TaxpayerId { get; set; }
+        public int Taxyear { get; set; }
+        public TaxlabApiClient(string baseUrl,
+            HttpClient httpClient,
+            IAuthService authService)
         {
             _authService = authService;
             _baseUrl = baseUrl;
@@ -21,6 +24,9 @@ namespace Taxlab.ApiClientLibrary
         {
             var bearerToken = _authService.GetBearerToken();
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", bearerToken);
+            request.Headers.Add("TaxpayerId", TaxpayerId.ToString());
+            request.Headers.Add("TaxYear", Taxyear.ToString());
+            request.Headers.Add("EntityType","13");
         }
     }
 }

@@ -27,6 +27,8 @@ namespace Taxlab.ApiClientCli.Personas
                 taxFileNumber);
 
             var taxpayer = taxpayerResponse.Content;
+            client.TaxpayerId = taxpayer.Id;
+            client.Taxyear = taxYear;
 
             Console.WriteLine("== Step: Creating tax return ==========================================================");
             var taxReturnRepository = new TaxReturnRepository(client);
@@ -40,21 +42,6 @@ namespace Taxlab.ApiClientCli.Personas
                 throw new Exception(taxReturnResponse.Message);
             }
 
-            Console.WriteLine("== Step: Populating taxpayer details workpaper ==========================================================");
-            var details = new TaxpayerDetailsRepository(client);
-            await details.CreateAsync(taxpayer.Id,
-                taxYear,
-                dateOfBirth: new LocalDate(1975, 4, 12),
-                dateOfDeath: new LocalDate(2020, 12, 31),
-                finalReturn: true,
-                mobilePhoneNumber: "0402698741",
-                daytimeAreaPhoneCode: "613",
-                daytimePhoneNumber: "54835123",
-                emailAddress: "JohnC12@hotmail.com",
-                bsbNumber: "553026",
-                bankAccountName: "Bank of Melbourne",
-                bankAccountNumber: "15987456"
-            );
 
             Console.WriteLine("== Step: Creating employment income workpaper ==========================================================");
 
@@ -85,6 +72,24 @@ namespace Taxlab.ApiClientCli.Personas
                 taxAgentSignatureFirstName: "John",
                 taxAgentSignatureLastName: "Citizen"
             );
+
+
+            Console.WriteLine("== Step: Populating taxpayer details workpaper ==========================================================");
+            var details = new TaxpayerDetailsRepository(client);
+            await details.CreateAsync(taxpayer.Id,
+                taxYear,
+                dateOfBirth: new LocalDate(1975, 4, 12),
+                dateOfDeath: new LocalDate(2020, 12, 31),
+                finalReturn: true,
+                mobilePhoneNumber: "0402698741",
+                daytimeAreaPhoneCode: "613",
+                daytimePhoneNumber: "54835123",
+                emailAddress: "JohnC12@hotmail.com",
+                bsbNumber: "553026",
+                bankAccountName: "Bank of Melbourne",
+                bankAccountNumber: "15987456"
+            );
+
 
             return taxpayer;
         }
