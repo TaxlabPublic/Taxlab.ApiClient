@@ -33,7 +33,10 @@ namespace Taxlab.ApiClientCli.Workpapers.TaxYearWorkpapers
             string bankAccountNumber ="",
             string bankAccountName ="",
             bool consentFamilyAssistanceDebt = false,
-            string spouseCRN =""
+            string spouseCRN ="",
+            bool baseRateEntityIndicator = false,
+            int? familyTrustElectionYear = null,
+            string familyTrustElection = ""
 
             )
         {
@@ -59,6 +62,9 @@ namespace Taxlab.ApiClientCli.Workpapers.TaxYearWorkpapers
             workpaper.BankAccountName = bankAccountName;
             workpaper.ConsentFamilyAssistanceDebt = consentFamilyAssistanceDebt.ToTriState();
             workpaper.SpouseCRN = spouseCRN;
+            workpaper.BaseRateEntityIndicator = baseRateEntityIndicator;
+            workpaper.FamilyTrustElectionYear = familyTrustElectionYear;
+            workpaper.FamilyTrustElection = familyTrustElection;
 
             // Update command for our new workpaper
             var upsertTaxpayerDetailsCommand = new UpsertTaxpayerDetailsWorkpaperCommand()

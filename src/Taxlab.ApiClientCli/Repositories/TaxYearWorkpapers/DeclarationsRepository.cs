@@ -36,7 +36,11 @@ namespace Taxlab.ApiClientCli.Workpapers.TaxYearWorkpapers
             bool taxPayerDeclarationStatementAccepted = false,
             string taxPayerSignatureFirstName = "",
             string taxPayerSignatureLastName = "",
-            string taxPayerSignatureFullName = ""
+            string taxPayerSignatureFullName = "",
+            string noticesRecipientCorporateName = "",
+            string noticesRecipientCorporateABN = "",
+            string noticesRecipientIndividualFirstName = "",
+            string noticesRecipientIndividualLastName = ""
         )
         {
             var workpaperResponse = await Client
@@ -64,6 +68,10 @@ namespace Taxlab.ApiClientCli.Workpapers.TaxYearWorkpapers
             workpaper.TaxPayerSignatureFirstName = taxPayerSignatureFirstName;
             workpaper.TaxPayerSignatureLastName = taxPayerSignatureLastName;
             workpaper.TaxPayerSignatureFullName = taxPayerSignatureFullName;
+            workpaper.NoticesRecipientCorporateName = noticesRecipientCorporateName;
+            workpaper.NoticesRecipientCorporateABN = noticesRecipientCorporateABN;
+            workpaper.NoticesRecipientIndividualFirstName = noticesRecipientIndividualFirstName;
+            workpaper.NoticesRecipientIndividualLastName = noticesRecipientIndividualLastName;
 
             // Update command for our new workpaper
             var upsertCommand = new UpsertDeclarationsWorkpaperCommand()
