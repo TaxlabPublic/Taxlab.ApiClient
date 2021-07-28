@@ -31,7 +31,7 @@ namespace TaxLab.Test.ApiClientCli.ImportFromExcel
             var authService = new AuthService();
             TaxlabApiClient client = new TaxlabApiClient(baseUrl, httpclient, authService);
 
-            var filename = "ICT.xlsx";
+            var filename = "ImportData.xlsx";
 
             var importService = new ExcelImportService();
             List<TaxpayerImport> imports = importService.CreateTaxpayerFromExcelAsync(filename);

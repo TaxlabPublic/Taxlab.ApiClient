@@ -3,11 +3,7 @@ using Spire.Xls;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using Taxlab.ApiClientCli.Workpapers.Shared;
 using Taxlab.ApiClientLibrary;
-using TaxLab;
 using TaxLab.Test.ApiClientCli.ImportFromExcel.Models;
 
 namespace TaxLab.Test.ApiClientCli.ImportFromExcel.Services
@@ -20,10 +16,9 @@ namespace TaxLab.Test.ApiClientCli.ImportFromExcel.Services
         {
             Workbook workbook = new Workbook();
 
-            using (var stream = _resourceFileLoader.LoadStreamResource(str => str.EndsWith(filename)))
-            {
-                workbook.LoadFromStream(stream);
-            }
+            using System.IO.Stream stream = _resourceFileLoader.LoadStreamResource(str => str.EndsWith(filename));
+            
+            workbook.LoadFromStream(stream);
 
             Worksheet sheet = workbook.Worksheets[0];
 

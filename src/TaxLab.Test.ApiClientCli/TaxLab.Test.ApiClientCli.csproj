@@ -8,18 +8,12 @@
 
   <ItemGroup>
     <None Remove="ImportFromExcel\ComplexTaxpayerFromExcel.xlsx" />
-    <None Remove="ImportFromExcel\Resources\ICT.xlsx" />
+    <None Remove="ImportFromExcel\Resources\ImportData.xlsx" />
     <None Remove="ImportFromExcel\TaxpayerFromExcel.xlsx" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="ImportFromExcel\Resources\ComplexTaxpayerFromExcel.xlsx">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ImportFromExcel\Resources\ICT.xlsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ImportFromExcel\Resources\TaxpayerFromExcel.xlsx">
+    <EmbeddedResource Include="ImportFromExcel\Resources\ImportData.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
