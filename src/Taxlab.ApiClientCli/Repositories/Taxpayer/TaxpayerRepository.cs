@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Taxlab.ApiClientCli.Workpapers.Shared;
 using Taxlab.ApiClientLibrary;
+using TaxLab;
 
 namespace Taxlab.ApiClientCli.Repositories.Taxpayer
 {
     public class TaxpayerRepository : RepositoryBase
     {
+        private readonly ResourceFileLoader _resourceFileLoader = new ResourceFileLoader(typeof(TaxpayerRepository));
+
         public TaxpayerRepository(TaxlabApiClient client) : base(client)
         {
         }
@@ -16,25 +19,29 @@ namespace Taxlab.ApiClientCli.Repositories.Taxpayer
             int taxYear,
             string firstName,
             string lastName,
-            string taxFileNumber
+            string taxFileNumber,
+            EntityType entityType = EntityType.IndividualAU
         )
         {
             var newtaxpayerCommand = new UpsertTaxpayerCommand
             {
-                EntityType = EntityType.IndividualAU,
+                EntityType = entityType,
                 TaxpayerId = Guid.Empty,
                 TaxpayerOrFirstName = firstName,
-                LastName = lastName,
                 TaxFileNumber = taxFileNumber,
                 TaxYear = taxYear
             };
+
+            if (lastName != "")
+            {
+                newtaxpayerCommand.LastName = lastName;
+            }
 
             var newTaxpayerResponse = await Client.Taxpayers_PutTaxpayerAsync(newtaxpayerCommand)
                 .ConfigureAwait(false);
 
             return newTaxpayerResponse;
         }
-
 
         public async Task<TaxpayerListResponse> SearchByTfn(
             string taxFileNumber

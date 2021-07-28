@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Taxlab.ApiClientCli.Implementations;
@@ -14,7 +15,7 @@ namespace Taxlab.ApiClientCli
       //  private const string BaseUrl = "https://preview.taxlab.online/api-internal/";
         private static TaxlabApiClient Client;
 
-        private const int TaxYear = 2021;  // Change this to your taxYear
+        private const int TaxYear = 2021; // Change this to your taxYear
 
         private static async Task Main(string[] args)
         {
@@ -30,15 +31,16 @@ namespace Taxlab.ApiClientCli
             var allTaxpayers = taxpayerService.GetAllTaxpayers();
 
             Console.WriteLine("== Step: Create deceased taxpayer ==========================================================");
-             var deceasedTaxpayerPersonaFactory = new Personas.DeceasedEmployeePersona();
-             var deceased = await deceasedTaxpayerPersonaFactory.CreateAsync(Client).ConfigureAwait(false);
+            var deceasedTaxpayerPersonaFactory = new Personas.DeceasedEmployeePersona();
+            var deceased = await deceasedTaxpayerPersonaFactory.CreateAsync(Client).ConfigureAwait(false);
 
-            Console.WriteLine("== Step: Create taxpayer with dividend==========================================================");
-             var investorPersonaFactory = new Personas.SingleDividend();
+
+            Console.WriteLine("== Step: Create taxpayer with dividend ==========================================================");
+            var investorPersonaFactory = new Personas.SingleDividend();
             var investor = await investorPersonaFactory.CreateAsync(Client).ConfigureAwait(false);
 
-            Console.WriteLine("== Step: Create taxpayer with lots of workpapers==========================================================");
-             var complexPersonaFactory = new Personas.SingleDividend();
+            Console.WriteLine("== Step: Create taxpayer with lots of workpapers ==========================================================");
+            var complexPersonaFactory = new Personas.SingleDividend();
             var complex = await complexPersonaFactory.CreateAsync(Client).ConfigureAwait(false);
 
 
