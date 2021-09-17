@@ -5,6 +5,8 @@ using Taxlab.ApiClientLibrary;
 using Taxlab.ApiClientCli.Repositories.Taxpayer;
 using Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers;
 using Taxlab.ApiClientCli.Workpapers.TaxYearWorkpapers;
+using Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers;
+using System.Collections.Generic;
 
 namespace Taxlab.ApiClientCli.Personas
 {
@@ -140,6 +142,155 @@ namespace Taxlab.ApiClientCli.Personas
                 taxAgentSignatureFirstName: "John",
                 taxAgentSignatureLastName: "Citizen"
             );
+
+            Console.WriteLine("== Step: Creating rental property workpaper ==========================================================");
+
+            var rentalPropertyWorkpaperFactory = new RentalPropertyRepository(client);
+
+            var rentalPropertyInformation = new RentalPropertyInformation
+            {
+                Description = "Rental property 1",
+                OfficialName = null,
+                AddressLine1 = "3 Savannah Ct",
+                AddressLine2 = null,
+                AddressSuburb = "Hillside",
+                AddressState = "VIC",
+                AddressPostcode = "3037",
+                DateFirstEarnedIncome = "2017-03-15",
+                PurchaseDate = "2017-01-10",
+                PurchasePrice = new NumericCell
+                {
+                    Value = 4900000,
+                    Formula = "4900000"
+                },
+                SaleDate = null,
+                SalePrice = new NumericCell(),
+                CapitalGainOrLossOnSale = new NumericCell(),
+                CapitalAllowancesRecoupedOnSale = new NumericCell(),
+                CapitalWorksRecoupedOnSale = new NumericCell(),
+                Status = RentalPropertyStatus.Active,
+                LoanRenegotiatedIndicator = false
+            };
+
+            var rentalIncome = new RentalTransactionCollectionOfNumericCellAndDecimal
+            {
+                Description = "Rental Income",
+                Total = 216000,
+                Mine = 151200,
+                RentalTransactions = new List<RentalTransactionOfNumericCellAndDecimal>
+                {
+                    new RentalTransactionOfNumericCellAndDecimal {
+                        Description = "example rent",
+                        Total = new NumericCell
+                        {
+                            Value = 216000,
+                            Formula = "216000"
+                        },
+                        Mine = 151200
+                    }
+                }
+            };
+
+            var otherIncome = new RentalTransactionCollectionOfNumericCellAndDecimal
+            {
+                Description = "Other Income",
+                Total = 700,
+                Mine = 490,
+                RentalTransactions = new List<RentalTransactionOfNumericCellAndDecimal>
+                {
+                    new RentalTransactionOfNumericCellAndDecimal {
+                        Description = "example other income",
+                        Total = new NumericCell
+                        {
+                            Value = 700,
+                            Formula = "700"
+                        },
+                        Mine = 490
+                    }
+                }
+            };
+
+            var grossIncome = new RentalTransactionOfDecimalAndDecimal
+            {
+                Description = "Gross Income",
+                Total = 216700,
+                Mine = 151690
+            };           
+
+            var interestOnLoans = new RentalTransactionCollectionOfNumericCellAndNumericCell
+            {
+                Description = "Interest On Loans",
+                Total = -78479,
+                Mine = -2480,
+                RentalTransactions = new List<RentalTransactionOfNumericCellAndNumericCell>
+                {
+                    new RentalTransactionOfNumericCellAndNumericCell {
+                        Description = "example loan 1",
+                        Total = new NumericCell
+                        {
+                            Value = -48024,
+                            Formula = "-48024"
+                        },
+                         Mine = new NumericCell
+                        {
+                            Value = 0,
+                            Formula = "0"
+                        },
+                    },
+                    new RentalTransactionOfNumericCellAndNumericCell {
+                        Description = "example loan 2",
+                        Total = new NumericCell
+                        {
+                            Value = -30455,
+                            Formula = "-30455"
+                        },
+                          Mine = new NumericCell
+                        {
+                            Value = -2480,
+                            Formula = "-2480"
+                        },
+
+                    }
+                }
+            };
+
+            await rentalPropertyWorkpaperFactory.CreateAsync(taxpayer.Id,
+                taxYear,
+                $"{firstName} {lastName}",
+                rentalPropertyInformation,
+                rentalIncome,
+                otherIncome,
+                grossIncome,
+                null,
+                null,
+                null,
+                null,              
+                null,
+                null,
+                null,
+                null,
+                null,
+                interestOnLoans,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                0,
+                0,
+                0.7m,
+                1m
+            ).ConfigureAwait(false);
+
+
+            Console.WriteLine("== Step: Get rental summary property workpaper ==========================================================");
+            var rentalSummaryWorkpaper = await rentalPropertyWorkpaperFactory.GetRentalSummaryWorkpaperAsync(taxpayer.Id, taxYear).ConfigureAwait(false);
+
+
 
             return taxpayer;
         }

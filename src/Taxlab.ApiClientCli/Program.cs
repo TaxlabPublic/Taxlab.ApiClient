@@ -40,7 +40,7 @@ namespace Taxlab.ApiClientCli
             var investor = await investorPersonaFactory.CreateAsync(Client).ConfigureAwait(false);
 
             Console.WriteLine("== Step: Create taxpayer with lots of workpapers ==========================================================");
-            var complexPersonaFactory = new Personas.SingleDividend();
+            var complexPersonaFactory = new Personas.ComplexEmployee();
             var complex = await complexPersonaFactory.CreateAsync(Client).ConfigureAwait(false);
 
 
