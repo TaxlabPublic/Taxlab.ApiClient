@@ -1,0 +1,93 @@
+
+### This file can be opened with Visual Studio Code using extension REST Client https://github.com/Huachao/vscode-restclient
+### The calls below are sample HTTP calls for the taxpayer API
+### There is also a sample application on Github https://github.com/taxlabpublic
+
+### Please replace the bearer token here with your access token
+@bearerToken = ADD YOURS
+
+
+#### Show all taxpayers
+GET  https://preview.taxlab.online/api-internal/api/Taxpayers/
+Content-Type: application/json
+Authorization: Bearer {{bearerToken}}
+
+#### Search taxpayers using Tax Number
+
+@taxNumber = ADD AN IRD NUMBER (eg 123123123)
+
+GET  https://preview.taxlab.online/api-internal/api/Taxpayers/search/{{taxNumber}}
+Content-Type: application/json
+Authorization: Bearer {{bearerToken}}
+
+#### Get Taxpayer by ID
+
+@taxpayerId = GUID OF TAXPAYER ID (eg dedf2f84-78c6-40b7-9f48-771ec9f5d40d)
+GET  https://preview.taxlab.online/api-internal/api/Taxpayers/{{taxpayerId}}
+Content-Type: application/json
+Authorization: Bearer {{bearerToken}}
+
+#### Add a taxpayer ###
+PUT  https://preview.taxlab.online/api/Taxpayers/
+Content-Type: application/json
+Authorization: Bearer {{bearerToken}}
+
+{
+  "taxpayerId": "00000000-0000-0000-0000-000000000000",
+  "taxYear": 2021,
+  "taxpayerOrFirstName": "John",
+  "lastName": "Citizen",
+  "taxFileNumber": "123123123",
+  "entityType": "Individual",
+  "paymentGroup":"ABC Group"
+  "users":[
+  {
+     "username":"sunny@taxlab.co.nz",
+     "role":
+  }
+  ],
+    "contact":[
+  {
+     "displayName":"Joe Bloggs",
+     "emailAddress":"jbloggs@gmail.com",
+
+     "code":"123", 
+     "title":"Mr",
+     "displayName":"Joe Bloggs",
+     "emailAddress":"jbloggs@gmail.com",
+"firstName":"Joe",
+"lastName":"Bloggs",
+"postalAddress":"",
+"postalCity":"",
+"postalRegion":"",
+"postalPostCode":"",
+"postalCountry":""
+
+  }
+  ]
+}
+
+### This URL can be called to initiate the OAuth2 process.
+
+@clientId = ADD YOUR CLIENT ID
+@clientSecret = ADD YOUR CLIENT SECRET
+@refreshToken = ADD YOUR REFRESH TOKEN
+
+@redirectUrl = ADD YOUR REDIRECT URL
+
+### This URL can be called to initiate the OAuth2 process. This can also be done by running this application  https://github.com/TaxlabPublic/Taxlab.B2C.TestClient
+
+https://taxlabpublic.b2clogin.com/b72c3ff8-3661-44ab-9df3-e6b385b5e76f/oauth2/v2.0/authorize?p=b2c_1_custombase
+&client_id={{clientId}}
+&redirect_uri={{redirectUrl}}
+&response_type=code
+&scope=openid profile offline_access https://taxlabpublic.onmicrosoft.com/5ec44235-6511-485e-bf91-eb75e463f620/api.access
+
+### Get a new access token using refresh token
+
+GET https://login.microsoftonline.com/taxlabpublic.onmicrosoft.com/oauth2/v2.0/token?p=b2c_1_custombase
+&grant_type=refresh_token
+&client_id={{clientId}}
+&scope=openid profile offline_access  https://taxlabpublic.onmicrosoft.com/5ec44235-6511-485e-bf91-eb75e463f620/api.access
+&refresh_token={{refreshToken}}
+&client_secret={{clientSecret}}
