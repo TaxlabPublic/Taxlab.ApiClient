@@ -68,19 +68,21 @@ Authorization: Bearer {{bearerToken}}
 }
 
 ### This URL can be called to initiate the OAuth2 process.
+### If you use SSO to login change the domint_hint to your domain hint otherwise leave as none
 
 @clientId = ADD YOUR CLIENT ID
 @clientSecret = ADD YOUR CLIENT SECRET
 @refreshToken = ADD YOUR REFRESH TOKEN
-
+@domainHint = none 
 @redirectUrl = ADD YOUR REDIRECT URL
 
 ### This URL can be called to initiate the OAuth2 process. This can also be done by running this application  https://github.com/TaxlabPublic/Taxlab.B2C.TestClient
 
-https://taxlabpublic.b2clogin.com/b72c3ff8-3661-44ab-9df3-e6b385b5e76f/oauth2/v2.0/authorize?p=b2c_1_custombase
+https://taxlabpublic.b2clogin.com/taxlabpublic.onmicrosoft.com/B2C_1_CustomBase/oauth2/v2.0/authorize?p=b2c_1_custombase
 &client_id={{clientId}}
 &redirect_uri={{redirectUrl}}
 &response_type=code
+&domain_hint={{domainHint}}
 &scope=openid profile offline_access https://taxlabpublic.onmicrosoft.com/5ec44235-6511-485e-bf91-eb75e463f620/api.access
 
 ### Get a new access token using refresh token
