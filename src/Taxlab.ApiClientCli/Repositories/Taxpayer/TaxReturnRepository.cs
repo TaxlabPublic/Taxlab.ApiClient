@@ -15,9 +15,9 @@ namespace Taxlab.ApiClientCli.Repositories.Taxpayer
 
         public async Task<TaxReturnResponse> CreateAsync(
             Guid taxpayerId,
-            int taxYear,
-            LocalDate  balanceDate,
-            LocalDate startDate
+            int taxYear = 0,
+            LocalDate balanceDate = new LocalDate(),
+            LocalDate startDate = new LocalDate()
         )
         {
             var newTaxReturnCommand = new UpsertTaxReturnCommand()
