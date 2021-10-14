@@ -16,21 +16,21 @@ namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
         public async Task<WorkpaperResponseOfSuperannuationIncomeStreamWorkpaper> CreateAsync(
             Guid taxpayerId,
             int taxYear,
-            string payersName,
-            string abn,
-            bool isDeathBenefit,
-            string paymentStartDate,
-            string paymentEndDate,
-            decimal incomeStreamTaxFree,
-            decimal lumpsumArrearsTaxFree,
-            decimal incomeStreamTaxed,
-            decimal incomeStreamUntaxed,
-            decimal definedBenefitAmount,
-            decimal lumpsumArrearsTaxed,
-            decimal lumpsumArrearsUntaxed,
-            decimal taxPaid,
-            decimal sisOffsetAmount,
-            Payments[] paymentsInArrears
+            string payersName = "",
+            string abn = "",
+            bool isDeathBenefit = false,
+            string paymentStartDate = "",
+            string paymentEndDate = "",
+            decimal incomeStreamTaxFree = 0m,
+            decimal lumpsumArrearsTaxFree = 0m,
+            decimal incomeStreamTaxed = 0m,
+            decimal incomeStreamUntaxed = 0m,
+            decimal definedBenefitAmount = 0m,
+            decimal lumpsumArrearsTaxed = 0m,
+            decimal lumpsumArrearsUntaxed = 0m,
+            decimal taxPaid = 0m,
+            decimal sisOffsetAmount = 0m,
+            Payments[] paymentsInArrears = null
             )
         {
             var workpaperResponse = await Client

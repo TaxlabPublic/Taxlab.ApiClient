@@ -16,7 +16,7 @@ namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
         public async Task<WorkpaperResponseOfOtherIncomeWorkpaper> CreateAsync(
             Guid taxpayerId,
             int taxYear,
-            decimal taxableIncome
+            decimal taxableIncome = 0m
             )
         {
             var workpaperResponse = await Client

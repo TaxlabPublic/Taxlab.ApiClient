@@ -16,13 +16,13 @@ namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
         public async Task<WorkpaperResponseOfDividendIncomeWorkpaper> CreateAsync(
             Guid taxpayerId,
             int taxYear,
-            string companyName,
-            string referenceNumber,
-            int howManyPeopleHoldThisAccount,
-            decimal unfrankedAmount,
-            decimal frankedAmount,
-            decimal frankingCredits,
-            decimal taxPaid
+            string companyName = "",
+            string referenceNumber = "",
+            int howManyPeopleHoldThisAccount = 0,
+            decimal unfrankedAmount = 0m,
+            decimal frankedAmount = 0m,
+            decimal frankingCredits = 0m,
+            decimal taxPaid = 0m
             )
         {
             var workpaperResponse = await Client
