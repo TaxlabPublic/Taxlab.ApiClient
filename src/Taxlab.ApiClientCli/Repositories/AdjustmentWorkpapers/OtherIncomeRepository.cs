@@ -7,24 +7,20 @@ using Taxlab.ApiClientLibrary;
 
 namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
 {
-    public class InterestIncomeRepository : RepositoryBase
+    public class OtherIncomeRepository : RepositoryBase
     {
-        public InterestIncomeRepository(TaxlabApiClient client) : base(client)
+        public OtherIncomeRepository(TaxlabApiClient client) : base(client)
         {
         }
 
-        public async Task<WorkpaperResponseOfInterestIncomeWorkpaper> CreateAsync(
+        public async Task<WorkpaperResponseOfOtherIncomeWorkpaper> CreateAsync(
             Guid taxpayerId,
             int taxYear,
-            string financialInstitutionName = "",
-            string accountNumber = "",
-            int howManyPeopleHoldThisAccount = 0,
-            decimal income = 0m,
-            decimal taxPaid = 0m
+            decimal taxableIncome = 0m
             )
         {
             var workpaperResponse = await Client
-                .Workpapers_GetInterestIncomeWorkpaperAsync(
+                .Workpapers_GetOtherIncomeWorkpaperAsync(
                     taxpayerId,
                     taxYear,
                     Guid.NewGuid(),
@@ -35,13 +31,9 @@ namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
                 .ConfigureAwait(false);
 
             var workpaper = workpaperResponse.Workpaper;
-            workpaper.FinancialInstitutionName = financialInstitutionName;
-            workpaper.AccountNumber = accountNumber;
-            workpaper.AccountHoldersNumbers = howManyPeopleHoldThisAccount;
-            workpaper.GrossIncome = income.ToNumericCell();
-            workpaper.TaxPaid = taxPaid.ToNumericCell();
+            workpaper.TaxableIncome = taxableIncome;
 
-            var command = new UpsertInterestIncomeWorkpaperCommand()
+            var command = new UpsertOtherIncomeWorkpaperCommand()
             {
                 TaxpayerId = taxpayerId,
                 TaxYear = taxYear,
@@ -50,7 +42,7 @@ namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
                 CompositeRequest = true
             };
 
-            var commandResponse = await Client.Workpapers_PostInterestIncomeWorkpaperAsync(command)
+            var commandResponse = await Client.Workpapers_PostOtherIncomeWorkpaperAsync(command)
                 .ConfigureAwait(false);
 
             return commandResponse;

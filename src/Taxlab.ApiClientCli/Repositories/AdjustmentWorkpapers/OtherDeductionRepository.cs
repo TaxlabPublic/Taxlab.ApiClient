@@ -16,8 +16,8 @@ namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
         public async Task<WorkpaperResponseOfOtherDeductionsWorkpaper> CreateAsync(
             Guid taxpayerId,
             int taxYear,
-            decimal amount,
-            ReturnDisclosureTypes classification
+            decimal amount = 0m,
+            ReturnDisclosureTypes classification = ReturnDisclosureTypes.OtherDeductibleExpenses
             )
         {
             var workpaperResponse = await Client

@@ -7,26 +7,24 @@ using Taxlab.ApiClientLibrary;
 
 namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
 {
-    public class DividendIncomeRepository : RepositoryBase
+    public class AttributedPersonalServicesIncomeRepository : RepositoryBase
     {
-        public DividendIncomeRepository(TaxlabApiClient client) : base(client)
+        public AttributedPersonalServicesIncomeRepository(TaxlabApiClient client) : base(client)
         {
         }
 
-        public async Task<WorkpaperResponseOfDividendIncomeWorkpaper> CreateAsync(
+        public async Task<WorkpaperResponseOfAttributedPersonalServicesIncomeWorkpaper> CreateAsync(
             Guid taxpayerId,
             int taxYear,
-            string companyName = "",
-            string referenceNumber = "",
-            int howManyPeopleHoldThisAccount = 0,
-            decimal unfrankedAmount = 0m,
-            decimal frankedAmount = 0m,
-            decimal frankingCredits = 0m,
-            decimal taxPaid = 0m
+            string payersName = "",
+            string abn = "",
+            decimal grossIncome = 0m,
+            decimal taxPaid = 0m,
+            decimal reportableSuperContributions = 0m
             )
         {
             var workpaperResponse = await Client
-                .Workpapers_GetDividendIncomeWorkpaperAsync(
+                .Workpapers_GetAttributedPersonalServicesIncomeWorkpaperAsync(
                     taxpayerId,
                     taxYear,
                     Guid.NewGuid(),
@@ -37,15 +35,13 @@ namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
                 .ConfigureAwait(false);
 
             var workpaper = workpaperResponse.Workpaper;
-            workpaper.CompanyName = companyName;
-            workpaper.ReferenceNumber = referenceNumber;
-            workpaper.AccountHoldersNumbers = howManyPeopleHoldThisAccount;
-            workpaper.UnfrankedAmount = unfrankedAmount.ToNumericCell();
-            workpaper.FrankedAmount = frankedAmount.ToNumericCell();
-            workpaper.FrankingCredits = frankingCredits.ToNumericCell();
+            workpaper.PayersName = payersName;
+            workpaper.Abn = abn;
+            workpaper.GrossIncome = grossIncome.ToNumericCell();
             workpaper.TaxPaid = taxPaid.ToNumericCell();
+            workpaper.ReportableSuperContributions = reportableSuperContributions.ToNumericCell();
 
-            var command = new UpsertDividendIncomeWorkpaperCommand()
+            var command = new UpsertAttributedPersonalServicesIncomeWorkpaperCommand()
             {
                 TaxpayerId = taxpayerId,
                 TaxYear = taxYear,
@@ -54,7 +50,7 @@ namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
                 CompositeRequest = true
             };
 
-            var commandResponse = await Client.Workpapers_PostDividendIncomeWorkpaperAsync(command)
+            var commandResponse = await Client.Workpapers_PostAttributedPersonalServicesIncomeWorkpaperAsync(command)
                 .ConfigureAwait(false);
 
             return commandResponse;

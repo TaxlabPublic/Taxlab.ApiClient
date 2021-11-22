@@ -17,9 +17,9 @@ namespace Taxlab.ApiClientCli.Repositories.Taxpayer
 
         public async Task<TaxpayerResponse> CreateAsync(
             int taxYear,
-            string firstName,
-            string lastName,
-            string taxFileNumber,
+            string firstName = "",
+            string lastName = "",
+            string taxFileNumber = "",
             EntityType entityType = EntityType.IndividualAU
         )
         {
@@ -28,14 +28,10 @@ namespace Taxlab.ApiClientCli.Repositories.Taxpayer
                 EntityType = entityType,
                 TaxpayerId = Guid.Empty,
                 TaxpayerOrFirstName = firstName,
+                LastName = lastName,
                 TaxFileNumber = taxFileNumber,
                 TaxYear = taxYear
             };
-
-            if (lastName != "")
-            {
-                newtaxpayerCommand.LastName = lastName;
-            }
 
             var newTaxpayerResponse = await Client.Taxpayers_PutTaxpayerAsync(newtaxpayerCommand)
                 .ConfigureAwait(false);

@@ -18,13 +18,13 @@ namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
         public async Task<WorkpaperResponseOfPersonalSuperannuationContributionWorkpaper> CreateAsync(
             Guid taxpayerId,
             int taxYear,
-            string organisationName,
-            string accountNumber,
-            string fundABN,
-            string fundTFN,
-            LocalDate lastEligibleDate,
-            decimal contribution,
-            bool didYouReceiveAnAcknowledgement
+            string organisationName = "",
+            string accountNumber = "",
+            string fundABN = "",
+            string fundTFN = "",
+            LocalDate lastEligibleDate = new LocalDate(),
+            decimal contribution = 0m,
+            bool didYouReceiveAnAcknowledgement = false
         )
         {
             var workpaperResponse = await Client

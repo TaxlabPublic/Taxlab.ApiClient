@@ -27,7 +27,7 @@ namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
             decimal reportableFringeBenefits = 0m,
             bool isEmployerExemptFromFbt = false,
             decimal superannuationContributions = 0m,
-            string countryCode ="",
+            string countryCode = "",
             decimal exemptForeignGrossIncome = 0m,
             decimal exemptForeignPaymentsInArrears = 0m,
             decimal exemptForeignIncomeTaxPaid = 0m,
