@@ -47,7 +47,7 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
             decimal ownershipPercentageTotal = 0m)
         {
             var workpaperResponse = await Client
-                .Workpapers_GetRentalPropertyWorkpaperAsync(taxpayerId, taxYear, WorkpaperType.RentalPropertyWorkpaper, Guid.Empty, false, false)
+                .Workpapers_GetRentalPropertyWorkpaperAsync(taxpayerId, taxYear, WorkpaperType.RentalPropertyWorkpaper, Guid.Empty, false, false, false)
                 .ConfigureAwait(false);
 
             var workpaper = workpaperResponse.Workpaper;
@@ -107,7 +107,7 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
         public async Task<WorkpaperResponseOfRentalPropertiesSummaryWorkpaper> GetRentalSummaryWorkpaperAsync(Guid taxpayerId, int taxYear)
         {
             var workpaperResponse = await Client
-              .Workpapers_GetRentalPropertiesSummaryWorkpaperAsync(taxpayerId, taxYear, WorkpaperType.RentalPropertiesSummaryWorkpaper, Guid.Empty, false, false)
+              .Workpapers_GetRentalPropertiesSummaryWorkpaperAsync(taxpayerId, taxYear, WorkpaperType.RentalPropertiesSummaryWorkpaper, Guid.Empty, false, false, true)
               .ConfigureAwait(false);
 
             return workpaperResponse;
