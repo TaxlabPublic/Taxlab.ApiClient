@@ -44,7 +44,7 @@ namespace Taxlab.ApiClientCli.Workpapers.TaxYearWorkpapers
         )
         {
             var workpaperResponse = await Client
-                .Workpapers_GetDeclarationsWorkpaperAsync(taxpayerId, taxYear, WorkpaperType.TaxpayerDetailsWorkpaper, Guid.Empty, false, false)
+                .Workpapers_GetDeclarationsWorkpaperAsync(taxpayerId, taxYear, WorkpaperType.TaxpayerDetailsWorkpaper, Guid.Empty, false, false, true)
                 .ConfigureAwait(false);
 
             var workpaper = workpaperResponse.Workpaper;
