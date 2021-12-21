@@ -46,9 +46,7 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
             decimal ownershipPercentageMine = 0m,
             decimal ownershipPercentageTotal = 0m)
         {
-            var workpaperResponse = await Client
-                .Workpapers_GetRentalPropertyWorkpaperAsync(taxpayerId, taxYear, WorkpaperType.RentalPropertyWorkpaper, Guid.Empty, false, false, false)
-                .ConfigureAwait(false);
+            var workpaperResponse = await GetRentalPropertyWorkpaperAsync(taxpayerId, taxYear);
 
             var workpaper = workpaperResponse.Workpaper;
             workpaper.RentalPropertyInformation = rentalPropertyInformation;
@@ -94,7 +92,7 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
                 TaxYear = taxYear,
                 DocumentIndexId = workpaperResponse.DocumentIndexId,
                 CompositeRequest = true,
-                WorkpaperType = WorkpaperType.DeclarationsWorkpaper,
+                WorkpaperType = WorkpaperType.RentalPropertyWorkpaper,
                 Workpaper = workpaperResponse.Workpaper
             };
 
@@ -104,11 +102,28 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
             return upsertResponse;
         }
 
-        public async Task<WorkpaperResponseOfRentalPropertiesSummaryWorkpaper> GetRentalSummaryWorkpaperAsync(Guid taxpayerId, int taxYear)
+        public async Task<DeleteRentalPropertyWorkpaperResponse> DeleteAsync(Guid taxpayerId, int taxYear, Guid documentId)
+        {
+            // Delete command for our workpaper
+            var deleteCommand = new DeleteRentalPropertyWorkpaperCommand()
+            {
+                TaxpayerId = taxpayerId,
+                TaxYear = taxYear,
+                DocumentId = documentId
+            };
+
+            var deleteResponse = await Client
+              .Workpapers_DeleteRentalPropertyWorkpaperAsync(deleteCommand)
+              .ConfigureAwait(false);
+
+            return deleteResponse;
+        }
+
+        public async Task<WorkpaperResponseOfRentalPropertyWorkpaper> GetRentalPropertyWorkpaperAsync(Guid taxpayerId, int taxYear)
         {
             var workpaperResponse = await Client
-              .Workpapers_GetRentalPropertiesSummaryWorkpaperAsync(taxpayerId, taxYear, WorkpaperType.RentalPropertiesSummaryWorkpaper, Guid.Empty, false, false, true)
-              .ConfigureAwait(false);
+                .Workpapers_GetRentalPropertyWorkpaperAsync(taxpayerId, taxYear, WorkpaperType.RentalPropertyWorkpaper, Guid.Empty, false, false, false)
+                .ConfigureAwait(false);
 
             return workpaperResponse;
         }
