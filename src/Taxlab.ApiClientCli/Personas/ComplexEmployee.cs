@@ -288,10 +288,8 @@ namespace Taxlab.ApiClientCli.Personas
 
 
             Console.WriteLine("== Step: Get rental summary property workpaper ==========================================================");
-            var rentalSummaryWorkpaper = await rentalPropertyWorkpaperFactory.GetRentalSummaryWorkpaperAsync(taxpayer.Id, taxYear).ConfigureAwait(false);
-
-
-
+            var rentalSummaryWorkpaper = await new RentalPropertiesSummaryRepository(client).GetRentalSummaryWorkpaperAsync(taxpayer.Id, taxYear).ConfigureAwait(false);
+            
             return taxpayer;
         }
     }
