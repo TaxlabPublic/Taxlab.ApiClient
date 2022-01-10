@@ -7,9 +7,9 @@ using Taxlab.ApiClientLibrary;
 
 namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
 {
-    public class BusinessIncomeExpensesRepositery : RepositoryBase
+    public class BusinessIncomeExpensesRepository : RepositoryBase
     {
-        public BusinessIncomeExpensesRepositery(TaxlabApiClient client) : base(client)
+        public BusinessIncomeExpensesRepository(TaxlabApiClient client) : base(client)
         {
 
         }
