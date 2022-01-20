@@ -60,88 +60,107 @@ namespace Taxlab.ApiClientCli.Personas
                 bankAccountNumber: "15987456"
             );
 
-            //Console.WriteLine("== Step: Creating employment income workpaper ==========================================================");
+            Console.WriteLine("== Step: Creating employment income workpaper ==========================================================");
 
-            //var employmentIncomeWorkpaperFactory = new EmploymentIncomeRepository(client);
-            //await employmentIncomeWorkpaperFactory.CreateAsync(taxpayer.Id,
-            //    taxYear,
-            //  employerName: "ABC Company Limited",
-            //  governmentIdentifier: "",
-            //  salaryAndWagesIncome: 343434m,
-            //  salaryAndWagesTaxWithheld: -213400m,
-            //  allowanceIncome: 310m
-            //  );
+            var employmentIncomeWorkpaperFactory = new EmploymentIncomeRepository(client);
+            await employmentIncomeWorkpaperFactory.CreateAsync(taxpayer.Id,
+                taxYear,
+              employerName: "ABC Company Limited",
+              governmentIdentifier: "",
+              salaryAndWagesIncome: 343434m,
+              salaryAndWagesTaxWithheld: -213400m,
+              allowanceIncome: 310m
+              );
 
 
-            //Console.WriteLine("== Step: Creating dividend income workpaper ==========================================================");
+            Console.WriteLine("== Step: Creating dividend income workpaper ==========================================================");
 
-            //var dividendWorkpaperFactory = new DividendIncomeRepository(client);
-            //await dividendWorkpaperFactory.CreateAsync(taxpayer.Id,
-            //    taxYear,
-            //    "ABC Company Limited",
-            //    "123456789",
-            //    1,
-            //    1000m,
-            //    200m,
-            //    300m,
-            //    -10m);
+            var dividendWorkpaperFactory = new DividendIncomeRepository(client);
+            await dividendWorkpaperFactory.CreateAsync(taxpayer.Id,
+                taxYear,
+                "ABC Company Limited",
+                "123456789",
+                1,
+                1000m,
+                200m,
+                300m,
+                -10m);
 
-            //Console.WriteLine("== Step: Creating interest income workpaper ==========================================================");
-            //var interestWorkpaperFactory = new InterestIncomeRepository(client);
-            //await interestWorkpaperFactory.CreateAsync(taxpayer.Id,
-            //    taxYear,
-            //    "Our financial institution name",
-            //    "123456789",
-            //    1,
-            //    1000m,
-            //    -200m);
+            Console.WriteLine("== Step: Creating interest income workpaper ==========================================================");
+            var interestWorkpaperFactory = new InterestIncomeRepository(client);
+            await interestWorkpaperFactory.CreateAsync(taxpayer.Id,
+                taxYear,
+                "Our financial institution name",
+                "123456789",
+                1,
+                1000m,
+                -200m);
 
-            //Console.WriteLine("== Step: Creating supercontribution workpaper ==========================================================");
-            //var personalSuperannuationContributionFactory = new PersonalSuperannuationContributionRepository(client);
-            //await personalSuperannuationContributionFactory.CreateAsync(taxpayer.Id,
-            //    taxYear,
-            //    "XYZ Company Limited",
-            //    "123456789",
-            //    "9867565423",
-            //    "5235423423423",
-            //    balanceDate,
-            //    10000m,
-            //    true
-            //);
+            Console.WriteLine("== Step: Creating supercontribution workpaper ==========================================================");
+            var personalSuperannuationContributionFactory = new PersonalSuperannuationContributionRepository(client);
+            await personalSuperannuationContributionFactory.CreateAsync(taxpayer.Id,
+                taxYear,
+                "XYZ Company Limited",
+                "123456789",
+                "9867565423",
+                "5235423423423",
+                balanceDate,
+                10000m,
+                true
+            );
 
-            //Console.WriteLine("== Step: Creating donation deduction workpaper ==========================================================");
-            //var chartiableDonation = new OtherDeductionRepository(client);
-            //await chartiableDonation.CreateAsync(taxpayer.Id,
-            //    taxYear,
-            //    -10000m,
-            //    ReturnDisclosureTypes.AUIndividualGiftsOrDonations
-            //);
+            Console.WriteLine("== Step: Creating Government Allowance workpaper ==========================================================");
+            var governmentAllowanceFactory = new GovernmentAllowanceRepository(client);
+            await governmentAllowanceFactory.CreateAsync(taxpayer.Id,
+                taxYear,
+                "testBenefitType",
+                "testDescription",
+                1000m,
+                1000m
+            );
 
-            //Console.WriteLine("== Step: Creating other deduction workpaper ==========================================================");
-            //var expense = new OtherDeductionRepository(client);
-            //await expense.CreateAsync(taxpayer.Id,
-            //    taxYear,
-            //    -10000m,
-            //    ReturnDisclosureTypes.OtherDeductibleExpenses
-            //);
+            Console.WriteLine("== Step: Creating Government Pension workpaper ==========================================================");
+            var governmentPensionFactory = new GovernmentPensionRepository(client);
+            await governmentPensionFactory.CreateAsync(taxpayer.Id,
+                taxYear,
+                "testDescription",
+                1000m,
+                1000m
+            );
 
-            //Console.WriteLine("== Step: Creating declarations workpaper ==========================================================");
+            Console.WriteLine("== Step: Creating donation deduction workpaper ==========================================================");
+            var chartiableDonation = new OtherDeductionRepository(client);
+            await chartiableDonation.CreateAsync(taxpayer.Id,
+                taxYear,
+                -10000m,
+                ReturnDisclosureTypes.AUIndividualGiftsOrDonations
+            );
 
-            //var declarationsWorkpaperFactory = new DeclarationsRepository(client);
-            //await declarationsWorkpaperFactory.CreateAsync(taxpayer.Id,
-            //    taxYear,
-            //    taxAgentNumber: "",
-            //    taxAgentAbn: "",
-            //    taxAgentDeclarationStatementAccepted: true,
-            //    taxAgentContactFirstName: "Jason",
-            //    taxAgentContactLastName: "Campbell",
-            //    taxAgentContactPhoneAreaCode: "03",
-            //    taxAgentContactPhoneNumber: "88435751",
-            //    taxAgentClientReference: "CR010011JC",
-            //    taxPayerDeclarationStatementAccepted: true,
-            //    taxAgentSignatureFirstName: "John",
-            //    taxAgentSignatureLastName: "Citizen"
-            //);
+            Console.WriteLine("== Step: Creating other deduction workpaper ==========================================================");
+            var expense = new OtherDeductionRepository(client);
+            await expense.CreateAsync(taxpayer.Id,
+                taxYear,
+                -10000m,
+                ReturnDisclosureTypes.OtherDeductibleExpenses
+            );
+
+            Console.WriteLine("== Step: Creating declarations workpaper ==========================================================");
+
+            var declarationsWorkpaperFactory = new DeclarationsRepository(client);
+            await declarationsWorkpaperFactory.CreateAsync(taxpayer.Id,
+                taxYear,
+                taxAgentNumber: "",
+                taxAgentAbn: "",
+                taxAgentDeclarationStatementAccepted: true,
+                taxAgentContactFirstName: "Jason",
+                taxAgentContactLastName: "Campbell",
+                taxAgentContactPhoneAreaCode: "03",
+                taxAgentContactPhoneNumber: "88435751",
+                taxAgentClientReference: "CR010011JC",
+                taxPayerDeclarationStatementAccepted: true,
+                taxAgentSignatureFirstName: "John",
+                taxAgentSignatureLastName: "Citizen"
+            );
 
             Console.WriteLine("== Step: Creating rental property workpaper ==========================================================");
 
@@ -255,9 +274,36 @@ namespace Taxlab.ApiClientCli.Personas
             };
 
             await rentalPropertyWorkpaperFactory.CreateAsync(taxpayer.Id,
-                taxYear
-            ).ConfigureAwait(false);
-
+               taxYear,
+               $"{firstName} {lastName}",
+               rentalPropertyInformation,
+               rentalIncome,
+               otherIncome,
+               grossIncome,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               interestOnLoans,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               0,
+               0,
+               0.7m,
+               1m
+           ).ConfigureAwait(false);
 
             Console.WriteLine("== Step: Get rental summary property workpaper ==========================================================");
             var rentalSummaryWorkpaper = await new RentalPropertiesSummaryRepository(client).GetRentalSummaryWorkpaperAsync(taxpayer.Id, taxYear).ConfigureAwait(false);

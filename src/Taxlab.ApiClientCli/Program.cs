@@ -18,11 +18,9 @@ namespace Taxlab.ApiClientCli
         private const int TaxYear = 2021; // Change this to your taxYear
 
         private static async Task Main(string[] args)
-        {
-  
+        {  
             var authService = new AuthService();
             Client = new TaxlabApiClient(BaseUrl, HttpClient, authService);
-
 
             Console.WriteLine("== Step: Getting existing taxpayers ==========================================================");
             var getAllTaxpayers = await Client.Taxpayers_GetTaxpayersAsync().ConfigureAwait(false);
