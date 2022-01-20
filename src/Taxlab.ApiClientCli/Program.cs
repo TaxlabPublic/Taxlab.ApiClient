@@ -11,8 +11,8 @@ namespace Taxlab.ApiClientCli
     internal class Program
     {
         private static readonly HttpClient HttpClient = new HttpClient();
-        private const string BaseUrl = "https://localhost:44354/";
-      //  private const string BaseUrl = "https://preview.taxlab.online/api-internal/";
+        //private const string BaseUrl = "https://localhost:44354/";
+        private const string BaseUrl = "https://preview.taxlab.online/api-internal/";
         private static TaxlabApiClient Client;
 
         private const int TaxYear = 2021; // Change this to your taxYear

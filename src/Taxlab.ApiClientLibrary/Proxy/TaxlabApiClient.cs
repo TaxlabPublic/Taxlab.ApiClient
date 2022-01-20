@@ -103,7 +103,7 @@ namespace Taxlab.ApiClientLibrary
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<GetAllOutputScheduleResponse> OutputSchedule_GetAllOutputSchedulesAsync(System.Guid taxpayerIdPath, int taxYearPath, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<GetAllOutputScheduleResponse> OutputSchedule_GetAllOutputSchedulesAsync(System.Guid taxpayerIdPath, int taxYearPath, SnapshotOutputTypes? snapshotOutputTypes, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -147,7 +147,7 @@ namespace Taxlab.ApiClientLibrary
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<GetTaxReturnContextQueryResponse> TaxReturn_LoadTaxReturnContextAsync(System.Guid taxpayerIdPath, int taxYearPath, long? versionPath, string taxpayerIdHeader = null, int? taxYearHeader = null, double? versionHeader = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<FileResponse> TaxReturn_LoadTaxReturnContextAsync(System.Guid taxpayerIdPath, int taxYearPath, long? versionPath, string taxpayerIdHeader = null, int? taxYearHeader = null, double? versionHeader = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -180,6 +180,14 @@ namespace Taxlab.ApiClientLibrary
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<DeleteRentalPropertyWorkpaperResponse> Workpapers_DeleteRentalPropertyWorkpaperAsync(DeleteRentalPropertyWorkpaperCommand command, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+    
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<WorkpaperResponseOfLowIncomeTaxOffsetWorkpaper> Workpapers_GetLowIncomeTaxOffsetWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+    
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<WorkpaperResponseOfLowAndMiddleIncomeTaxOffsetWorkpaper> Workpapers_GetLowAndMiddleIncomeTaxOffsetWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -2137,7 +2145,7 @@ namespace Taxlab.ApiClientLibrary
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<GetAllOutputScheduleResponse> OutputSchedule_GetAllOutputSchedulesAsync(System.Guid taxpayerIdPath, int taxYearPath, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<GetAllOutputScheduleResponse> OutputSchedule_GetAllOutputSchedulesAsync(System.Guid taxpayerIdPath, int taxYearPath, SnapshotOutputTypes? snapshotOutputTypes, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (taxpayerIdPath == null)
                 throw new System.ArgumentNullException("taxpayerIdPath");
@@ -2146,9 +2154,10 @@ namespace Taxlab.ApiClientLibrary
                 throw new System.ArgumentNullException("taxYearPath");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/OutputSchedule/{taxpayerId}/{taxYear}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/OutputSchedule/{taxpayerId}/{taxYear}/{snapshotOutputTypes}");
             urlBuilder_.Replace("{taxpayerId}", System.Uri.EscapeDataString(ConvertToString(taxpayerIdPath, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{taxYear}", System.Uri.EscapeDataString(ConvertToString(taxYearPath, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{snapshotOutputTypes}", System.Uri.EscapeDataString(ConvertToString(snapshotOutputTypes, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -3002,7 +3011,7 @@ namespace Taxlab.ApiClientLibrary
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<GetTaxReturnContextQueryResponse> TaxReturn_LoadTaxReturnContextAsync(System.Guid taxpayerIdPath, int taxYearPath, long? versionPath, string taxpayerIdHeader = null, int? taxYearHeader = null, double? versionHeader = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<FileResponse> TaxReturn_LoadTaxReturnContextAsync(System.Guid taxpayerIdPath, int taxYearPath, long? versionPath, string taxpayerIdHeader = null, int? taxYearHeader = null, double? versionHeader = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (taxpayerIdPath == null)
                 throw new System.ArgumentNullException("taxpayerIdPath");
@@ -3029,7 +3038,7 @@ namespace Taxlab.ApiClientLibrary
                     if (versionHeader != null)
                         request_.Headers.TryAddWithoutValidation("version", ConvertToString(versionHeader, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/octet-stream"));
     
                     PrepareRequest(client_, request_, urlBuilder_);
     
@@ -3052,14 +3061,12 @@ namespace Taxlab.ApiClientLibrary
                         ProcessResponse(client_, response_);
     
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
+                        if (status_ == 200 || status_ == 206)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<GetTaxReturnContextQueryResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            return objectResponse_.Object;
+                            var responseStream_ = response_.Content == null ? System.IO.Stream.Null : await response_.Content.ReadAsStreamAsync().ConfigureAwait(false);
+                            var fileResponse_ = new FileResponse(status_, headers_, responseStream_, null, response_); 
+                            disposeClient_ = false; disposeResponse_ = false; // response and client are disposed by FileResponse
+                            return fileResponse_;
                         }
                         else
                         {
@@ -3757,6 +3764,206 @@ namespace Taxlab.ApiClientLibrary
                         if (status_ == 200)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<DeleteRentalPropertyWorkpaperResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+    
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public async System.Threading.Tasks.Task<WorkpaperResponseOfLowIncomeTaxOffsetWorkpaper> Workpapers_GetLowIncomeTaxOffsetWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            if (taxpayerIdPath == null)
+                throw new System.ArgumentNullException("taxpayerIdPath");
+    
+            if (taxYearPath == null)
+                throw new System.ArgumentNullException("taxYearPath");
+    
+            if (workpaperType == null)
+                throw new System.ArgumentNullException("workpaperType");
+    
+            if (documentIndexId == null)
+                throw new System.ArgumentNullException("documentIndexId");
+    
+            if (calculateRequest == null)
+                throw new System.ArgumentNullException("calculateRequest");
+    
+            if (compositeRequest == null)
+                throw new System.ArgumentNullException("compositeRequest");
+    
+            if (createOnQuery == null)
+                throw new System.ArgumentNullException("createOnQuery");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/LowIncomeTaxOffsetWorkpaper/{taxpayerId}/{taxYear}");
+            urlBuilder_.Replace("{taxpayerId}", System.Uri.EscapeDataString(ConvertToString(taxpayerIdPath, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{taxYear}", System.Uri.EscapeDataString(ConvertToString(taxYearPath, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{workpaperType}", System.Uri.EscapeDataString(ConvertToString(workpaperType, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{documentIndexId}", System.Uri.EscapeDataString(ConvertToString(documentIndexId, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{calculateRequest}", System.Uri.EscapeDataString(ConvertToString(calculateRequest, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{compositeRequest}", System.Uri.EscapeDataString(ConvertToString(compositeRequest, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{createOnQuery}", System.Uri.EscapeDataString(ConvertToString(createOnQuery, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    if (taxpayerIdHeader != null)
+                        request_.Headers.TryAddWithoutValidation("taxpayerId", ConvertToString(taxpayerIdHeader, System.Globalization.CultureInfo.InvariantCulture));
+                    if (taxYearHeader != null)
+                        request_.Headers.TryAddWithoutValidation("taxYear", ConvertToString(taxYearHeader, System.Globalization.CultureInfo.InvariantCulture));
+                    if (version != null)
+                        request_.Headers.TryAddWithoutValidation("version", ConvertToString(version, System.Globalization.CultureInfo.InvariantCulture));
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+    
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+    
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<WorkpaperResponseOfLowIncomeTaxOffsetWorkpaper>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+    
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public async System.Threading.Tasks.Task<WorkpaperResponseOfLowAndMiddleIncomeTaxOffsetWorkpaper> Workpapers_GetLowAndMiddleIncomeTaxOffsetWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            if (taxpayerIdPath == null)
+                throw new System.ArgumentNullException("taxpayerIdPath");
+    
+            if (taxYearPath == null)
+                throw new System.ArgumentNullException("taxYearPath");
+    
+            if (workpaperType == null)
+                throw new System.ArgumentNullException("workpaperType");
+    
+            if (documentIndexId == null)
+                throw new System.ArgumentNullException("documentIndexId");
+    
+            if (calculateRequest == null)
+                throw new System.ArgumentNullException("calculateRequest");
+    
+            if (compositeRequest == null)
+                throw new System.ArgumentNullException("compositeRequest");
+    
+            if (createOnQuery == null)
+                throw new System.ArgumentNullException("createOnQuery");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/LowAndMiddleIncomeTaxOffsetWorkpaper/{taxpayerId}/{taxYear}");
+            urlBuilder_.Replace("{taxpayerId}", System.Uri.EscapeDataString(ConvertToString(taxpayerIdPath, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{taxYear}", System.Uri.EscapeDataString(ConvertToString(taxYearPath, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{workpaperType}", System.Uri.EscapeDataString(ConvertToString(workpaperType, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{documentIndexId}", System.Uri.EscapeDataString(ConvertToString(documentIndexId, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{calculateRequest}", System.Uri.EscapeDataString(ConvertToString(calculateRequest, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{compositeRequest}", System.Uri.EscapeDataString(ConvertToString(compositeRequest, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{createOnQuery}", System.Uri.EscapeDataString(ConvertToString(createOnQuery, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    if (taxpayerIdHeader != null)
+                        request_.Headers.TryAddWithoutValidation("taxpayerId", ConvertToString(taxpayerIdHeader, System.Globalization.CultureInfo.InvariantCulture));
+                    if (taxYearHeader != null)
+                        request_.Headers.TryAddWithoutValidation("taxYear", ConvertToString(taxYearHeader, System.Globalization.CultureInfo.InvariantCulture));
+                    if (version != null)
+                        request_.Headers.TryAddWithoutValidation("version", ConvertToString(version, System.Globalization.CultureInfo.InvariantCulture));
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+    
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+    
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<WorkpaperResponseOfLowAndMiddleIncomeTaxOffsetWorkpaper>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -12592,44 +12799,62 @@ namespace Taxlab.ApiClientLibrary
         [System.Runtime.Serialization.EnumMember(Value = @"TemporaryDifferenceFromBalanceSheetImpactingFutureDeductibleBalanceSheetCurrentYear")]
         TemporaryDifferenceFromBalanceSheetImpactingFutureDeductibleBalanceSheetCurrentYear = 103,
     
+        [System.Runtime.Serialization.EnumMember(Value = @"PieTaxPayable")]
+        PieTaxPayable = 104,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"PieTaxReceivable")]
+        PieTaxReceivable = 105,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"LowIncomeTaxOffset")]
+        LowIncomeTaxOffset = 106,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"LowIncomeTaxOffsetRestriction")]
+        LowIncomeTaxOffsetRestriction = 107,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"LowAndMiddleIncomeTaxOffset")]
+        LowAndMiddleIncomeTaxOffset = 108,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"LowAndMiddleIncomeTaxOffsetRestriction")]
+        LowAndMiddleIncomeTaxOffsetRestriction = 109,
+    
         [System.Runtime.Serialization.EnumMember(Value = @"CapitalTaxLossReceivedUtilised")]
-        CapitalTaxLossReceivedUtilised = 104,
+        CapitalTaxLossReceivedUtilised = 110,
     
         [System.Runtime.Serialization.EnumMember(Value = @"CapitalTaxLossClaim")]
-        CapitalTaxLossClaim = 105,
+        CapitalTaxLossClaim = 111,
     
         [System.Runtime.Serialization.EnumMember(Value = @"CapitalNetLoss")]
-        CapitalNetLoss = 106,
+        CapitalNetLoss = 112,
     
         [System.Runtime.Serialization.EnumMember(Value = @"Medicare")]
-        Medicare = 107,
+        Medicare = 113,
     
         [System.Runtime.Serialization.EnumMember(Value = @"MedicareSurcharge")]
-        MedicareSurcharge = 108,
+        MedicareSurcharge = 114,
     
         [System.Runtime.Serialization.EnumMember(Value = @"EmploymentTaxWithheld")]
-        EmploymentTaxWithheld = 109,
+        EmploymentTaxWithheld = 115,
     
         [System.Runtime.Serialization.EnumMember(Value = @"FirstHomeSuperSaverTaxWithheld")]
-        FirstHomeSuperSaverTaxWithheld = 110,
+        FirstHomeSuperSaverTaxWithheld = 116,
     
         [System.Runtime.Serialization.EnumMember(Value = @"SuperIncomeStreamTaxOffset")]
-        SuperIncomeStreamTaxOffset = 111,
+        SuperIncomeStreamTaxOffset = 117,
     
         [System.Runtime.Serialization.EnumMember(Value = @"NonResidentWithholdingTaxPayable")]
-        NonResidentWithholdingTaxPayable = 112,
+        NonResidentWithholdingTaxPayable = 118,
     
         [System.Runtime.Serialization.EnumMember(Value = @"WithholdingTaxOnInterestReceived")]
-        WithholdingTaxOnInterestReceived = 113,
+        WithholdingTaxOnInterestReceived = 119,
     
         [System.Runtime.Serialization.EnumMember(Value = @"FrankingCreditsAttachedToDividend")]
-        FrankingCreditsAttachedToDividend = 114,
+        FrankingCreditsAttachedToDividend = 120,
     
         [System.Runtime.Serialization.EnumMember(Value = @"WithholdingTaxOnDividendReceived")]
-        WithholdingTaxOnDividendReceived = 115,
+        WithholdingTaxOnDividendReceived = 121,
     
         [System.Runtime.Serialization.EnumMember(Value = @"ForeignTaxManualAdjustment")]
-        ForeignTaxManualAdjustment = 116,
+        ForeignTaxManualAdjustment = 122,
     
     }
     
@@ -13291,6 +13516,27 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("timeStamp", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset TimeStamp { get; set; }
     
+        [Newtonsoft.Json.JsonProperty("isScheduleHasDetails", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool IsScheduleHasDetails { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("snapshotOutputTypes", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public SnapshotOutputTypes SnapshotOutputTypes { get; set; }
+    
+    
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
+    public enum SnapshotOutputTypes
+    {
+        [System.Runtime.Serialization.EnumMember(Value = @"Efile")]
+        Efile = 0,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"Transcript")]
+        Transcript = 1,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"Html")]
+        Html = 2,
     
     }
     
@@ -13390,20 +13636,6 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("snapshotFields", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<SnapshotField> SnapshotFields { get; set; }
     
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public enum SnapshotOutputTypes
-    {
-        [System.Runtime.Serialization.EnumMember(Value = @"Efile")]
-        Efile = 0,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"Transcript")]
-        Transcript = 1,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"Html")]
-        Html = 2,
     
     }
     
@@ -13800,4251 +14032,6 @@ namespace Taxlab.ApiClientLibrary
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class GetTaxReturnContextQueryResponse 
-    {
-        [Newtonsoft.Json.JsonProperty("taxReturnContext", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public TaxReturnContext TaxReturnContext { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class TaxReturnContext 
-    {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int TaxYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("version", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public long? Version { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("displayName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DisplayName { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("displayName2", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DisplayName2 { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TaxpayerName { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxFileNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TaxFileNumber { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("entityType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public EntityType EntityType { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("startDate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string StartDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("endDate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string EndDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxAgentName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TaxAgentName { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxAgentTaxFileNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TaxAgentTaxFileNumber { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxAgentBusinessNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TaxAgentBusinessNumber { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerMetadata_TaxpayerNameTitle", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TaxpayerMetadata_TaxpayerNameTitle { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerMetadata_TaxpayerNameMiddle", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TaxpayerMetadata_TaxpayerNameMiddle { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerMetadata_TaxpayerNameSuffix", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TaxpayerMetadata_TaxpayerNameSuffix { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("linkedSpouseTaxpayerId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? LinkedSpouseTaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("workpaperContexts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.IDictionary<string, WorkpaperContextEntity> WorkpaperContexts { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("relatedContexts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.IDictionary<string, WorkpaperContextEntity> RelatedContexts { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("workpaperShadowBagContexts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.IDictionary<string, WorkpaperContextEntity> WorkpaperShadowBagContexts { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("incomingDistributions", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<AtoDistributions> IncomingDistributions { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("incomingDistributionTaxpayers", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<Taxpayer> IncomingDistributionTaxpayers { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("incomingDistributionTaxpayersMetadata", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<TaxpayerMetadata> IncomingDistributionTaxpayersMetadata { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class WorkpaperContextEntity 
-    {
-        [Newtonsoft.Json.JsonProperty("content", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public object Content { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class AtoDistributions : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int TaxYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("providerTaxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid ProviderTaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("recipientTaxpayerId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? RecipientTaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("releatedSourceId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? ReleatedSourceId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("shareOfIncomeOfTheTrustEstate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? ShareOfIncomeOfTheTrustEstate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("shareOfCreditForTaxWithheldforeignResidentWithholdingExcludingCapitalGains", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? ShareOfCreditForTaxWithheldforeignResidentWithholdingExcludingCapitalGains { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("australianFrankingCreditsFromAnewZealandCompany", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? AustralianFrankingCreditsFromAnewZealandCompany { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("shareOfIncomePrimaryProduction", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? ShareOfIncomePrimaryProduction { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("shareOfIncomeNonprimaryProduction", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? ShareOfIncomeNonprimaryProduction { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("creditForTaxWithheldWhereAbnNotQuoted", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? CreditForTaxWithheldWhereAbnNotQuoted { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("frankedDistributions", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? FrankedDistributions { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("frankingCredit", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? FrankingCredit { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("tfnAmountsWithheld", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? TfnAmountsWithheld { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("shareOfCreditForTfnAmountsWithheldFromPaymentsFromCloselyHeldTrusts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? ShareOfCreditForTfnAmountsWithheldFromPaymentsFromCloselyHeldTrusts { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("capitalGains", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? CapitalGains { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("shareOfCreditForForeignResidentCapitalGainsWithholdingAmounts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? ShareOfCreditForForeignResidentCapitalGainsWithholdingAmounts { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("attributedForeignIncome", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? AttributedForeignIncome { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("otherAssessableForeignSourceIncome", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? OtherAssessableForeignSourceIncome { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("foreignIncomeTaxOffset", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? ForeignIncomeTaxOffset { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("shareOfNationalRentalAffordabilitySchemeTaxOffset", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? ShareOfNationalRentalAffordabilitySchemeTaxOffset { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("explorationCreditsDistributed", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? ExplorationCreditsDistributed { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("earlyStageVentureCapitalLimitedPartnershipTaxOffset", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? EarlyStageVentureCapitalLimitedPartnershipTaxOffset { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("earlyStageInvestorTaxOffset", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? EarlyStageInvestorTaxOffset { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("shareOfNetSmallBusinessIncome", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? ShareOfNetSmallBusinessIncome { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("s983assessableAmount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? S983assessableAmount { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("s984assessableAmount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? S984assessableAmount { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxPreferredAmountsTbStatementInformation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? TaxPreferredAmountsTbStatementInformation { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("untaxedPartOfShareOfNetIncomeTbStatementInformation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? UntaxedPartOfShareOfNetIncomeTbStatementInformation { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("distributionFromOrdinaryOrStatutoryIncomeDuringIncomeYear", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? DistributionFromOrdinaryOrStatutoryIncomeDuringIncomeYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("totalTfnAmountsWithheldFromPayments", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? TotalTfnAmountsWithheldFromPayments { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CreatedBy { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset CreatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("shareOfNetFinancialInvestmentIncomeOrLoss", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? ShareOfNetFinancialInvestmentIncomeOrLoss { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("shareOfNetRentalPropertyIncomeOrLoss", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? ShareOfNetRentalPropertyIncomeOrLoss { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("assessmentCalculationCodeOfBeneficiary", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? AssessmentCalculationCodeOfBeneficiary { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isUnlinkedTaxpayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsUnlinkedTaxpayer { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("entityType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? EntityType { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerDisplayName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TaxpayerDisplayName { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerDisplayName2", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TaxpayerDisplayName2 { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("tfnNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TfnNumber { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("businessNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? BusinessNumber { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("dateOfBirth", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? DateOfBirth { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("title", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Title { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("suffix", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Suffix { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("otherGivenNames", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string OtherGivenNames { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("residencyStatus", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ResidencyStatus { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("typeOfTrustCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TypeOfTrustCode { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("attributedForeignIncomeListedCountry", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? AttributedForeignIncomeListedCountry { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("attributedForeignIncomeUnlistedCountry", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? AttributedForeignIncomeUnlistedCountry { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("shareOfCreditForTaxPaidByTrustee", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? ShareOfCreditForTaxPaidByTrustee { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("amountOnWhichFamilyTrustDistributionTaxHasBeenPaid", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? AmountOnWhichFamilyTrustDistributionTaxHasBeenPaid { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deductionsAgainstFrankedDistributions", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? DeductionsAgainstFrankedDistributions { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deductionsAgainstPrimaryProduction", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? DeductionsAgainstPrimaryProduction { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deductionsAgainstNonPrimaryProduction", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? DeductionsAgainstNonPrimaryProduction { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("landcareOperationsWaterFacilityFencingAssetAndFodderStorageDeductions", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? LandcareOperationsWaterFacilityFencingAssetAndFodderStorageDeductions { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredNonCommercialLossDeductionPrimaryProduction", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? DeferredNonCommercialLossDeductionPrimaryProduction { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("otherDeductionsPrimaryProduction", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? OtherDeductionsPrimaryProduction { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deductionsRelatingToFinancialInvestmentAmounts", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? DeductionsRelatingToFinancialInvestmentAmounts { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deductionsRelatingToRentalProperties", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? DeductionsRelatingToRentalProperties { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredNonCommercialLossDeductionNonPrimaryProduction", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? DeferredNonCommercialLossDeductionNonPrimaryProduction { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("otherDeductionsNonPrimaryProduction", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? OtherDeductionsNonPrimaryProduction { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("reasonTrusteePaidTax", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ReasonTrusteePaidTax { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("providerTaxpayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Taxpayer ProviderTaxpayer { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class Taxpayer : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("irdNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string IrdNumber { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("displayName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DisplayName { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deletedOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? DeletedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("modifiedOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? ModifiedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("lastOpened", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? LastOpened { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("domain", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Domain { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isTaxAccountingVisible", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsTaxAccountingVisible { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CreatedBy { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("tag", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Tag { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("nzbusinessNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string NzbusinessNumber { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerIdFringeBenefitTax", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? TaxpayerIdFringeBenefitTax { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("companyOfficeNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public long? CompanyOfficeNumber { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("incomeTaxReturnTypeId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? IncomeTaxReturnTypeId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("returnsDeadlineAs", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int ReturnsDeadlineAs { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("paymentsDeadlineAs", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int PaymentsDeadlineAs { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("displayName2", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DisplayName2 { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isOnHydra", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsOnHydra { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TaxpayerName { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isSnapshotCompareRequired", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsSnapshotCompareRequired { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("note", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Note { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("lossCalculationVersion", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? LossCalculationVersion { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("parent", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Taxpayer Parent { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("accountRecords", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<AccountRecord> AccountRecords { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("incomingDistributions", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<AtoDistributions> IncomingDistributions { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("adjustmentJournalMetaData", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<AdjustmentJournalMetaData> AdjustmentJournalMetaData { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("atoSbrMessage", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<AtoSbrMessage> AtoSbrMessage { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("capitalAssets", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<CapitalAssets> CapitalAssets { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxBalanceSheetClassificationDescription", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<DeferredTaxBalanceSheetClassificationDescription> DeferredTaxBalanceSheetClassificationDescription { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("children", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<Taxpayer> Children { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journalGroupDescription", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<JournalGroupDescription> JournalGroupDescription { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journals", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<Journals> Journals { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("ledgerReconciliation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<LedgerReconciliation> LedgerReconciliation { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("manualJournals", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<ManualJournals> ManualJournals { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("partnerTaxPoolingQuote", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<PartnerTaxPoolingQuote> PartnerTaxPoolingQuote { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("supplementaryDividendTransactions", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<SupplementaryDividendTransactions> SupplementaryDividendTransactions { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("tasks", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<Tasks> Tasks { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxAccountingNoteDescription", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<TaxAccountingNoteDescription> TaxAccountingNoteDescription { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxLossTransactions", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<TaxLossTransactions> TaxLossTransactions { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxPoolingTransactions", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<TaxPoolingTransactions> TaxPoolingTransactions { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerAnnualDetailsSpouseTaxpayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<TaxpayerAnnualDetails> TaxpayerAnnualDetailsSpouseTaxpayer { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerAnnualDetailsTaxpayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<TaxpayerAnnualDetails> TaxpayerAnnualDetailsTaxpayer { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerGroup", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<TaxpayerGroup> TaxpayerGroup { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerJournals", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<TaxpayerJournals> TaxpayerJournals { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerTaxYear", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<TaxpayerTaxYear> TaxpayerTaxYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("transactions", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<Transactions> Transactions { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxPayerAccesses", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<TaxPayerAccess> TaxPayerAccesses { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class AccountRecord : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("code", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Code { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Description { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("parentRecordId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? ParentRecordId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("subCategoryDescription", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string SubCategoryDescription { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("accountGroupId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? AccountGroupId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("firstTaxYear", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? FirstTaxYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("lastTaxYear", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? LastTaxYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deletedOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? DeletedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("sortOrder", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SortOrder { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CreatedBy { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isExcludedFromCalculation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsExcludedFromCalculation { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("partnerMappingId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? PartnerMappingId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("reportingCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ReportingCode { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("sourceAccountId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string SourceAccountId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Taxpayer Taxpayer { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("adjustments", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<Adjustment> Adjustments { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class Adjustment : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("periodEnded", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset PeriodEnded { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Description { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("caption", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Caption { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("residentWithholdingTaxPaid", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? ResidentWithholdingTaxPaid { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("nonResidentWithholdingTaxPaid", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? NonResidentWithholdingTaxPaid { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxRate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? TaxRate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("financialNoteCategory", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string FinancialNoteCategory { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxTreatment", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TaxTreatment { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("accountRecordId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid AccountRecordId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("adjustmentTypeId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int AdjustmentTypeId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("accountingTreatment", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? AccountingTreatment { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("foreignDividendPaymentCreditsAttached", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? ForeignDividendPaymentCreditsAttached { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("imputationCreditsAttached", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? ImputationCreditsAttached { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("capitalGainOrLossForAccountingDescription", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CapitalGainOrLossForAccountingDescription { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("revenueGainOrLossForAccountingDescription", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string RevenueGainOrLossForAccountingDescription { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxAdjustmentFromCapitalAssetsTaxDescription", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TaxAdjustmentFromCapitalAssetsTaxDescription { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("cost", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? Cost { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("netBookValueForAccounting", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? NetBookValueForAccounting { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("proceeds", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? Proceeds { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("netBookValueForTax", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? NetBookValueForTax { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxDeductionOnCaptialAsset", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? TaxDeductionOnCaptialAsset { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxAdjustmentFromCapitalAssetsAccountingDescription", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TaxAdjustmentFromCapitalAssetsAccountingDescription { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("paymentDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? PaymentDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deduction", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? Deduction { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("foreignIncomeTaxPaid", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? ForeignIncomeTaxPaid { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("segment", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Segment { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("nonDeductibleEntertainmentDescription", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string NonDeductibleEntertainmentDescription { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("nonDeductibleGstOnEntertainmentDescription", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string NonDeductibleGstOnEntertainmentDescription { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("wasOutputTaxPaid", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool WasOutputTaxPaid { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("gstRate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? GstRate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("gstApportionmentRate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? GstApportionmentRate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("priorPeriodGstOutputTaxRemitted", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? PriorPeriodGstOutputTaxRemitted { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("accountsAdjustmentCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string AccountsAdjustmentCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("accountsAmountCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string AccountsAmountCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("residentWithholdingTaxPaidCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ResidentWithholdingTaxPaidCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("nonResidentWithholdingTaxPaidCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string NonResidentWithholdingTaxPaidCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("futureTaxableIncomeStatementCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string FutureTaxableIncomeStatementCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("futureDeductibleIncomeStatementCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string FutureDeductibleIncomeStatementCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("unrecognisedAgainstEquityCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string UnrecognisedAgainstEquityCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("recognisedAgainstEquityCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string RecognisedAgainstEquityCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("unrecognisedAgainstIncomeStatementCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string UnrecognisedAgainstIncomeStatementCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("foreignDividendPaymentCreditsAttachedCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ForeignDividendPaymentCreditsAttachedCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("imputationCreditsAttachedCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ImputationCreditsAttachedCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("costCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CostCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("netBookValueForAccountingCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string NetBookValueForAccountingCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("proceedsCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ProceedsCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("netBookValueForTaxCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string NetBookValueForTaxCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxDeductionOnCaptialAssetCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TaxDeductionOnCaptialAssetCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deductionCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DeductionCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("foreignIncomeTaxPaidCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ForeignIncomeTaxPaidCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("gstRateCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string GstRateCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("gstApportionmentRateCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string GstApportionmentRateCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("priorPeriodGstOutputTaxRemittedCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string PriorPeriodGstOutputTaxRemittedCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("nonDeductibleEntertainmentAccountsAmountCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string NonDeductibleEntertainmentAccountsAmountCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("sourceCountry", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string SourceCountry { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("foreignIncomeSourceType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ForeignIncomeSourceType { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("netProfitBeforeTaxImpactId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? NetProfitBeforeTaxImpactId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxableOrDeductibleAmountCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TaxableOrDeductibleAmountCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("entertainmentLimitationAccountsAmountCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string EntertainmentLimitationAccountsAmountCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("foreignRefund", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ForeignRefund { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isInNetProfitBeforeTax", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsInNetProfitBeforeTax { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("returnDisclosureTypeId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? ReturnDisclosureTypeId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("accountInformationDisclosureTypeId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? AccountInformationDisclosureTypeId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? TaxYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("transitionalIcAdjustment1", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? TransitionalIcAdjustment1 { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("carryingAmountBalanceSheetCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CarryingAmountBalanceSheetCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("futureTaxableBalanceSheetCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string FutureTaxableBalanceSheetCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("futureDeductibleBalanceSheetCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string FutureDeductibleBalanceSheetCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("futureDeductibleCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string FutureDeductibleCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("futureTaxableCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string FutureTaxableCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("nonTaxableIncomeStatementCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string NonTaxableIncomeStatementCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("nonDeductibleIncomeStatementCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string NonDeductibleIncomeStatementCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("nonTaxableBalanceSheetCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string NonTaxableBalanceSheetCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("nonDeductibleBalanceSheetCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string NonDeductibleBalanceSheetCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxBaseBalanceSheetCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TaxBaseBalanceSheetCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxBaseIncomeStatementCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TaxBaseIncomeStatementCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxNonCurrentAmountCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DeferredTaxNonCurrentAmountCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxUnrecognisedCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DeferredTaxUnrecognisedCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxChargedToOtherComprehensiveIncomeCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DeferredTaxChargedToOtherComprehensiveIncomeCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxReclassifiedFromEquityToProfitOrLossCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DeferredTaxReclassifiedFromEquityToProfitOrLossCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxChargedDirectlyToEquityCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DeferredTaxChargedDirectlyToEquityCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxAcquisitionsAndDisposalsCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DeferredTaxAcquisitionsAndDisposalsCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxOpeningPerAccountsCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DeferredTaxOpeningPerAccountsCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxOpeningPerAccountsUnrecognisedCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DeferredTaxOpeningPerAccountsUnrecognisedCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isDeferredTaxAsset", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsDeferredTaxAsset { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxBalanceSheetClassificationTag", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DeferredTaxBalanceSheetClassificationTag { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("capitalAssetReconciliationSectionId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? CapitalAssetReconciliationSectionId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("sortOrder", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SortOrder { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CreatedBy { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("overseasInsurancePremiumCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string OverseasInsurancePremiumCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("overseasInsurancePremiumExemptCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string OverseasInsurancePremiumExemptCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journalDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? JournalDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journalAccount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? JournalAccount { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("ledgerJournalId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? LedgerJournalId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("finStatSubGroupId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? FinStatSubGroupId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("capexTaxCostDescription", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CapexTaxCostDescription { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("costTax", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CostTax { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("employmentIncomeDateFrom", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? EmploymentIncomeDateFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("employmentIncomeDateTo", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? EmploymentIncomeDateTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("employmentGrossIncomeCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string EmploymentGrossIncomeCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("employmentIncomePayeDeductedCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string EmploymentIncomePayeDeductedCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("familyAssistanceCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string FamilyAssistanceCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("studenLoanDeductionsCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string StudenLoanDeductionsCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("employmentIncomeNotLiableForAccCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string EmploymentIncomeNotLiableForAccCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("employmentIncomeKiwiSaverCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string EmploymentIncomeKiwiSaverCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("fxRate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? FxRate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("fxCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string FxCode { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("nrwtrate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? Nrwtrate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("expensesCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ExpensesCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("activeIncomeCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ActiveIncomeCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("nonAllowableCurrentYearCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string NonAllowableCurrentYearCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("nonAllowablePriorYearCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string NonAllowablePriorYearCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("capexImpact", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? CapexImpact { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("providerEntityType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? ProviderEntityType { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("updatedOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? UpdatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("calculationVersion", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? CalculationVersion { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("carryingAmountMovementCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CarryingAmountMovementCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("futureTaxableMovementCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string FutureTaxableMovementCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("futureDeductibleMovementCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string FutureDeductibleMovementCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("workpaperTypeId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? WorkpaperTypeId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isFormulaRolloverEnabled", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsFormulaRolloverEnabled { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxPaidTrusteeIncomeCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TaxPaidTrusteeIncomeCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxPaidTrusteeIncomeDescription", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TaxPaidTrusteeIncomeDescription { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("includeInRetainedEarnings", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool IncludeInRetainedEarnings { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("secondaryInformationDisclosureTypeId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SecondaryInformationDisclosureTypeId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("finStatCreditId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? FinStatCreditId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("finStatDebitId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? FinStatDebitId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("accountingReturnDisclosureTypeId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? AccountingReturnDisclosureTypeId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("capitalGainsConcessionsApplied", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int CapitalGainsConcessionsApplied { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("capitalAssetEffectiveLifeChanged", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? CapitalAssetEffectiveLifeChanged { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("accountRecord", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public AccountRecord AccountRecord { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("adjustmentDetail", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<AdjustmentDetail> AdjustmentDetail { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("financialStatementsSubGroupAdjustments", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<FinancialStatementsSubGroupAdjustments> FinancialStatementsSubGroupAdjustments { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class AdjustmentDetail : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("adjustmentsId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid AdjustmentsId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("documentIndexId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid DocumentIndexId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("adjustment", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Adjustment Adjustment { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class BaseEntity 
-    {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid Id { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class FinancialStatementsSubGroupAdjustments : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("financialStatementsSubGroupId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid FinancialStatementsSubGroupId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("adjustmentsId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid AdjustmentsId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("finStatsLinkType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? FinStatsLinkType { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("adjustment", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Adjustment Adjustment { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("financialStatementsSubgroup", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public FinancialStatementsSubgroup FinancialStatementsSubgroup { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class FinancialStatementsSubgroup : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Description { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("financialStatementsGroupId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid FinancialStatementsGroupId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("parentId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? ParentId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isRetainedEarnings", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool IsRetainedEarnings { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("reportCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ReportCode { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("primaryReturnMapping", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? PrimaryReturnMapping { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("secondaryReturnMapping", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SecondaryReturnMapping { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("sortOrder", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int SortOrder { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isActive", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool IsActive { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset CreatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CreatedBy { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("adjustments", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Adjustment Adjustments { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("financialStatementsScheduleNoteMapping", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<FinancialStatementsScheduleNoteMapping> FinancialStatementsScheduleNoteMapping { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("financialStatementsSubGroupAdjustmentses", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<FinancialStatementsSubGroupAdjustments> FinancialStatementsSubGroupAdjustmentses { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class FinancialStatementsScheduleNoteMapping : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("noteId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid NoteId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("subgroupId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid SubgroupId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("subgroup", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public FinancialStatementsSubgroup Subgroup { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class AdjustmentJournalMetaData : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CreatedBy { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("adjustmentId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid AdjustmentId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journalGroupId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? JournalGroupId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journalType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? JournalType { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("sortOrder", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SortOrder { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Taxpayer Taxpayer { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class AtoSbrMessage 
-    {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int Id { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("atoSbrQueueId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? AtoSbrQueueId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int TaxYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taskId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? TaskId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("status", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public byte Status { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("messageType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public byte MessageType { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdByUserId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? CreatedByUserId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("efileQueueId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? EfileQueueId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("atoSbrQueue", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public AtoSbrQueue AtoSbrQueue { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdByUser", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Users CreatedByUser { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("efileQueue", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public EFileQueue EfileQueue { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("task", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Tasks Task { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Taxpayer Taxpayer { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("atoSbrMessageContent", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<AtoSbrMessageContent> AtoSbrMessageContent { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class AtoSbrQueue 
-    {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int Id { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("status", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public byte Status { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int TaxYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("messageType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public byte MessageType { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("messageId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string MessageId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("pushDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? PushDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("pullDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? PullDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("retryAttemptCount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? RetryAttemptCount { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("nextRetryAttempt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? NextRetryAttempt { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("errorCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? ErrorCode { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("errorMessage", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ErrorMessage { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxAgentId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? TaxAgentId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("errorReviewed", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? ErrorReviewed { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxAgent", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public TaxAgent TaxAgent { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("atoSbrMessage", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<AtoSbrMessage> AtoSbrMessage { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class TaxAgent : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("displayName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DisplayName { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("irdNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string IrdNumber { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("b2bUsername", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string B2bUsername { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("b2bPassword", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string B2bPassword { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset CreatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CreatedBy { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("domain", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Domain { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deletedOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? DeletedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("oauthId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? OauthId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("efileNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string EfileNumber { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("efileKey", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string EfileKey { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("address1", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Address1 { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("address2", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Address2 { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("faxNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string FaxNumber { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("phoneNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string PhoneNumber { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("clientListId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ClientListId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("turnEfileSycnOff", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? TurnEfileSycnOff { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxAgentType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int TaxAgentType { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("businessNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string BusinessNumber { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("ausKeyKeyId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string AusKeyKeyId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("fileWithIrdApplicationGatewayConnection", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool FileWithIrdApplicationGatewayConnection { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("softwareId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string SoftwareId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isThirdPartyTermsAccepted", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsThirdPartyTermsAccepted { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("oauth", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public PartnerAccount Oauth { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("atoSbrQueue", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<AtoSbrQueue> AtoSbrQueue { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class PartnerAccount : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("accessToken", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string AccessToken { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("expiresIn", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int ExpiresIn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("tokenType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TokenType { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("scope", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Scope { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("userKey", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string UserKey { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("email", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Email { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("contactEmail", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ContactEmail { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("phone", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Phone { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("accountType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string AccountType { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("organisation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Organisation { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxLabUserName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TaxLabUserName { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("lastUpdate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset LastUpdate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("authorizationCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string AuthorizationCode { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("refreshToken", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string RefreshToken { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("partnerId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? PartnerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxAgent", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<TaxAgent> TaxAgent { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class Users 
-    {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int Id { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("email", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Email { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("firstName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string FirstName { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("lastName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string LastName { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("displayName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DisplayName { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("atoSbrMessage", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<AtoSbrMessage> AtoSbrMessage { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class EFileQueue : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int TaxYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("irdNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string IrdNumber { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("sendDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? SendDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("status", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int Status { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("irdSessionId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string IrdSessionId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("irdResponse", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string IrdResponse { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CreatedBy { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset CreatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("sentDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? SentDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("form", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Form { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("checksum", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Checksum { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isSchedule", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool IsSchedule { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("signOffStatusUpdatedOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? SignOffStatusUpdatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("lockedTranscriptChecksum", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string LockedTranscriptChecksum { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("atoSbrMessage", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<AtoSbrMessage> AtoSbrMessage { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("efileMessage", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<EFileMessage> EfileMessage { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("efileNoticeOfAssessment", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<EFileNoticeOfAssessment> EfileNoticeOfAssessment { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class EFileMessage : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("efileQueueId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid EfileQueueId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("efileNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string EfileNumber { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("reportType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ReportType { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("reportVersion", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int ReportVersion { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("returnData", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ReturnData { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("message", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Message { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("checksum", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Checksum { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("responseStatus", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ResponseStatus { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("response", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Response { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("efileQueue", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public EFileQueue EfileQueue { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("atoSbrMessageContent", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<AtoSbrMessageContent> AtoSbrMessageContent { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class AtoSbrMessageContent 
-    {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int Id { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("atoSbrMessageId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int AtoSbrMessageId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("messageContentType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public byte MessageContentType { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("xbrlMessageCloudBlobName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string XbrlMessageCloudBlobName { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("documentId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? DocumentId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("efileMessageId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? EfileMessageId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("atoSbrMessage", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public AtoSbrMessage AtoSbrMessage { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("efileMessage", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public EFileMessage EfileMessage { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class EFileNoticeOfAssessment : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("efileQueueId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid EfileQueueId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("blobFileName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string BlobFileName { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("clientIrdNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ClientIrdNumber { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("periodDescription", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string PeriodDescription { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("rit", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? Rit { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("efileQueue", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public EFileQueue EfileQueue { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class Tasks : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Name { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taskType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int TaskType { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int TaxYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("status", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int Status { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("assignedTo", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string AssignedTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("dueDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? DueDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset CreatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CreatedBy { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("modifiedOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? ModifiedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("modifiedBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ModifiedBy { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("subTaskType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SubTaskType { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("comment", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Comment { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("observedDueDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? ObservedDueDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int TaxType { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("assignedToUserId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? AssignedToUserId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? Amount { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("archived", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool Archived { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("assignedOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? AssignedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("filedDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? FiledDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("proceessDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? ProceessDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("residualIncomeTax", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? ResidualIncomeTax { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("lossToCarryForward", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? LossToCarryForward { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Taxpayer Taxpayer { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("atoActivityStatements", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<AtoActivityStatement> AtoActivityStatements { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("atoSbrMessage", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<AtoSbrMessage> AtoSbrMessage { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("provisionalTaxLiability", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<ProvisionalTaxLiability> ProvisionalTaxLiability { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class AtoActivityStatement : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("externalId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid ExternalId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taskId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaskId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("documentId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DocumentId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("statementName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string StatementName { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("statementType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public byte? StatementType { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("statementStatus", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public byte? StatementStatus { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("statementRevisionIndicator", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? StatementRevisionIndicator { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("statementSequenceNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? StatementSequenceNumber { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("branchCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string BranchCode { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("abnNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string AbnNumber { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("logmentDueOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? LogmentDueOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("paymentDueOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? PaymentDueOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("gstAccountingMethod", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? GstAccountingMethod { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("contactPhoneNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ContactPhoneNumber { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("contactName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ContactName { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("gstOnSales", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? GstOnSales { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("gstOnSalesOrInstalments", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? GstOnSalesOrInstalments { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("wineEqualisationTax", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? WineEqualisationTax { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("luxuryCarTax", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? LuxuryCarTax { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("paygIncomeTaxInstalment", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? PaygIncomeTaxInstalment { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("fbtInstalment", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? FbtInstalment { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredCompanyFundInstalment", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? DeferredCompanyFundInstalment { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("fuelTaxCreditOverClaim", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? FuelTaxCreditOverClaim { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("amountYouOweTheTaxOffice", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? AmountYouOweTheTaxOffice { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("gstOnPurchases", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? GstOnPurchases { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("wineEqualisationTaxRefundable", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? WineEqualisationTaxRefundable { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("luxuryCarTaxRefundable", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? LuxuryCarTaxRefundable { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("gstInstalmentsAmountsReported", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? GstInstalmentsAmountsReported { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("fuelTaxCredit", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? FuelTaxCredit { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("creditFromPaygIncomeTaxInstalmentVariation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? CreditFromPaygIncomeTaxInstalmentVariation { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("creditFromFbtInstalmentVariation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? CreditFromFbtInstalmentVariation { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("amountTheTaxOfficeOwes", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? AmountTheTaxOfficeOwes { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("paymentOrRefundAmount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? PaymentOrRefundAmount { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("gstReportingOptions", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public byte? GstReportingOptions { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("availableGstReportingOptions", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string AvailableGstReportingOptions { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("totalSales", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? TotalSales { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("gstIncludedInTotalSalesIndicator", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? GstIncludedInTotalSalesIndicator { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("exportSalesAmount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? ExportSalesAmount { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("otherGstFreeSales", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? OtherGstFreeSales { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("capitalPurchases", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? CapitalPurchases { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("nonCapitalPurchases", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? NonCapitalPurchases { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("atoInstalmentAmount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? AtoInstalmentAmount { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("estimatedNetGstForTheYear", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? EstimatedNetGstForTheYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("variedGstAmountForTheQuarter", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? VariedGstAmountForTheQuarter { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("reasonCodeForGstVariation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public byte? ReasonCodeForGstVariation { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("paygTotalOfSalaryWagesAndOtherPayments", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? PaygTotalOfSalaryWagesAndOtherPayments { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("paygTaxWithheld", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? PaygTaxWithheld { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("paygAmountWithheldFromSalaryWagesAndOtherPayments", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? PaygAmountWithheldFromSalaryWagesAndOtherPayments { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("paygAmountWithheldWhereNoAbnIsQuoted", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? PaygAmountWithheldWhereNoAbnIsQuoted { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("paygOtherAmountsWithheld", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? PaygOtherAmountsWithheld { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("paygIncomeTaxInstalmentReportingOption", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public byte? PaygIncomeTaxInstalmentReportingOption { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("availablePaygIncomeTaxInstalmentReportingOptions", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string AvailablePaygIncomeTaxInstalmentReportingOptions { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxOfficePaygIncomeTaxInstalmentAmount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? TaxOfficePaygIncomeTaxInstalmentAmount { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("estimatedPaygIncomeTaxForTheYear", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? EstimatedPaygIncomeTaxForTheYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("variedPaygIncomeTaxInstalmentAmount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? VariedPaygIncomeTaxInstalmentAmount { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("reasonCodeForPaygIncomeTaxInstalmentVariation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public byte? ReasonCodeForPaygIncomeTaxInstalmentVariation { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("paygInstalmentIncome", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? PaygInstalmentIncome { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("commissionerChosenInstalmentRate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? CommissionerChosenInstalmentRate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("businessVariationNewVariedRate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? BusinessVariationNewVariedRate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxOfficeFbtInstalmentAmount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? TaxOfficeFbtInstalmentAmount { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("estimatedFbtForTheYear", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? EstimatedFbtForTheYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("variedFbtAmountForTheQuarter", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? VariedFbtAmountForTheQuarter { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("reasonCodeForFbtVariation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public byte? ReasonCodeForFbtVariation { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("prefillSource", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public byte? PrefillSource { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("variedPaygIncomeTaxInstalmentRateAmount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? VariedPaygIncomeTaxInstalmentRateAmount { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("enableGstCalculationWorksheet", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool EnableGstCalculationWorksheet { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("inputTaxedSales", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? InputTaxedSales { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("salesNotSubjectToGst", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? SalesNotSubjectToGst { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("totalSalesSubjectToGst", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? TotalSalesSubjectToGst { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("gstAdjustmentsOfLessThan5K", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? GstAdjustmentsOfLessThan5K { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("totalSalesSubjectToGstAfterAdjustment", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? TotalSalesSubjectToGstAfterAdjustment { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("gstOnSalesAtXrate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? GstOnSalesAtXrate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("gstApportionmentRate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? GstApportionmentRate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("totalPurchasesIncludingGst", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? TotalPurchasesIncludingGst { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("purchasesForMakingInputTaxedSales", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? PurchasesForMakingInputTaxedSales { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("purchasesWithoutGstInThePrice", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? PurchasesWithoutGstInThePrice { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("estimatedPurchasesForPrivateUseNotIncomeTaxDeductible", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? EstimatedPurchasesForPrivateUseNotIncomeTaxDeductible { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("purchasesNotSubjectToGst", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? PurchasesNotSubjectToGst { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("totalPurchasesSubjectToGst", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? TotalPurchasesSubjectToGst { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("gstPurchasesAdjustments", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? GstPurchasesAdjustments { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("totalPurchasesSubjectToGstAfterAdjustments", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? TotalPurchasesSubjectToGstAfterAdjustments { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("gstEnabled", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool GstEnabled { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("paygwEnabled", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool PaygwEnabled { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("paygiEnabled", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool PaygiEnabled { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("fuelTaxCreditEnabled", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool FuelTaxCreditEnabled { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("wineEqualisationTaxEnabled", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool WineEqualisationTaxEnabled { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("luxuryCarTaxEnabled", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool LuxuryCarTaxEnabled { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("fbtEnabled", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool FbtEnabled { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredCompanyFundInstalmentEnabled", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool DeferredCompanyFundInstalmentEnabled { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("netGstAmount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? NetGstAmount { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("task", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Tasks Task { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class ProvisionalTaxLiability : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int TaxYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("instalmentNumber", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int InstalmentNumber { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("relatedTaskId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? RelatedTaskId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("liabilityFk", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? LiabilityFk { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("upliftPercentage", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? UpliftPercentage { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("liabilityTaxableIncome", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? LiabilityTaxableIncome { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("liabilityResidualIncomeTax", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? LiabilityResidualIncomeTax { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("forecastTaxableIncome", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? ForecastTaxableIncome { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("forecastResidualIncomeTax", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? ForecastResidualIncomeTax { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("installmentAmount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? InstallmentAmount { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("availableCredits", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? AvailableCredits { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("pendingCredits", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? PendingCredits { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("amountPayable", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? AmountPayable { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isTransitionalYear", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsTransitionalYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("completedOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CompletedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("provisionalTaxMethod", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? ProvisionalTaxMethod { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("shouldFileReturn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? ShouldFileReturn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isRitPending", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsRitPending { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("irdUomi", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? IrdUomi { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isIrdUomiManual", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsIrdUomiManual { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("penaltiesDue", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? PenaltiesDue { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isPenaltiesDueManual", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsPenaltiesDueManual { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("studentLoanDue", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? StudentLoanDue { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isStudentLoanDueManual", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsStudentLoanDueManual { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("calculationType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? CalculationType { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("instalmentsInTaxYear", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? InstalmentsInTaxYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxPoolingReference", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TaxPoolingReference { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("reviewStatus", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? ReviewStatus { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("liabilityFkNavigation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public ProvisionalTaxSourceRit LiabilityFkNavigation { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("relatedTask", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Tasks RelatedTask { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class ProvisionalTaxSourceRit : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int TaxYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("provisionalTaxLiabilityType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int ProvisionalTaxLiabilityType { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxableIncome", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? TaxableIncome { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("residualIncomeTax", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? ResidualIncomeTax { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Description { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("usedInForecast", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? UsedInForecast { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("date", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? Date { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("provisionalTaxLiability", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<ProvisionalTaxLiability> ProvisionalTaxLiability { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class CapitalAssets : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("reconciliationName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ReconciliationName { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("sectionId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? SectionId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("sectionName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string SectionName { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("sortOrder", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SortOrder { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int TaxYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("openingAccountingCost", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? OpeningAccountingCost { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("openingAccountingDepreciation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? OpeningAccountingDepreciation { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("openingTaxCost", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? OpeningTaxCost { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("openingTaxDepreciation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? OpeningTaxDepreciation { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxUnrecognisedFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DeferredTaxUnrecognisedFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxNonCurrentAmountFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DeferredTaxNonCurrentAmountFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxOpeningPerAccountsFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DeferredTaxOpeningPerAccountsFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxOpeningPerAccountsUnrecognisedFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DeferredTaxOpeningPerAccountsUnrecognisedFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxChargedToOtherComprehensiveIncomeFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DeferredTaxChargedToOtherComprehensiveIncomeFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxReclassifiedFromEquityToProfitOrLossFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DeferredTaxReclassifiedFromEquityToProfitOrLossFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxChargedDirectlyToEquityFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DeferredTaxChargedDirectlyToEquityFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxBalanceSheetClassificationData", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DeferredTaxBalanceSheetClassificationData { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxAcquisitionsAndDisposalsFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DeferredTaxAcquisitionsAndDisposalsFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("financialNoteCategory", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string FinancialNoteCategory { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CreatedBy { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isExcludedFromCalculation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsExcludedFromCalculation { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("reconciliationId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? ReconciliationId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("accountSourceId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? AccountSourceId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("reconciliationCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ReconciliationCode { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("sectionCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string SectionCode { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Taxpayer Taxpayer { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class DeferredTaxBalanceSheetClassificationDescription : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CreatedBy { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("originalRecordKey", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? OriginalRecordKey { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Description { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("sortOrder", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? SortOrder { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isActive", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsActive { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Taxpayer Taxpayer { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class JournalGroupDescription : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CreatedBy { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Description { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isActive", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsActive { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("key", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Key { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("original", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Original { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("sortOrder", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SortOrder { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Taxpayer Taxpayer { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class Journals : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("accountRecordId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? AccountRecordId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Description { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("groupDescriptionId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int GroupDescriptionId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journalTypeId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int JournalTypeId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journalCategoryId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int JournalCategoryId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int TaxYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("version", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Version { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxExpenseCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TaxExpenseCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("currentTaxCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CurrentTaxCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DeferredTaxCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("otherCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string OtherCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CreatedBy { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deletedOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? DeletedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("sortOrder", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SortOrder { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("dateMade", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? DateMade { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journalComponentClassificationId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? JournalComponentClassificationId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isLedgerReconciliation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsLedgerReconciliation { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journalYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int JournalYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("hasNoImpactOnJournalReconciliation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? HasNoImpactOnJournalReconciliation { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("hasNoImpactOnCurrentTaxProof", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? HasNoImpactOnCurrentTaxProof { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("ppa", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Ppa { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxExpenseDeferredCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TaxExpenseDeferredCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Taxpayer Taxpayer { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class LedgerReconciliation : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("accountRecordId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? AccountRecordId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Description { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("groupDescriptionId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int GroupDescriptionId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journalTypeId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int JournalTypeId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journalCategoryId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int JournalCategoryId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int TaxYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("version", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Version { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxExpenseCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TaxExpenseCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("currentTaxCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CurrentTaxCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DeferredTaxCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("otherCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string OtherCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CreatedBy { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deletedOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? DeletedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("sortOrder", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SortOrder { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("dateMade", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? DateMade { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journalComponentClassificationId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? JournalComponentClassificationId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isLedgerReconciliation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsLedgerReconciliation { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journalYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int JournalYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("hasNoImpactOnJournalReconciliation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? HasNoImpactOnJournalReconciliation { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("hasNoImpactOnCurrentTaxProof", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? HasNoImpactOnCurrentTaxProof { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("ppa", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Ppa { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Taxpayer Taxpayer { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class ManualJournals : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("accountRecordId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? AccountRecordId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Description { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("groupDescriptionId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int GroupDescriptionId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journalTypeId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int JournalTypeId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journalCategoryId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int JournalCategoryId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int TaxYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("version", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Version { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxExpenseCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TaxExpenseCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("currentTaxCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CurrentTaxCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DeferredTaxCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("otherCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string OtherCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CreatedBy { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deletedOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? DeletedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("sortOrder", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SortOrder { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("dateMade", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? DateMade { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journalComponentClassificationId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? JournalComponentClassificationId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isLedgerReconciliation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsLedgerReconciliation { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journalYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int JournalYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("hasNoImpactOnJournalReconciliation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? HasNoImpactOnJournalReconciliation { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("hasNoImpactOnCurrentTaxProof", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? HasNoImpactOnCurrentTaxProof { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("ppa", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Ppa { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxExpenseDeferredCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TaxExpenseDeferredCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Taxpayer Taxpayer { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class PartnerTaxPoolingQuote : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("advisor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Advisor { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("key", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Key { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TaxpayerName { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("irdNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string IrdNumber { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset CreatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CreatedBy { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("paymentAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal PaymentAmount { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("jsonRequestSent", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string JsonRequestSent { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("jsonQuoteReceived", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string JsonQuoteReceived { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("accessedOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? AccessedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Taxpayer Taxpayer { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class SupplementaryDividendTransactions : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Description { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int TaxYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("date", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset Date { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("transactionTypeId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int TransactionTypeId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isAutoGenerated", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool IsAutoGenerated { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CreatedBy { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("creditYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int CreditYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxYearEntered", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int TaxYearEntered { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("amountCellLastResult", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? AmountCellLastResult { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("amountCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string AmountCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("sortOrder", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SortOrder { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("reversingEntityId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? ReversingEntityId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Taxpayer Taxpayer { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class TaxAccountingNoteDescription : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CreatedBy { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Description { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("key", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Key { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isActive", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsActive { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("sortOrder", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SortOrder { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Taxpayer Taxpayer { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class TaxLossTransactions : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Description { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("date", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset Date { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("transactionTypeId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int TransactionTypeId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isAutoGenerated", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool IsAutoGenerated { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset CreatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CreatedBy { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("lossYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int LossYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxYearEntered", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int TaxYearEntered { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("amountCellLastResult", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? AmountCellLastResult { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("amountCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string AmountCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("sortOrder", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SortOrder { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isExcludedFromTaxReturnCalculation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsExcludedFromTaxReturnCalculation { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("reversingTaxpayerId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? ReversingTaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("reversingEntityId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? ReversingEntityId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Taxpayer Taxpayer { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class TaxPoolingTransactions : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("transactionTypeId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int TransactionTypeId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("poolingProviderId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int PoolingProviderId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("date", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset Date { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journalYear", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? JournalYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("dateOfIcaImpact", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? DateOfIcaImpact { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? Amount { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isAutoGenerated", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool IsAutoGenerated { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("sortOrder", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SortOrder { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CreatedBy { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("hasNoImpactOnJournalReconciliation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? HasNoImpactOnJournalReconciliation { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("hasNoImpactOnCurrentTaxProof", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? HasNoImpactOnCurrentTaxProof { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Description { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? TaxYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("processDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? ProcessDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isHighlighted", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsHighlighted { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("relatedPartnerId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string RelatedPartnerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("applyToTaxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool ApplyToTaxableIncome { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isReconciledWithIrd", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool IsReconciledWithIrd { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("applyToImputationCreditAccount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool ApplyToImputationCreditAccount { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isImputationCreditAlwaysAppliedToOriginatingTaxpayer", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool IsImputationCreditAlwaysAppliedToOriginatingTaxpayer { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isAccrual", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool IsAccrual { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isAlwaysAppliedToUseOfMoneyInterest", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool IsAlwaysAppliedToUseOfMoneyInterest { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("paidToEntityId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? PaidToEntityId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("reversingTransactionId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? ReversingTransactionId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("relatedIrdTransactionId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public long? RelatedIrdTransactionId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journalDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? JournalDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("icaDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? IcaDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isTaxCredit", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsTaxCredit { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("instalmentDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? InstalmentDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journalCategory", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? JournalCategory { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journalChargeType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? JournalChargeType { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("annualImputationCreditBox", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? AnnualImputationCreditBox { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Taxpayer Taxpayer { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class TaxpayerAnnualDetails : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int TaxYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("balanceDate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset BalanceDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("startDate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset StartDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("tradingName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TradingName { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("streetAddress1", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string StreetAddress1 { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("streetAddress2", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string StreetAddress2 { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("postalAddress1", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string PostalAddress1 { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("businessIndustryCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string BusinessIndustryCode { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("bankAccount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string BankAccount { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("fullPhoneNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string FullPhoneNumber { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("hasCompanyCeased", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? HasCompanyCeased { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("hasMadePaymentsToNonResidents", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? HasMadePaymentsToNonResidents { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("hasEntriesOnImputationReturn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? HasEntriesOnImputationReturn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("hasAdditionalInternationalTaxDisclosures", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? HasAdditionalInternationalTaxDisclosures { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("hasDeductedNrwtFromNonResidentContractorPayments", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? HasDeductedNrwtFromNonResidentContractorPayments { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("hasReceivedForeignSourcedDividends", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? HasReceivedForeignSourcedDividends { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isCompanyControlledOrOwnedByNonResidents", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsCompanyControlledOrOwnedByNonResidents { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("valueOfSharesRepurchasedRedeemedOrCancelled", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ValueOfSharesRepurchasedRedeemedOrCancelled { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("lowestEconomicInterestOfShareholders", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string LowestEconomicInterestOfShareholders { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("transferToProvisionalTaxAmount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? TransferToProvisionalTaxAmount { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("transferToAnotherTaxpayerAmount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? TransferToAnotherTaxpayerAmount { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("transferToSomeoneElseAreYouAssociated", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? TransferToSomeoneElseAreYouAssociated { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("transferToSomeoneElseIrdNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TransferToSomeoneElseIrdNumber { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("transferToSomeoneElseName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TransferToSomeoneElseName { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("transferToOtherAmount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? TransferToOtherAmount { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("transferToSomeoneElseYearEnded", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TransferToSomeoneElseYearEnded { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("selectedRefundOption", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SelectedRefundOption { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("provisionalTaxOption", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? ProvisionalTaxOption { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("provisionalTaxPayable", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? ProvisionalTaxPayable { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isTaxNonResident", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsTaxNonResident { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isFirstYear", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsFirstYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("dateTaxableActivityStarted", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? DateTaxableActivityStarted { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isRefundByCheque", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsRefundByCheque { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("statusId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? StatusId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("extensionOfTimeStatus", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? ExtensionOfTimeStatus { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isSubmittedByEfile", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsSubmittedByEfile { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("hasAnnualImputationReturn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? HasAnnualImputationReturn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("returnFiledDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? ReturnFiledDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("hasSharesRepurchasedRedeemedOrCancelled", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? HasSharesRepurchasedRedeemedOrCancelled { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("postalAddress2", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string PostalAddress2 { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("useOfMoneyInterestCalculatedToDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? UseOfMoneyInterestCalculatedToDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("transferToProvisionalTaxAmountCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TransferToProvisionalTaxAmountCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("transferToAnotherTaxpayerAmountCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TransferToAnotherTaxpayerAmountCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("provisionalTaxPayableCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ProvisionalTaxPayableCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("hasTransferToOtherPeriodOrTaxType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool HasTransferToOtherPeriodOrTaxType { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("expressProfitBeforeTaxCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ExpressProfitBeforeTaxCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("imputationOnDividendsCreditsRemaining", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? ImputationOnDividendsCreditsRemaining { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("netIncomeOrLoss", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? NetIncomeOrLoss { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("sendRegistrationDetails", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? SendRegistrationDetails { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("businessIndustryCodeDescription", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string BusinessIndustryCodeDescription { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("debitClosingBalanceOfIcaAccountFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DebitClosingBalanceOfIcaAccountFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("adjustmentsToFurtherReduceIncomeTaxPayableFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string AdjustmentsToFurtherReduceIncomeTaxPayableFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("useManualCalculationForForeignTaxCredits", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? UseManualCalculationForForeignTaxCredits { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("sortOrder", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SortOrder { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CreatedBy { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxPaymentsProcessDateFilter", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? TaxPaymentsProcessDateFilter { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("fxRate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? FxRate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("ppaTaxProvisionVersionNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public long? PpaTaxProvisionVersionNumber { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("ppaTaxReturnVersionNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public long? PpaTaxReturnVersionNumber { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxLossFinancialNoteCategory", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DeferredTaxLossFinancialNoteCategory { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxLossDeferredTaxBalanceSheetClassificationData", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DeferredTaxLossDeferredTaxBalanceSheetClassificationData { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxLossTemporaryDifferencePerAccountsPriorYear", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? DeferredTaxLossTemporaryDifferencePerAccountsPriorYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxLossDeferredTaxUnrecognisedPerAccountsPriorYear", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? DeferredTaxLossDeferredTaxUnrecognisedPerAccountsPriorYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxLossDeferredTaxUnrecognisedPerReturnPriorYear", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? DeferredTaxLossDeferredTaxUnrecognisedPerReturnPriorYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxLossDeferredTaxUnrecognisedPerReturnCurrentYear", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? DeferredTaxLossDeferredTaxUnrecognisedPerReturnCurrentYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxLossDeferredTaxChargedToOtherComprehensiveIncome", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? DeferredTaxLossDeferredTaxChargedToOtherComprehensiveIncome { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxLossDeferredTaxReclassifiedFromEquityToProfitOrLoss", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? DeferredTaxLossDeferredTaxReclassifiedFromEquityToProfitOrLoss { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxLossDeferredTaxChargedDirectlyToEquity", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? DeferredTaxLossDeferredTaxChargedDirectlyToEquity { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxLossDeferredTaxAcquisitionsAndDisposals", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? DeferredTaxLossDeferredTaxAcquisitionsAndDisposals { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxLossDeferredTaxUnrecognised", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? DeferredTaxLossDeferredTaxUnrecognised { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxLossDeferredTaxNonCurrentAmountFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DeferredTaxLossDeferredTaxNonCurrentAmountFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxLossDeferredTaxNonCurrentAmount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? DeferredTaxLossDeferredTaxNonCurrentAmount { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxSupplementaryDividendFinancialNoteCategory", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DeferredTaxSupplementaryDividendFinancialNoteCategory { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxSupplementaryDividendDeferredTaxBalanceSheetClassificationData", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DeferredTaxSupplementaryDividendDeferredTaxBalanceSheetClassificationData { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxSupplementaryDividendTemporaryDifferencePerAccountsPriorYear", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? DeferredTaxSupplementaryDividendTemporaryDifferencePerAccountsPriorYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxSupplementaryDividendDeferredTaxUnrecognisedPerAccountsPriorYear", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? DeferredTaxSupplementaryDividendDeferredTaxUnrecognisedPerAccountsPriorYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxSupplementaryDividendDeferredTaxUnrecognisedPerReturnPriorYear", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? DeferredTaxSupplementaryDividendDeferredTaxUnrecognisedPerReturnPriorYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxSupplementaryDividendDeferredTaxUnrecognisedPerReturnCurrentYear", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? DeferredTaxSupplementaryDividendDeferredTaxUnrecognisedPerReturnCurrentYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxSupplementaryDividendDeferredTaxChargedToOtherComprehensiveIncome", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? DeferredTaxSupplementaryDividendDeferredTaxChargedToOtherComprehensiveIncome { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxSupplementaryDividendDeferredTaxReclassifiedFromEquityToProfitOrLoss", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? DeferredTaxSupplementaryDividendDeferredTaxReclassifiedFromEquityToProfitOrLoss { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxSupplementaryDividendDeferredTaxChargedDirectlyToEquity", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? DeferredTaxSupplementaryDividendDeferredTaxChargedDirectlyToEquity { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxSupplementaryDividendDeferredTaxAcquisitionsAndDisposals", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? DeferredTaxSupplementaryDividendDeferredTaxAcquisitionsAndDisposals { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxSupplementaryDividendDeferredTaxUnrecognised", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? DeferredTaxSupplementaryDividendDeferredTaxUnrecognised { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxSupplementaryDividendDeferredTaxNonCurrentAmountFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DeferredTaxSupplementaryDividendDeferredTaxNonCurrentAmountFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTaxSupplementaryDividendDeferredTaxNonCurrentAmount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? DeferredTaxSupplementaryDividendDeferredTaxNonCurrentAmount { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("hasExpressProfitBeforeTax", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool HasExpressProfitBeforeTax { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isEligibleForIetc", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsEligibleForIetc { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("excludedOverseasIncomeStartDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? ExcludedOverseasIncomeStartDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("excludedOverseasIncomeEndDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? ExcludedOverseasIncomeEndDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("excludedOverseasIncomeQualifyingMonths", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? ExcludedOverseasIncomeQualifyingMonths { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("employmentIncomeDateFrom", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? EmploymentIncomeDateFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("employmentIncomeDateTo", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? EmploymentIncomeDateTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("employmentGrossIncomeCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string EmploymentGrossIncomeCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("employmentIncomePayeDeductedCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string EmploymentIncomePayeDeductedCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("familyAssistanceCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string FamilyAssistanceCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("studenLoanDeductionsCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string StudenLoanDeductionsCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("employmentIncomeNotLiableForAccCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string EmploymentIncomeNotLiableForAccCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isUsingDifferentialReporting", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsUsingDifferentialReporting { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("finStatGroupTemplate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int FinStatGroupTemplate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("fxCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string FxCode { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("salutation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Salutation { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("dateOfBirth", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? DateOfBirth { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isIr215Attached", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsIr215Attached { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("refundOverpaymentProvisionalTaxFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string RefundOverpaymentProvisionalTaxFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("transferToOwnStudentLoanFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TransferToOwnStudentLoanFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("transferToAnotherStudentLoanName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TransferToAnotherStudentLoanName { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("transferToAnotherStudentLoanAreYouAssociated", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? TransferToAnotherStudentLoanAreYouAssociated { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("transferToAnotherStudentLoanIrdNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TransferToAnotherStudentLoanIrdNumber { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("transferToAnotherStudentLoanAmountFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TransferToAnotherStudentLoanAmountFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("disclosureForeign", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? DisclosureForeign { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isPartYearReturn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsPartYearReturn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("partYearReturnReason", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string PartYearReturnReason { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("partYearStartDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? PartYearStartDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("partYearEndDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? PartYearEndDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("nzsuperIndicator", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? NzsuperIndicator { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("dateLeftNz", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? DateLeftNz { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("howLongAwayFromNz", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string HowLongAwayFromNz { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isFirstReturn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsFirstReturn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isNilReturn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsNilReturn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("trustOrEstateType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TrustOrEstateType { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isEntitledForEarlyPaymentDiscount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsEntitledForEarlyPaymentDiscount { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isIncorporated", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsIncorporated { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("contactName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ContactName { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("phoneCountry", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string PhoneCountry { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("imputationCreditAdjustmentToBroughtForwardBalance", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? ImputationCreditAdjustmentToBroughtForwardBalance { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("imputationCreditAdjustmentToCurrentYearCredits", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? ImputationCreditAdjustmentToCurrentYearCredits { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("excessIcadjustment", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? ExcessIcadjustment { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("excessIcbroughtForwardAdjustment", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? ExcessIcbroughtForwardAdjustment { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerIdOfPartner", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? TaxpayerIdOfPartner { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("irdNumberOfPartner", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string IrdNumberOfPartner { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("nameOfPartner", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string NameOfPartner { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("donationTransferName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DonationTransferName { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("donationTransferIrdNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DonationTransferIrdNumber { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("donationTransferPeriod", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? DonationTransferPeriod { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("donationAmountToTransfer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? DonationAmountToTransfer { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("otherDistributionFromNonComplyingTrust", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? OtherDistributionFromNonComplyingTrust { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("ir10calculationVersion", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Ir10calculationVersion { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("elecNoaInd", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? ElecNoaInd { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("paymentSent", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? PaymentSent { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("correspAtt", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? CorrespAtt { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isFinalTaxReturn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsFinalTaxReturn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("postalAddressId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? PostalAddressId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("previousPostalAddressId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? PreviousPostalAddressId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("physicalAddressId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? PhysicalAddressId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("spouseTaxpayerId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? SpouseTaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("physicalAddress", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public TaxpayerAddress PhysicalAddress { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("postalAddress", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public TaxpayerAddress PostalAddress { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("previousPostalAddress", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public TaxpayerAddress PreviousPostalAddress { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("spouseTaxpayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Taxpayer SpouseTaxpayer { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Taxpayer Taxpayer { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerAnnualDetailDocumentIndex", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<TaxpayerAnnualDetailDocumentIndex> TaxpayerAnnualDetailDocumentIndex { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class TaxpayerAddress : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("addressLine1", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string AddressLine1 { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("addressLine2", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string AddressLine2 { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("addressLine3", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string AddressLine3 { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("city", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string City { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("postCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string PostCode { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("country", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Country { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("addressTypeId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int AddressTypeId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset CreatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CreatedBy { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("contactName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ContactName { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Description { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("addressLine4", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string AddressLine4 { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("region", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Region { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("sortOrder", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SortOrder { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isDefaultStreetAddress", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool IsDefaultStreetAddress { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isDefault", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool IsDefault { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerAnnualDetailsPhysicalAddress", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<TaxpayerAnnualDetails> TaxpayerAnnualDetailsPhysicalAddress { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerAnnualDetailsPostalAddress", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<TaxpayerAnnualDetails> TaxpayerAnnualDetailsPostalAddress { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerAnnualDetailsPreviousPostalAddress", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<TaxpayerAnnualDetails> TaxpayerAnnualDetailsPreviousPostalAddress { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class TaxpayerAnnualDetailDocumentIndex : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerAnnualDetailId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerAnnualDetailId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("documentIndexId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid DocumentIndexId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("workpaperType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public WorkpaperType WorkpaperType { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("updatedOn", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset UpdatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerAnnualDetails", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public TaxpayerAnnualDetails TaxpayerAnnualDetails { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("documentIndex", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public DocumentIndex DocumentIndex { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public enum WorkpaperType
-    {
-        [System.Runtime.Serialization.EnumMember(Value = @"None")]
-        None = 0,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"IsRevenue")]
-        IsRevenue = 1,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"NonTaxableIncome")]
-        NonTaxableIncome = 2,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"TemporaryFromBalanceSheet")]
-        TemporaryFromBalanceSheet = 3,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"NonDeductibleExpense")]
-        NonDeductibleExpense = 4,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"NewZealandDividendIncome")]
-        NewZealandDividendIncome = 5,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"NewZealandInterestIncome")]
-        NewZealandInterestIncome = 6,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"SchedularIncome")]
-        SchedularIncome = 7,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"MaoriAuthorityDistributions")]
-        MaoriAuthorityDistributions = 8,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"PartnershipEstateTrustIncome")]
-        PartnershipEstateTrustIncome = 9,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"OverseasIncome")]
-        OverseasIncome = 10,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"BusinessRentalIncome")]
-        BusinessRentalIncome = 11,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"OtherIncome")]
-        OtherIncome = 12,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"DonationsPaid")]
-        DonationsPaid = 13,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"NonDeductibleEntertainmentExpense")]
-        NonDeductibleEntertainmentExpense = 14,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"FinancialAccounting")]
-        FinancialAccounting = 15,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"AccountingConsolidation")]
-        AccountingConsolidation = 16,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"TemporaryCapitalisedAssets")]
-        TemporaryCapitalisedAssets = 17,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"Breakdown")]
-        Breakdown = 18,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"Source")]
-        Source = 19,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"CapitalAssetDepreciationExpense")]
-        CapitalAssetDepreciationExpense = 20,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"CapitalAssetGainOrLossOnDisposal")]
-        CapitalAssetGainOrLossOnDisposal = 21,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"CaptialAssetExpensedButCapitalisedForTax")]
-        CaptialAssetExpensedButCapitalisedForTax = 22,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"CaptialAssetCapitalisedButDeductibleForTax")]
-        CaptialAssetCapitalisedButDeductibleForTax = 23,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"CaptialAssetCapitalisedButNonDeductibleForTax")]
-        CaptialAssetCapitalisedButNonDeductibleForTax = 24,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"ForeignDividendIncome")]
-        ForeignDividendIncome = 25,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"ForeignInterestIncome")]
-        ForeignInterestIncome = 26,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"ForeignInvestmentFundIncome")]
-        ForeignInvestmentFundIncome = 27,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"ForeignControlledCompanyIncome")]
-        ForeignControlledCompanyIncome = 28,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"LossReceivedFromLaqc")]
-        LossReceivedFromLaqc = 29,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"TrialBalance")]
-        TrialBalance = 30,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"BalanceSheet")]
-        BalanceSheet = 31,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"IncomeStatement")]
-        IncomeStatement = 32,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"NonTemporaryFromBalanceSheet")]
-        NonTemporaryFromBalanceSheet = 33,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"TemporaryFromIncomeStatement")]
-        TemporaryFromIncomeStatement = 34,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"NonTemporaryFromIncomeStatement")]
-        NonTemporaryFromIncomeStatement = 35,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"TaxExpense")]
-        TaxExpense = 36,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"TemporaryFromBalanceSheetUsingTaxBase")]
-        TemporaryFromBalanceSheetUsingTaxBase = 37,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"CaptialAssetManualCostEntry")]
-        CaptialAssetManualCostEntry = 38,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"CaptialAssetManualDepreciationEntry")]
-        CaptialAssetManualDepreciationEntry = 39,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"CaptialAssetManualCostOtherEntry")]
-        CaptialAssetManualCostOtherEntry = 40,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"CaptialAssetManualCostOpeningEntry")]
-        CaptialAssetManualCostOpeningEntry = 41,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"CaptialAssetManualDepreciationOpeningEntry")]
-        CaptialAssetManualDepreciationOpeningEntry = 42,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"NonResidentInsurerIncome")]
-        NonResidentInsurerIncome = 43,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"IndividualDonation")]
-        IndividualDonation = 44,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"EmploymentIncome")]
-        EmploymentIncome = 45,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"OtherExpense")]
-        OtherExpense = 46,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"RentalPropertyIncome")]
-        RentalPropertyIncome = 47,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"RentalPropertyExpense")]
-        RentalPropertyExpense = 48,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"PartnershipIncome")]
-        PartnershipIncome = 49,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"EstateOrTrustIncome")]
-        EstateOrTrustIncome = 50,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"SelfEmploymentIncome")]
-        SelfEmploymentIncome = 51,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"ForeignIncome")]
-        ForeignIncome = 52,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"ForeignSuperannuationSchemeIncome")]
-        ForeignSuperannuationSchemeIncome = 53,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"LookThroughCompany")]
-        LookThroughCompany = 54,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"RoyaltyIncome")]
-        RoyaltyIncome = 55,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"NewZealandIncomeWithTaxDeducted")]
-        NewZealandIncomeWithTaxDeducted = 56,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"ShareholderEmployeeSalary")]
-        ShareholderEmployeeSalary = 57,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"FamilyTaxCreditFromWinz")]
-        FamilyTaxCreditFromWinz = 58,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"PropertySales")]
-        PropertySales = 59,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"ForeignRentalPropertyIncome")]
-        ForeignRentalPropertyIncome = 60,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"ForeignRentalPropertyExpense")]
-        ForeignRentalPropertyExpense = 61,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"TemporaryMovementIncomeStatement")]
-        TemporaryMovementIncomeStatement = 62,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"AUDividendIncome")]
-        AUDividendIncome = 63,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"MaxAdjustmentTypeId")]
-        MaxAdjustmentTypeId = 64,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"AUNonDeductibleExpenses")]
-        AUNonDeductibleExpenses = 65,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"AUIndividualDirectorsFees")]
-        AUIndividualDirectorsFees = 66,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"DeferredPaymentOfEmploymentIncome")]
-        DeferredPaymentOfEmploymentIncome = 67,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"AUCapitalGainsTaxSchedule")]
-        AUCapitalGainsTaxSchedule = 68,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"OtherDeductionsWorkpaper")]
-        OtherDeductionsWorkpaper = 69,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"AUIndividualEmployerLumpSumPayments")]
-        AUIndividualEmployerLumpSumPayments = 70,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"GovernmentAllowanceWorkpaper")]
-        GovernmentAllowanceWorkpaper = 71,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"GovernmentPensionWorkpaper")]
-        GovernmentPensionWorkpaper = 72,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"AUIndividualHealthcare")]
-        AUIndividualHealthcare = 73,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"AUInterest")]
-        AUInterest = 74,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"CapitalAssetDepreciationExpense2")]
-        CapitalAssetDepreciationExpense2 = 75,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"CaptialAssetExpensedButCapitalisedForTax2")]
-        CaptialAssetExpensedButCapitalisedForTax2 = 76,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"CapitalAssetGainOrLossOnDisposal2")]
-        CapitalAssetGainOrLossOnDisposal2 = 77,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"AUNonAssessableIncome")]
-        AUNonAssessableIncome = 78,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"CapexFirstDeducted")]
-        CapexFirstDeducted = 79,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"Prepayments")]
-        Prepayments = 80,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"Accruals")]
-        Accruals = 81,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"Provisions")]
-        Provisions = 82,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"PersonalSuperannuationContributionWorkpaper")]
-        PersonalSuperannuationContributionWorkpaper = 83,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"DeductibleCarExpenseWorkpaper")]
-        DeductibleCarExpenseWorkpaper = 84,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"RentalPropertyWorkpaper")]
-        RentalPropertyWorkpaper = 85,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"ForeignIncomeTaxOffsetsWorkpaper")]
-        ForeignIncomeTaxOffsetsWorkpaper = 86,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"OtherIncomeWorkpaper")]
-        OtherIncomeWorkpaper = 87,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"AUIndividualOtherIncomeTaxWithheldWorkpaper")]
-        AUIndividualOtherIncomeTaxWithheldWorkpaper = 88,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"ForeignIncomeWorkpaper")]
-        ForeignIncomeWorkpaper = 89,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"AUForeignDeduction")]
-        AUForeignDeduction = 90,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"TaxpayerDetailsWorkpaper")]
-        TaxpayerDetailsWorkpaper = 91,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"ForeignEmploymentIncomeWorkpaper")]
-        ForeignEmploymentIncomeWorkpaper = 92,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"ForeignPensionOrAnnuityWorkpaper")]
-        ForeignPensionOrAnnuityWorkpaper = 93,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"FirstHomeSuperSaverWorkpaper")]
-        FirstHomeSuperSaverWorkpaper = 94,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"EmploymentTerminationPaymentWorkpaper")]
-        EmploymentTerminationPaymentWorkpaper = 95,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"SuperannuationLumpSumPaymentWorkpaper")]
-        SuperannuationLumpSumPaymentWorkpaper = 96,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"AnnuityWorkpaper")]
-        AnnuityWorkpaper = 97,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"SuperannuationIncomeStreamWorkpaper")]
-        SuperannuationIncomeStreamWorkpaper = 98,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"EmploymentIncomeStatementWorkpaper")]
-        EmploymentIncomeStatementWorkpaper = 99,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"MedicareWorkpaper")]
-        MedicareWorkpaper = 100,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"BankAccountWorkpaper")]
-        BankAccountWorkpaper = 101,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"DisclosuresWorkpaper")]
-        DisclosuresWorkpaper = 102,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"LossesScheduleWorkpaper")]
-        LossesScheduleWorkpaper = 103,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"AttributedPersonalServicesIncomeWorkpaper")]
-        AttributedPersonalServicesIncomeWorkpaper = 104,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"InterestIncomeWorkpaper")]
-        InterestIncomeWorkpaper = 105,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"DividendIncomeWorkpaper")]
-        DividendIncomeWorkpaper = 106,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"TaxOnTaxableIncomeWorkpaper")]
-        TaxOnTaxableIncomeWorkpaper = 107,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"IncomeTestsWorkpaper")]
-        IncomeTestsWorkpaper = 108,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"RentalPropertiesSummaryWorkpaper")]
-        RentalPropertiesSummaryWorkpaper = 109,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"AccountingProfitWorkpaper")]
-        AccountingProfitWorkpaper = 110,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"IncomingDistributionsWorkpaper")]
-        IncomingDistributionsWorkpaper = 111,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"TaxAdjustmentsWorkpaper")]
-        TaxAdjustmentsWorkpaper = 112,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"DeclarationsWorkpaper")]
-        DeclarationsWorkpaper = 113,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"DomesticMedicareWorkpaper")]
-        DomesticMedicareWorkpaper = 114,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"NewZealandPieIncome")]
-        NewZealandPieIncome = 115,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"NewZealandGovernmentSubsidy")]
-        NewZealandGovernmentSubsidy = 116,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"BusinessIncomeExpensesWorkpaper")]
-        BusinessIncomeExpensesWorkpaper = 117,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"SpouseWorkpaper")]
-        SpouseWorkpaper = 118,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"CapitalGainsLossesWorkpaper")]
-        CapitalGainsLossesWorkpaper = 119,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"RevenueLossesWorkpaper")]
-        RevenueLossesWorkpaper = 120,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"IncomeDetailsScheduleWorkpaper")]
-        IncomeDetailsScheduleWorkpaper = 121,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"DeductionsScheduleWorkpaper")]
-        DeductionsScheduleWorkpaper = 122,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"BusinessIncomeExpensesSummaryWorkpaper")]
-        BusinessIncomeExpensesSummaryWorkpaper = 123,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"DividendsInterestScheduleWorkpaper")]
-        DividendsInterestScheduleWorkpaper = 124,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"DividendsInterestScheduleSummaryWorkpaper")]
-        DividendsInterestScheduleSummaryWorkpaper = 125,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"TemporaryFromBalanceSheetSplitDisclosure")]
-        TemporaryFromBalanceSheetSplitDisclosure = 126,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"TaxPaymentsWorkpaper")]
-        TaxPaymentsWorkpaper = 127,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"DepreciationWorkpaper")]
-        DepreciationWorkpaper = 128,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"DepreciatingAssetsFirstDeductedWorkpaper")]
-        DepreciatingAssetsFirstDeductedWorkpaper = 129,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"DepreciatingAssetsDisposalsWorkpaper")]
-        DepreciatingAssetsDisposalsWorkpaper = 130,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"ExpensesCapitalisedForTaxWorkpaper")]
-        ExpensesCapitalisedForTaxWorkpaper = 131,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"PermanentDifferenceWorkpaper")]
-        PermanentDifferenceWorkpaper = 132,
-    
-        [System.Runtime.Serialization.EnumMember(Value = @"TemporaryDifferenceBalanceSheetWorkpaper")]
-        TemporaryDifferenceBalanceSheetWorkpaper = 133,
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class DocumentIndex : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int TaxYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("documentType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DocumentType { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("contentHash", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ContentHash { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerSnapshotDocumentIndex", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public TaxpayerSnapshotDocumentIndex TaxpayerSnapshotDocumentIndex { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerAnnualDetailDocumentIndex", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public TaxpayerAnnualDetailDocumentIndex TaxpayerAnnualDetailDocumentIndex { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class TaxpayerSnapshotDocumentIndex : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int TaxYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("documentIndexId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid DocumentIndexId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("snapshotType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public SnapshotTypes SnapshotType { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("snapshotOutputType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public SnapshotOutputTypes SnapshotOutputType { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("updatedOn", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset UpdatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Taxpayer Taxpayer { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("documentIndex", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public DocumentIndex DocumentIndex { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class TaxpayerGroup : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("parentTaxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid ParentTaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CreatedBy { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("dateJoined", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? DateJoined { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("dateLeft", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? DateLeft { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("sortOrder", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SortOrder { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Taxpayer Taxpayer { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class TaxpayerJournals : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("relatedEntityId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid RelatedEntityId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("relatedEntityTypeId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public byte RelatedEntityTypeId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("groupDescriptionId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int GroupDescriptionId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journalTypeId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public byte JournalTypeId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journalCategoryId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public byte JournalCategoryId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int TaxYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("version", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Version { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxExpense", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? TaxExpense { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxExpenseDeferred", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? TaxExpenseDeferred { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("currentTax", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? CurrentTax { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deferredTax", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? DeferredTax { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("other", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public decimal? Other { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("sortOrder", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SortOrder { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("dateMade", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? DateMade { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journalComponentClassificationId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public byte? JournalComponentClassificationId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isLedgerReconciliation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsLedgerReconciliation { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journalYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int JournalYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("hasNoImpactOnJournalReconciliation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? HasNoImpactOnJournalReconciliation { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("hasNoImpactOnCurrentTaxProof", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? HasNoImpactOnCurrentTaxProof { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("ppa", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Ppa { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Taxpayer Taxpayer { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class TaxpayerTaxYear : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int TaxYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("startDate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset StartDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("balanceDate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset BalanceDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("modifiedOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? ModifiedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deletedOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? DeletedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("extensionOfTimeStatus", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? ExtensionOfTimeStatus { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isSubmittedByEfile", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsSubmittedByEfile { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("inctasks", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? Inctasks { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("fbttasks", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? Fbttasks { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("paymentTasks", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? PaymentTasks { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("gstfilingFrequency", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? GstfilingFrequency { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("provTaxMethod", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? ProvTaxMethod { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Taxpayer Taxpayer { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class Transactions : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("date", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset Date { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Description { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int TaxYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isAutoGenerated", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool IsAutoGenerated { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("transactionTypeId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int TransactionTypeId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("applyToTaxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool ApplyToTaxableIncome { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isReconciledWithIrd", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool IsReconciledWithIrd { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("amountCellLastResult", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? AmountCellLastResult { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("amountCellFormula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string AmountCellFormula { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("transitionalIcAdjustment1", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? TransitionalIcAdjustment1 { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("applyToImputationCreditAccount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? ApplyToImputationCreditAccount { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("sortOrder", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SortOrder { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? CreatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CreatedBy { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journalYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int JournalYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("hasNoImpactOnJournalReconciliation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? HasNoImpactOnJournalReconciliation { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("hasNoImpactOnCurrentTaxProof", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? HasNoImpactOnCurrentTaxProof { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isImputationCreditAlwaysAppliedToOriginatingTaxpayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsImputationCreditAlwaysAppliedToOriginatingTaxpayer { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isAccrual", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsAccrual { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isAlwaysAppliedToUseOfMoneyInterest", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsAlwaysAppliedToUseOfMoneyInterest { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("paidToEnumId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? PaidToEnumId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("paidToEntityId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? PaidToEntityId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("reversingTransactionId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid? ReversingTransactionId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("relatedIrdTransactionId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public long? RelatedIrdTransactionId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("processDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? ProcessDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isHighlighted", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsHighlighted { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("relatedPartnerId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string RelatedPartnerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("transferCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TransferCode { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("transferTaxType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string TransferTaxType { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("transferPeriod", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? TransferPeriod { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("otherPartyIrdNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string OtherPartyIrdNumber { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("icaDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? IcaDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journalDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? JournalDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isTaxCredit", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsTaxCredit { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("instalmentDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? InstalmentDate { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journalCategory", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? JournalCategory { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("journalChargeType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? JournalChargeType { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("annualImputationCreditBox", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? AnnualImputationCreditBox { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Taxpayer Taxpayer { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class TaxPayerAccess : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("isAdmin", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool IsAdmin { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxPayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxPayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("nopCustomerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int NopCustomerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset CreatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("updatedOn", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset UpdatedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("deletedOn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? DeletedOn { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("sourceId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? SourceId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("roleId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int RoleId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("appId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? AppId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxpayer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Taxpayer Taxpayer { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("expiryDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? ExpiryDate { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class TaxpayerMetadata : BaseEntity
-    {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid TaxpayerId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("key", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Key { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("value", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Value { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? TaxYear { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validFrom", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidFrom { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("validTo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset ValidTo { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
     public partial class InvalidateTaxReturnContextCommandResponse 
     {
     
@@ -18077,6 +14064,36 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
     public partial class IncomeDetailsScheduleWorkpaper 
     {
+        [Newtonsoft.Json.JsonProperty("packType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string PackType { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int TaxYear { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("identifierTfn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string IdentifierTfn { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("identifierAbn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string IdentifierAbn { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("startDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.DateTimeOffset? StartDate { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("endDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.DateTimeOffset? EndDate { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("outputElement", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string OutputElement { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("namespaceUrl", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string NamespaceUrl { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("ignoreAlias", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string IgnoreAlias { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("efileMessageReportType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string EfileMessageReportType { get; set; }
+    
         [Newtonsoft.Json.JsonProperty("journals", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<Journal> Journals { get; set; }
     
@@ -18088,6 +14105,9 @@ namespace Taxlab.ApiClientLibrary
     
         [Newtonsoft.Json.JsonProperty("classification", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public TaxYearWorkpaperClassification Classification { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("isScheduleHasDetails", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool IsScheduleHasDetails { get; set; }
     
         [Newtonsoft.Json.JsonProperty("abn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Abn { get; set; }
@@ -19570,6 +15590,422 @@ namespace Taxlab.ApiClientLibrary
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
+    public enum WorkpaperType
+    {
+        [System.Runtime.Serialization.EnumMember(Value = @"None")]
+        None = 0,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"IsRevenue")]
+        IsRevenue = 1,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"NonTaxableIncome")]
+        NonTaxableIncome = 2,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"TemporaryFromBalanceSheet")]
+        TemporaryFromBalanceSheet = 3,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"NonDeductibleExpense")]
+        NonDeductibleExpense = 4,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"NewZealandDividendIncome")]
+        NewZealandDividendIncome = 5,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"NewZealandInterestIncome")]
+        NewZealandInterestIncome = 6,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"SchedularIncome")]
+        SchedularIncome = 7,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"MaoriAuthorityDistributions")]
+        MaoriAuthorityDistributions = 8,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"PartnershipEstateTrustIncome")]
+        PartnershipEstateTrustIncome = 9,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"OverseasIncome")]
+        OverseasIncome = 10,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"BusinessRentalIncome")]
+        BusinessRentalIncome = 11,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"OtherIncome")]
+        OtherIncome = 12,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"DonationsPaid")]
+        DonationsPaid = 13,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"NonDeductibleEntertainmentExpense")]
+        NonDeductibleEntertainmentExpense = 14,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"FinancialAccounting")]
+        FinancialAccounting = 15,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"AccountingConsolidation")]
+        AccountingConsolidation = 16,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"TemporaryCapitalisedAssets")]
+        TemporaryCapitalisedAssets = 17,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"Breakdown")]
+        Breakdown = 18,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"Source")]
+        Source = 19,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"CapitalAssetDepreciationExpense")]
+        CapitalAssetDepreciationExpense = 20,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"CapitalAssetGainOrLossOnDisposal")]
+        CapitalAssetGainOrLossOnDisposal = 21,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"CaptialAssetExpensedButCapitalisedForTax")]
+        CaptialAssetExpensedButCapitalisedForTax = 22,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"CaptialAssetCapitalisedButDeductibleForTax")]
+        CaptialAssetCapitalisedButDeductibleForTax = 23,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"CaptialAssetCapitalisedButNonDeductibleForTax")]
+        CaptialAssetCapitalisedButNonDeductibleForTax = 24,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"ForeignDividendIncome")]
+        ForeignDividendIncome = 25,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"ForeignInterestIncome")]
+        ForeignInterestIncome = 26,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"ForeignInvestmentFundIncome")]
+        ForeignInvestmentFundIncome = 27,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"ForeignControlledCompanyIncome")]
+        ForeignControlledCompanyIncome = 28,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"LossReceivedFromLaqc")]
+        LossReceivedFromLaqc = 29,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"TrialBalance")]
+        TrialBalance = 30,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"BalanceSheet")]
+        BalanceSheet = 31,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"IncomeStatement")]
+        IncomeStatement = 32,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"NonTemporaryFromBalanceSheet")]
+        NonTemporaryFromBalanceSheet = 33,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"TemporaryFromIncomeStatement")]
+        TemporaryFromIncomeStatement = 34,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"NonTemporaryFromIncomeStatement")]
+        NonTemporaryFromIncomeStatement = 35,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"TaxExpense")]
+        TaxExpense = 36,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"TemporaryFromBalanceSheetUsingTaxBase")]
+        TemporaryFromBalanceSheetUsingTaxBase = 37,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"CaptialAssetManualCostEntry")]
+        CaptialAssetManualCostEntry = 38,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"CaptialAssetManualDepreciationEntry")]
+        CaptialAssetManualDepreciationEntry = 39,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"CaptialAssetManualCostOtherEntry")]
+        CaptialAssetManualCostOtherEntry = 40,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"CaptialAssetManualCostOpeningEntry")]
+        CaptialAssetManualCostOpeningEntry = 41,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"CaptialAssetManualDepreciationOpeningEntry")]
+        CaptialAssetManualDepreciationOpeningEntry = 42,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"NonResidentInsurerIncome")]
+        NonResidentInsurerIncome = 43,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"IndividualDonation")]
+        IndividualDonation = 44,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"EmploymentIncome")]
+        EmploymentIncome = 45,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"OtherExpense")]
+        OtherExpense = 46,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"RentalPropertyIncome")]
+        RentalPropertyIncome = 47,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"RentalPropertyExpense")]
+        RentalPropertyExpense = 48,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"PartnershipIncome")]
+        PartnershipIncome = 49,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"EstateOrTrustIncome")]
+        EstateOrTrustIncome = 50,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"SelfEmploymentIncome")]
+        SelfEmploymentIncome = 51,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"ForeignIncome")]
+        ForeignIncome = 52,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"ForeignSuperannuationSchemeIncome")]
+        ForeignSuperannuationSchemeIncome = 53,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"LookThroughCompany")]
+        LookThroughCompany = 54,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"RoyaltyIncome")]
+        RoyaltyIncome = 55,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"NewZealandIncomeWithTaxDeducted")]
+        NewZealandIncomeWithTaxDeducted = 56,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"ShareholderEmployeeSalary")]
+        ShareholderEmployeeSalary = 57,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"FamilyTaxCreditFromWinz")]
+        FamilyTaxCreditFromWinz = 58,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"PropertySales")]
+        PropertySales = 59,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"ForeignRentalPropertyIncome")]
+        ForeignRentalPropertyIncome = 60,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"ForeignRentalPropertyExpense")]
+        ForeignRentalPropertyExpense = 61,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"TemporaryMovementIncomeStatement")]
+        TemporaryMovementIncomeStatement = 62,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"AUDividendIncome")]
+        AUDividendIncome = 63,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"MaxAdjustmentTypeId")]
+        MaxAdjustmentTypeId = 64,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"AUNonDeductibleExpenses")]
+        AUNonDeductibleExpenses = 65,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"AUIndividualDirectorsFees")]
+        AUIndividualDirectorsFees = 66,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"DeferredPaymentOfEmploymentIncome")]
+        DeferredPaymentOfEmploymentIncome = 67,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"AUCapitalGainsTaxSchedule")]
+        AUCapitalGainsTaxSchedule = 68,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"OtherDeductionsWorkpaper")]
+        OtherDeductionsWorkpaper = 69,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"AUIndividualEmployerLumpSumPayments")]
+        AUIndividualEmployerLumpSumPayments = 70,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"GovernmentAllowanceWorkpaper")]
+        GovernmentAllowanceWorkpaper = 71,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"GovernmentPensionWorkpaper")]
+        GovernmentPensionWorkpaper = 72,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"AUIndividualHealthcare")]
+        AUIndividualHealthcare = 73,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"AUInterest")]
+        AUInterest = 74,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"CapitalAssetDepreciationExpense2")]
+        CapitalAssetDepreciationExpense2 = 75,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"CaptialAssetExpensedButCapitalisedForTax2")]
+        CaptialAssetExpensedButCapitalisedForTax2 = 76,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"CapitalAssetGainOrLossOnDisposal2")]
+        CapitalAssetGainOrLossOnDisposal2 = 77,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"AUNonAssessableIncome")]
+        AUNonAssessableIncome = 78,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"CapexFirstDeducted")]
+        CapexFirstDeducted = 79,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"Prepayments")]
+        Prepayments = 80,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"Accruals")]
+        Accruals = 81,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"Provisions")]
+        Provisions = 82,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"PersonalSuperannuationContributionWorkpaper")]
+        PersonalSuperannuationContributionWorkpaper = 83,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"DeductibleCarExpenseWorkpaper")]
+        DeductibleCarExpenseWorkpaper = 84,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"RentalPropertyWorkpaper")]
+        RentalPropertyWorkpaper = 85,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"ForeignIncomeTaxOffsetsWorkpaper")]
+        ForeignIncomeTaxOffsetsWorkpaper = 86,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"OtherIncomeWorkpaper")]
+        OtherIncomeWorkpaper = 87,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"AUIndividualOtherIncomeTaxWithheldWorkpaper")]
+        AUIndividualOtherIncomeTaxWithheldWorkpaper = 88,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"ForeignIncomeWorkpaper")]
+        ForeignIncomeWorkpaper = 89,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"AUForeignDeduction")]
+        AUForeignDeduction = 90,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"TaxpayerDetailsWorkpaper")]
+        TaxpayerDetailsWorkpaper = 91,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"ForeignEmploymentIncomeWorkpaper")]
+        ForeignEmploymentIncomeWorkpaper = 92,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"ForeignPensionOrAnnuityWorkpaper")]
+        ForeignPensionOrAnnuityWorkpaper = 93,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"FirstHomeSuperSaverWorkpaper")]
+        FirstHomeSuperSaverWorkpaper = 94,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"EmploymentTerminationPaymentWorkpaper")]
+        EmploymentTerminationPaymentWorkpaper = 95,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"SuperannuationLumpSumPaymentWorkpaper")]
+        SuperannuationLumpSumPaymentWorkpaper = 96,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"AnnuityWorkpaper")]
+        AnnuityWorkpaper = 97,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"SuperannuationIncomeStreamWorkpaper")]
+        SuperannuationIncomeStreamWorkpaper = 98,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"EmploymentIncomeStatementWorkpaper")]
+        EmploymentIncomeStatementWorkpaper = 99,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"MedicareWorkpaper")]
+        MedicareWorkpaper = 100,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"BankAccountWorkpaper")]
+        BankAccountWorkpaper = 101,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"DisclosuresWorkpaper")]
+        DisclosuresWorkpaper = 102,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"LossesScheduleWorkpaper")]
+        LossesScheduleWorkpaper = 103,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"AttributedPersonalServicesIncomeWorkpaper")]
+        AttributedPersonalServicesIncomeWorkpaper = 104,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"InterestIncomeWorkpaper")]
+        InterestIncomeWorkpaper = 105,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"DividendIncomeWorkpaper")]
+        DividendIncomeWorkpaper = 106,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"TaxOnTaxableIncomeWorkpaper")]
+        TaxOnTaxableIncomeWorkpaper = 107,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"IncomeTestsWorkpaper")]
+        IncomeTestsWorkpaper = 108,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"RentalPropertiesSummaryWorkpaper")]
+        RentalPropertiesSummaryWorkpaper = 109,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"AccountingProfitWorkpaper")]
+        AccountingProfitWorkpaper = 110,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"IncomingDistributionsWorkpaper")]
+        IncomingDistributionsWorkpaper = 111,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"TaxAdjustmentsWorkpaper")]
+        TaxAdjustmentsWorkpaper = 112,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"DeclarationsWorkpaper")]
+        DeclarationsWorkpaper = 113,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"DomesticMedicareWorkpaper")]
+        DomesticMedicareWorkpaper = 114,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"NewZealandPieIncome")]
+        NewZealandPieIncome = 115,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"NewZealandGovernmentSubsidy")]
+        NewZealandGovernmentSubsidy = 116,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"BusinessIncomeExpensesWorkpaper")]
+        BusinessIncomeExpensesWorkpaper = 117,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"SpouseWorkpaper")]
+        SpouseWorkpaper = 118,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"CapitalGainsLossesWorkpaper")]
+        CapitalGainsLossesWorkpaper = 119,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"RevenueLossesWorkpaper")]
+        RevenueLossesWorkpaper = 120,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"IncomeDetailsScheduleWorkpaper")]
+        IncomeDetailsScheduleWorkpaper = 121,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"DeductionsScheduleWorkpaper")]
+        DeductionsScheduleWorkpaper = 122,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"BusinessIncomeExpensesSummaryWorkpaper")]
+        BusinessIncomeExpensesSummaryWorkpaper = 123,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"DividendsInterestScheduleWorkpaper")]
+        DividendsInterestScheduleWorkpaper = 124,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"DividendsInterestScheduleSummaryWorkpaper")]
+        DividendsInterestScheduleSummaryWorkpaper = 125,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"TemporaryFromBalanceSheetSplitDisclosure")]
+        TemporaryFromBalanceSheetSplitDisclosure = 126,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"TaxPaymentsWorkpaper")]
+        TaxPaymentsWorkpaper = 127,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"DepreciationWorkpaper")]
+        DepreciationWorkpaper = 128,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"DepreciatingAssetsFirstDeductedWorkpaper")]
+        DepreciatingAssetsFirstDeductedWorkpaper = 129,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"DepreciatingAssetsDisposalsWorkpaper")]
+        DepreciatingAssetsDisposalsWorkpaper = 130,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"ExpensesCapitalisedForTaxWorkpaper")]
+        ExpensesCapitalisedForTaxWorkpaper = 131,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"PermanentDifferenceWorkpaper")]
+        PermanentDifferenceWorkpaper = 132,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"TemporaryDifferenceBalanceSheetWorkpaper")]
+        TemporaryDifferenceBalanceSheetWorkpaper = 133,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"OutgoingDistributionsWorkpaper")]
+        OutgoingDistributionsWorkpaper = 134,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"LowIncomeTaxOffsetWorkpaper")]
+        LowIncomeTaxOffsetWorkpaper = 135,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"LowAndMiddleIncomeTaxOffsetWorkpaper")]
+        LowAndMiddleIncomeTaxOffsetWorkpaper = 136,
+    
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
     public partial class WorkpaperResponseOfDeductionsScheduleWorkpaper : WorkpaperResponse
     {
         [Newtonsoft.Json.JsonProperty("workpaper", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -19581,6 +16017,36 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
     public partial class DeductionsScheduleWorkpaper 
     {
+        [Newtonsoft.Json.JsonProperty("packType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string PackType { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int TaxYear { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("identifierTfn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string IdentifierTfn { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("identifierAbn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string IdentifierAbn { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("startDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.DateTimeOffset? StartDate { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("endDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.DateTimeOffset? EndDate { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("outputElement", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string OutputElement { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("namespaceUrl", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string NamespaceUrl { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("ignoreAlias", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string IgnoreAlias { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("efileMessageReportType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string EfileMessageReportType { get; set; }
+    
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public TaxYearWorkpaperSlug Slug { get; set; }
     
@@ -19667,6 +16133,9 @@ namespace Taxlab.ApiClientLibrary
     
         [Newtonsoft.Json.JsonProperty("work_related_selfeducation_expenses_action_code", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Work_related_selfeducation_expenses_action_code { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("isScheduleHasDetails", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool IsScheduleHasDetails { get; set; }
     
     
     }
@@ -20115,6 +16584,120 @@ namespace Taxlab.ApiClientLibrary
     
         [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
+    
+    
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
+    public partial class WorkpaperResponseOfLowIncomeTaxOffsetWorkpaper : WorkpaperResponse
+    {
+        [Newtonsoft.Json.JsonProperty("workpaper", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public LowIncomeTaxOffsetWorkpaper Workpaper { get; set; }
+    
+    
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
+    public partial class LowIncomeTaxOffsetWorkpaper 
+    {
+        [Newtonsoft.Json.JsonProperty("taxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal TaxableIncome { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("baseOffsetAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal BaseOffsetAmount { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("offsetAdjustmentRateThreshold", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal OffsetAdjustmentRateThreshold { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("offsetAdjustmentRate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal OffsetAdjustmentRate { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("offsetAdjustmentAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal OffsetAdjustmentAmount { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("offsetAdjustmentLimit", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal OffsetAdjustmentLimit { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("correctedOffsetAdjustmentAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal CorrectedOffsetAdjustmentAmount { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("lowIncomeTaxOffset", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal LowIncomeTaxOffset { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("taxPayable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal TaxPayable { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("lowIncomeTaxOffsetRestricted", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal LowIncomeTaxOffsetRestricted { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("taxPayableAfterLowIncomeTaxOffset", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal TaxPayableAfterLowIncomeTaxOffset { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public TaxYearWorkpaperSlug Slug { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("classification", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public TaxYearWorkpaperClassification Classification { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("journals", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<Journal> Journals { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("snapshots", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<Snapshot> Snapshots { get; set; }
+    
+    
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
+    public partial class WorkpaperResponseOfLowAndMiddleIncomeTaxOffsetWorkpaper : WorkpaperResponse
+    {
+        [Newtonsoft.Json.JsonProperty("workpaper", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public LowAndMiddleIncomeTaxOffsetWorkpaper Workpaper { get; set; }
+    
+    
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
+    public partial class LowAndMiddleIncomeTaxOffsetWorkpaper 
+    {
+        [Newtonsoft.Json.JsonProperty("taxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal TaxableIncome { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("baseOffsetAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal BaseOffsetAmount { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("offsetAdjustmentRate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal OffsetAdjustmentRate { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("offsetAdjustmentRateThreshold", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal OffsetAdjustmentRateThreshold { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("offsetAdjustmentAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal OffsetAdjustmentAmount { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("lowAndMiddleIncomeTaxOffset", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal LowAndMiddleIncomeTaxOffset { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("taxPayableAfterLowIncomeTaxOffset", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal TaxPayableAfterLowIncomeTaxOffset { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("lowAndMiddleIncomeTaxOffsetRestricted", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal LowAndMiddleIncomeTaxOffsetRestricted { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("taxPayableAfterLowAndMiddleIncomeTaxOffset", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal TaxPayableAfterLowAndMiddleIncomeTaxOffset { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public TaxYearWorkpaperSlug Slug { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("classification", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public TaxYearWorkpaperClassification Classification { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("journals", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<Journal> Journals { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("snapshots", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<Snapshot> Snapshots { get; set; }
     
     
     }
@@ -23140,6 +19723,9 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("typeOfTrustCodeForNonPrimaryProduction", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string TypeOfTrustCodeForNonPrimaryProduction { get; set; }
     
+        [Newtonsoft.Json.JsonProperty("typeOfTrustCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string TypeOfTrustCode { get; set; }
+    
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public TaxYearWorkpaperSlug Slug { get; set; }
     
@@ -23284,6 +19870,36 @@ namespace Taxlab.ApiClientLibrary
     
         [Newtonsoft.Json.JsonProperty("reasonTrusteePaidTax", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string ReasonTrusteePaidTax { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("shareOfIncomeOfTheTrustEstate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal ShareOfIncomeOfTheTrustEstate { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("earlyStageVentureCapitalLimitedPartnershipTaxOffset", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal EarlyStageVentureCapitalLimitedPartnershipTaxOffset { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("earlyStageInvestorTaxOffset", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal EarlyStageInvestorTaxOffset { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("explorationCreditsDistributed", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal ExplorationCreditsDistributed { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("shareOfCreditForForeignResidentCapitalGainsWithholdingAmounts", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal ShareOfCreditForForeignResidentCapitalGainsWithholdingAmounts { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("taxPreferredAmountsTbStatementInformation", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal TaxPreferredAmountsTbStatementInformation { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("untaxedPartOfShareOfNetIncomeTbStatementInformation", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal UntaxedPartOfShareOfNetIncomeTbStatementInformation { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("distributionFromOrdinaryOrStatutoryIncomeDuringIncomeYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal DistributionFromOrdinaryOrStatutoryIncomeDuringIncomeYear { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("totalTfnAmountsWithheldFromPayments", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal TotalTfnAmountsWithheldFromPayments { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("div6AAEligibleIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal Div6AAEligibleIncome { get; set; }
     
     
     }
@@ -24927,6 +21543,9 @@ namespace Taxlab.ApiClientLibrary
     
         [Newtonsoft.Json.JsonProperty("isDefault", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsDefault { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("reference", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public object Reference { get; set; }
     
     
     }
