@@ -109,6 +109,25 @@ namespace Taxlab.ApiClientCli.Personas
                 true
             );
 
+            Console.WriteLine("== Step: Creating Government Allowance workpaper ==========================================================");
+            var governmentAllowanceFactory = new GovernmentAllowanceRepository(client);
+            await governmentAllowanceFactory.CreateAsync(taxpayer.Id,
+                taxYear,
+                "testBenefitType",
+                "testDescription",
+                1000m,
+                1000m
+            );
+
+            Console.WriteLine("== Step: Creating Government Pension workpaper ==========================================================");
+            var governmentPensionFactory = new GovernmentPensionRepository(client);
+            await governmentPensionFactory.CreateAsync(taxpayer.Id,
+                taxYear,
+                "testDescription",
+                1000m,
+                1000m
+            );
+
             Console.WriteLine("== Step: Creating donation deduction workpaper ==========================================================");
             var chartiableDonation = new OtherDeductionRepository(client);
             await chartiableDonation.CreateAsync(taxpayer.Id,
@@ -255,37 +274,36 @@ namespace Taxlab.ApiClientCli.Personas
             };
 
             await rentalPropertyWorkpaperFactory.CreateAsync(taxpayer.Id,
-                taxYear,
-                $"{firstName} {lastName}",
-                rentalPropertyInformation,
-                rentalIncome,
-                otherIncome,
-                grossIncome,
-                null,
-                null,
-                null,
-                null,              
-                null,
-                null,
-                null,
-                null,
-                null,
-                interestOnLoans,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                0,
-                0,
-                0.7m,
-                1m
-            ).ConfigureAwait(false);
-
+               taxYear,
+               $"{firstName} {lastName}",
+               rentalPropertyInformation,
+               rentalIncome,
+               otherIncome,
+               grossIncome,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               interestOnLoans,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               null,
+               0,
+               0,
+               0.7m,
+               1m
+           ).ConfigureAwait(false);
 
             Console.WriteLine("== Step: Get rental summary property workpaper ==========================================================");
             var rentalSummaryWorkpaper = await new RentalPropertiesSummaryRepository(client).GetRentalSummaryWorkpaperAsync(taxpayer.Id, taxYear).ConfigureAwait(false);

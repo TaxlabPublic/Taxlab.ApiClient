@@ -11,18 +11,16 @@ namespace Taxlab.ApiClientCli
     internal class Program
     {
         private static readonly HttpClient HttpClient = new HttpClient();
-        private const string BaseUrl = "https://localhost:44354/";
-      //  private const string BaseUrl = "https://preview.taxlab.online/api-internal/";
+        //private const string BaseUrl = "https://localhost:44354/";
+        private const string BaseUrl = "https://preview.taxlab.online/api-internal/";
         private static TaxlabApiClient Client;
 
         private const int TaxYear = 2021; // Change this to your taxYear
 
         private static async Task Main(string[] args)
-        {
-  
+        {  
             var authService = new AuthService();
             Client = new TaxlabApiClient(BaseUrl, HttpClient, authService);
-
 
             Console.WriteLine("== Step: Getting existing taxpayers ==========================================================");
             var getAllTaxpayers = await Client.Taxpayers_GetTaxpayersAsync().ConfigureAwait(false);

@@ -46,13 +46,22 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
             decimal ownershipPercentageMine = 0m,
             decimal ownershipPercentageTotal = 0m)
         {
-            var workpaperResponse = await GetRentalPropertyWorkpaperAsync(taxpayerId, taxYear);
+            var createRentalPropertyCommand = new CreateRentalPropertyWorkpaperCommand()
+            {
+                TaxpayerId = taxpayerId,
+                TaxYear = taxYear,
+            };
 
-            var workpaper = workpaperResponse.Workpaper;
+            await Client.Workpapers_CreateRentalPropertyWorkpaperAsync(createRentalPropertyCommand)
+                .ConfigureAwait(false);
+
+            var getWorkpaperResponse = await GetRentalPropertyWorkpaperAsync(taxpayerId, taxYear);
+
+            var workpaper = getWorkpaperResponse.Workpaper;
             workpaper.RentalPropertyInformation = rentalPropertyInformation;
             workpaper.RentalPropertyIncomeExpenses = new RentalPropertyIncomeExpenses
             {
-                TaxpayerId =  taxpayerId,
+                TaxpayerId = taxpayerId,
                 TaxpayerName = taxpayerName,
                 WeeksRented = weeksRented,
                 WeeksAvailableForRent = weeksAvailableForRent,
@@ -83,17 +92,17 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
                 NetRent = workpaper.RentalPropertyIncomeExpenses.NetRent,
                 OtherDeductions = workpaper.RentalPropertyIncomeExpenses.OtherDeductions,
                 TotalDeductions = workpaper.RentalPropertyIncomeExpenses.TotalDeductions
-            };       
+            };
 
             // Update command for our new workpaper
             var upsertCommand = new UpsertRentalPropertyWorkpaperCommand()
             {
                 TaxpayerId = taxpayerId,
                 TaxYear = taxYear,
-                DocumentIndexId = workpaperResponse.DocumentIndexId,
+                DocumentIndexId = getWorkpaperResponse.DocumentIndexId,
                 CompositeRequest = true,
                 WorkpaperType = WorkpaperType.RentalPropertyWorkpaper,
-                Workpaper = workpaperResponse.Workpaper
+                Workpaper = getWorkpaperResponse.Workpaper
             };
 
             var upsertResponse = await Client.Workpapers_PostRentalPropertyWorkpaperAsync(upsertCommand)
