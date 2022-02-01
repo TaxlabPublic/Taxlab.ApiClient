@@ -51,11 +51,11 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
                 TaxpayerId = taxpayerId,
                 TaxYear = taxYear,
             };
-
-            await Client.Workpapers_CreateRentalPropertyWorkpaperAsync(createRentalPropertyCommand)
+            
+            var createRentalPropertyResponse = await Client.Workpapers_CreateRentalPropertyWorkpaperAsync(createRentalPropertyCommand)
                 .ConfigureAwait(false);
 
-            var getWorkpaperResponse = await GetRentalPropertyWorkpaperAsync(taxpayerId, taxYear);
+            var getWorkpaperResponse = await GetRentalPropertyWorkpaperAsync(taxpayerId, taxYear, createRentalPropertyResponse);
 
             var workpaper = getWorkpaperResponse.Workpaper;
             workpaper.RentalPropertyInformation = rentalPropertyInformation;
@@ -128,10 +128,10 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
             return deleteResponse;
         }
 
-        public async Task<WorkpaperResponseOfRentalPropertyWorkpaper> GetRentalPropertyWorkpaperAsync(Guid taxpayerId, int taxYear)
+        public async Task<WorkpaperResponseOfRentalPropertyWorkpaper> GetRentalPropertyWorkpaperAsync(Guid taxpayerId, int taxYear, CreateRentalPropertyWorkpaperResponse createRentalPropertyResponse)
         {
             var workpaperResponse = await Client
-                .Workpapers_GetRentalPropertyWorkpaperAsync(taxpayerId, taxYear, WorkpaperType.RentalPropertyWorkpaper, Guid.Empty, false, false, false)
+                .Workpapers_GetRentalPropertyWorkpaperAsync(taxpayerId, taxYear, WorkpaperType.RentalPropertyWorkpaper, createRentalPropertyResponse.DocumentId, false, false, false)
                 .ConfigureAwait(false);
 
             return workpaperResponse;
