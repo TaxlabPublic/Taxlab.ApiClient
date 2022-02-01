@@ -229,6 +229,25 @@ namespace Taxlab.ApiClientCli.Personas
                 }
             };
 
+            var insurance = new RentalTransactionCollectionOfNumericCellAndDecimal
+            {
+                Description = "Insurance",
+                //Total = 216000,
+                //Mine = 151200,
+                RentalTransactions = new List<RentalTransactionOfNumericCellAndDecimal>
+                {
+                    new RentalTransactionOfNumericCellAndDecimal {
+                        Description = "Insurance",
+                        Total = new NumericCell
+                        {
+                            //Value = 216000,
+                            Formula = "700"
+                        },
+                        //Mine = 151200
+                    }
+                }
+            };
+
             var grossIncome = new RentalTransactionOfDecimalAndDecimal
             {
                 Description = "Gross Income",
@@ -288,7 +307,7 @@ namespace Taxlab.ApiClientCli.Personas
                null,
                null,
                null,
-               null,
+               insurance,
                interestOnLoans,
                null,
                null,
