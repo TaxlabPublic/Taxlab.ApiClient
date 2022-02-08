@@ -6,7 +6,7 @@ namespace Taxlab.ApiClientCli.Implementations
     {
         public string GetBearerToken()
         {
-            var result = "Enter your token here";
+            var result = "Enter token here";
             return result;
         }
     }
