@@ -7,6 +7,7 @@ using Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers;
 using Taxlab.ApiClientCli.Workpapers.TaxYearWorkpapers;
 using Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Taxlab.ApiClientCli.Personas
 {
@@ -14,6 +15,18 @@ namespace Taxlab.ApiClientCli.Personas
     {
         public async Task<TaxpayerDto> CreateAsync(TaxlabApiClient client)
         {
+            Console.WriteLine("== Step: Getting Country Lookups ==========================================================");
+            var lookups = new LookupsRepository(client);
+            var lookupsArray = await lookups.GetAllLookups();
+
+            ICollection<BaseLookupMapperItem> countryLookup = new List<BaseLookupMapperItem>();
+
+            var countryListFetched = lookupsArray.Lookups.TryGetValue("Common/RegionLookups/CountryCodes", out countryLookup);
+
+            var countryList = countryLookup.ToList();
+
+            Console.WriteLine($"== Country Lookup count: {countryList.Count}");
+
             const int taxYear = 2021;
             var balanceDate = new LocalDate(2021, 6, 30);
             var startDate = balanceDate.PlusYears(-1).PlusDays(-1);
@@ -34,7 +47,6 @@ namespace Taxlab.ApiClientCli.Personas
               salaryAndWagesTaxWithheld: -213400m,
               allowanceIncome: 310m
               );
-
 
             Console.WriteLine("== Step: Creating dividend income workpaper ==========================================================");
 
@@ -174,17 +186,17 @@ namespace Taxlab.ApiClientCli.Personas
                 Total = 216000,
                 Mine = 151200,
                 RentalTransactions = new List<RentalTransactionOfNumericCellAndDecimal>
-                {
-                    new RentalTransactionOfNumericCellAndDecimal {
-                        Description = "example rent",
-                        Total = new NumericCell
-                        {
-                            Value = 216000,
-                            Formula = "216000"
-                        },
-                        Mine = 151200
+                    {
+                        new RentalTransactionOfNumericCellAndDecimal {
+                            Description = "example rent",
+                            Total = new NumericCell
+                            {
+                                Value = 216000,
+                                Formula = "216000"
+                            },
+                            Mine = 151200
+                        }
                     }
-                }
             };
 
             var otherIncome = new RentalTransactionCollectionOfNumericCellAndDecimal
@@ -193,17 +205,17 @@ namespace Taxlab.ApiClientCli.Personas
                 Total = 700,
                 Mine = 490,
                 RentalTransactions = new List<RentalTransactionOfNumericCellAndDecimal>
-                {
-                    new RentalTransactionOfNumericCellAndDecimal {
-                        Description = "example other income",
-                        Total = new NumericCell
-                        {
-                            Value = 700,
-                            Formula = "700"
-                        },
-                        Mine = 490
+                    {
+                        new RentalTransactionOfNumericCellAndDecimal {
+                            Description = "example other income",
+                            Total = new NumericCell
+                            {
+                                Value = 700,
+                                Formula = "700"
+                            },
+                            Mine = 490
+                        }
                     }
-                }
             };
 
             var insurance = new RentalTransactionCollectionOfNumericCellAndDecimal
@@ -212,17 +224,17 @@ namespace Taxlab.ApiClientCli.Personas
                 //Total = 216000,
                 //Mine = 151200,
                 RentalTransactions = new List<RentalTransactionOfNumericCellAndDecimal>
-                {
-                    new RentalTransactionOfNumericCellAndDecimal {
-                        Description = "Insurance",
-                        Total = new NumericCell
-                        {
-                            //Value = 216000,
-                            Formula = "700"
-                        },
-                        //Mine = 151200
+                    {
+                        new RentalTransactionOfNumericCellAndDecimal {
+                            Description = "Insurance",
+                            Total = new NumericCell
+                            {
+                                //Value = 216000,
+                                Formula = "700"
+                            },
+                            //Mine = 151200
+                        }
                     }
-                }
             };
 
             var grossIncome = new RentalTransactionOfDecimalAndDecimal
@@ -230,7 +242,7 @@ namespace Taxlab.ApiClientCli.Personas
                 Description = "Gross Income",
                 Total = 216700,
                 Mine = 151690
-            };           
+            };
 
             var interestOnLoans = new RentalTransactionCollectionOfNumericCellAndNumericCell
             {
@@ -238,35 +250,35 @@ namespace Taxlab.ApiClientCli.Personas
                 Total = -78479,
                 Mine = -2480,
                 RentalTransactions = new List<RentalTransactionOfNumericCellAndNumericCell>
-                {
-                    new RentalTransactionOfNumericCellAndNumericCell {
-                        Description = "example loan 1",
-                        Total = new NumericCell
-                        {
-                            Value = -48024,
-                            Formula = "-48024"
+                    {
+                        new RentalTransactionOfNumericCellAndNumericCell {
+                            Description = "example loan 1",
+                            Total = new NumericCell
+                            {
+                                Value = -48024,
+                                Formula = "-48024"
+                            },
+                             Mine = new NumericCell
+                            {
+                                Value = 0,
+                                Formula = "0"
+                            },
                         },
-                         Mine = new NumericCell
-                        {
-                            Value = 0,
-                            Formula = "0"
-                        },
-                    },
-                    new RentalTransactionOfNumericCellAndNumericCell {
-                        Description = "example loan 2",
-                        Total = new NumericCell
-                        {
-                            Value = -30455,
-                            Formula = "-30455"
-                        },
-                          Mine = new NumericCell
-                        {
-                            Value = -2480,
-                            Formula = "-2480"
-                        },
+                        new RentalTransactionOfNumericCellAndNumericCell {
+                            Description = "example loan 2",
+                            Total = new NumericCell
+                            {
+                                Value = -30455,
+                                Formula = "-30455"
+                            },
+                              Mine = new NumericCell
+                            {
+                                Value = -2480,
+                                Formula = "-2480"
+                            },
 
+                        }
                     }
-                }
             };
 
             await rentalPropertyWorkpaperFactory.CreateAsync(taxpayer.Id,
@@ -303,7 +315,7 @@ namespace Taxlab.ApiClientCli.Personas
 
             Console.WriteLine("== Step: Get rental summary property workpaper ==========================================================");
             var rentalSummaryWorkpaper = await new RentalPropertiesSummaryRepository(client).GetRentalSummaryWorkpaperAsync(taxpayer.Id, taxYear).ConfigureAwait(false);
-            
+
             return taxpayer;
         }
 
