@@ -23,9 +23,14 @@ namespace Taxlab.ApiClientCli.Personas
 
             var countryListFetched = lookupsArray.Lookups.TryGetValue("Common/RegionLookups/CountryCodes", out countryLookup);
 
-            var countryList = countryLookup.ToList();
-
-            Console.WriteLine($"== Country Lookup count: {countryList.Count}");
+            if (countryListFetched)
+            {
+                Console.WriteLine($"== Country Lookup count: {countryLookup.Count} fetched==========================================================");
+            }
+            else
+            {
+                Console.WriteLine($"== Check Lookup call ==========================================================");
+            }
 
             const int taxYear = 2021;
             var balanceDate = new LocalDate(2021, 6, 30);
