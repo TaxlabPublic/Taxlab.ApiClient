@@ -147,6 +147,10 @@ namespace Taxlab.ApiClientLibrary
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<System.Collections.Generic.ICollection<TaxpayerDto>> Taxpayers_GetTaxpayersByEntityTypeAsync(EntityType entityType, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+    
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<FileResponse> TaxReturn_LoadTaxReturnContextAsync(System.Guid taxpayerIdPath, int taxYearPath, long? versionPath, string taxpayerIdHeader = null, int? taxYearHeader = null, double? versionHeader = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
@@ -2983,6 +2987,82 @@ namespace Taxlab.ApiClientLibrary
                         if (status_ == 200)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<SnapshotResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+    
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<TaxpayerDto>> Taxpayers_GetTaxpayersByEntityTypeAsync(EntityType entityType, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            if (entityType == null)
+                throw new System.ArgumentNullException("entityType");
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Taxpayers/Entity/{entityType}");
+            urlBuilder_.Replace("{entityType}", System.Uri.EscapeDataString(ConvertToString(entityType, System.Globalization.CultureInfo.InvariantCulture)));
+    
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    if (taxpayerId != null)
+                        request_.Headers.TryAddWithoutValidation("taxpayerId", ConvertToString(taxpayerId, System.Globalization.CultureInfo.InvariantCulture));
+                    if (taxYear != null)
+                        request_.Headers.TryAddWithoutValidation("taxYear", ConvertToString(taxYear, System.Globalization.CultureInfo.InvariantCulture));
+                    if (version != null)
+                        request_.Headers.TryAddWithoutValidation("version", ConvertToString(version, System.Globalization.CultureInfo.InvariantCulture));
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+    
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+    
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<TaxpayerDto>>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -12817,44 +12897,47 @@ namespace Taxlab.ApiClientLibrary
         [System.Runtime.Serialization.EnumMember(Value = @"LowAndMiddleIncomeTaxOffsetRestriction")]
         LowAndMiddleIncomeTaxOffsetRestriction = 109,
     
+        [System.Runtime.Serialization.EnumMember(Value = @"PrivateHealthInsuranceRebate")]
+        PrivateHealthInsuranceRebate = 110,
+    
         [System.Runtime.Serialization.EnumMember(Value = @"CapitalTaxLossReceivedUtilised")]
-        CapitalTaxLossReceivedUtilised = 110,
+        CapitalTaxLossReceivedUtilised = 111,
     
         [System.Runtime.Serialization.EnumMember(Value = @"CapitalTaxLossClaim")]
-        CapitalTaxLossClaim = 111,
+        CapitalTaxLossClaim = 112,
     
         [System.Runtime.Serialization.EnumMember(Value = @"CapitalNetLoss")]
-        CapitalNetLoss = 112,
+        CapitalNetLoss = 113,
     
         [System.Runtime.Serialization.EnumMember(Value = @"Medicare")]
-        Medicare = 113,
+        Medicare = 114,
     
         [System.Runtime.Serialization.EnumMember(Value = @"MedicareSurcharge")]
-        MedicareSurcharge = 114,
+        MedicareSurcharge = 115,
     
         [System.Runtime.Serialization.EnumMember(Value = @"EmploymentTaxWithheld")]
-        EmploymentTaxWithheld = 115,
+        EmploymentTaxWithheld = 116,
     
         [System.Runtime.Serialization.EnumMember(Value = @"FirstHomeSuperSaverTaxWithheld")]
-        FirstHomeSuperSaverTaxWithheld = 116,
+        FirstHomeSuperSaverTaxWithheld = 117,
     
         [System.Runtime.Serialization.EnumMember(Value = @"SuperIncomeStreamTaxOffset")]
-        SuperIncomeStreamTaxOffset = 117,
+        SuperIncomeStreamTaxOffset = 118,
     
         [System.Runtime.Serialization.EnumMember(Value = @"NonResidentWithholdingTaxPayable")]
-        NonResidentWithholdingTaxPayable = 118,
+        NonResidentWithholdingTaxPayable = 119,
     
         [System.Runtime.Serialization.EnumMember(Value = @"WithholdingTaxOnInterestReceived")]
-        WithholdingTaxOnInterestReceived = 119,
+        WithholdingTaxOnInterestReceived = 120,
     
         [System.Runtime.Serialization.EnumMember(Value = @"FrankingCreditsAttachedToDividend")]
-        FrankingCreditsAttachedToDividend = 120,
+        FrankingCreditsAttachedToDividend = 121,
     
         [System.Runtime.Serialization.EnumMember(Value = @"WithholdingTaxOnDividendReceived")]
-        WithholdingTaxOnDividendReceived = 121,
+        WithholdingTaxOnDividendReceived = 122,
     
         [System.Runtime.Serialization.EnumMember(Value = @"ForeignTaxManualAdjustment")]
-        ForeignTaxManualAdjustment = 122,
+        ForeignTaxManualAdjustment = 123,
     
     }
     
@@ -19244,6 +19327,22 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("superannuationLumpSumWithZeroRate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal SuperannuationLumpSumWithZeroRate { get; set; }
     
+        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceRebateAdjustment", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal PrivateHealthInsuranceRebateAdjustment { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("medicareThresholdType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public MedicareThresholdTypes MedicareThresholdType { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("medicareLevyMinimumThreshold", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal MedicareLevyMinimumThreshold { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("medicareLevyReducedThreshold", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal MedicareLevyReducedThreshold { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("familyIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal FamilyIncome { get; set; }
+    
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public TaxYearWorkpaperSlug Slug { get; set; }
     
@@ -19286,6 +19385,26 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("privateHealthInsuranceRebate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PrivateHealthInsuranceRebate { get; set; }
     
+        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceRebateRate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal PrivateHealthInsuranceRebateRate { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceRebateAvailable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal PrivateHealthInsuranceRebateAvailable { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceRebateAdjustment", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal PrivateHealthInsuranceRebateAdjustment { get; set; }
+    
+    
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
+    public enum MedicareThresholdTypes
+    {
+        [System.Runtime.Serialization.EnumMember(Value = @"Family")]
+        Family = 0,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"Single")]
+        Single = 1,
     
     }
     
@@ -20585,6 +20704,19 @@ namespace Taxlab.ApiClientLibrary
     
         [Newtonsoft.Json.JsonProperty("domesticSourceMedicareLevyAndSurchargePayable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DomesticSourceMedicareLevyAndSurchargePayable { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("medicareThresholdType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public MedicareThresholdTypes MedicareThresholdType { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("medicareLevyMinimumThreshold", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal MedicareLevyMinimumThreshold { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("medicareLevyReducedThreshold", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal MedicareLevyReducedThreshold { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("domesticFamilyIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal DomesticFamilyIncome { get; set; }
     
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public TaxYearWorkpaperSlug Slug { get; set; }
