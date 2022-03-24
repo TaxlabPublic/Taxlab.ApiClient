@@ -33,6 +33,14 @@ namespace Taxlab.ApiClientLibrary
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<FileResponse> Echo_UnauthorisedAsync(string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+    
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<FileResponse> Echo_ExceptionAsync(string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+    
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<FileResponse> CalculateTaxToPay_ScheduleAsync(System.Guid taxpayerIdPath, int taxYearPath, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
@@ -761,6 +769,146 @@ namespace Taxlab.ApiClientLibrary
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Echo/Authorised");
+    
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    if (taxpayerId != null)
+                        request_.Headers.TryAddWithoutValidation("taxpayerId", ConvertToString(taxpayerId, System.Globalization.CultureInfo.InvariantCulture));
+                    if (taxYear != null)
+                        request_.Headers.TryAddWithoutValidation("taxYear", ConvertToString(taxYear, System.Globalization.CultureInfo.InvariantCulture));
+                    if (version != null)
+                        request_.Headers.TryAddWithoutValidation("version", ConvertToString(version, System.Globalization.CultureInfo.InvariantCulture));
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/octet-stream"));
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+    
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+    
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200 || status_ == 206)
+                        {
+                            var responseStream_ = response_.Content == null ? System.IO.Stream.Null : await response_.Content.ReadAsStreamAsync().ConfigureAwait(false);
+                            var fileResponse_ = new FileResponse(status_, headers_, responseStream_, null, response_); 
+                            disposeClient_ = false; disposeResponse_ = false; // response and client are disposed by FileResponse
+                            return fileResponse_;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+    
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public async System.Threading.Tasks.Task<FileResponse> Echo_UnauthorisedAsync(string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Echo/unauthorised");
+    
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    if (taxpayerId != null)
+                        request_.Headers.TryAddWithoutValidation("taxpayerId", ConvertToString(taxpayerId, System.Globalization.CultureInfo.InvariantCulture));
+                    if (taxYear != null)
+                        request_.Headers.TryAddWithoutValidation("taxYear", ConvertToString(taxYear, System.Globalization.CultureInfo.InvariantCulture));
+                    if (version != null)
+                        request_.Headers.TryAddWithoutValidation("version", ConvertToString(version, System.Globalization.CultureInfo.InvariantCulture));
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/octet-stream"));
+    
+                    PrepareRequest(client_, request_, urlBuilder_);
+    
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+    
+                    PrepareRequest(client_, request_, url_);
+    
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+    
+                        ProcessResponse(client_, response_);
+    
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200 || status_ == 206)
+                        {
+                            var responseStream_ = response_.Content == null ? System.IO.Stream.Null : await response_.Content.ReadAsStreamAsync().ConfigureAwait(false);
+                            var fileResponse_ = new FileResponse(status_, headers_, responseStream_, null, response_); 
+                            disposeClient_ = false; disposeResponse_ = false; // response and client are disposed by FileResponse
+                            return fileResponse_;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+    
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public async System.Threading.Tasks.Task<FileResponse> Echo_ExceptionAsync(string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Echo/exception");
     
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -13469,6 +13617,9 @@ namespace Taxlab.ApiClientLibrary
         [System.Runtime.Serialization.EnumMember(Value = @"DeductionForProjectPoolOther")]
         DeductionForProjectPoolOther = 174,
     
+        [System.Runtime.Serialization.EnumMember(Value = @"ForeignRentalDebtDeductions")]
+        ForeignRentalDebtDeductions = 175,
+    
     }
     
     /// <summary>0 = CurrentTax
@@ -13824,6 +13975,9 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("taxpayerName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string TaxpayerName { get; set; }
     
+        [Newtonsoft.Json.JsonProperty("businessNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string BusinessNumber { get; set; }
+    
     
     }
     
@@ -13854,6 +14008,9 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
     
+        [Newtonsoft.Json.JsonProperty("balanceDateMonth", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int BalanceDateMonth { get; set; }
+    
         [Newtonsoft.Json.JsonProperty("taxpayerOrFirstName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string TaxpayerOrFirstName { get; set; }
     
@@ -13869,6 +14026,15 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("entityType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public EntityType EntityType { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("businessNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string BusinessNumber { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("partnerSourceId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int? PartnerSourceId { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("partnerTaxpayerId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string PartnerTaxpayerId { get; set; }
     
         [Newtonsoft.Json.JsonProperty("paymentGroup", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string PaymentGroup { get; set; }
@@ -14147,6 +14313,21 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
     public partial class IncomeDetailsScheduleWorkpaper 
     {
+        [Newtonsoft.Json.JsonProperty("isScheduleHasDetails", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool IsScheduleHasDetails { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("header_TaxPayerName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Header_TaxPayerName { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("header_Tfn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Header_Tfn { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("header_ReportType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Header_ReportType { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("header_TaxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int Header_TaxYear { get; set; }
+    
         [Newtonsoft.Json.JsonProperty("packType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string PackType { get; set; }
     
@@ -14188,9 +14369,6 @@ namespace Taxlab.ApiClientLibrary
     
         [Newtonsoft.Json.JsonProperty("classification", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public TaxYearWorkpaperClassification Classification { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isScheduleHasDetails", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool IsScheduleHasDetails { get; set; }
     
         [Newtonsoft.Json.JsonProperty("abn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Abn { get; set; }
@@ -16100,6 +16278,21 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
     public partial class DeductionsScheduleWorkpaper 
     {
+        [Newtonsoft.Json.JsonProperty("isScheduleHasDetails", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool IsScheduleHasDetails { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("header_TaxPayerName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Header_TaxPayerName { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("header_Tfn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Header_Tfn { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("header_ReportType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Header_ReportType { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("header_TaxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int Header_TaxYear { get; set; }
+    
         [Newtonsoft.Json.JsonProperty("packType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string PackType { get; set; }
     
@@ -16216,9 +16409,6 @@ namespace Taxlab.ApiClientLibrary
     
         [Newtonsoft.Json.JsonProperty("work_related_selfeducation_expenses_action_code", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Work_related_selfeducation_expenses_action_code { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("isScheduleHasDetails", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool IsScheduleHasDetails { get; set; }
     
     
     }
@@ -19334,6 +19524,10 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public MedicareThresholdTypes MedicareThresholdType { get; set; }
     
+        [Newtonsoft.Json.JsonProperty("medicareSurchargeThresholdType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public MedicareThresholdTypes MedicareSurchargeThresholdType { get; set; }
+    
         [Newtonsoft.Json.JsonProperty("medicareLevyMinimumThreshold", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal MedicareLevyMinimumThreshold { get; set; }
     
@@ -19342,6 +19536,22 @@ namespace Taxlab.ApiClientLibrary
     
         [Newtonsoft.Json.JsonProperty("familyIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal FamilyIncome { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("medicareLevySurchargeThresholdTier", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int MedicareLevySurchargeThresholdTier { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("hasSpouseForPrivateHealthInsurance", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool HasSpouseForPrivateHealthInsurance { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceThresholdType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public MedicareThresholdTypes PrivateHealthInsuranceThresholdType { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("incomeForPrivateHealthInsuranceThreshold", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal IncomeForPrivateHealthInsuranceThreshold { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceThresholdTier", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int PrivateHealthInsuranceThresholdTier { get; set; }
     
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public TaxYearWorkpaperSlug Slug { get; set; }
@@ -19863,15 +20073,8 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
     public partial class IncomingDistribution : Distribution
     {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid Id { get; set; }
-    
         [Newtonsoft.Json.JsonProperty("typeOfTrustCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string TypeOfTrustCode { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("providerEntityType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public EntityType ProviderEntityType { get; set; }
     
         [Newtonsoft.Json.JsonProperty("otherDistributionsFromPartnerships", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal OtherDistributionsFromPartnerships { get; set; }
@@ -19885,6 +20088,17 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.5.2.0 (Newtonsoft.Json v11.0.0.0)")]
     public partial class Distribution 
     {
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Guid Id { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("providerEntityType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public EntityType ProviderEntityType { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("recipientEntityType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public EntityType RecipientEntityType { get; set; }
+    
         [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
     
@@ -20717,6 +20931,9 @@ namespace Taxlab.ApiClientLibrary
     
         [Newtonsoft.Json.JsonProperty("domesticFamilyIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DomesticFamilyIncome { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("medicareLevySurchargeThresholdTier", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int MedicareLevySurchargeThresholdTier { get; set; }
     
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public TaxYearWorkpaperSlug Slug { get; set; }
@@ -21776,6 +21993,9 @@ namespace Taxlab.ApiClientLibrary
     
         [Newtonsoft.Json.JsonProperty("taxpayerName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string TaxpayerName { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("balanceDate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string BalanceDate { get; set; }
     
         [Newtonsoft.Json.JsonProperty("isTaxpayerArchived", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsTaxpayerArchived { get; set; }
