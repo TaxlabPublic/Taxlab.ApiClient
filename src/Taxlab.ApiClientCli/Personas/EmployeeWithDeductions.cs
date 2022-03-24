@@ -25,7 +25,7 @@ namespace Taxlab.ApiClientCli.Personas
                 firstName,
                 lastName,
                 taxFileNumber);
-
+  
             var taxpayer = taxpayerResponse.Content;
             client.TaxpayerId = taxpayer.Id;
             client.Taxyear = taxYear;
@@ -37,11 +37,19 @@ namespace Taxlab.ApiClientCli.Personas
                  balanceDate,
                  startDate);
 
+            Console.WriteLine("== Step: Creating Uniform workpaper ==========================================================");
+            var deductionWorkpaper = new OtherDeductionRepository(client);
+            await deductionWorkpaper.CreateAsync(taxpayer.Id,
+                taxYear,
+                -180m,
+                ReturnDisclosureTypes.AUIndividualWorkRelatedClothingProtective,
+                "Nice looking uniform"
+            );
+
             if (taxReturnResponse.Success == false)
             {
                 throw new Exception(taxReturnResponse.Message);
             }
-
 
             var listOfDeductionTypes = new Dictionary<ReturnDisclosureTypes, string>();
             listOfDeductionTypes.Add(ReturnDisclosureTypes.AUIndividualCostOfManagingTaxAffairsATOInterest, "Interest charged by the ATO");
@@ -70,6 +78,7 @@ namespace Taxlab.ApiClientCli.Personas
             foreach (var item in listOfDeductionTypes)
             {
                 await AddWorkpaper(client, taxYear, taxpayer.Id, item.Key, item.Value);
+                await Task.Delay(2000);
             }
 
             return taxpayer;
