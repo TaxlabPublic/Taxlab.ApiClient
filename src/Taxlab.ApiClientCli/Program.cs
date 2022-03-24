@@ -11,8 +11,7 @@ namespace Taxlab.ApiClientCli
     internal class Program
     {
         private static readonly HttpClient HttpClient = new HttpClient();
-        private const string BaseUrl = "https://localhost:44354/";
-      //  private const string BaseUrl = "https://preview.taxlab.online/api-internal/";
+        private const string BaseUrl = "https://preview.taxlab.online/api-internal/";
         private static TaxlabApiClient Client;
 
         private const int TaxYear = 2021; // Change this to your taxYear
@@ -29,6 +28,10 @@ namespace Taxlab.ApiClientCli
             var taxpayerService = new TaxpayerRepository(Client);
             var taxpayers = taxpayerService.SearchByTfn("123456789");
             var allTaxpayers = taxpayerService.GetAllTaxpayers();
+
+            Console.WriteLine("== Step: Create taxpayer who is an employee with lots of deductions ==========================================================");
+            var employeeWithDeductions = new Personas.EmployeeWithDeductions();
+            await employeeWithDeductions.CreateAsync(Client).ConfigureAwait(false);
 
             Console.WriteLine("== Step: Create deceased taxpayer ==========================================================");
             var deceasedTaxpayerPersonaFactory = new Personas.DeceasedEmployeePersona();
