@@ -35,10 +35,10 @@ namespace Taxlab.ApiClientCli.Personas
             var startDate = balanceDate.PlusYears(-1).PlusDays(-1);
 
             Console.WriteLine("== Step: Creating taxpayer =========================================================="); 
-            var taxpayerResponse = await CreateTaxpayer(client, "John", "Citizen", "32989432");
+            var taxpayerResponse = await CreateTaxpayer(client, "Johnny", "NzCitizen", "3123123213");
             var taxpayer = taxpayerResponse.Content;
 
-            var spouseTaxpayerResponse = await CreateTaxpayer(client, "Mary", "Citizen", "32989432");
+            var spouseTaxpayerResponse = await CreateTaxpayer(client, "Mary", "NzCitizen", "329823432");
             var spouseTaxpayer = spouseTaxpayerResponse.Content;
 
             Console.WriteLine("== Step: Creating declarations workpaper ==========================================================");
@@ -54,8 +54,8 @@ namespace Taxlab.ApiClientCli.Personas
                 taxAgentContactPhoneNumber: "88435751",
                 taxAgentClientReference: "CR010011JC",
                 taxPayerDeclarationStatementAccepted: true,
-                taxAgentSignatureFirstName: "John",
-                taxAgentSignatureLastName: "Citizen"
+                taxAgentSignatureFirstName: "Johnny",
+                taxAgentSignatureLastName: "NzCitizen"
             );
 
             Console.WriteLine("== Step: Populating spouse workpaper ==========================================================");

@@ -30,6 +30,7 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
 
             var workpaper = spouseWorkpaperResponse.Workpaper;
             workpaper.LinkedSpouseTaxpayerId = LinkedSpouseTaxpayerId;
+            workpaper.HasSpouse = false;
             workpaper.IsMarriedFullYear = false;
             workpaper.MarriedFrom = MarriedFrom.ToAtoDateString();
             workpaper.MarriedTo = MarriedTo.ToAtoDateString();

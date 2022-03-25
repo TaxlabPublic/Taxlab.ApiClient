@@ -44,7 +44,7 @@ namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
             workpaper.PersonalSuperannuationAccountNumber = accountNumber;
             workpaper.FundABN = fundABN;
             workpaper.FundTFN = fundTFN;
-            workpaper.LastEligibleDate = lastEligibleDate.ToString();
+            workpaper.LastEligibleDate = lastEligibleDate.ToAtoDateString();
             workpaper.ReceiveAnAcknowledgement = didYouReceiveAnAcknowledgement;
 
             var command = new UpsertPersonalSuperannuationContributionWorkpaperCommand()
