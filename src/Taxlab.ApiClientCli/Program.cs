@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Taxlab.ApiClientCli.Implementations;
@@ -11,7 +10,7 @@ namespace Taxlab.ApiClientCli
     internal class Program
     {
         private static readonly HttpClient HttpClient = new HttpClient();
-        //private const string BaseUrl = "https://localhost:44354/";
+        //private const string BaseUrl = "https://localhost:44359/";
         private const string BaseUrl = "https://preview.taxlab.online/api-internal/";
         private static TaxlabApiClient Client;
 
@@ -32,7 +31,6 @@ namespace Taxlab.ApiClientCli
             var deceasedTaxpayerPersonaFactory = new Personas.DeceasedEmployeePersona();
             var deceased = await deceasedTaxpayerPersonaFactory.CreateAsync(Client).ConfigureAwait(false);
 
-
             Console.WriteLine("== Step: Create taxpayer with dividend ==========================================================");
             var investorPersonaFactory = new Personas.SingleDividend();
             var investor = await investorPersonaFactory.CreateAsync(Client).ConfigureAwait(false);
@@ -41,6 +39,8 @@ namespace Taxlab.ApiClientCli
             var complexPersonaFactory = new Personas.ComplexEmployee();
             var complex = await complexPersonaFactory.CreateAsync(Client).ConfigureAwait(false);
 
+            var couplePersonaFactory = new Personas.MarriedCouple();
+            var complexMarriedCoupleObject = await couplePersonaFactory.CreateAsync(Client).ConfigureAwait(false);
 
             Console.WriteLine("== Step: Get All adjustment workpapers for complex taxpayer ==========================================================");
             // Gets a list of all adjustment workpapers for this taxpayer. 

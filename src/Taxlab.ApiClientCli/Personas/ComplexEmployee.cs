@@ -121,7 +121,7 @@ namespace Taxlab.ApiClientCli.Personas
             await expense.CreateAsync(taxpayer.Id,
                 taxYear,
                 -10000m,
-                ReturnDisclosureTypes.OtherDeductibleExpenses
+                ReturnDisclosureTypes.AUDividend
             );
 
             Console.WriteLine("== Step: Creating declarations workpaper ==========================================================");
@@ -140,20 +140,6 @@ namespace Taxlab.ApiClientCli.Personas
                 taxPayerDeclarationStatementAccepted: true,
                 taxAgentSignatureFirstName: "John",
                 taxAgentSignatureLastName: "Citizen"
-            );
-
-            var spouseTaxpayerResponse = await CreateTaxpayer(client, "Mary", "Citizen", "32989432");
-            var spouseTaxpayer = spouseTaxpayerResponse.Content;
-
-            Console.WriteLine("== Step: Populating spouse workpaper ==========================================================");
-            var spouse = new SpouseRepository(client);
-            await spouse.CreateAsync(taxpayer.Id,
-                taxYear,
-                LinkedSpouseTaxpayerId: spouseTaxpayer.Id,
-                IsMarriedFullYear: false,
-                MarriedFrom: startDate,
-                MarriedTo: startDate.PlusDays(100),
-                HasDiedThisYear: false
             );
 
             Console.WriteLine("== Step: Creating rental property workpaper ==========================================================");
