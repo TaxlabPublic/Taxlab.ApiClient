@@ -93,7 +93,7 @@ namespace Taxlab.ApiClientCli.Personas
             var governmentAllowanceFactory = new GovernmentAllowanceRepository(client);
             await governmentAllowanceFactory.CreateAsync(taxpayer.Id,
                 taxYear,
-                "testBenefitType",
+                "Allowance",
                 "testDescription",
                 1000m,
                 1000m

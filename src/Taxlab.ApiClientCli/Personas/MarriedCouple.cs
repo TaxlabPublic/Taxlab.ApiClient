@@ -35,7 +35,7 @@ namespace Taxlab.ApiClientCli.Personas
             var startDate = balanceDate.PlusYears(-1).PlusDays(-1);
 
             Console.WriteLine("== Step: Creating taxpayer =========================================================="); 
-            var taxpayerResponse = await CreateTaxpayer(client, "Johnny", "NzCitizen", "3123123213");
+            var taxpayerResponse = await CreateTaxpayer(client, "Johnny", "NzCitizen", "565852125");
             var taxpayer = taxpayerResponse.Content;
 
             var spouseTaxpayerResponse = await CreateTaxpayer(client, "Mary", "NzCitizen", "329823432");
