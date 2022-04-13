@@ -521,11 +521,11 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<WorkpaperResponseOfCapitalGainsLossesWorkpaper> Workpapers_GetCapitalGainsLossesWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<WorkpaperResponseOfCapitalGainsWorkpaper> Workpapers_GetCapitalGainsWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<WorkpaperResponseOfCapitalGainsLossesWorkpaper> Workpapers_PostCapitalGainsLossesWorkpaperAsync(UpsertCapitalGainsLossesWorkpaperCommand request, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<WorkpaperResponseOfCapitalGainsWorkpaper> Workpapers_PostCapitalGainsWorkpaperAsync(UpsertCapitalGainsWorkpaperCommand request, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -549,7 +549,7 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<BusinessIncomeExpensesSummaryResponse> WorkpaperSummary_BusinessAdjustmentsMappingAsync(UpsertBusinessAdjustmentsMappingCommand command, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<BusinessIncomeExpensesSummaryResponse> WorkpaperSummary_BusinessAdjustmentsMappingPOSTAsync(UpsertBusinessAdjustmentsMappingCommand command, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -557,7 +557,7 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<BusinessIncomeExpensesSummaryResponse> WorkpaperSummary_BusinessAdjustmentsMapping2Async(DeleteManualBusinessAdjustmentCommand command, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<BusinessIncomeExpensesSummaryResponse> WorkpaperSummary_BusinessAdjustmentsMappingDELETEAsync(DeleteManualBusinessAdjustmentCommand command, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -11234,7 +11234,7 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<WorkpaperResponseOfCapitalGainsLossesWorkpaper> Workpapers_GetCapitalGainsLossesWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<WorkpaperResponseOfCapitalGainsWorkpaper> Workpapers_GetCapitalGainsWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (taxpayerIdPath == null)
                 throw new System.ArgumentNullException("taxpayerIdPath");
@@ -11258,7 +11258,7 @@ namespace Taxlab.ApiClientLibrary
                 throw new System.ArgumentNullException("createOnQuery");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/CapitalGainsLossesWorkpaper/{taxpayerId}/{taxYear}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/CapitalGainsWorkpaper/{taxpayerId}/{taxYear}");
             urlBuilder_.Replace("{taxpayerId}", System.Uri.EscapeDataString(ConvertToString(taxpayerIdPath, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{taxYear}", System.Uri.EscapeDataString(ConvertToString(taxYearPath, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{workpaperType}", System.Uri.EscapeDataString(ConvertToString(workpaperType, System.Globalization.CultureInfo.InvariantCulture)));
@@ -11308,7 +11308,7 @@ namespace Taxlab.ApiClientLibrary
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<WorkpaperResponseOfCapitalGainsLossesWorkpaper>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<WorkpaperResponseOfCapitalGainsWorkpaper>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -11337,13 +11337,13 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<WorkpaperResponseOfCapitalGainsLossesWorkpaper> Workpapers_PostCapitalGainsLossesWorkpaperAsync(UpsertCapitalGainsLossesWorkpaperCommand request, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<WorkpaperResponseOfCapitalGainsWorkpaper> Workpapers_PostCapitalGainsWorkpaperAsync(UpsertCapitalGainsWorkpaperCommand request, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (request == null)
                 throw new System.ArgumentNullException("request");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/CapitalGainsLossesWorkpaper");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/CapitalGainsWorkpaper");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -11389,7 +11389,7 @@ namespace Taxlab.ApiClientLibrary
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<WorkpaperResponseOfCapitalGainsLossesWorkpaper>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<WorkpaperResponseOfCapitalGainsWorkpaper>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -11851,7 +11851,7 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<BusinessIncomeExpensesSummaryResponse> WorkpaperSummary_BusinessAdjustmentsMappingAsync(UpsertBusinessAdjustmentsMappingCommand command, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<BusinessIncomeExpensesSummaryResponse> WorkpaperSummary_BusinessAdjustmentsMappingPOSTAsync(UpsertBusinessAdjustmentsMappingCommand command, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (command == null)
                 throw new System.ArgumentNullException("command");
@@ -12013,7 +12013,7 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<BusinessIncomeExpensesSummaryResponse> WorkpaperSummary_BusinessAdjustmentsMapping2Async(DeleteManualBusinessAdjustmentCommand command, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<BusinessIncomeExpensesSummaryResponse> WorkpaperSummary_BusinessAdjustmentsMappingDELETEAsync(DeleteManualBusinessAdjustmentCommand command, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (command == null)
                 throw new System.ArgumentNullException("command");
@@ -16556,8 +16556,8 @@ namespace Taxlab.ApiClientLibrary
         [System.Runtime.Serialization.EnumMember(Value = @"SpouseWorkpaper")]
         SpouseWorkpaper = 118,
 
-        [System.Runtime.Serialization.EnumMember(Value = @"CapitalGainsLossesWorkpaper")]
-        CapitalGainsLossesWorkpaper = 119,
+        [System.Runtime.Serialization.EnumMember(Value = @"CapitalGainsWorkpaper")]
+        CapitalGainsWorkpaper = 119,
 
         [System.Runtime.Serialization.EnumMember(Value = @"RevenueLossesWorkpaper")]
         RevenueLossesWorkpaper = 120,
@@ -16609,6 +16609,9 @@ namespace Taxlab.ApiClientLibrary
 
         [System.Runtime.Serialization.EnumMember(Value = @"LowAndMiddleIncomeTaxOffsetWorkpaper")]
         LowAndMiddleIncomeTaxOffsetWorkpaper = 136,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"ResidentialRentalInterestDeduction")]
+        ResidentialRentalInterestDeduction = 137,
 
     }
 
@@ -18641,6 +18644,9 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PermanentDifference { get; set; }
 
+        [Newtonsoft.Json.JsonProperty("descriptionOfDeductions", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string DescriptionOfDeductions { get; set; }
+
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public AdjustmentWorkpaperSlug Slug { get; set; }
 
@@ -20098,6 +20104,9 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("taxableIncomeLessFirstHomeSuperSaver", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TaxableIncomeLessFirstHomeSuperSaver { get; set; }
 
+        [Newtonsoft.Json.JsonProperty("adjustedTotalReportableFringeBenefitsAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal AdjustedTotalReportableFringeBenefitsAmount { get; set; }
+
         [Newtonsoft.Json.JsonProperty("totalReportableFringeBenefitsAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TotalReportableFringeBenefitsAmount { get; set; }
 
@@ -21333,15 +21342,15 @@ namespace Taxlab.ApiClientLibrary
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class WorkpaperResponseOfCapitalGainsLossesWorkpaper : WorkpaperResponse
+    public partial class WorkpaperResponseOfCapitalGainsWorkpaper : WorkpaperResponse
     {
         [Newtonsoft.Json.JsonProperty("workpaper", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public CapitalGainsLossesWorkpaper Workpaper { get; set; }
+        public CapitalGainsWorkpaper Workpaper { get; set; }
 
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class CapitalGainsLossesWorkpaper
+    public partial class CapitalGainsWorkpaper
     {
         [Newtonsoft.Json.JsonProperty("journals", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<Journal> Journals { get; set; }
@@ -21358,16 +21367,16 @@ namespace Taxlab.ApiClientLibrary
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class UpsertCapitalGainsLossesWorkpaperCommand : BaseTaxYearWorkpaperCommandOfCapitalGainsLossesWorkpaper
+    public partial class UpsertCapitalGainsWorkpaperCommand : BaseTaxYearWorkpaperCommandOfCapitalGainsWorkpaper
     {
 
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class BaseTaxYearWorkpaperCommandOfCapitalGainsLossesWorkpaper : BaseTaxYearWorkpaperCommand
+    public partial class BaseTaxYearWorkpaperCommandOfCapitalGainsWorkpaper : BaseTaxYearWorkpaperCommand
     {
         [Newtonsoft.Json.JsonProperty("workpaper", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public CapitalGainsLossesWorkpaper Workpaper { get; set; }
+        public CapitalGainsWorkpaper Workpaper { get; set; }
 
     }
 
