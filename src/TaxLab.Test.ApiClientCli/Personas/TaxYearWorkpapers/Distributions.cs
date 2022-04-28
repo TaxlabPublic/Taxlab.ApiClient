@@ -11,7 +11,7 @@ namespace TaxLab.Test.ApiClientCli.Workpapers.TaxYearWorkpapers
     public class Distributions
     {
         [Fact]
-        public async void CreateTaxpayerWithCapitalGainsWorkpapers()
+        public async void CreateTaxpayerWithDistributionsWorkpapers()
         {
             string baseUrl = "https://preview.taxlab.online/api-internal/";
             HttpClient httpclient = new HttpClient();
