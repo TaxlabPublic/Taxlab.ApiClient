@@ -36,9 +36,15 @@ namespace Taxlab.ApiClientCli.Workpapers.TaxYearWorkpapers
             string spouseCRN ="",
             bool baseRateEntityIndicator = false,
             int? familyTrustElectionYear = null,
-            string familyTrustElection = ""
-
-            )
+            string familyTrustElection = "",
+            decimal higherEducationLoanProgramBalance = 0,
+            decimal vetStudentLoanBalance = 0,
+            decimal studentFinancialSupplementSchemeBalance = 0,
+            decimal studentStartupLoanBalance = 0,
+            decimal abstudyStudentStartupLoanBalance = 0,
+            decimal tradeSupportLoanBalance = 0, 
+            bool smallBusinessIndicator = false
+        )
         {
             var taxpayerDetailsWorkpaperResponse = await Client
                 .Workpapers_GetTaxpayerDetailsWorkpaperAsync(taxpayerId, taxYear, WorkpaperType.TaxpayerDetailsWorkpaper, Guid.Empty, false, false, true)
@@ -65,6 +71,13 @@ namespace Taxlab.ApiClientCli.Workpapers.TaxYearWorkpapers
             workpaper.BaseRateEntityIndicator = baseRateEntityIndicator;
             workpaper.FamilyTrustElectionYear = familyTrustElectionYear;
             workpaper.FamilyTrustElection = familyTrustElection;
+            workpaper.HigherEducationLoanProgramBalance = higherEducationLoanProgramBalance;
+            workpaper.VetStudentLoanBalance = vetStudentLoanBalance;
+            workpaper.StudentFinancialSupplementSchemeBalance = studentFinancialSupplementSchemeBalance;
+            workpaper.StudentStartupLoanBalance = studentStartupLoanBalance;
+            workpaper.AbstudyStudentStartupLoanBalance = abstudyStudentStartupLoanBalance;
+            workpaper.TradeSupportLoanBalance = tradeSupportLoanBalance;
+            workpaper.SmallBusinessIndicator = smallBusinessIndicator;
 
             // Update command for our new workpaper
             var upsertTaxpayerDetailsCommand = new UpsertTaxpayerDetailsWorkpaperCommand()

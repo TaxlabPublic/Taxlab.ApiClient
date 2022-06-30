@@ -355,7 +355,14 @@ namespace Taxlab.ApiClientCli.Personas
                 emailAddress: "JohnC12@hotmail.com",
                 bsbNumber: "553026",
                 bankAccountName: "Bank of Melbourne",
-                bankAccountNumber: "15987456"
+                bankAccountNumber: "15987456",
+                higherEducationLoanProgramBalance: 100,
+                vetStudentLoanBalance: 200,
+                studentFinancialSupplementSchemeBalance: 300,
+                studentStartupLoanBalance: 400,
+                abstudyStudentStartupLoanBalance: 500,
+                tradeSupportLoanBalance: 600,
+                smallBusinessIndicator: false
             );
 
             return taxpayerResponse;
