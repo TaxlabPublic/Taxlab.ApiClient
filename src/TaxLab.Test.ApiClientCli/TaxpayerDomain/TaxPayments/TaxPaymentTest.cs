@@ -25,8 +25,8 @@ namespace TaxLab.Test.ApiClientCli.TaxpayerDomain.TaxPayments
 
             var taxPayment = await repo.CreateAsync(taxpayerId,
                 taxYear,
-                "PAYG Installment",
-                5250, // PAYG ID
+                "Pay as you go - Withholding",
+                20130, // PAYG ID
                 true,
                 new LocalDate(2021, 1, 1),
                 -1000);
