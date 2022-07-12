@@ -16,6 +16,7 @@
       "generateClientInterfaces": true,
       "generateExceptionClasses": true,
       "generateOptionalParameters": true,
+      "requiredPropertiesMustBeDefined": false,
       "disposeHttpClient": false,
       "injectHttpClient": true,
       "classType": "Poco",
