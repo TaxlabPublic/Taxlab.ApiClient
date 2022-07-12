@@ -21,7 +21,7 @@ namespace TaxLab.Test.ApiClientCli.Personas.TaxYearWorkpapers
 
             var repo = new TaxpayerDetailsRepository(client);
             var taxYear = 2021;
-            var taxpayerId = new Guid("ff611f77-ebf9-438e-8933-15c600c5269b");
+            var taxpayerId = Guid.NewGuid();
 
 
             var taxpayer = await repo.CreateAsync(taxpayerId, taxYear, new LocalDate());
