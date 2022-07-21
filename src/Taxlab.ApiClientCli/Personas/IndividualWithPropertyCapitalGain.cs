@@ -1,5 +1,6 @@
 ﻿using NodaTime;
 using System;
+using System.Collections.Generic;
 using Taxlab.ApiClientLibrary;
 using Taxlab.ApiClientCli.Repositories.Taxpayer;
 using System.Threading.Tasks;
@@ -46,12 +47,12 @@ namespace Taxlab.ApiClientCli.Personas
                 category: "5",
                 purchaseDate: new LocalDate(2019, 5, 1),
                 purchaseAmount: 10000m,
-                purchaseAdjustment: 0m,
+                purchaseAdjustment: new List<CapitalGainOrLossTransaction>(),
                 disposalDate: new LocalDate(2021, 5, 31),
                 disposalAmount: 130000m,
                 discountAmount: 0m,
-                currentYearLossApplied: -1000,
-                priorLossApplied: -27915.64m,
+                currentYearLossesApplied: -1000,
+                priorLossesApplied: -27915.64m,
                 capitalLossesTransferredInApplied: -10000,
                 isEligibleForDiscount: true,
                 isEligibleForActiveAssetReduction: true,
@@ -71,7 +72,7 @@ namespace Taxlab.ApiClientCli.Personas
                 purchaseAmount: 2000m,
                 disposalDate: new LocalDate(2021, 5, 31),
                 disposalAmount: 85896.52m,
-                priorLossApplied: -1000m,
+                priorLossesApplied: -1000m,
                 isEligibleForDiscount: true
             );
 

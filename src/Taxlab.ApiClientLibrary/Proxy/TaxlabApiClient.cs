@@ -47,16 +47,16 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<CalculateTaxToPayCommandResponse> CalculateTaxToPay_CalculateTaxToPayWithVersionAsync(System.Guid taxpayerIdPath, int taxYearPath, long? versionPath, bool? bypassLockedTaxYear = null, string taxpayerIdHeader = null, int? taxYearHeader = null, double? versionHeader = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<CalculateTaxToPayCommandResponse> CalculateTaxToPay_CalculateTaxToPayWithVersionAsync(System.Guid taxpayerIdPath, int taxYearPath, long? versionPath, string taxpayerIdHeader = null, int? taxYearHeader = null, double? versionHeader = null, bool? bypassLockedTaxYear = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<CalculateTaxToPayCommandResponse> CalculateTaxToPay_CalculateTaxToPayAsync(System.Guid taxpayerIdPath, int taxYearPath, long? versionPath, bool? bypassLockedTaxYear = null, string taxpayerIdHeader = null, int? taxYearHeader = null, double? versionHeader = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<CalculateTaxToPayCommandResponse> CalculateTaxToPay_CalculateTaxToPayAsync(System.Guid taxpayerIdPath, int taxYearPath, long? versionPath, string taxpayerIdHeader = null, int? taxYearHeader = null, double? versionHeader = null, bool? bypassLockedTaxYear = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         [System.Obsolete]
-        System.Threading.Tasks.Task<ListDocumentsResponse> DataFeed_ListAsync(string timestampFrom = null, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ListDocumentsResponse> DataFeed_ListAsync(string taxpayerId = null, int? taxYear = null, double? version = null, string timestampFrom = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -65,7 +65,7 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ListDocumentsResponse> DataFeed_ListDocumentsAsync(string timestampFrom = null, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ListDocumentsResponse> DataFeed_ListDocumentsAsync(string taxpayerId = null, int? taxYear = null, double? version = null, string timestampFrom = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -77,7 +77,7 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ListEnabledTaxPayersResponse> DataFeed_ListEnabledTaxPayersAsync(string taxAgentId = null, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ListEnabledTaxPayersResponse> DataFeed_ListEnabledTaxPayersAsync(string taxpayerId = null, int? taxYear = null, double? version = null, string taxAgentId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -177,6 +177,18 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<WorkpaperResponseOfCapitalGainOrLossTransactionWorkpaper> Workpapers_GetCapitalGainOrLossTransactionWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, bool? bypassLockedTaxYear = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<GetCapitalGainOrLossTransactionViewResponse> Workpapers_PatchCapitalGainOrLossTransactionWorkpaperAsync(System.Collections.Generic.IEnumerable<Operation> request, System.Guid taxpayerIdPath, int taxYearPath, System.Guid documentIndexId, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<CreateCapitalGainOrLossTransactionWorkpaperResponse> Workpapers_CreateCapitalGainOrLossTransactionWorkpaperAsync(CreateCapitalGainOrLossTransactionWorkpaperCommand request, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<WorkpaperResponseOfCapitalGainOrLossTransactionWorkpaper> Workpapers_PostCapitalGainOrLossTransactionWorkpaperAsync(UpsertCapitalGainOrLossTransactionWorkpaperCommand request, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
@@ -209,7 +221,7 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<WorkpaperResponseOfDividendsInterestScheduleWorkpaper> Workpapers_GetDividendsInterestScheduleWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, bool? bypassLockedTaxYear = null, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<WorkpaperResponseOfDividendsInterestScheduleWorkpaper> Workpapers_GetDividendsInterestScheduleWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, bool? bypassLockedTaxYear = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -233,7 +245,7 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<WorkpaperResponseOfDistributionsWorkpaper> Workpapers_GetDistributionsWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, bool? bypassLockedTaxYear = null, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<WorkpaperResponseOfDistributionsWorkpaper> Workpapers_GetDistributionsWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, bool? bypassLockedTaxYear = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -242,6 +254,30 @@ namespace Taxlab.ApiClientLibrary
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<WorkpaperResponseOfDistributionsWorkpaper> Workpapers_PostDistributionsWorkpaperAsync(UpsertDistributionsWorkpaperCommand request, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<GetRentalPropertyViewQueryResponse> Workpapers_PatchRentalPropertyWorkpaperAsync(System.Collections.Generic.IEnumerable<Operation> request, System.Guid taxpayerIdPath, int taxYearPath, System.Guid documentIndexId, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<WorkpaperResponseOfRentalPropertyWorkpaper> Workpapers_GetRentalPropertyWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, bool? bypassLockedTaxYear = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<GetSmallBusinessIncomeViewQueryResponse> Workpapers_PatchSmallBusinessIncomeWorkpaperAsync(System.Collections.Generic.IEnumerable<Operation> request, System.Guid taxpayerIdPath, int taxYearPath, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<WorkpaperResponseOfSmallBusinessIncomeWorkpaper> Workpapers_GetSmallBusinessIncomeWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<GetSmallBusinessIncomeViewQueryResponse> Workpapers_PatchSmallBusinessIndicatorAsync(System.Collections.Generic.IEnumerable<Operation> request, System.Guid taxpayerIdPath, int taxYearPath, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<GetCapitalGainsViewQueryResponse> Workpapers_PatchCapitalGainOrLossTransactionWorkpaperFromSummaryAsync(System.Collections.Generic.IEnumerable<Operation> request, System.Guid taxpayerIdPath, int taxYearPath, System.Guid documentIndexId, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -437,6 +473,10 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<DeleteWorkpaperResponse> Workpapers_DeleteWorkpaperAsync(DeleteWorkpaperCommand command, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<WorkpaperResponseOfTaxpayerDetailsWorkpaper> Workpapers_GetTaxpayerDetailsWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
@@ -450,6 +490,14 @@ namespace Taxlab.ApiClientLibrary
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<WorkpaperResponseOfForeignIncomeTaxOffsetsWorkpaper> Workpapers_PostForeignIncomeTaxOffsetsWorkpaperAsync(UpsertForeignIncomeTaxOffsetsWorkpaperCommand request, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<GetSmallBusinessIncomeViewQueryResponse> Workpapers_SmallBusinessIncomeWorkpaperViewAsync(System.Guid taxpayerIdPath, int taxYearPath, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<WorkpaperResponseOfSmallBusinessIncomeWorkpaper> Workpapers_PostSmallBusinessIncomeWorkpaperAsync(UpsertSmallBusinessIncomeWorkpaperCommand request, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -473,10 +521,6 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<WorkpaperResponseOfTaxOnTaxableIncomeWorkpaper> Workpapers_PostTaxOnTaxableIncomeWorkpaperAsync(UpsertTaxOnTaxableIncomeWorkpaperCommand request, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<WorkpaperResponseOfIncomeTestsWorkpaper> Workpapers_GetIncomeTestsWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
@@ -489,15 +533,7 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<WorkpaperResponseOfAccountingProfitWorkpaper> Workpapers_PostAccountingProfitWorkpaperAsync(UpsertAccountingProfitWorkpaperCommand request, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<WorkpaperResponseOfTaxAdjustmentsWorkpaper> Workpapers_GetTaxAdjustmentsWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<WorkpaperResponseOfTaxAdjustmentsWorkpaper> Workpapers_PostTaxAdjustmentsWorkpaperAsync(UpsertTaxAdjustmentsWorkpaperCommand request, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -509,7 +545,7 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<WorkpaperResponseOfRentalPropertyWorkpaper> Workpapers_GetRentalPropertyWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, bool? bypassLockedTaxYear = null, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<GetRentalPropertyViewQueryResponse> Workpapers_GetRentalPropertyWorkpaperViewAsync(System.Guid taxpayerIdPath, int taxYearPath, System.Guid documentIndexId, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -549,10 +585,6 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<WorkpaperResponseOfDomesticMedicareWorkpaper> Workpapers_PostDomesticMedicareWorkpaperAsync(UpsertDomesticMedicareWorkpaperCommand request, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<WorkpaperResponseOfSpouseWorkpaper> Workpapers_GetSpouseWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
@@ -565,10 +597,6 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<WorkpaperResponseOfRevenueLossesWorkpaper> Workpapers_PostRevenueLossesWorkpaperAsync(UpsertRevenueLossesWorkpaperCommand request, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<WorkpaperResponseOfCapitalGainsWorkpaper> Workpapers_GetCapitalGainsWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
@@ -577,11 +605,7 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<WorkpaperResponseOfCapitalGainOrLossTransactionWorkpaper> Workpapers_GetCapitalGainOrLossTransactionWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, bool? bypassLockedTaxYear = null, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<CreateCapitalGainOrLossTransactionWorkpaperResponse> Workpapers_CreateCapitalGainOrLossTransactionWorkpaperAsync(CreateCapitalGainOrLossTransactionWorkpaperCommand request, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<GetCapitalGainOrLossTransactionViewResponse> Workpapers_CapitalGainOrLossWorkpaperViewAsync(System.Guid taxpayerIdPath, int taxYearPath, System.Guid documentIndexId, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -621,7 +645,7 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Permissions>> UserContext_FeaturePermissionsAsync(System.Collections.Generic.IEnumerable<string> features = null, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Permissions>> UserContext_FeaturePermissionsAsync(string taxpayerId = null, int? taxYear = null, double? version = null, System.Collections.Generic.IEnumerable<string> features = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -1113,7 +1137,7 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<CalculateTaxToPayCommandResponse> CalculateTaxToPay_CalculateTaxToPayWithVersionAsync(System.Guid taxpayerIdPath, int taxYearPath, long? versionPath, bool? bypassLockedTaxYear = null, string taxpayerIdHeader = null, int? taxYearHeader = null, double? versionHeader = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<CalculateTaxToPayCommandResponse> CalculateTaxToPay_CalculateTaxToPayWithVersionAsync(System.Guid taxpayerIdPath, int taxYearPath, long? versionPath, string taxpayerIdHeader = null, int? taxYearHeader = null, double? versionHeader = null, bool? bypassLockedTaxYear = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (taxpayerIdPath == null)
                 throw new System.ArgumentNullException("taxpayerIdPath");
@@ -1201,7 +1225,7 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<CalculateTaxToPayCommandResponse> CalculateTaxToPay_CalculateTaxToPayAsync(System.Guid taxpayerIdPath, int taxYearPath, long? versionPath, bool? bypassLockedTaxYear = null, string taxpayerIdHeader = null, int? taxYearHeader = null, double? versionHeader = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<CalculateTaxToPayCommandResponse> CalculateTaxToPay_CalculateTaxToPayAsync(System.Guid taxpayerIdPath, int taxYearPath, long? versionPath, string taxpayerIdHeader = null, int? taxYearHeader = null, double? versionHeader = null, bool? bypassLockedTaxYear = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (taxpayerIdPath == null)
                 throw new System.ArgumentNullException("taxpayerIdPath");
@@ -1290,7 +1314,7 @@ namespace Taxlab.ApiClientLibrary
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         [System.Obsolete]
-        public virtual async System.Threading.Tasks.Task<ListDocumentsResponse> DataFeed_ListAsync(string timestampFrom = null, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ListDocumentsResponse> DataFeed_ListAsync(string taxpayerId = null, int? taxYear = null, double? version = null, string timestampFrom = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/DataFeed?");
@@ -1450,7 +1474,7 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ListDocumentsResponse> DataFeed_ListDocumentsAsync(string timestampFrom = null, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ListDocumentsResponse> DataFeed_ListDocumentsAsync(string taxpayerId = null, int? taxYear = null, double? version = null, string timestampFrom = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/DataFeed/documents?");
@@ -1684,7 +1708,7 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ListEnabledTaxPayersResponse> DataFeed_ListEnabledTaxPayersAsync(string taxAgentId = null, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ListEnabledTaxPayersResponse> DataFeed_ListEnabledTaxPayersAsync(string taxpayerId = null, int? taxYear = null, double? version = null, string taxAgentId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/DataFeed/taxpayers?");
@@ -3710,6 +3734,287 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task<WorkpaperResponseOfCapitalGainOrLossTransactionWorkpaper> Workpapers_GetCapitalGainOrLossTransactionWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, bool? bypassLockedTaxYear = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            if (taxpayerIdPath == null)
+                throw new System.ArgumentNullException("taxpayerIdPath");
+
+            if (taxYearPath == null)
+                throw new System.ArgumentNullException("taxYearPath");
+
+            if (workpaperType == null)
+                throw new System.ArgumentNullException("workpaperType");
+
+            if (documentIndexId == null)
+                throw new System.ArgumentNullException("documentIndexId");
+
+            if (calculateRequest == null)
+                throw new System.ArgumentNullException("calculateRequest");
+
+            if (compositeRequest == null)
+                throw new System.ArgumentNullException("compositeRequest");
+
+            if (createOnQuery == null)
+                throw new System.ArgumentNullException("createOnQuery");
+
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/CapitalGainOrLossTransactionWorkpaper/{taxpayerId}/{taxYear}/{documentIndexId}");
+            urlBuilder_.Replace("{taxpayerId}", System.Uri.EscapeDataString(ConvertToString(taxpayerIdPath, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{taxYear}", System.Uri.EscapeDataString(ConvertToString(taxYearPath, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{workpaperType}", System.Uri.EscapeDataString(ConvertToString(workpaperType, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{documentIndexId}", System.Uri.EscapeDataString(ConvertToString(documentIndexId, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{calculateRequest}", System.Uri.EscapeDataString(ConvertToString(calculateRequest, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{compositeRequest}", System.Uri.EscapeDataString(ConvertToString(compositeRequest, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{createOnQuery}", System.Uri.EscapeDataString(ConvertToString(createOnQuery, System.Globalization.CultureInfo.InvariantCulture)));
+            if (bypassLockedTaxYear != null)
+                urlBuilder_.Replace("{bypassLockedTaxYear}", System.Uri.EscapeDataString(ConvertToString(bypassLockedTaxYear, System.Globalization.CultureInfo.InvariantCulture)));
+            else
+                urlBuilder_.Replace("/{bypassLockedTaxYear}", string.Empty);
+
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+
+                    if (taxpayerIdHeader != null)
+                        request_.Headers.TryAddWithoutValidation("taxpayerId", ConvertToString(taxpayerIdHeader, System.Globalization.CultureInfo.InvariantCulture));
+
+                    if (taxYearHeader != null)
+                        request_.Headers.TryAddWithoutValidation("taxYear", ConvertToString(taxYearHeader, System.Globalization.CultureInfo.InvariantCulture));
+
+                    if (version != null)
+                        request_.Headers.TryAddWithoutValidation("version", ConvertToString(version, System.Globalization.CultureInfo.InvariantCulture));
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<WorkpaperResponseOfCapitalGainOrLossTransactionWorkpaper>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task<GetCapitalGainOrLossTransactionViewResponse> Workpapers_PatchCapitalGainOrLossTransactionWorkpaperAsync(System.Collections.Generic.IEnumerable<Operation> request, System.Guid taxpayerIdPath, int taxYearPath, System.Guid documentIndexId, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            if (taxpayerIdPath == null)
+                throw new System.ArgumentNullException("taxpayerIdPath");
+
+            if (taxYearPath == null)
+                throw new System.ArgumentNullException("taxYearPath");
+
+            if (documentIndexId == null)
+                throw new System.ArgumentNullException("documentIndexId");
+
+            if (request == null)
+                throw new System.ArgumentNullException("request");
+
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/CapitalGainOrLossTransactionWorkpaper/{taxpayerId}/{taxYear}/{documentIndexId}");
+            urlBuilder_.Replace("{taxpayerId}", System.Uri.EscapeDataString(ConvertToString(taxpayerIdPath, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{taxYear}", System.Uri.EscapeDataString(ConvertToString(taxYearPath, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{documentIndexId}", System.Uri.EscapeDataString(ConvertToString(documentIndexId, System.Globalization.CultureInfo.InvariantCulture)));
+
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+
+                    if (taxpayerIdHeader != null)
+                        request_.Headers.TryAddWithoutValidation("taxpayerId", ConvertToString(taxpayerIdHeader, System.Globalization.CultureInfo.InvariantCulture));
+
+                    if (taxYearHeader != null)
+                        request_.Headers.TryAddWithoutValidation("taxYear", ConvertToString(taxYearHeader, System.Globalization.CultureInfo.InvariantCulture));
+
+                    if (version != null)
+                        request_.Headers.TryAddWithoutValidation("version", ConvertToString(version, System.Globalization.CultureInfo.InvariantCulture));
+                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(request, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("PATCH");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<GetCapitalGainOrLossTransactionViewResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task<CreateCapitalGainOrLossTransactionWorkpaperResponse> Workpapers_CreateCapitalGainOrLossTransactionWorkpaperAsync(CreateCapitalGainOrLossTransactionWorkpaperCommand request, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            if (request == null)
+                throw new System.ArgumentNullException("request");
+
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/Create/CapitalGainOrLossTransactionWorkpaper");
+
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+
+                    if (taxpayerId != null)
+                        request_.Headers.TryAddWithoutValidation("taxpayerId", ConvertToString(taxpayerId, System.Globalization.CultureInfo.InvariantCulture));
+
+                    if (taxYear != null)
+                        request_.Headers.TryAddWithoutValidation("taxYear", ConvertToString(taxYear, System.Globalization.CultureInfo.InvariantCulture));
+
+                    if (version != null)
+                        request_.Headers.TryAddWithoutValidation("version", ConvertToString(version, System.Globalization.CultureInfo.InvariantCulture));
+                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(request, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("POST");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<CreateCapitalGainOrLossTransactionWorkpaperResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<WorkpaperResponseOfCapitalGainOrLossTransactionWorkpaper> Workpapers_PostCapitalGainOrLossTransactionWorkpaperAsync(UpsertCapitalGainOrLossTransactionWorkpaperCommand request, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (request == null)
@@ -4432,7 +4737,7 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<WorkpaperResponseOfDividendsInterestScheduleWorkpaper> Workpapers_GetDividendsInterestScheduleWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, bool? bypassLockedTaxYear = null, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<WorkpaperResponseOfDividendsInterestScheduleWorkpaper> Workpapers_GetDividendsInterestScheduleWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, bool? bypassLockedTaxYear = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (taxpayerIdPath == null)
                 throw new System.ArgumentNullException("taxpayerIdPath");
@@ -4988,7 +5293,7 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<WorkpaperResponseOfDistributionsWorkpaper> Workpapers_GetDistributionsWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, bool? bypassLockedTaxYear = null, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<WorkpaperResponseOfDistributionsWorkpaper> Workpapers_GetDistributionsWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, bool? bypassLockedTaxYear = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (taxpayerIdPath == null)
                 throw new System.ArgumentNullException("taxpayerIdPath");
@@ -5229,6 +5534,580 @@ namespace Taxlab.ApiClientLibrary
                         if (status_ == 200)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<WorkpaperResponseOfDistributionsWorkpaper>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task<GetRentalPropertyViewQueryResponse> Workpapers_PatchRentalPropertyWorkpaperAsync(System.Collections.Generic.IEnumerable<Operation> request, System.Guid taxpayerIdPath, int taxYearPath, System.Guid documentIndexId, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            if (taxpayerIdPath == null)
+                throw new System.ArgumentNullException("taxpayerIdPath");
+
+            if (taxYearPath == null)
+                throw new System.ArgumentNullException("taxYearPath");
+
+            if (documentIndexId == null)
+                throw new System.ArgumentNullException("documentIndexId");
+
+            if (request == null)
+                throw new System.ArgumentNullException("request");
+
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/RentalPropertyWorkpaper/{taxpayerId}/{taxYear}/{documentIndexId}");
+            urlBuilder_.Replace("{taxpayerId}", System.Uri.EscapeDataString(ConvertToString(taxpayerIdPath, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{taxYear}", System.Uri.EscapeDataString(ConvertToString(taxYearPath, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{documentIndexId}", System.Uri.EscapeDataString(ConvertToString(documentIndexId, System.Globalization.CultureInfo.InvariantCulture)));
+
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+
+                    if (taxpayerIdHeader != null)
+                        request_.Headers.TryAddWithoutValidation("taxpayerId", ConvertToString(taxpayerIdHeader, System.Globalization.CultureInfo.InvariantCulture));
+
+                    if (taxYearHeader != null)
+                        request_.Headers.TryAddWithoutValidation("taxYear", ConvertToString(taxYearHeader, System.Globalization.CultureInfo.InvariantCulture));
+
+                    if (version != null)
+                        request_.Headers.TryAddWithoutValidation("version", ConvertToString(version, System.Globalization.CultureInfo.InvariantCulture));
+                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(request, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("PATCH");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<GetRentalPropertyViewQueryResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task<WorkpaperResponseOfRentalPropertyWorkpaper> Workpapers_GetRentalPropertyWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, bool? bypassLockedTaxYear = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            if (taxpayerIdPath == null)
+                throw new System.ArgumentNullException("taxpayerIdPath");
+
+            if (taxYearPath == null)
+                throw new System.ArgumentNullException("taxYearPath");
+
+            if (workpaperType == null)
+                throw new System.ArgumentNullException("workpaperType");
+
+            if (documentIndexId == null)
+                throw new System.ArgumentNullException("documentIndexId");
+
+            if (calculateRequest == null)
+                throw new System.ArgumentNullException("calculateRequest");
+
+            if (compositeRequest == null)
+                throw new System.ArgumentNullException("compositeRequest");
+
+            if (createOnQuery == null)
+                throw new System.ArgumentNullException("createOnQuery");
+
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/RentalPropertyWorkpaper/{taxpayerId}/{taxYear}/{documentIndexId}");
+            urlBuilder_.Replace("{taxpayerId}", System.Uri.EscapeDataString(ConvertToString(taxpayerIdPath, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{taxYear}", System.Uri.EscapeDataString(ConvertToString(taxYearPath, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{workpaperType}", System.Uri.EscapeDataString(ConvertToString(workpaperType, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{documentIndexId}", System.Uri.EscapeDataString(ConvertToString(documentIndexId, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{calculateRequest}", System.Uri.EscapeDataString(ConvertToString(calculateRequest, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{compositeRequest}", System.Uri.EscapeDataString(ConvertToString(compositeRequest, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{createOnQuery}", System.Uri.EscapeDataString(ConvertToString(createOnQuery, System.Globalization.CultureInfo.InvariantCulture)));
+            if (bypassLockedTaxYear != null)
+                urlBuilder_.Replace("{bypassLockedTaxYear}", System.Uri.EscapeDataString(ConvertToString(bypassLockedTaxYear, System.Globalization.CultureInfo.InvariantCulture)));
+            else
+                urlBuilder_.Replace("/{bypassLockedTaxYear}", string.Empty);
+
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+
+                    if (taxpayerIdHeader != null)
+                        request_.Headers.TryAddWithoutValidation("taxpayerId", ConvertToString(taxpayerIdHeader, System.Globalization.CultureInfo.InvariantCulture));
+
+                    if (taxYearHeader != null)
+                        request_.Headers.TryAddWithoutValidation("taxYear", ConvertToString(taxYearHeader, System.Globalization.CultureInfo.InvariantCulture));
+
+                    if (version != null)
+                        request_.Headers.TryAddWithoutValidation("version", ConvertToString(version, System.Globalization.CultureInfo.InvariantCulture));
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<WorkpaperResponseOfRentalPropertyWorkpaper>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task<GetSmallBusinessIncomeViewQueryResponse> Workpapers_PatchSmallBusinessIncomeWorkpaperAsync(System.Collections.Generic.IEnumerable<Operation> request, System.Guid taxpayerIdPath, int taxYearPath, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            if (taxpayerIdPath == null)
+                throw new System.ArgumentNullException("taxpayerIdPath");
+
+            if (taxYearPath == null)
+                throw new System.ArgumentNullException("taxYearPath");
+
+            if (request == null)
+                throw new System.ArgumentNullException("request");
+
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/SmallBusinessIncomeWorkpaper/{taxpayerId}/{taxYear}");
+            urlBuilder_.Replace("{taxpayerId}", System.Uri.EscapeDataString(ConvertToString(taxpayerIdPath, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{taxYear}", System.Uri.EscapeDataString(ConvertToString(taxYearPath, System.Globalization.CultureInfo.InvariantCulture)));
+
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+
+                    if (taxpayerIdHeader != null)
+                        request_.Headers.TryAddWithoutValidation("taxpayerId", ConvertToString(taxpayerIdHeader, System.Globalization.CultureInfo.InvariantCulture));
+
+                    if (taxYearHeader != null)
+                        request_.Headers.TryAddWithoutValidation("taxYear", ConvertToString(taxYearHeader, System.Globalization.CultureInfo.InvariantCulture));
+
+                    if (version != null)
+                        request_.Headers.TryAddWithoutValidation("version", ConvertToString(version, System.Globalization.CultureInfo.InvariantCulture));
+                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(request, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("PATCH");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<GetSmallBusinessIncomeViewQueryResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task<WorkpaperResponseOfSmallBusinessIncomeWorkpaper> Workpapers_GetSmallBusinessIncomeWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            if (taxpayerIdPath == null)
+                throw new System.ArgumentNullException("taxpayerIdPath");
+
+            if (taxYearPath == null)
+                throw new System.ArgumentNullException("taxYearPath");
+
+            if (workpaperType == null)
+                throw new System.ArgumentNullException("workpaperType");
+
+            if (documentIndexId == null)
+                throw new System.ArgumentNullException("documentIndexId");
+
+            if (calculateRequest == null)
+                throw new System.ArgumentNullException("calculateRequest");
+
+            if (compositeRequest == null)
+                throw new System.ArgumentNullException("compositeRequest");
+
+            if (createOnQuery == null)
+                throw new System.ArgumentNullException("createOnQuery");
+
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/SmallBusinessIncomeWorkpaper/{taxpayerId}/{taxYear}");
+            urlBuilder_.Replace("{taxpayerId}", System.Uri.EscapeDataString(ConvertToString(taxpayerIdPath, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{taxYear}", System.Uri.EscapeDataString(ConvertToString(taxYearPath, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{workpaperType}", System.Uri.EscapeDataString(ConvertToString(workpaperType, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{documentIndexId}", System.Uri.EscapeDataString(ConvertToString(documentIndexId, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{calculateRequest}", System.Uri.EscapeDataString(ConvertToString(calculateRequest, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{compositeRequest}", System.Uri.EscapeDataString(ConvertToString(compositeRequest, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{createOnQuery}", System.Uri.EscapeDataString(ConvertToString(createOnQuery, System.Globalization.CultureInfo.InvariantCulture)));
+
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+
+                    if (taxpayerIdHeader != null)
+                        request_.Headers.TryAddWithoutValidation("taxpayerId", ConvertToString(taxpayerIdHeader, System.Globalization.CultureInfo.InvariantCulture));
+
+                    if (taxYearHeader != null)
+                        request_.Headers.TryAddWithoutValidation("taxYear", ConvertToString(taxYearHeader, System.Globalization.CultureInfo.InvariantCulture));
+
+                    if (version != null)
+                        request_.Headers.TryAddWithoutValidation("version", ConvertToString(version, System.Globalization.CultureInfo.InvariantCulture));
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<WorkpaperResponseOfSmallBusinessIncomeWorkpaper>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task<GetSmallBusinessIncomeViewQueryResponse> Workpapers_PatchSmallBusinessIndicatorAsync(System.Collections.Generic.IEnumerable<Operation> request, System.Guid taxpayerIdPath, int taxYearPath, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            if (taxpayerIdPath == null)
+                throw new System.ArgumentNullException("taxpayerIdPath");
+
+            if (taxYearPath == null)
+                throw new System.ArgumentNullException("taxYearPath");
+
+            if (request == null)
+                throw new System.ArgumentNullException("request");
+
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/SmallBusinessIndicator/{taxpayerId}/{taxYear}");
+            urlBuilder_.Replace("{taxpayerId}", System.Uri.EscapeDataString(ConvertToString(taxpayerIdPath, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{taxYear}", System.Uri.EscapeDataString(ConvertToString(taxYearPath, System.Globalization.CultureInfo.InvariantCulture)));
+
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+
+                    if (taxpayerIdHeader != null)
+                        request_.Headers.TryAddWithoutValidation("taxpayerId", ConvertToString(taxpayerIdHeader, System.Globalization.CultureInfo.InvariantCulture));
+
+                    if (taxYearHeader != null)
+                        request_.Headers.TryAddWithoutValidation("taxYear", ConvertToString(taxYearHeader, System.Globalization.CultureInfo.InvariantCulture));
+
+                    if (version != null)
+                        request_.Headers.TryAddWithoutValidation("version", ConvertToString(version, System.Globalization.CultureInfo.InvariantCulture));
+                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(request, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("PATCH");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<GetSmallBusinessIncomeViewQueryResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task<GetCapitalGainsViewQueryResponse> Workpapers_PatchCapitalGainOrLossTransactionWorkpaperFromSummaryAsync(System.Collections.Generic.IEnumerable<Operation> request, System.Guid taxpayerIdPath, int taxYearPath, System.Guid documentIndexId, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            if (taxpayerIdPath == null)
+                throw new System.ArgumentNullException("taxpayerIdPath");
+
+            if (taxYearPath == null)
+                throw new System.ArgumentNullException("taxYearPath");
+
+            if (documentIndexId == null)
+                throw new System.ArgumentNullException("documentIndexId");
+
+            if (request == null)
+                throw new System.ArgumentNullException("request");
+
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/CapitalGainOrLossTransactionWorkpaperFromSummary/{taxpayerId}/{taxYear}/{documentIndexId}");
+            urlBuilder_.Replace("{taxpayerId}", System.Uri.EscapeDataString(ConvertToString(taxpayerIdPath, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{taxYear}", System.Uri.EscapeDataString(ConvertToString(taxYearPath, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{documentIndexId}", System.Uri.EscapeDataString(ConvertToString(documentIndexId, System.Globalization.CultureInfo.InvariantCulture)));
+
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+
+                    if (taxpayerIdHeader != null)
+                        request_.Headers.TryAddWithoutValidation("taxpayerId", ConvertToString(taxpayerIdHeader, System.Globalization.CultureInfo.InvariantCulture));
+
+                    if (taxYearHeader != null)
+                        request_.Headers.TryAddWithoutValidation("taxYear", ConvertToString(taxYearHeader, System.Globalization.CultureInfo.InvariantCulture));
+
+                    if (version != null)
+                        request_.Headers.TryAddWithoutValidation("version", ConvertToString(version, System.Globalization.CultureInfo.InvariantCulture));
+                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(request, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("PATCH");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<GetCapitalGainsViewQueryResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -9289,6 +10168,87 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task<DeleteWorkpaperResponse> Workpapers_DeleteWorkpaperAsync(DeleteWorkpaperCommand command, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            if (command == null)
+                throw new System.ArgumentNullException("command");
+
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/Workpaper/Delete");
+
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+
+                    if (taxpayerId != null)
+                        request_.Headers.TryAddWithoutValidation("taxpayerId", ConvertToString(taxpayerId, System.Globalization.CultureInfo.InvariantCulture));
+
+                    if (taxYear != null)
+                        request_.Headers.TryAddWithoutValidation("taxYear", ConvertToString(taxYear, System.Globalization.CultureInfo.InvariantCulture));
+
+                    if (version != null)
+                        request_.Headers.TryAddWithoutValidation("version", ConvertToString(version, System.Globalization.CultureInfo.InvariantCulture));
+                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(command, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("DELETE");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<DeleteWorkpaperResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<WorkpaperResponseOfTaxpayerDetailsWorkpaper> Workpapers_GetTaxpayerDetailsWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (taxpayerIdPath == null)
@@ -9497,7 +10457,7 @@ namespace Taxlab.ApiClientLibrary
                 throw new System.ArgumentNullException("createOnQuery");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/Individual/ForeignIncomeTaxOffsetsWorkpaper/{taxpayerId}/{taxYear}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/ForeignIncomeTaxOffsetsWorkpaper/{taxpayerId}/{taxYear}");
             urlBuilder_.Replace("{taxpayerId}", System.Uri.EscapeDataString(ConvertToString(taxpayerIdPath, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{taxYear}", System.Uri.EscapeDataString(ConvertToString(taxYearPath, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{workpaperType}", System.Uri.EscapeDataString(ConvertToString(workpaperType, System.Globalization.CultureInfo.InvariantCulture)));
@@ -9582,7 +10542,7 @@ namespace Taxlab.ApiClientLibrary
                 throw new System.ArgumentNullException("request");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/Individual/ForeignIncomeTaxOffsetsWorkpaper");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/ForeignIncomeTaxOffsetsWorkpaper");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -9629,6 +10589,170 @@ namespace Taxlab.ApiClientLibrary
                         if (status_ == 200)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<WorkpaperResponseOfForeignIncomeTaxOffsetsWorkpaper>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task<GetSmallBusinessIncomeViewQueryResponse> Workpapers_SmallBusinessIncomeWorkpaperViewAsync(System.Guid taxpayerIdPath, int taxYearPath, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            if (taxpayerIdPath == null)
+                throw new System.ArgumentNullException("taxpayerIdPath");
+
+            if (taxYearPath == null)
+                throw new System.ArgumentNullException("taxYearPath");
+
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/SmallBusinessIncomeWorkpaperView/{taxpayerId}/{taxYear}");
+            urlBuilder_.Replace("{taxpayerId}", System.Uri.EscapeDataString(ConvertToString(taxpayerIdPath, System.Globalization.CultureInfo.InvariantCulture)));
+            urlBuilder_.Replace("{taxYear}", System.Uri.EscapeDataString(ConvertToString(taxYearPath, System.Globalization.CultureInfo.InvariantCulture)));
+
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+
+                    if (taxpayerIdHeader != null)
+                        request_.Headers.TryAddWithoutValidation("taxpayerId", ConvertToString(taxpayerIdHeader, System.Globalization.CultureInfo.InvariantCulture));
+
+                    if (taxYearHeader != null)
+                        request_.Headers.TryAddWithoutValidation("taxYear", ConvertToString(taxYearHeader, System.Globalization.CultureInfo.InvariantCulture));
+
+                    if (version != null)
+                        request_.Headers.TryAddWithoutValidation("version", ConvertToString(version, System.Globalization.CultureInfo.InvariantCulture));
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<GetSmallBusinessIncomeViewQueryResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task<WorkpaperResponseOfSmallBusinessIncomeWorkpaper> Workpapers_PostSmallBusinessIncomeWorkpaperAsync(UpsertSmallBusinessIncomeWorkpaperCommand request, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            if (request == null)
+                throw new System.ArgumentNullException("request");
+
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/SmallBusinessIncomeWorkpaper");
+
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+
+                    if (taxpayerId != null)
+                        request_.Headers.TryAddWithoutValidation("taxpayerId", ConvertToString(taxpayerId, System.Globalization.CultureInfo.InvariantCulture));
+
+                    if (taxYear != null)
+                        request_.Headers.TryAddWithoutValidation("taxYear", ConvertToString(taxYear, System.Globalization.CultureInfo.InvariantCulture));
+
+                    if (version != null)
+                        request_.Headers.TryAddWithoutValidation("version", ConvertToString(version, System.Globalization.CultureInfo.InvariantCulture));
+                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(request, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("POST");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<WorkpaperResponseOfSmallBusinessIncomeWorkpaper>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -10049,7 +11173,7 @@ namespace Taxlab.ApiClientLibrary
                 throw new System.ArgumentNullException("createOnQuery");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/Individual/TaxOnTaxableIncomeWorkpaper/{taxpayerId}/{taxYear}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/TaxOnTaxableIncomeWorkpaper/{taxpayerId}/{taxYear}");
             urlBuilder_.Replace("{taxpayerId}", System.Uri.EscapeDataString(ConvertToString(taxpayerIdPath, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{taxYear}", System.Uri.EscapeDataString(ConvertToString(taxYearPath, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{workpaperType}", System.Uri.EscapeDataString(ConvertToString(workpaperType, System.Globalization.CultureInfo.InvariantCulture)));
@@ -10074,87 +11198,6 @@ namespace Taxlab.ApiClientLibrary
                     if (version != null)
                         request_.Headers.TryAddWithoutValidation("version", ConvertToString(version, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-
-                    PrepareRequest(client_, request_, urlBuilder_);
-
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-
-                    PrepareRequest(client_, request_, url_);
-
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    var disposeResponse_ = true;
-                    try
-                    {
-                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-
-                        ProcessResponse(client_, response_);
-
-                        var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<WorkpaperResponseOfTaxOnTaxableIncomeWorkpaper>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            return objectResponse_.Object;
-                        }
-                        else
-                        {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
-                        }
-                    }
-                    finally
-                    {
-                        if (disposeResponse_)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (disposeClient_)
-                    client_.Dispose();
-            }
-        }
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<WorkpaperResponseOfTaxOnTaxableIncomeWorkpaper> Workpapers_PostTaxOnTaxableIncomeWorkpaperAsync(UpsertTaxOnTaxableIncomeWorkpaperCommand request, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            if (request == null)
-                throw new System.ArgumentNullException("request");
-
-            var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/Individual/TaxOnTaxableIncomeWorkpaper");
-
-            var client_ = _httpClient;
-            var disposeClient_ = false;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-
-                    if (taxpayerId != null)
-                        request_.Headers.TryAddWithoutValidation("taxpayerId", ConvertToString(taxpayerId, System.Globalization.CultureInfo.InvariantCulture));
-
-                    if (taxYear != null)
-                        request_.Headers.TryAddWithoutValidation("taxYear", ConvertToString(taxYear, System.Globalization.CultureInfo.InvariantCulture));
-
-                    if (version != null)
-                        request_.Headers.TryAddWithoutValidation("version", ConvertToString(version, System.Globalization.CultureInfo.InvariantCulture));
-                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(request, _settings.Value));
-                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
-                    request_.Content = content_;
-                    request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
@@ -10417,7 +11460,7 @@ namespace Taxlab.ApiClientLibrary
                 throw new System.ArgumentNullException("createOnQuery");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/Individual/AccountingProfitWorkpaper/{taxpayerId}/{taxYear}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/AccountingProfitWorkpaper/{taxpayerId}/{taxYear}");
             urlBuilder_.Replace("{taxpayerId}", System.Uri.EscapeDataString(ConvertToString(taxpayerIdPath, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{taxYear}", System.Uri.EscapeDataString(ConvertToString(taxYearPath, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{workpaperType}", System.Uri.EscapeDataString(ConvertToString(workpaperType, System.Globalization.CultureInfo.InvariantCulture)));
@@ -10442,87 +11485,6 @@ namespace Taxlab.ApiClientLibrary
                     if (version != null)
                         request_.Headers.TryAddWithoutValidation("version", ConvertToString(version, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-
-                    PrepareRequest(client_, request_, urlBuilder_);
-
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-
-                    PrepareRequest(client_, request_, url_);
-
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    var disposeResponse_ = true;
-                    try
-                    {
-                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-
-                        ProcessResponse(client_, response_);
-
-                        var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<WorkpaperResponseOfAccountingProfitWorkpaper>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            return objectResponse_.Object;
-                        }
-                        else
-                        {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
-                        }
-                    }
-                    finally
-                    {
-                        if (disposeResponse_)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (disposeClient_)
-                    client_.Dispose();
-            }
-        }
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<WorkpaperResponseOfAccountingProfitWorkpaper> Workpapers_PostAccountingProfitWorkpaperAsync(UpsertAccountingProfitWorkpaperCommand request, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            if (request == null)
-                throw new System.ArgumentNullException("request");
-
-            var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/Individual/AccountingProfitWorkpaper");
-
-            var client_ = _httpClient;
-            var disposeClient_ = false;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-
-                    if (taxpayerId != null)
-                        request_.Headers.TryAddWithoutValidation("taxpayerId", ConvertToString(taxpayerId, System.Globalization.CultureInfo.InvariantCulture));
-
-                    if (taxYear != null)
-                        request_.Headers.TryAddWithoutValidation("taxYear", ConvertToString(taxYear, System.Globalization.CultureInfo.InvariantCulture));
-
-                    if (version != null)
-                        request_.Headers.TryAddWithoutValidation("version", ConvertToString(version, System.Globalization.CultureInfo.InvariantCulture));
-                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(request, _settings.Value));
-                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
-                    request_.Content = content_;
-                    request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
@@ -10601,7 +11563,7 @@ namespace Taxlab.ApiClientLibrary
                 throw new System.ArgumentNullException("createOnQuery");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/Individual/TaxAdjustmentsWorkpaper/{taxpayerId}/{taxYear}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/TaxAdjustmentsWorkpaper/{taxpayerId}/{taxYear}");
             urlBuilder_.Replace("{taxpayerId}", System.Uri.EscapeDataString(ConvertToString(taxpayerIdPath, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{taxYear}", System.Uri.EscapeDataString(ConvertToString(taxYearPath, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{workpaperType}", System.Uri.EscapeDataString(ConvertToString(workpaperType, System.Globalization.CultureInfo.InvariantCulture)));
@@ -10680,87 +11642,6 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<WorkpaperResponseOfTaxAdjustmentsWorkpaper> Workpapers_PostTaxAdjustmentsWorkpaperAsync(UpsertTaxAdjustmentsWorkpaperCommand request, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            if (request == null)
-                throw new System.ArgumentNullException("request");
-
-            var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/Individual/TaxAdjustmentsWorkpaper");
-
-            var client_ = _httpClient;
-            var disposeClient_ = false;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-
-                    if (taxpayerId != null)
-                        request_.Headers.TryAddWithoutValidation("taxpayerId", ConvertToString(taxpayerId, System.Globalization.CultureInfo.InvariantCulture));
-
-                    if (taxYear != null)
-                        request_.Headers.TryAddWithoutValidation("taxYear", ConvertToString(taxYear, System.Globalization.CultureInfo.InvariantCulture));
-
-                    if (version != null)
-                        request_.Headers.TryAddWithoutValidation("version", ConvertToString(version, System.Globalization.CultureInfo.InvariantCulture));
-                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(request, _settings.Value));
-                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
-                    request_.Content = content_;
-                    request_.Method = new System.Net.Http.HttpMethod("POST");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-
-                    PrepareRequest(client_, request_, urlBuilder_);
-
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-
-                    PrepareRequest(client_, request_, url_);
-
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    var disposeResponse_ = true;
-                    try
-                    {
-                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-
-                        ProcessResponse(client_, response_);
-
-                        var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<WorkpaperResponseOfTaxAdjustmentsWorkpaper>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            return objectResponse_.Object;
-                        }
-                        else
-                        {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
-                        }
-                    }
-                    finally
-                    {
-                        if (disposeResponse_)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (disposeClient_)
-                    client_.Dispose();
-            }
-        }
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<WorkpaperResponseOfIncomingDistributionsWorkpaper> Workpapers_GetIncomingDistributionsWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (taxpayerIdPath == null)
@@ -10785,7 +11666,7 @@ namespace Taxlab.ApiClientLibrary
                 throw new System.ArgumentNullException("createOnQuery");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/Individual/IncomingDistributionsWorkpaper/{taxpayerId}/{taxYear}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/IncomingDistributionsWorkpaper/{taxpayerId}/{taxYear}");
             urlBuilder_.Replace("{taxpayerId}", System.Uri.EscapeDataString(ConvertToString(taxpayerIdPath, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{taxYear}", System.Uri.EscapeDataString(ConvertToString(taxYearPath, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{workpaperType}", System.Uri.EscapeDataString(ConvertToString(workpaperType, System.Globalization.CultureInfo.InvariantCulture)));
@@ -10870,7 +11751,7 @@ namespace Taxlab.ApiClientLibrary
                 throw new System.ArgumentNullException("request");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/Individual/IncomingDistributionsWorkpaper");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/IncomingDistributionsWorkpaper");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -10945,7 +11826,7 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<WorkpaperResponseOfRentalPropertyWorkpaper> Workpapers_GetRentalPropertyWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, bool? bypassLockedTaxYear = null, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<GetRentalPropertyViewQueryResponse> Workpapers_GetRentalPropertyWorkpaperViewAsync(System.Guid taxpayerIdPath, int taxYearPath, System.Guid documentIndexId, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (taxpayerIdPath == null)
                 throw new System.ArgumentNullException("taxpayerIdPath");
@@ -10953,34 +11834,14 @@ namespace Taxlab.ApiClientLibrary
             if (taxYearPath == null)
                 throw new System.ArgumentNullException("taxYearPath");
 
-            if (workpaperType == null)
-                throw new System.ArgumentNullException("workpaperType");
-
             if (documentIndexId == null)
                 throw new System.ArgumentNullException("documentIndexId");
 
-            if (calculateRequest == null)
-                throw new System.ArgumentNullException("calculateRequest");
-
-            if (compositeRequest == null)
-                throw new System.ArgumentNullException("compositeRequest");
-
-            if (createOnQuery == null)
-                throw new System.ArgumentNullException("createOnQuery");
-
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/RentalPropertyWorkpaper/{taxpayerId}/{taxYear}/{documentIndexId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/RentalPropertyWorkpaperView/{taxpayerId}/{taxYear}/{documentIndexId}");
             urlBuilder_.Replace("{taxpayerId}", System.Uri.EscapeDataString(ConvertToString(taxpayerIdPath, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{taxYear}", System.Uri.EscapeDataString(ConvertToString(taxYearPath, System.Globalization.CultureInfo.InvariantCulture)));
-            urlBuilder_.Replace("{workpaperType}", System.Uri.EscapeDataString(ConvertToString(workpaperType, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{documentIndexId}", System.Uri.EscapeDataString(ConvertToString(documentIndexId, System.Globalization.CultureInfo.InvariantCulture)));
-            urlBuilder_.Replace("{calculateRequest}", System.Uri.EscapeDataString(ConvertToString(calculateRequest, System.Globalization.CultureInfo.InvariantCulture)));
-            urlBuilder_.Replace("{compositeRequest}", System.Uri.EscapeDataString(ConvertToString(compositeRequest, System.Globalization.CultureInfo.InvariantCulture)));
-            urlBuilder_.Replace("{createOnQuery}", System.Uri.EscapeDataString(ConvertToString(createOnQuery, System.Globalization.CultureInfo.InvariantCulture)));
-            if (bypassLockedTaxYear != null)
-                urlBuilder_.Replace("{bypassLockedTaxYear}", System.Uri.EscapeDataString(ConvertToString(bypassLockedTaxYear, System.Globalization.CultureInfo.InvariantCulture)));
-            else
-                urlBuilder_.Replace("/{bypassLockedTaxYear}", string.Empty);
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -11023,7 +11884,7 @@ namespace Taxlab.ApiClientLibrary
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<WorkpaperResponseOfRentalPropertyWorkpaper>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<GetRentalPropertyViewQueryResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -11849,87 +12710,6 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<WorkpaperResponseOfDomesticMedicareWorkpaper> Workpapers_PostDomesticMedicareWorkpaperAsync(UpsertDomesticMedicareWorkpaperCommand request, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            if (request == null)
-                throw new System.ArgumentNullException("request");
-
-            var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/DomesticMedicareWorkpaper");
-
-            var client_ = _httpClient;
-            var disposeClient_ = false;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-
-                    if (taxpayerId != null)
-                        request_.Headers.TryAddWithoutValidation("taxpayerId", ConvertToString(taxpayerId, System.Globalization.CultureInfo.InvariantCulture));
-
-                    if (taxYear != null)
-                        request_.Headers.TryAddWithoutValidation("taxYear", ConvertToString(taxYear, System.Globalization.CultureInfo.InvariantCulture));
-
-                    if (version != null)
-                        request_.Headers.TryAddWithoutValidation("version", ConvertToString(version, System.Globalization.CultureInfo.InvariantCulture));
-                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(request, _settings.Value));
-                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
-                    request_.Content = content_;
-                    request_.Method = new System.Net.Http.HttpMethod("POST");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-
-                    PrepareRequest(client_, request_, urlBuilder_);
-
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-
-                    PrepareRequest(client_, request_, url_);
-
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    var disposeResponse_ = true;
-                    try
-                    {
-                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-
-                        ProcessResponse(client_, response_);
-
-                        var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<WorkpaperResponseOfDomesticMedicareWorkpaper>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            return objectResponse_.Object;
-                        }
-                        else
-                        {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
-                        }
-                    }
-                    finally
-                    {
-                        if (disposeResponse_)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (disposeClient_)
-                    client_.Dispose();
-            }
-        }
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<WorkpaperResponseOfSpouseWorkpaper> Workpapers_GetSpouseWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (taxpayerIdPath == null)
@@ -12217,87 +12997,6 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<WorkpaperResponseOfRevenueLossesWorkpaper> Workpapers_PostRevenueLossesWorkpaperAsync(UpsertRevenueLossesWorkpaperCommand request, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            if (request == null)
-                throw new System.ArgumentNullException("request");
-
-            var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/RevenueLossesWorkpaper");
-
-            var client_ = _httpClient;
-            var disposeClient_ = false;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-
-                    if (taxpayerId != null)
-                        request_.Headers.TryAddWithoutValidation("taxpayerId", ConvertToString(taxpayerId, System.Globalization.CultureInfo.InvariantCulture));
-
-                    if (taxYear != null)
-                        request_.Headers.TryAddWithoutValidation("taxYear", ConvertToString(taxYear, System.Globalization.CultureInfo.InvariantCulture));
-
-                    if (version != null)
-                        request_.Headers.TryAddWithoutValidation("version", ConvertToString(version, System.Globalization.CultureInfo.InvariantCulture));
-                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(request, _settings.Value));
-                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
-                    request_.Content = content_;
-                    request_.Method = new System.Net.Http.HttpMethod("POST");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-
-                    PrepareRequest(client_, request_, urlBuilder_);
-
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-
-                    PrepareRequest(client_, request_, url_);
-
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    var disposeResponse_ = true;
-                    try
-                    {
-                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-
-                        ProcessResponse(client_, response_);
-
-                        var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<WorkpaperResponseOfRevenueLossesWorkpaper>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            return objectResponse_.Object;
-                        }
-                        else
-                        {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
-                        }
-                    }
-                    finally
-                    {
-                        if (disposeResponse_)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (disposeClient_)
-                    client_.Dispose();
-            }
-        }
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<WorkpaperResponseOfCapitalGainsWorkpaper> Workpapers_GetCapitalGainsWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (taxpayerIdPath == null)
@@ -12484,7 +13183,7 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<WorkpaperResponseOfCapitalGainOrLossTransactionWorkpaper> Workpapers_GetCapitalGainOrLossTransactionWorkpaperAsync(System.Guid taxpayerIdPath, int taxYearPath, WorkpaperType workpaperType, System.Guid documentIndexId, bool calculateRequest, bool compositeRequest, bool createOnQuery, bool? bypassLockedTaxYear = null, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<GetCapitalGainOrLossTransactionViewResponse> Workpapers_CapitalGainOrLossWorkpaperViewAsync(System.Guid taxpayerIdPath, int taxYearPath, System.Guid documentIndexId, string taxpayerIdHeader = null, int? taxYearHeader = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (taxpayerIdPath == null)
                 throw new System.ArgumentNullException("taxpayerIdPath");
@@ -12492,34 +13191,14 @@ namespace Taxlab.ApiClientLibrary
             if (taxYearPath == null)
                 throw new System.ArgumentNullException("taxYearPath");
 
-            if (workpaperType == null)
-                throw new System.ArgumentNullException("workpaperType");
-
             if (documentIndexId == null)
                 throw new System.ArgumentNullException("documentIndexId");
 
-            if (calculateRequest == null)
-                throw new System.ArgumentNullException("calculateRequest");
-
-            if (compositeRequest == null)
-                throw new System.ArgumentNullException("compositeRequest");
-
-            if (createOnQuery == null)
-                throw new System.ArgumentNullException("createOnQuery");
-
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/CapitalGainOrLossTransactionWorkpaper/{taxpayerId}/{taxYear}/{documentIndexId}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/CapitalGainOrLossWorkpaperView/{taxpayerId}/{taxYear}/{documentIndexId}");
             urlBuilder_.Replace("{taxpayerId}", System.Uri.EscapeDataString(ConvertToString(taxpayerIdPath, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{taxYear}", System.Uri.EscapeDataString(ConvertToString(taxYearPath, System.Globalization.CultureInfo.InvariantCulture)));
-            urlBuilder_.Replace("{workpaperType}", System.Uri.EscapeDataString(ConvertToString(workpaperType, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{documentIndexId}", System.Uri.EscapeDataString(ConvertToString(documentIndexId, System.Globalization.CultureInfo.InvariantCulture)));
-            urlBuilder_.Replace("{calculateRequest}", System.Uri.EscapeDataString(ConvertToString(calculateRequest, System.Globalization.CultureInfo.InvariantCulture)));
-            urlBuilder_.Replace("{compositeRequest}", System.Uri.EscapeDataString(ConvertToString(compositeRequest, System.Globalization.CultureInfo.InvariantCulture)));
-            urlBuilder_.Replace("{createOnQuery}", System.Uri.EscapeDataString(ConvertToString(createOnQuery, System.Globalization.CultureInfo.InvariantCulture)));
-            if (bypassLockedTaxYear != null)
-                urlBuilder_.Replace("{bypassLockedTaxYear}", System.Uri.EscapeDataString(ConvertToString(bypassLockedTaxYear, System.Globalization.CultureInfo.InvariantCulture)));
-            else
-                urlBuilder_.Replace("/{bypassLockedTaxYear}", string.Empty);
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -12562,88 +13241,7 @@ namespace Taxlab.ApiClientLibrary
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<WorkpaperResponseOfCapitalGainOrLossTransactionWorkpaper>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            return objectResponse_.Object;
-                        }
-                        else
-                        {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
-                        }
-                    }
-                    finally
-                    {
-                        if (disposeResponse_)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (disposeClient_)
-                    client_.Dispose();
-            }
-        }
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<CreateCapitalGainOrLossTransactionWorkpaperResponse> Workpapers_CreateCapitalGainOrLossTransactionWorkpaperAsync(CreateCapitalGainOrLossTransactionWorkpaperCommand request, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            if (request == null)
-                throw new System.ArgumentNullException("request");
-
-            var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Workpapers/TaxYear/Create/CapitalGainOrLossTransactionWorkpaper");
-
-            var client_ = _httpClient;
-            var disposeClient_ = false;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-
-                    if (taxpayerId != null)
-                        request_.Headers.TryAddWithoutValidation("taxpayerId", ConvertToString(taxpayerId, System.Globalization.CultureInfo.InvariantCulture));
-
-                    if (taxYear != null)
-                        request_.Headers.TryAddWithoutValidation("taxYear", ConvertToString(taxYear, System.Globalization.CultureInfo.InvariantCulture));
-
-                    if (version != null)
-                        request_.Headers.TryAddWithoutValidation("version", ConvertToString(version, System.Globalization.CultureInfo.InvariantCulture));
-                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(request, _settings.Value));
-                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
-                    request_.Content = content_;
-                    request_.Method = new System.Net.Http.HttpMethod("POST");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-
-                    PrepareRequest(client_, request_, urlBuilder_);
-
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-
-                    PrepareRequest(client_, request_, url_);
-
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    var disposeResponse_ = true;
-                    try
-                    {
-                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-
-                        ProcessResponse(client_, response_);
-
-                        var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<CreateCapitalGainOrLossTransactionWorkpaperResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<GetCapitalGainOrLossTransactionViewResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -13401,7 +13999,7 @@ namespace Taxlab.ApiClientLibrary
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Permissions>> UserContext_FeaturePermissionsAsync(System.Collections.Generic.IEnumerable<string> features = null, string taxpayerId = null, int? taxYear = null, double? version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Permissions>> UserContext_FeaturePermissionsAsync(string taxpayerId = null, int? taxYear = null, double? version = null, System.Collections.Generic.IEnumerable<string> features = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/UserContext/FeaturePermissions?");
@@ -13666,7 +14264,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class CalculateTaxToPayCommandResponse
     {
-        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Success { get; set; }
 
         [Newtonsoft.Json.JsonProperty("errors", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -13688,15 +14286,13 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class DocumentDto
     {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("batchKey", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string BatchKey { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("timestamp", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("timestamp", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset Timestamp { get; set; }
 
         [Newtonsoft.Json.JsonProperty("fileFormat", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -13705,8 +14301,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("documentName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string DocumentName { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("thirdPartyKey", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("thirdPartyKey", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid ThirdPartyKey { get; set; }
 
     }
@@ -13714,8 +14309,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class GetSecureDocumentUrlResponse
     {
-        [Newtonsoft.Json.JsonProperty("documentId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("documentId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid DocumentId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("uri", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -13734,8 +14328,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class TaxAgentDto
     {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -13747,17 +14340,16 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("clientListId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string ClientListId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("isEnabled", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("isEnabled", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsEnabled { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("isTaxAgent", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("isTaxAgent", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsTaxAgent { get; set; }
 
         [Newtonsoft.Json.JsonProperty("createdBy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string CreatedBy { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset CreatedOn { get; set; }
 
     }
@@ -13781,8 +14373,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class EnableDataFeedResponse
     {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("taxAgentId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -13826,20 +14417,17 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class FinancialStatementsDto
     {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Name { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("financialStatementsType", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("financialStatementsType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public FinancialStatementsType FinancialStatementsType { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("financialStatementsGroupTemplate", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("financialStatementsGroupTemplate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public FinancialStatementsGroupTemplate FinancialStatementsGroupTemplate { get; set; }
 
@@ -13898,7 +14486,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Description { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("level", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("level", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Level { get; set; }
 
         [Newtonsoft.Json.JsonProperty("type", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -13907,10 +14495,10 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("children", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<AccountsTreeNode> Children { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("amountPrior", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("amountPrior", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal AmountPrior { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("amountCurrent", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("amountCurrent", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal AmountCurrent { get; set; }
 
     }
@@ -13918,8 +14506,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class FinancialStatementsNotesDto
     {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Id { get; set; }
 
     }
@@ -13935,11 +14522,10 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class JournalCollection
     {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
         [Newtonsoft.Json.JsonProperty("items", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -13950,22 +14536,19 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class Journal
     {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("journalSource", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public JournalSource JournalSource { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("dateMade", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("dateMade", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset DateMade { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
         [Newtonsoft.Json.JsonProperty("entityController", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -13977,61 +14560,55 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("caption", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Caption { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("grossAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("grossAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal GrossAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("currentTaxAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("currentTaxAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal CurrentTaxAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("currentTaxExpenseAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("currentTaxExpenseAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal CurrentTaxExpenseAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("deferredTaxAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("deferredTaxAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DeferredTaxAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("deferredTaxExpenseAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("deferredTaxExpenseAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DeferredTaxExpenseAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("otherAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("otherAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal OtherAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("journalType", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("journalType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public JournalTypes JournalType { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("returnDisclosureType", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("returnDisclosureType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public ReturnDisclosureTypes ReturnDisclosureType { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("journalComponentClassification", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("journalComponentClassification", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public JournalComponentClassifications JournalComponentClassification { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("journalCategory", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("journalCategory", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public JournalCategories JournalCategory { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("journalChargeType", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("journalChargeType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public JournalChargeTypes JournalChargeType { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("isReadOnly", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("isReadOnly", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsReadOnly { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("sortOrder", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("sortOrder", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int SortOrder { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("accountRecordId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("accountRecordId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid AccountRecordId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("adjustmentId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("adjustmentId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid AdjustmentId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("foreignDomesticTag", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("foreignDomesticTag", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public ForeignDomesticTags ForeignDomesticTag { get; set; }
 
@@ -14040,8 +14617,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class JournalSource
     {
-        [Newtonsoft.Json.JsonProperty("indexId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("indexId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid IndexId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("sourceKey", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -14430,6 +15006,24 @@ namespace Taxlab.ApiClientLibrary
 
         [System.Runtime.Serialization.EnumMember(Value = @"StudyAndTrainingLoanRepayment")]
         StudyAndTrainingLoanRepayment = 125,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"SeniorsAndPensionersTaxOffsetRestriction")]
+        SeniorsAndPensionersTaxOffsetRestriction = 126,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"SmallBusinessIncomeTaxOffset")]
+        SmallBusinessIncomeTaxOffset = 127,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"SmallBusinessIncomeTaxOffsetRestriction")]
+        SmallBusinessIncomeTaxOffsetRestriction = 128,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"SuperIncomeStreamTaxOffsetForfeit")]
+        SuperIncomeStreamTaxOffsetForfeit = 129,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"ForeignIncomeTaxOffsetForfeit")]
+        ForeignIncomeTaxOffsetForfeit = 130,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"SeniorsAndPensionersTaxOffset")]
+        SeniorsAndPensionersTaxOffset = 131,
 
     }
 
@@ -15052,10 +15646,10 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class MigrateWorkpapersCommandResponse
     {
-        [Newtonsoft.Json.JsonProperty("timeToProcess", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("timeToProcess", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public long TimeToProcess { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Success { get; set; }
 
     }
@@ -15085,11 +15679,10 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class OutputCollection
     {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
         [Newtonsoft.Json.JsonProperty("content", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -15098,15 +15691,13 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("workpaperName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string WorkpaperName { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("timeStamp", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("timeStamp", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset TimeStamp { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("isScheduleHasDetails", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("isScheduleHasDetails", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsScheduleHasDetails { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("snapshotOutputTypes", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("snapshotOutputTypes", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public SnapshotOutputTypes SnapshotOutputTypes { get; set; }
 
@@ -15133,14 +15724,13 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Id { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("indexId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("indexId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid IndexId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
         [Newtonsoft.Json.JsonProperty("documentType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -15154,8 +15744,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class GetConsolidatedSnapshotQueryResponse
     {
-        [Newtonsoft.Json.JsonProperty("snapshotType", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("snapshotType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public SnapshotTypes SnapshotType { get; set; }
 
@@ -15201,25 +15790,21 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class Snapshot
     {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Id { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("snapshotType", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("snapshotType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public SnapshotTypes SnapshotType { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("snapshotOutputType", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("snapshotOutputType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public SnapshotOutputTypes SnapshotOutputType { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
         [Newtonsoft.Json.JsonProperty("sourceTypeFullName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -15248,7 +15833,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("indexPath", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<int> IndexPath { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("instanceCount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("instanceCount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int InstanceCount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("index", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -15266,8 +15851,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("alias", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Alias { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("snapshotFieldType", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("snapshotFieldType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public SnapshotFieldType SnapshotFieldType { get; set; }
 
@@ -15308,7 +15892,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class TaxpayerListResponse
     {
-        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Success { get; set; }
 
         [Newtonsoft.Json.JsonProperty("errors", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -15325,8 +15909,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class TaxpayerDto
     {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("taxpayerName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -15340,7 +15923,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class TaxpayerResponse
     {
-        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Success { get; set; }
 
         [Newtonsoft.Json.JsonProperty("errors", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -15357,14 +15940,13 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class UpsertTaxpayerCommand
     {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("balanceDateMonth", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("balanceDateMonth", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int BalanceDateMonth { get; set; }
 
         [Newtonsoft.Json.JsonProperty("taxpayerOrFirstName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -15379,8 +15961,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("entityCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string EntityCode { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("entityType", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("entityType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public EntityType EntityType { get; set; }
 
@@ -15402,8 +15983,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("users", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<User> Users { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("subscriptionId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("subscriptionId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid SubscriptionId { get; set; }
 
     }
@@ -15509,7 +16089,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("expiryDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset? ExpiryDate { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("role", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("role", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Role { get; set; }
 
     }
@@ -15517,7 +16097,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class TaxReturnsResponse
     {
-        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Success { get; set; }
 
         [Newtonsoft.Json.JsonProperty("message", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -15531,19 +16111,16 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class TaxReturnDetail
     {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Id { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("startDate", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("startDate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string StartDate { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("balanceDate", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("balanceDate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string BalanceDate { get; set; }
 
     }
@@ -15551,7 +16128,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class TaxReturnResponse
     {
-        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Success { get; set; }
 
         [Newtonsoft.Json.JsonProperty("message", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -15565,19 +16142,16 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class UpsertTaxReturnCommand
     {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("startDate", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("startDate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string StartDate { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("balanceDate", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("balanceDate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string BalanceDate { get; set; }
 
     }
@@ -15585,7 +16159,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class SnapshotResponse
     {
-        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Success { get; set; }
 
         [Newtonsoft.Json.JsonProperty("message", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -15599,23 +16173,19 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class SnapshotDetail
     {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Id { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("createdOn", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset CreatedOn { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("lastCalculated", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("lastCalculated", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset LastCalculated { get; set; }
 
         [Newtonsoft.Json.JsonProperty("documentName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -15646,7 +16216,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class TaxPaymentsResponse
     {
-        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Success { get; set; }
 
         [Newtonsoft.Json.JsonProperty("message", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -15660,31 +16230,28 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class TaxPayment
     {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Id { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("date", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("date", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Date { get; set; }
 
         [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Description { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("transactionTypeId", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("transactionTypeId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TransactionTypeId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("applyToTaxableIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("applyToTaxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool ApplyToTaxableIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal Amount { get; set; }
 
     }
@@ -15692,31 +16259,28 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class UpsertTaxPaymentCommand
     {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Id { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("date", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("date", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Date { get; set; }
 
         [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Description { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("transactionTypeId", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("transactionTypeId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TransactionTypeId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("applyToTaxableIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("applyToTaxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool ApplyToTaxableIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal Amount { get; set; }
 
     }
@@ -15730,11 +16294,10 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class InvalidateTaxReturnContextCommand
     {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
         [Newtonsoft.Json.JsonProperty("version", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -15762,100 +16325,100 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("purchaseDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string PurchaseDate { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("purchaseAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("purchaseAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PurchaseAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("purchaseAdjustment", Required = Newtonsoft.Json.Required.Always)]
-        public decimal PurchaseAdjustment { get; set; }
+        [Newtonsoft.Json.JsonProperty("purchaseAdjustment", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<CapitalGainOrLossTransaction> PurchaseAdjustment { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("purchaseAdjustmentNarration", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string PurchaseAdjustmentNarration { get; set; }
+        [Newtonsoft.Json.JsonProperty("totalPurchaseAdjustment", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal TotalPurchaseAdjustment { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("purchaseCostBase", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("purchaseCostBase", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PurchaseCostBase { get; set; }
 
         [Newtonsoft.Json.JsonProperty("disposalDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string DisposalDate { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("disposalAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("disposalAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DisposalAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("disposalAdjustment", Required = Newtonsoft.Json.Required.Always)]
-        public decimal DisposalAdjustment { get; set; }
+        [Newtonsoft.Json.JsonProperty("disposalAdjustment", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<CapitalGainOrLossTransaction> DisposalAdjustment { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("disposalAdjustmentNarration", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DisposalAdjustmentNarration { get; set; }
+        [Newtonsoft.Json.JsonProperty("totalDisposalAdjustment", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal TotalDisposalAdjustment { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("disposalNetProceeds", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("disposalNetProceeds", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DisposalNetProceeds { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("isEligibleForDiscount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("isEligibleForDiscount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsEligibleForDiscount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("isEligibleForActiveAssetReduction", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("isEligibleForActiveAssetReduction", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsEligibleForActiveAssetReduction { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("isEligibleForRetirementExemption", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("isEligibleForRetirementExemption", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsEligibleForRetirementExemption { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("isEligibleForRolloverConcession", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("isEligibleForRolloverConcession", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsEligibleForRolloverConcession { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("gainLoss", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("gainLoss", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal GainLoss { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("currentYearLossApplied", Required = Newtonsoft.Json.Required.Always)]
-        public decimal CurrentYearLossApplied { get; set; }
+        [Newtonsoft.Json.JsonProperty("currentYearLossesApplied", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal CurrentYearLossesApplied { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("currentYearNetGain", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("currentYearNetGain", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal CurrentYearNetGain { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("priorLossApplied", Required = Newtonsoft.Json.Required.Always)]
-        public decimal PriorLossApplied { get; set; }
+        [Newtonsoft.Json.JsonProperty("priorLossesApplied", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal PriorLossesApplied { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netCapitalGainBeforeLossesTransferredIn", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("netCapitalGainBeforeLossesTransferredIn", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NetCapitalGainBeforeLossesTransferredIn { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("capitalLossesTransferredInApplied", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("capitalLossesTransferredInApplied", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal CapitalLossesTransferredInApplied { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("totalCapitalLossesApplied", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("totalCapitalLossesApplied", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TotalCapitalLossesApplied { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netCapitalGainBeforeConcessions", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("netCapitalGainBeforeConcessions", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NetCapitalGainBeforeConcessions { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("discountPercent", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("discountPercent", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DiscountPercent { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("discountAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("discountAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DiscountAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netCapitalGainAfterDiscount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("netCapitalGainAfterDiscount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NetCapitalGainAfterDiscount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("activeAssetReductionRate", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("activeAssetReductionRate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ActiveAssetReductionRate { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("activeAssetReductionAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("activeAssetReductionAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ActiveAssetReductionAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netCapitalGainAfterActiveAssetReduction", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("netCapitalGainAfterActiveAssetReduction", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NetCapitalGainAfterActiveAssetReduction { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("retirementExemptionAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("retirementExemptionAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal RetirementExemptionAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netCapitalGainAfterRetirementExemption", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("netCapitalGainAfterRetirementExemption", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NetCapitalGainAfterRetirementExemption { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("rolloverConcessionAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("rolloverConcessionAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal RolloverConcessionAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("totalSmallBusinessConcessionsApplied", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("totalSmallBusinessConcessionsApplied", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TotalSmallBusinessConcessionsApplied { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netCapitalGain", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("netCapitalGain", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NetCapitalGain { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -15873,13 +16436,23 @@ namespace Taxlab.ApiClientLibrary
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
+    public partial class CapitalGainOrLossTransaction
+    {
+        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Description { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal Amount { get; set; }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class TaxYearWorkpaperSlug
     {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
     }
@@ -15893,7 +16466,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class WorkpaperResponse
     {
-        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Success { get; set; }
 
         [Newtonsoft.Json.JsonProperty("errors", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -15905,16 +16478,14 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("workpaperSchemaDescriptor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public WorkpaperSchemaDescriptor WorkpaperSchemaDescriptor { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("workpaperType", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("workpaperType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public WorkpaperType WorkpaperType { get; set; }
 
         [Newtonsoft.Json.JsonProperty("workpaper", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public object Workpaper { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("documentIndexId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("documentIndexId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid DocumentIndexId { get; set; }
 
     }
@@ -15922,7 +16493,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class WorkpaperSchemaDescriptor
     {
-        [Newtonsoft.Json.JsonProperty("applySchemaDescriptor", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("applySchemaDescriptor", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool ApplySchemaDescriptor { get; set; }
 
         [Newtonsoft.Json.JsonProperty("schemaDescriptors", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -16368,8 +16939,53 @@ namespace Taxlab.ApiClientLibrary
         [System.Runtime.Serialization.EnumMember(Value = @"StudyAndTrainingLoanRepaymentWorkpaper")]
         StudyAndTrainingLoanRepaymentWorkpaper = 141,
 
-        [System.Runtime.Serialization.EnumMember(Value = @"RentalScheduleWorkpaper")]
-        RentalScheduleWorkpaper = 142,
+        [System.Runtime.Serialization.EnumMember(Value = @"NonRefundableNonCarryForwardWorkpaper")]
+        NonRefundableNonCarryForwardWorkpaper = 142,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"SmallBusinessIncomeWorkpaper")]
+        SmallBusinessIncomeWorkpaper = 143,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
+    public partial class CreateCapitalGainOrLossTransactionWorkpaperResponse
+    {
+        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool Success { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("documentId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Guid DocumentId { get; set; }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
+    public partial class CreateCapitalGainOrLossTransactionWorkpaperCommand
+    {
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Guid TaxpayerId { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int TaxYear { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("initialValue", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public CapitalGainOrLossTransactionWorkpaperInitialValue InitialValue { get; set; }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
+    public partial class CapitalGainOrLossTransactionWorkpaperInitialValue
+    {
+        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Description { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("category", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Category { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("purchaseAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal PurchaseAmount { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("disposalAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal DisposalAmount { get; set; }
 
     }
 
@@ -16390,32 +17006,29 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class BaseTaxYearWorkpaperCommand
     {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("workpaperType", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("workpaperType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public WorkpaperType WorkpaperType { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("documentIndexId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("documentIndexId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid DocumentIndexId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("workpaper", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public object Workpaper { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("compositeRequest", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("compositeRequest", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool CompositeRequest { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("bypassLockedTaxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("bypassLockedTaxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool BypassLockedTaxYear { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("createOnQuery", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("createOnQuery", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool CreateOnQuery { get; set; }
 
     }
@@ -16434,46 +17047,43 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("businessName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string BusinessName { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("businessIncomeType", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("businessIncomeType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public BusinessIncomeTypes BusinessIncomeType { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("productionType", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("productionType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public BusinessProductionTypes ProductionType { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("nonPrimaryProductionType", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("nonPrimaryProductionType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public BusinessNonPrimaryProductionTypes NonPrimaryProductionType { get; set; }
 
         [Newtonsoft.Json.JsonProperty("businessAdjustmentItems", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<BusinessAdjustmentItem> BusinessAdjustmentItems { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("numberOfLinkedAccounts", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("numberOfLinkedAccounts", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int NumberOfLinkedAccounts { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("totalIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("totalIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TotalIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("grossProfit", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("grossProfit", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal GrossProfit { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("totalExpenses", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("totalExpenses", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TotalExpenses { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netProfitOrLoss", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("netProfitOrLoss", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NetProfitOrLoss { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netProfitOrLossCurrentYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("netProfitOrLossCurrentYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NetProfitOrLossCurrentYear { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("shareOfNetSmallBusinessIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("shareOfNetSmallBusinessIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ShareOfNetSmallBusinessIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("numberOfBusiness", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("numberOfBusiness", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int NumberOfBusiness { get; set; }
 
         [Newtonsoft.Json.JsonProperty("journals", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -16538,30 +17148,27 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class BusinessAdjustmentItem
     {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Id { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("adjustmentId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("adjustmentId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid AdjustmentId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("businessDisclosureId", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("businessDisclosureId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int BusinessDisclosureId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Description { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell Amount { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell Amount { get; set; }
 
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class NumericCell
     {
-        [Newtonsoft.Json.JsonProperty("value", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("value", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal Value { get; set; }
 
         [Newtonsoft.Json.JsonProperty("formula", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -16586,7 +17193,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class DeleteBusinessIncomeExpensesWorkpaperResponse
     {
-        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Success { get; set; }
 
     }
@@ -16594,15 +17201,13 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class DeleteBusinessIncomeExpensesWorkpaperCommand
     {
-        [Newtonsoft.Json.JsonProperty("businessId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("businessId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid BusinessId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
     }
@@ -16610,11 +17215,10 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class BusinessIncomeExpensesSummaryResponse : TreeDefinitionOfBusinessIncomeExpensesSummaryRow
     {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
         [Newtonsoft.Json.JsonProperty("businessInfos", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -16628,25 +17232,21 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class BusinessInfo
     {
-        [Newtonsoft.Json.JsonProperty("businessId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("businessId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid BusinessId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("businessName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string BusinessName { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("businessIncomeType", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("businessIncomeType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public BusinessIncomeTypes BusinessIncomeType { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("productionType", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("productionType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public BusinessProductionTypes ProductionType { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("nonPrimaryProductionType", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("nonPrimaryProductionType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public BusinessNonPrimaryProductionTypes NonPrimaryProductionType { get; set; }
 
@@ -16655,7 +17255,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class DisclosureInfo
     {
-        [Newtonsoft.Json.JsonProperty("disclosureId", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("disclosureId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int DisclosureId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("disclosureGroupName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -16664,7 +17264,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("disclosureName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string DisclosureName { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("disclosureSortOrder", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("disclosureSortOrder", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int DisclosureSortOrder { get; set; }
 
     }
@@ -16698,16 +17298,16 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("propertyType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string PropertyType { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("isDynamic", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("isDynamic", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsDynamic { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("includeTotal", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("includeTotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IncludeTotal { get; set; }
 
         [Newtonsoft.Json.JsonProperty("columns", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<TreeColumnDefinition> Columns { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("isParent", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("isParent", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsParent { get; set; }
 
     }
@@ -16727,7 +17327,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("nonPrimarySource", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string NonPrimarySource { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal Amount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("columns", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -16744,11 +17344,11 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class BusinessIncomeExpensesSummaryColumn
     {
+        [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal Amount { get; set; }
+
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Id { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.Always)]
-        public decimal Amount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("refData", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<BusinessIncomeExpensesSummaryCell> RefData { get; set; }
@@ -16761,15 +17361,13 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class BusinessIncomeExpensesSummaryCell
     {
-        [Newtonsoft.Json.JsonProperty("businessAdjustmentId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("businessAdjustmentId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid BusinessAdjustmentId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("businessId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("businessId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid BusinessId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("disclosureId", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("disclosureId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int DisclosureId { get; set; }
 
     }
@@ -16777,7 +17375,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class TreeRowConfig
     {
-        [Newtonsoft.Json.JsonProperty("rowType", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("rowType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public TreeRowType RowType { get; set; }
 
     }
@@ -16808,32 +17406,27 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class UpsertPartialBusinessIncomeExpensesWorkpaperCommand
     {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("businessId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("businessId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid BusinessId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("businessName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string BusinessName { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("businessIncomeType", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("businessIncomeType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public BusinessIncomeTypes BusinessIncomeType { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("productionType", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("productionType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public BusinessProductionTypes ProductionType { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("nonPrimaryProductionType", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("nonPrimaryProductionType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public BusinessNonPrimaryProductionTypes NonPrimaryProductionType { get; set; }
 
@@ -16850,7 +17443,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class IncomeDetailsScheduleWorkpaper
     {
-        [Newtonsoft.Json.JsonProperty("isScheduleHasDetails", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("isScheduleHasDetails", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsScheduleHasDetails { get; set; }
 
         [Newtonsoft.Json.JsonProperty("header_TaxPayerName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -16862,13 +17455,13 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("header_ReportType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Header_ReportType { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("header_TaxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("header_TaxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Header_TaxYear { get; set; }
 
         [Newtonsoft.Json.JsonProperty("reportType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string ReportType { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
         [Newtonsoft.Json.JsonProperty("identifierTfn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -16907,21 +17500,19 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("abn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Abn { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("hasIncomeDetails", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("hasIncomeDetails", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool HasIncomeDetails { get; set; }
 
         [Newtonsoft.Json.JsonProperty("tax_file_number", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Tax_file_number { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("year_of_return", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("year_of_return", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Year_of_return { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("lodgment_PeriodStart_Date", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("lodgment_PeriodStart_Date", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Lodgment_PeriodStart_Date { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("lodgment_PeriodEnd_Date", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("lodgment_PeriodEnd_Date", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Lodgment_PeriodEnd_Date { get; set; }
 
         [Newtonsoft.Json.JsonProperty("identifiers_TaxFileNumber_Identifier", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -18275,7 +18866,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class DeductionsScheduleWorkpaper
     {
-        [Newtonsoft.Json.JsonProperty("isScheduleHasDetails", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("isScheduleHasDetails", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsScheduleHasDetails { get; set; }
 
         [Newtonsoft.Json.JsonProperty("header_TaxPayerName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -18287,13 +18878,13 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("header_ReportType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Header_ReportType { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("header_TaxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("header_TaxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Header_TaxYear { get; set; }
 
         [Newtonsoft.Json.JsonProperty("reportType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string ReportType { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
         [Newtonsoft.Json.JsonProperty("identifierTfn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -18335,18 +18926,16 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("tax_file_number", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Tax_file_number { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("year_of_return", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("year_of_return", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Year_of_return { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("hasDeductions", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("hasDeductions", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool HasDeductions { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("lodgment_PeriodStart_Date", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("lodgment_PeriodStart_Date", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Lodgment_PeriodStart_Date { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("lodgment_PeriodEnd_Date", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("lodgment_PeriodEnd_Date", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Lodgment_PeriodEnd_Date { get; set; }
 
         [Newtonsoft.Json.JsonProperty("identifiers_TaxFileNumber_Identifier", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -18608,11 +19197,10 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class CreateDividendsInterestScheduleWorkpaperResponse
     {
-        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Success { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("documentId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("documentId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid DocumentId { get; set; }
 
     }
@@ -18620,11 +19208,10 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class CreateDividendsInterestScheduleWorkpaperCommand
     {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
     }
@@ -18670,7 +19257,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("investorDateOfBirth", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string InvestorDateOfBirth { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("investorDeceasedIndicator", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("investorDeceasedIndicator", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool InvestorDeceasedIndicator { get; set; }
 
         [Newtonsoft.Json.JsonProperty("investorAddress", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -18741,7 +19328,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("currencyCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string CurrencyCode { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("overseasIndicator", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("overseasIndicator", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool OverseasIndicator { get; set; }
 
     }
@@ -18763,7 +19350,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class DeleteDividendsInterestScheduleWorkpaperResponse
     {
-        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Success { get; set; }
 
     }
@@ -18771,15 +19358,13 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class DeleteDividendsInterestScheduleWorkpaperCommand
     {
-        [Newtonsoft.Json.JsonProperty("documentId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("documentId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid DocumentId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
     }
@@ -18787,7 +19372,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class DeleteRentalPropertyWorkpaperResponse
     {
-        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Success { get; set; }
 
     }
@@ -18795,15 +19380,13 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class DeleteRentalPropertyWorkpaperCommand
     {
-        [Newtonsoft.Json.JsonProperty("documentId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("documentId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid DocumentId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
     }
@@ -18819,37 +19402,37 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class LowIncomeTaxOffsetWorkpaper
     {
-        [Newtonsoft.Json.JsonProperty("taxableIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TaxableIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("baseOffsetAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("baseOffsetAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal BaseOffsetAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("offsetAdjustmentRateThreshold", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("offsetAdjustmentRateThreshold", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal OffsetAdjustmentRateThreshold { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("offsetAdjustmentRate", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("offsetAdjustmentRate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal OffsetAdjustmentRate { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("offsetAdjustmentAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("offsetAdjustmentAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal OffsetAdjustmentAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("offsetAdjustmentLimit", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("offsetAdjustmentLimit", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal OffsetAdjustmentLimit { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("correctedOffsetAdjustmentAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("correctedOffsetAdjustmentAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal CorrectedOffsetAdjustmentAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("lowIncomeTaxOffset", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("lowIncomeTaxOffset", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal LowIncomeTaxOffset { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxPayable", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxPayable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TaxPayable { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("lowIncomeTaxOffsetRestricted", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("lowIncomeTaxOffsetRestricted", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal LowIncomeTaxOffsetRestricted { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxPayableAfterLowIncomeTaxOffset", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxPayableAfterLowIncomeTaxOffset", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TaxPayableAfterLowIncomeTaxOffset { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -18877,31 +19460,31 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class LowAndMiddleIncomeTaxOffsetWorkpaper
     {
-        [Newtonsoft.Json.JsonProperty("taxableIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TaxableIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("baseOffsetAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("baseOffsetAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal BaseOffsetAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("offsetAdjustmentRate", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("offsetAdjustmentRate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal OffsetAdjustmentRate { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("offsetAdjustmentRateThreshold", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("offsetAdjustmentRateThreshold", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal OffsetAdjustmentRateThreshold { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("offsetAdjustmentAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("offsetAdjustmentAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal OffsetAdjustmentAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("lowAndMiddleIncomeTaxOffset", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("lowAndMiddleIncomeTaxOffset", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal LowAndMiddleIncomeTaxOffset { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxPayableAfterLowIncomeTaxOffset", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxPayableAfterLowIncomeTaxOffset", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TaxPayableAfterLowIncomeTaxOffset { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("lowAndMiddleIncomeTaxOffsetRestricted", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("lowAndMiddleIncomeTaxOffsetRestricted", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal LowAndMiddleIncomeTaxOffsetRestricted { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxPayableAfterLowAndMiddleIncomeTaxOffset", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxPayableAfterLowAndMiddleIncomeTaxOffset", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TaxPayableAfterLowAndMiddleIncomeTaxOffset { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -18949,154 +19532,150 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class Distribution
     {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Id { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("providerEntityType", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("providerEntityType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public EntityType ProviderEntityType { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("recipientEntityType", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("recipientEntityType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public EntityType RecipientEntityType { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("taxpayerName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string TaxpayerName { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("shareOfIncomePrimaryProduction", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("shareOfIncomePrimaryProduction", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ShareOfIncomePrimaryProduction { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("shareOfIncomeNonPrimaryProduction", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("shareOfIncomeNonPrimaryProduction", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ShareOfIncomeNonPrimaryProduction { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("frankedDistributions", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("frankedDistributions", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal FrankedDistributions { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("attributedForeignIncomeListedCountry", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("attributedForeignIncomeListedCountry", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal AttributedForeignIncomeListedCountry { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("attributedForeignIncomeUnlistedCountry", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("attributedForeignIncomeUnlistedCountry", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal AttributedForeignIncomeUnlistedCountry { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("otherAssessableForeignSourceIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("otherAssessableForeignSourceIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal OtherAssessableForeignSourceIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("capitalGains", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("capitalGains", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal CapitalGains { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("frankingCredit", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("frankingCredit", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal FrankingCredit { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("australianFrankingCreditsFromANewZealandCompanyCredit", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("australianFrankingCreditsFromANewZealandCompanyCredit", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal AustralianFrankingCreditsFromANewZealandCompanyCredit { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("foreignIncomeTaxOffset", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("foreignIncomeTaxOffset", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ForeignIncomeTaxOffset { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("shareOfNationalRentalAffordabilitySchemeTaxOffset", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("shareOfNationalRentalAffordabilitySchemeTaxOffset", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ShareOfNationalRentalAffordabilitySchemeTaxOffset { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("shareOfCreditForTaxWithheldForeignResidentWithholdingExcludingCapitalGains", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("shareOfCreditForTaxWithheldForeignResidentWithholdingExcludingCapitalGains", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ShareOfCreditForTaxWithheldForeignResidentWithholdingExcludingCapitalGains { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("tfnAmountsWithheld", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("tfnAmountsWithheld", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TfnAmountsWithheld { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("shareOfCreditForTfnAmountsWithheldFromPaymentsFromCloselyHeldTrusts", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("shareOfCreditForTfnAmountsWithheldFromPaymentsFromCloselyHeldTrusts", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ShareOfCreditForTfnAmountsWithheldFromPaymentsFromCloselyHeldTrusts { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("creditForTaxWithheldWhereAbnNotQuoted", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("creditForTaxWithheldWhereAbnNotQuoted", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal CreditForTaxWithheldWhereAbnNotQuoted { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("shareOfCreditForTaxPaidByTrustee", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("shareOfCreditForTaxPaidByTrustee", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ShareOfCreditForTaxPaidByTrustee { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("shareOfNetSmallBusinessIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("shareOfNetSmallBusinessIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ShareOfNetSmallBusinessIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("shareOfNetFinancialInvestmentIncomeOrLoss", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("shareOfNetFinancialInvestmentIncomeOrLoss", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ShareOfNetFinancialInvestmentIncomeOrLoss { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("shareOfNetRentalPropertyIncomeOrLoss", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("shareOfNetRentalPropertyIncomeOrLoss", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ShareOfNetRentalPropertyIncomeOrLoss { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("s983AssessableAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("s983AssessableAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal S983AssessableAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("s984AssessableAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("s984AssessableAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal S984AssessableAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("amountOnWhichFamilyTrustDistributionTaxHasBeenPaid", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("amountOnWhichFamilyTrustDistributionTaxHasBeenPaid", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal AmountOnWhichFamilyTrustDistributionTaxHasBeenPaid { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("deductionsAgainstFrankedDistributions", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("deductionsAgainstFrankedDistributions", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DeductionsAgainstFrankedDistributions { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("deductionsAgainstPrimaryProduction", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("deductionsAgainstPrimaryProduction", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DeductionsAgainstPrimaryProduction { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("deductionsAgainstNonPrimaryProduction", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("deductionsAgainstNonPrimaryProduction", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DeductionsAgainstNonPrimaryProduction { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("landcareOperationsWaterFacilityFencingAssetAndFodderStorageDeductions", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("landcareOperationsWaterFacilityFencingAssetAndFodderStorageDeductions", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal LandcareOperationsWaterFacilityFencingAssetAndFodderStorageDeductions { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("deferredNonCommercialLossDeductionPrimaryProduction", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("deferredNonCommercialLossDeductionPrimaryProduction", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DeferredNonCommercialLossDeductionPrimaryProduction { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("otherDeductionsPrimaryProduction", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("otherDeductionsPrimaryProduction", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal OtherDeductionsPrimaryProduction { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("deductionsRelatingToFinancialInvestmentAmounts", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("deductionsRelatingToFinancialInvestmentAmounts", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DeductionsRelatingToFinancialInvestmentAmounts { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("deductionsRelatingToRentalProperties", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("deductionsRelatingToRentalProperties", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DeductionsRelatingToRentalProperties { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("deferredNonCommercialLossDeductionNonPrimaryProduction", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("deferredNonCommercialLossDeductionNonPrimaryProduction", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DeferredNonCommercialLossDeductionNonPrimaryProduction { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("otherDeductionsNonPrimaryProduction", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("otherDeductionsNonPrimaryProduction", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal OtherDeductionsNonPrimaryProduction { get; set; }
 
         [Newtonsoft.Json.JsonProperty("reasonTrusteePaidTax", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string ReasonTrusteePaidTax { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("shareOfIncomeOfTheTrustEstate", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("shareOfIncomeOfTheTrustEstate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ShareOfIncomeOfTheTrustEstate { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("earlyStageVentureCapitalLimitedPartnershipTaxOffset", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("earlyStageVentureCapitalLimitedPartnershipTaxOffset", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal EarlyStageVentureCapitalLimitedPartnershipTaxOffset { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("earlyStageInvestorTaxOffset", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("earlyStageInvestorTaxOffset", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal EarlyStageInvestorTaxOffset { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("explorationCreditsDistributed", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("explorationCreditsDistributed", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ExplorationCreditsDistributed { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("shareOfCreditForForeignResidentCapitalGainsWithholdingAmounts", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("shareOfCreditForForeignResidentCapitalGainsWithholdingAmounts", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ShareOfCreditForForeignResidentCapitalGainsWithholdingAmounts { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxPreferredAmountsTbStatementInformation", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxPreferredAmountsTbStatementInformation", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TaxPreferredAmountsTbStatementInformation { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("untaxedPartOfShareOfNetIncomeTbStatementInformation", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("untaxedPartOfShareOfNetIncomeTbStatementInformation", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal UntaxedPartOfShareOfNetIncomeTbStatementInformation { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("distributionFromOrdinaryOrStatutoryIncomeDuringIncomeYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("distributionFromOrdinaryOrStatutoryIncomeDuringIncomeYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DistributionFromOrdinaryOrStatutoryIncomeDuringIncomeYear { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("totalTfnAmountsWithheldFromPayments", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("totalTfnAmountsWithheldFromPayments", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TotalTfnAmountsWithheldFromPayments { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("div6AAEligibleIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("div6AAEligibleIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal Div6AAEligibleIncome { get; set; }
 
     }
@@ -19104,11 +19683,10 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class CreateDistributionsWorkpaperResponse
     {
-        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Success { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("documentId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("documentId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid DocumentId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("workpaper", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -19119,11 +19697,10 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class CreateDistributionsWorkpaperCommand
     {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
     }
@@ -19143,6 +19720,333 @@ namespace Taxlab.ApiClientLibrary
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
+    public partial class GetRentalPropertyViewQueryResponse
+    {
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Guid TaxpayerId { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int TaxYear { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("rentalPropertyInformation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public RentalPropertyInformation RentalPropertyInformation { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("rentalPropertyIncomeExpenses", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public TreeGridDefinition RentalPropertyIncomeExpenses { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool Success { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("errors", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<string> Errors { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("warnings", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<string> Warnings { get; set; }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
+    public partial class RentalPropertyInformation
+    {
+        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Description { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("officialName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string OfficialName { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("addressLine1", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string AddressLine1 { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("addressLine2", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string AddressLine2 { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("addressSuburb", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string AddressSuburb { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("addressState", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string AddressState { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("addressPostcode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string AddressPostcode { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("dateFirstEarnedIncome", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string DateFirstEarnedIncome { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("purchaseDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string PurchaseDate { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("purchasePrice", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell PurchasePrice { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("saleDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string SaleDate { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("salePrice", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell SalePrice { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("capitalGainOrLossOnSale", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell CapitalGainOrLossOnSale { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("capitalAllowancesRecoupedOnSale", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell CapitalAllowancesRecoupedOnSale { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("capitalWorksRecoupedOnSale", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell CapitalWorksRecoupedOnSale { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("status", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public RentalPropertyStatus Status { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("loanRenegotiatedIndicator", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool LoanRenegotiatedIndicator { get; set; }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
+    public enum RentalPropertyStatus
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Archived")]
+        Archived = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Active")]
+        Active = 1,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
+    public partial class TreeGridDefinition
+    {
+        [Newtonsoft.Json.JsonProperty("columns", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<TreeGridColumnDefinition> Columns { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("rows", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<TreeGridRowDefinition> Rows { get; set; }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
+    public partial class TreeGridColumnDefinition
+    {
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Id { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("header", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Header { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("format", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public DataFormat Format { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("includesTotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool IncludesTotal { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("textAlign", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public TextAlign TextAlign { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("editOptions", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public TreeGridEditOptions EditOptions { get; set; }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
+    public enum DataFormat
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Text")]
+        Text = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Number")]
+        Number = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Currency")]
+        Currency = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"NumericCell")]
+        NumericCell = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Date")]
+        Date = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Percentage")]
+        Percentage = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"YesNo")]
+        YesNo = 6,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
+    public enum TextAlign
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Left")]
+        Left = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Right")]
+        Right = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Center")]
+        Center = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Justify")]
+        Justify = 3,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
+    public partial class TreeGridEditOptions
+    {
+        [Newtonsoft.Json.JsonProperty("isEditable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool IsEditable { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("isReadonly", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool IsReadonly { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("propertyName", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string PropertyName { get; set; }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
+    public partial class TreeGridRowDefinition
+    {
+        [Newtonsoft.Json.JsonProperty("reference", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.IDictionary<string, object> Reference { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("rows", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<TreeGridRowDefinition> Rows { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public object Id { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("rowIndex", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int RowIndex { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("rowPosition", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int RowPosition { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("treeGridRowType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public TreeGridRowType TreeGridRowType { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("data", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.IDictionary<string, TreeGridCellData> Data { get; set; }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
+    public enum TreeGridRowType
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Section")]
+        Section = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"DataRow")]
+        DataRow = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Total")]
+        Total = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"SubTotal")]
+        SubTotal = 3,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
+    public partial class TreeGridCellData
+    {
+        [Newtonsoft.Json.JsonProperty("value", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public object Value { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("format", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public DataFormat? Format { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("textAlign", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public TextAlign? TextAlign { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("editOptions", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public TreeGridEditOptions EditOptions { get; set; }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
+    public partial class Operation : OperationBase
+    {
+        [Newtonsoft.Json.JsonProperty("value", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public object Value { get; set; }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
+    public partial class OperationBase
+    {
+        [Newtonsoft.Json.JsonProperty("path", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Path { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("op", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Op { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("from", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string From { get; set; }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
+    public partial class GetSmallBusinessIncomeViewQueryResponse : TreeGridDefinition
+    {
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Guid TaxpayerId { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int TaxYear { get; set; }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
+    public partial class GetCapitalGainOrLossTransactionViewResponse
+    {
+        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool Success { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("errors", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<string> Errors { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("warnings", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<string> Warnings { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("treeGridDefinition", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public TreeGridDefinition TreeGridDefinition { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("initialValue", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public CapitalGainOrLossTransactionWorkpaperInitialValue InitialValue { get; set; }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
+    public partial class GetCapitalGainsViewQueryResponse : TreeGridDefinition
+    {
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Guid TaxpayerId { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int TaxYear { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool Success { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("errors", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<string> Errors { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("warnings", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<string> Warnings { get; set; }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class WorkpaperResponseOfForeignEmploymentIncomeWorkpaper : WorkpaperResponse
     {
         [Newtonsoft.Json.JsonProperty("workpaper", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -19153,8 +20057,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class ForeignEmploymentIncomeWorkpaper
     {
-        [Newtonsoft.Json.JsonProperty("taxTreatment", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxTreatment", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TaxTreatment TaxTreatment { get; set; }
 
@@ -19164,28 +20067,25 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("countryCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string CountryCode { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("grossIncome", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell GrossIncome { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("grossIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell GrossIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("deductions", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell Deductions { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("deductions", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell Deductions { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("netIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NetIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxPaid", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell TaxPaid { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("taxPaid", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell TaxPaid { get; set; }
 
         [Newtonsoft.Json.JsonProperty("paymentsInArrears", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<Payments> PaymentsInArrears { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("paymentsInArrearsTotal", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("paymentsInArrearsTotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PaymentsInArrearsTotal { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PermanentDifference { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -19220,7 +20120,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("year", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Year { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal Amount { get; set; }
 
     }
@@ -19228,12 +20128,10 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class AdjustmentWorkpaperSlug
     {
-        [Newtonsoft.Json.JsonProperty("accountRecordId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("accountRecordId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid AccountRecordId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("adjustmentId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("adjustmentId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid AdjustmentId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("accountCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -19242,17 +20140,16 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("accountDescription", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string AccountDescription { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("accountsAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("accountsAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal AccountsAmount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("accountGroupId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? AccountGroupId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
     }
@@ -19285,24 +20182,22 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class BaseAdjustmentWorkpaperCommand
     {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
         [Newtonsoft.Json.JsonProperty("workpaper", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public object Workpaper { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("accountRecordId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("accountRecordId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid AccountRecordId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("compositeRequest", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("compositeRequest", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool CompositeRequest { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("bypassLockedTaxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("bypassLockedTaxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool BypassLockedTaxYear { get; set; }
 
     }
@@ -19318,32 +20213,27 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class ForeignIncomeWorkpaper
     {
-        [Newtonsoft.Json.JsonProperty("taxTreatment", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxTreatment", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TaxTreatment TaxTreatment { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("grossIncome", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell GrossIncome { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("grossIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell GrossIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("deductions", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell Deductions { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("deductions", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell Deductions { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("netIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NetIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("totalForeignIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("totalForeignIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TotalForeignIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxPaid", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell TaxPaid { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("taxPaid", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell TaxPaid { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("frankingCreditsFromNewZealandCompany", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell FrankingCreditsFromNewZealandCompany { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("frankingCreditsFromNewZealandCompany", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell FrankingCreditsFromNewZealandCompany { get; set; }
 
         [Newtonsoft.Json.JsonProperty("descriptionOfIncome", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string DescriptionOfIncome { get; set; }
@@ -19354,7 +20244,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("foreignEntityTrusteeName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string ForeignEntityTrusteeName { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PermanentDifference { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -19396,29 +20286,24 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class ForeignPensionOrAnnuityWorkpaper
     {
-        [Newtonsoft.Json.JsonProperty("taxTreatment", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxTreatment", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TaxTreatment TaxTreatment { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("grossIncome", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell GrossIncome { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("grossIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell GrossIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("deductions", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell Deductions { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("deductions", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell Deductions { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("netIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NetIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxPaid", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell TaxPaid { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("taxPaid", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell TaxPaid { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("undeductedPurchasePrice", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell UndeductedPurchasePrice { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("undeductedPurchasePrice", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell UndeductedPurchasePrice { get; set; }
 
         [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Description { get; set; }
@@ -19426,10 +20311,10 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("paymentsInArrears", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<Payments> PaymentsInArrears { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("paymentsInArrearsTotal", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("paymentsInArrearsTotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PaymentsInArrearsTotal { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PermanentDifference { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -19474,71 +20359,62 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("carMakeModel", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string CarMakeModel { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("deductibleCarExpenseMode", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("deductibleCarExpenseMode", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public DeductibleCarExpenseModes DeductibleCarExpenseMode { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PermanentDifference { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("centsPerKilometerBusinessKilometersTravelled", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("centsPerKilometerBusinessKilometersTravelled", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int CentsPerKilometerBusinessKilometersTravelled { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("centsPerKilometerCentsPerKilometer", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("centsPerKilometerCentsPerKilometer", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal CentsPerKilometerCentsPerKilometer { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("totalCarCentsPerKilometer", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("totalCarCentsPerKilometer", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TotalCarCentsPerKilometer { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("logbookFuelAndOilAmount", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell LogbookFuelAndOilAmount { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("logbookFuelAndOilAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell LogbookFuelAndOilAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("logbookRegistrationAmount", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell LogbookRegistrationAmount { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("logbookRegistrationAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell LogbookRegistrationAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("logbookRepairAndMaintenanceAmount", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell LogbookRepairAndMaintenanceAmount { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("logbookRepairAndMaintenanceAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell LogbookRepairAndMaintenanceAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("logbookInsuranceAmount", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell LogbookInsuranceAmount { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("logbookInsuranceAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell LogbookInsuranceAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("logbookLoanInterestAmount", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell LogbookLoanInterestAmount { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("logbookLoanInterestAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell LogbookLoanInterestAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("logbookLeasePaymentsAmount", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell LogbookLeasePaymentsAmount { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("logbookLeasePaymentsAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell LogbookLeasePaymentsAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("logbookOtherAmount", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell LogbookOtherAmount { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("logbookOtherAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell LogbookOtherAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("logbookDeclineInValue", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell LogbookDeclineInValue { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("logbookDeclineInValue", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell LogbookDeclineInValue { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("logbookTotalExpenses", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("logbookTotalExpenses", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal LogbookTotalExpenses { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("logbookPercentageOfBusinessUse", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("logbookPercentageOfBusinessUse", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal LogbookPercentageOfBusinessUse { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("totalLogbook", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("totalLogbook", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TotalLogbook { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("maximumAllowableKilometres", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("maximumAllowableKilometres", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int MaximumAllowableKilometres { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("nonAllowableBusinessKilometres", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("nonAllowableBusinessKilometres", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int NonAllowableBusinessKilometres { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("allowableBusinessKilometres", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("allowableBusinessKilometres", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int AllowableBusinessKilometres { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -19595,9 +20471,8 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("personalSuperannuationAccountNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string PersonalSuperannuationAccountNumber { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("personalSuperannuationContribution", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell PersonalSuperannuationContribution { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("personalSuperannuationContribution", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell PersonalSuperannuationContribution { get; set; }
 
         [Newtonsoft.Json.JsonProperty("organisationName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string OrganisationName { get; set; }
@@ -19608,13 +20483,13 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("fundTFN", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string FundTFN { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("receiveAnAcknowledgement", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("receiveAnAcknowledgement", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool ReceiveAnAcknowledgement { get; set; }
 
         [Newtonsoft.Json.JsonProperty("lastEligibleDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string LastEligibleDate { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PermanentDifference { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -19656,15 +20531,13 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class FirstHomeSuperSaverWorkpaper
     {
-        [Newtonsoft.Json.JsonProperty("grossIncome", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell GrossIncome { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("grossIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell GrossIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxPaid", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell TaxPaid { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("taxPaid", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell TaxPaid { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PermanentDifference { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -19721,19 +20594,16 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("employmentTerminationPaymentCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string EmploymentTerminationPaymentCode { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("nonTaxableAmount", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell NonTaxableAmount { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("nonTaxableAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell NonTaxableAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxableAmount", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell TaxableAmount { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("taxableAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell TaxableAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxPaid", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell TaxPaid { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("taxPaid", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell TaxPaid { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PermanentDifference { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -19778,15 +20648,13 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Description { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("grossIncome", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell GrossIncome { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("grossIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell GrossIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxPaid", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell TaxPaid { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("taxPaid", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell TaxPaid { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PermanentDifference { get; set; }
 
         [Newtonsoft.Json.JsonProperty("benefitType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -19834,15 +20702,13 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Description { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("grossIncome", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell GrossIncome { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("grossIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell GrossIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxPaid", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell TaxPaid { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("taxPaid", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell TaxPaid { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PermanentDifference { get; set; }
 
         [Newtonsoft.Json.JsonProperty("benefitType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -19896,29 +20762,25 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("paymentDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string PaymentDate { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxableAmount", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell TaxableAmount { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("taxableAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell TaxableAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("untaxedAmount", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell UntaxedAmount { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("untaxedAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell UntaxedAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("totalTaxableAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("totalTaxableAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TotalTaxableAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("nonTaxableAmount", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell NonTaxableAmount { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("nonTaxableAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell NonTaxableAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxPaid", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell TaxPaid { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("taxPaid", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell TaxPaid { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("isDeathBenefit", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("isDeathBenefit", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsDeathBenefit { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PermanentDifference { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -19966,22 +20828,19 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("abn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Abn { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("grossIncome", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell GrossIncome { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("grossIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell GrossIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("deductibleAmount", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell DeductibleAmount { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("deductibleAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell DeductibleAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxableAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxableAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TaxableAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxPaid", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell TaxPaid { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("taxPaid", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell TaxPaid { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PermanentDifference { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -20029,7 +20888,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("abn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Abn { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("isDeathBenefit", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("isDeathBenefit", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsDeathBenefit { get; set; }
 
         [Newtonsoft.Json.JsonProperty("paymentStartDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -20038,55 +20897,46 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("paymentEndDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string PaymentEndDate { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("incomeStreamTaxFree", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell IncomeStreamTaxFree { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("incomeStreamTaxFree", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell IncomeStreamTaxFree { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("lumpsumArrearsTaxFree", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell LumpsumArrearsTaxFree { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("lumpsumArrearsTaxFree", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell LumpsumArrearsTaxFree { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("nonTaxableAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("nonTaxableAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NonTaxableAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("incomeStreamTaxed", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell IncomeStreamTaxed { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("incomeStreamTaxed", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell IncomeStreamTaxed { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("incomeStreamUntaxed", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell IncomeStreamUntaxed { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("incomeStreamUntaxed", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell IncomeStreamUntaxed { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("definedBenefitAmount", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell DefinedBenefitAmount { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("definedBenefitAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell DefinedBenefitAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("lumpsumArrearsTaxed", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell LumpsumArrearsTaxed { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("lumpsumArrearsTaxed", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell LumpsumArrearsTaxed { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("lumpsumArrearsUntaxed", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell LumpsumArrearsUntaxed { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("lumpsumArrearsUntaxed", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell LumpsumArrearsUntaxed { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxableAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxableAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TaxableAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxPaid", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell TaxPaid { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("taxPaid", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell TaxPaid { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("sisOffsetAmount", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell SisOffsetAmount { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("sisOffsetAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell SisOffsetAmount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("paymentsInArrears", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<Payments> PaymentsInArrears { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("paymentsInArrearsTotal", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("paymentsInArrearsTotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PaymentsInArrearsTotal { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PermanentDifference { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -20134,93 +20984,73 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("governmentIdentifier", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string GovernmentIdentifier { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("salaryAndWagesIncome", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell SalaryAndWagesIncome { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("salaryAndWagesIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell SalaryAndWagesIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("salaryAndWagesTaxWithheld", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell SalaryAndWagesTaxWithheld { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("salaryAndWagesTaxWithheld", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell SalaryAndWagesTaxWithheld { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("isOnWorkingHolidayVisa", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("isOnWorkingHolidayVisa", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TriState IsOnWorkingHolidayVisa { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("allowanceIncome", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell AllowanceIncome { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("allowanceIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell AllowanceIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("allowanceTaxWithheld", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell AllowanceTaxWithheld { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("allowanceTaxWithheld", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell AllowanceTaxWithheld { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("communityDevelopmentProjectPayments", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell CommunityDevelopmentProjectPayments { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("communityDevelopmentProjectPayments", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell CommunityDevelopmentProjectPayments { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("reportableFringeBenefits", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell ReportableFringeBenefits { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("reportableFringeBenefits", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell ReportableFringeBenefits { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("isEmployerExemptFromFbt", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("isEmployerExemptFromFbt", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TriState IsEmployerExemptFromFbt { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("superannuationContributions", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell SuperannuationContributions { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("superannuationContributions", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell SuperannuationContributions { get; set; }
 
         [Newtonsoft.Json.JsonProperty("countryCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string CountryCode { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("exemptForeignGrossIncome", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell ExemptForeignGrossIncome { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("exemptForeignGrossIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell ExemptForeignGrossIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("exemptForeignPaymentsInArrears", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell ExemptForeignPaymentsInArrears { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("exemptForeignPaymentsInArrears", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell ExemptForeignPaymentsInArrears { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("exemptForeignIncomeTaxPaid", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell ExemptForeignIncomeTaxPaid { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("exemptForeignIncomeTaxPaid", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell ExemptForeignIncomeTaxPaid { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("paymentAIncome", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell PaymentAIncome { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("paymentAIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell PaymentAIncome { get; set; }
 
         [Newtonsoft.Json.JsonProperty("paymentAType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string PaymentAType { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("paymentATaxWithheld", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell PaymentATaxWithheld { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("paymentATaxWithheld", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell PaymentATaxWithheld { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("paymentBIncome", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell PaymentBIncome { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("paymentBIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell PaymentBIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("paymentBIncomeAssessable", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell PaymentBIncomeAssessable { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("paymentBIncomeAssessable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell PaymentBIncomeAssessable { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("paymentBTaxWithheld", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell PaymentBTaxWithheld { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("paymentBTaxWithheld", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell PaymentBTaxWithheld { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("paymentDIncome", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell PaymentDIncome { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("paymentDIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell PaymentDIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("paymentEIncome", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell PaymentEIncome { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("paymentEIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell PaymentEIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("paymentETaxWithheld", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell PaymentETaxWithheld { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("paymentETaxWithheld", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell PaymentETaxWithheld { get; set; }
 
         [Newtonsoft.Json.JsonProperty("paymentInArrearsType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string PaymentInArrearsType { get; set; }
@@ -20228,10 +21058,10 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("paymentsInArrears", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<Payments> PaymentsInArrears { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("paymentsInArrearsTotal", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("paymentsInArrearsTotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PaymentsInArrearsTotal { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PermanentDifference { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -20294,30 +21124,28 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("accountNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string AccountNumber { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("accountHoldersNumbers", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("accountHoldersNumbers", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int AccountHoldersNumbers { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("grossIncome", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell GrossIncome { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("grossIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell GrossIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxPaid", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell TaxPaid { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("taxPaid", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell TaxPaid { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("netIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NetIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("grossIncomeShare", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("grossIncomeShare", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal GrossIncomeShare { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxPaidShare", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxPaidShare", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TaxPaidShare { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netIncomeShare", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("netIncomeShare", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NetIncomeShare { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PermanentDifference { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -20365,22 +21193,19 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("abn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Abn { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("grossIncome", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell GrossIncome { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("grossIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell GrossIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxPaid", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell TaxPaid { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("taxPaid", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell TaxPaid { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("reportableSuperContributions", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell ReportableSuperContributions { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("reportableSuperContributions", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell ReportableSuperContributions { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("netIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NetIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PermanentDifference { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -20428,50 +21253,46 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("referenceNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string ReferenceNumber { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("accountHoldersNumbers", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("accountHoldersNumbers", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int AccountHoldersNumbers { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("unfrankedAmount", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell UnfrankedAmount { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("unfrankedAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell UnfrankedAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("frankedAmount", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell FrankedAmount { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("frankedAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell FrankedAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("totalDividends", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("totalDividends", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TotalDividends { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("frankingCredits", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell FrankingCredits { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("frankingCredits", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell FrankingCredits { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxableIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TaxableIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxPaid", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell TaxPaid { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("taxPaid", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell TaxPaid { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("unfrankedDividendShare", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("unfrankedDividendShare", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal UnfrankedDividendShare { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("frankedDividendShare", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("frankedDividendShare", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal FrankedDividendShare { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("totalDividendsShare", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("totalDividendsShare", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TotalDividendsShare { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("frankingCreditsShare", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("frankingCreditsShare", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal FrankingCreditsShare { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxableIncomeShare", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxableIncomeShare", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TaxableIncomeShare { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxPaidShare", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxPaidShare", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TaxPaidShare { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PermanentDifference { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -20513,17 +21334,16 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class OtherIncomeWorkpaper
     {
-        [Newtonsoft.Json.JsonProperty("income", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("income", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal Income { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxAdjustment", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell TaxAdjustment { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("taxAdjustment", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell TaxAdjustment { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxableIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TaxableIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PermanentDifference { get; set; }
 
         [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -20568,17 +21388,16 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class OtherDeductionsWorkpaper
     {
-        [Newtonsoft.Json.JsonProperty("expense", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("expense", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal Expense { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxAdjustment", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell TaxAdjustment { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("taxAdjustment", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell TaxAdjustment { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("deductibleExpense", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("deductibleExpense", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DeductibleExpense { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("permanentDifference", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PermanentDifference { get; set; }
 
         [Newtonsoft.Json.JsonProperty("descriptionOfDeductions", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -20626,13 +21445,13 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("taxDepreciationNarration", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string TaxDepreciationNarration { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxDepreciationReturnDisclosureTypeId", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxDepreciationReturnDisclosureTypeId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxDepreciationReturnDisclosureTypeId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxDepreciation", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxDepreciation", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TaxDepreciation { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("simplifiedDepreciationIndicator", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("simplifiedDepreciationIndicator", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool SimplifiedDepreciationIndicator { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -20674,64 +21493,64 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class DepreciatingAssetsDisposalsWorkpaper
     {
-        [Newtonsoft.Json.JsonProperty("costAccounting", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("costAccounting", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal CostAccounting { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("costTax", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("costTax", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal CostTax { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("accumulatedDepreciationAccounting", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("accumulatedDepreciationAccounting", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal AccumulatedDepreciationAccounting { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("accumulatedDepreciationTax", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("accumulatedDepreciationTax", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal AccumulatedDepreciationTax { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netBookValueAccounting", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("netBookValueAccounting", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NetBookValueAccounting { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netBookValueTax", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("netBookValueTax", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NetBookValueTax { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("proceedsAccounting", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("proceedsAccounting", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ProceedsAccounting { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("proceedsTax", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("proceedsTax", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ProceedsTax { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("gainLossOnDisposalAccounting", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("gainLossOnDisposalAccounting", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal GainLossOnDisposalAccounting { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("gainLossOnDisposalTax", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("gainLossOnDisposalTax", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal GainLossOnDisposalTax { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("differenceFromAccount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("differenceFromAccount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DifferenceFromAccount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("accoutingCapitalGainOnDisposalDescription", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string AccoutingCapitalGainOnDisposalDescription { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("accoutingCapitalGainOnDisposal", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("accoutingCapitalGainOnDisposal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal AccoutingCapitalGainOnDisposal { get; set; }
 
         [Newtonsoft.Json.JsonProperty("accountingRevenueGainLossOnDisposalDescription", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string AccountingRevenueGainLossOnDisposalDescription { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("accountingRevenueGainLossOnDisposal", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("accountingRevenueGainLossOnDisposal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal AccountingRevenueGainLossOnDisposal { get; set; }
 
         [Newtonsoft.Json.JsonProperty("assesableDeductibleBalancingEventDescription", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string AssesableDeductibleBalancingEventDescription { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("assesableDeductibleBalancingEvent", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("assesableDeductibleBalancingEvent", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal AssesableDeductibleBalancingEvent { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxReturnDisclosureTypeId", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxReturnDisclosureTypeId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxReturnDisclosureTypeId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("assetCategory", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("assetCategory", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public CapitalAssetType AssetCategory { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("simplifiedDepreciationIndicator", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("simplifiedDepreciationIndicator", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool SimplifiedDepreciationIndicator { get; set; }
 
         [Newtonsoft.Json.JsonProperty("manualOverride", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -20768,22 +21587,22 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class DepreciatingAssetsDisposalsManualOverride
     {
-        [Newtonsoft.Json.JsonProperty("costAccounting", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("costAccounting", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal CostAccounting { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("accumulatedDepreciationAccounting", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("accumulatedDepreciationAccounting", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal AccumulatedDepreciationAccounting { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("proceedsAccounting", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("proceedsAccounting", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ProceedsAccounting { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("accumulatedDepreciationAccountingOverride", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("accumulatedDepreciationAccountingOverride", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool AccumulatedDepreciationAccountingOverride { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("accumulatedDepreciationTaxOverride", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("accumulatedDepreciationTaxOverride", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool AccumulatedDepreciationTaxOverride { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("proceedsTaxOverride", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("proceedsTaxOverride", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool ProceedsTaxOverride { get; set; }
 
     }
@@ -20813,16 +21632,16 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class DepreciatingAssetsFirstDeductedWorkpaper
     {
-        [Newtonsoft.Json.JsonProperty("accountingAdditions", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("accountingAdditions", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal AccountingAdditions { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxAdditions", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxAdditions", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TaxAdditions { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("assetCategory", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("assetCategory", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public CapitalAssetType AssetCategory { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("simplifiedDepreciationIndicator", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("simplifiedDepreciationIndicator", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool SimplifiedDepreciationIndicator { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -20864,29 +21683,28 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class ExpensesCapitalisedForTaxWorkpaper
     {
-        [Newtonsoft.Json.JsonProperty("expensePerAccounts", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell ExpensePerAccounts { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("expensePerAccounts", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell ExpensePerAccounts { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("capitalisedForTax", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("capitalisedForTax", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal CapitalisedForTax { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("expenseDeductibleForTax", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("expenseDeductibleForTax", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ExpenseDeductibleForTax { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxDepreciation", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxDepreciation", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TaxDepreciation { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxCarryingAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxCarryingAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TaxCarryingAmount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("taxDepreciationNarration", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string TaxDepreciationNarration { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxDepreciationReturnDisclosureTypeId", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxDepreciationReturnDisclosureTypeId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxDepreciationReturnDisclosureTypeId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("simplifiedDepreciationIndicator", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("simplifiedDepreciationIndicator", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool SimplifiedDepreciationIndicator { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -20920,7 +21738,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class WorkpaperListResponse
     {
-        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Success { get; set; }
 
         [Newtonsoft.Json.JsonProperty("errors", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -20937,17 +21755,37 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class WorkpaperListItem
     {
-        [Newtonsoft.Json.JsonProperty("workpaperType", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("workpaperType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public WorkpaperType WorkpaperType { get; set; }
 
         [Newtonsoft.Json.JsonProperty("workpaper", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public object Workpaper { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("indexId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("indexId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid IndexId { get; set; }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
+    public partial class DeleteWorkpaperResponse
+    {
+        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool Success { get; set; }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
+    public partial class DeleteWorkpaperCommand
+    {
+        [Newtonsoft.Json.JsonProperty("documentId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Guid DocumentId { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Guid TaxpayerId { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int TaxYear { get; set; }
 
     }
 
@@ -20962,7 +21800,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class TaxpayerDetailsWorkpaper
     {
-        [Newtonsoft.Json.JsonProperty("nameChangedSinceLastReturn", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("nameChangedSinceLastReturn", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool NameChangedSinceLastReturn { get; set; }
 
         [Newtonsoft.Json.JsonProperty("dateOfBirth", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -20971,7 +21809,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("dateOfDeath", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string DateOfDeath { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("finalReturn", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("finalReturn", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool FinalReturn { get; set; }
 
         [Newtonsoft.Json.JsonProperty("homeAddress", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -20980,7 +21818,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("postalAddress", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public WorkpaperTaxpayerAddress PostalAddress { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("hasAddressChangedSinceLastReturn", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("hasAddressChangedSinceLastReturn", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool HasAddressChangedSinceLastReturn { get; set; }
 
         [Newtonsoft.Json.JsonProperty("mobilePhoneNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -21010,8 +21848,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("bankAccountName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string BankAccountName { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("consentFamilyAssistanceDebt", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("consentFamilyAssistanceDebt", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TriState ConsentFamilyAssistanceDebt { get; set; }
 
@@ -21081,19 +21918,22 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("consolidatedGroupRole", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string ConsolidatedGroupRole { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("smallBusinessIndicator", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("smallBusinessIndicator", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool SmallBusinessIndicator { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("simplifiedDepreciationIndicator", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("isEligibleForSmallBusinessIncomeTaxOffset", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool IsEligibleForSmallBusinessIncomeTaxOffset { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("simplifiedDepreciationIndicator", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool SimplifiedDepreciationIndicator { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("baseRateEntityIndicator", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("baseRateEntityIndicator", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool BaseRateEntityIndicator { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("significantGlobalEntityIndicator", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("significantGlobalEntityIndicator", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool SignificantGlobalEntityIndicator { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("countryByCountryReportingEntityIndicator", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("countryByCountryReportingEntityIndicator", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool CountryByCountryReportingEntityIndicator { get; set; }
 
         [Newtonsoft.Json.JsonProperty("familyTrustElectionYear", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -21108,17 +21948,16 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("deceasedEstateDateOfDeath", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string DeceasedEstateDateOfDeath { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("isTrustCharity", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("isTrustCharity", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsTrustCharity { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("isTrustManagedInvestmentTrust", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("isTrustManagedInvestmentTrust", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsTrustManagedInvestmentTrust { get; set; }
 
         [Newtonsoft.Json.JsonProperty("managedInvestmentTrustType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string ManagedInvestmentTrustType { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("managedInvestmentTrustCapitalAccountElection", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("managedInvestmentTrustCapitalAccountElection", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TriState ManagedInvestmentTrustCapitalAccountElection { get; set; }
 
@@ -21128,63 +21967,55 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("previousNameCurrencyCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string PreviousNameCurrencyCode { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("haveLodgedGeneralPurposeFinancialStatements", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("haveLodgedGeneralPurposeFinancialStatements", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TriState HaveLodgedGeneralPurposeFinancialStatements { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("willLodgeGeneralPurposeFinancialStatements", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("willLodgeGeneralPurposeFinancialStatements", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TriState WillLodgeGeneralPurposeFinancialStatements { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("transactionsWithInternationalRelatedParties", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("transactionsWithInternationalRelatedParties", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool TransactionsWithInternationalRelatedParties { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("transactionsWithInternationalRelatedPartiesExceedTwoMillion", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("transactionsWithInternationalRelatedPartiesExceedTwoMillion", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool TransactionsWithInternationalRelatedPartiesExceedTwoMillion { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("branchOperationsOrInterestInControlledForeignCompanyTransferorTrust", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("branchOperationsOrInterestInControlledForeignCompanyTransferorTrust", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool BranchOperationsOrInterestInControlledForeignCompanyTransferorTrust { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("affectedByThinCapitalisation", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("affectedByThinCapitalisation", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool AffectedByThinCapitalisation { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("transactionsWithSpecifiedCountries", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("transactionsWithSpecifiedCountries", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool TransactionsWithSpecifiedCountries { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("capitalGainsTaxEvent", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("capitalGainsTaxEvent", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool CapitalGainsTaxEvent { get; set; }
 
         [Newtonsoft.Json.JsonProperty("businessIndustryCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string BusinessIndustryCode { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("interestInControlledForeignCompany", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("interestInControlledForeignCompany", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool InterestInControlledForeignCompany { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("primaryProductionOpeningStock", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("primaryProductionOpeningStock", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PrimaryProductionOpeningStock { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("primaryProductionPurchasesAndOtherCosts", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("primaryProductionPurchasesAndOtherCosts", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PrimaryProductionPurchasesAndOtherCosts { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("primaryProductionClosingStock", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("primaryProductionClosingStock", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PrimaryProductionClosingStock { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("nonPrimaryProductionOpeningStock", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("nonPrimaryProductionOpeningStock", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NonPrimaryProductionOpeningStock { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("nonPrimaryProductionPurchasesAndOtherCosts", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("nonPrimaryProductionPurchasesAndOtherCosts", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NonPrimaryProductionPurchasesAndOtherCosts { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("nonPrimaryProductionClosingStock", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("nonPrimaryProductionClosingStock", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NonPrimaryProductionClosingStock { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("smallBusinessIncomeFromDistributions", Required = Newtonsoft.Json.Required.Always)]
-        public decimal SmallBusinessIncomeFromDistributions { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("otherBusinessIncome", Required = Newtonsoft.Json.Required.Always)]
-        public decimal OtherBusinessIncome { get; set; }
 
         [Newtonsoft.Json.JsonProperty("businessStatus", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string BusinessStatus { get; set; }
@@ -21201,125 +22032,110 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("salaryAndWagesCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string SalaryAndWagesCode { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("loansToShareholdersAndAssociates", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("loansToShareholdersAndAssociates", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal LoansToShareholdersAndAssociates { get; set; }
 
         [Newtonsoft.Json.JsonProperty("loansToShareholdersCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string LoansToShareholdersCode { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("paymentsToAssociates", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("paymentsToAssociates", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PaymentsToAssociates { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("assessableGovernmentIndustryPaymentsIndicatorPrimaryProduction", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("assessableGovernmentIndustryPaymentsIndicatorPrimaryProduction", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TriState AssessableGovernmentIndustryPaymentsIndicatorPrimaryProduction { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("assessableGovernmentIndustryPaymentsIndicatorNonPrimaryProduction", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("assessableGovernmentIndustryPaymentsIndicatorNonPrimaryProduction", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TriState AssessableGovernmentIndustryPaymentsIndicatorNonPrimaryProduction { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("commercialDebtForgiveness", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("commercialDebtForgiveness", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal CommercialDebtForgiveness { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("assessableGovernmentIndustryPaymentsIndicator", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("assessableGovernmentIndustryPaymentsIndicator", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TriState AssessableGovernmentIndustryPaymentsIndicator { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("openingStock", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("openingStock", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal OpeningStock { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("closingStock", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("closingStock", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ClosingStock { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("purchasesAndOtherCosts", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("purchasesAndOtherCosts", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PurchasesAndOtherCosts { get; set; }
 
         [Newtonsoft.Json.JsonProperty("closingStockValuationMethod", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string ClosingStockValuationMethod { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("tradingStockElectionIndicator", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("tradingStockElectionIndicator", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TriState TradingStockElectionIndicator { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("selfAssessedEffectiveLifeOfAssets", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("selfAssessedEffectiveLifeOfAssets", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TriState SelfAssessedEffectiveLifeOfAssets { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("recalculatedEffectiveLifeOfAssets", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("recalculatedEffectiveLifeOfAssets", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TriState RecalculatedEffectiveLifeOfAssets { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("incomeIncludesPersonalServices", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("incomeIncludesPersonalServices", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TriState IncomeIncludesPersonalServices { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("satisfiedResultsTest", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("satisfiedResultsTest", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TriState SatisfiedResultsTest { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("holdAPersonalServicesBusinessDetermination", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("holdAPersonalServicesBusinessDetermination", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TriState HoldAPersonalServicesBusinessDetermination { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("personalServicesUnrelatedClientsTest", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("personalServicesUnrelatedClientsTest", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TriState PersonalServicesUnrelatedClientsTest { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("personalServicesIncomePredominantlyReceivedFromOneSource", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("personalServicesIncomePredominantlyReceivedFromOneSource", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TriState PersonalServicesIncomePredominantlyReceivedFromOneSource { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("personalServicesEmploymentTest", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("personalServicesEmploymentTest", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TriState PersonalServicesEmploymentTest { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("personalServicesBusinessPremisesTest", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("personalServicesBusinessPremisesTest", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TriState PersonalServicesBusinessPremisesTest { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("personalServicesIncomeAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("personalServicesIncomeAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PersonalServicesIncomeAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("personalServicesIncomeDeductions", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("personalServicesIncomeDeductions", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PersonalServicesIncomeDeductions { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("consolidationDeductionsRightToFutureIncomeConsumablesWIPPreRules", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("consolidationDeductionsRightToFutureIncomeConsumablesWIPPreRules", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ConsolidationDeductionsRightToFutureIncomeConsumablesWIPPreRules { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("consolidationDeductionsRightToFutureIncomeConsumablesWIPInterimRules", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("consolidationDeductionsRightToFutureIncomeConsumablesWIPInterimRules", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ConsolidationDeductionsRightToFutureIncomeConsumablesWIPInterimRules { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("consolidationDeductionsRightToFutureIncomeConsumablesWIPProspectiveRules", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("consolidationDeductionsRightToFutureIncomeConsumablesWIPProspectiveRules", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ConsolidationDeductionsRightToFutureIncomeConsumablesWIPProspectiveRules { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("reportableTaxPositionIndicator", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("reportableTaxPositionIndicator", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool ReportableTaxPositionIndicator { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("licensedClubsPercentageNonMemberIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("licensedClubsPercentageNonMemberIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal LicensedClubsPercentageNonMemberIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("periodStartDate", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("periodStartDate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string PeriodStartDate { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("periodEndDate", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("periodEndDate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string PeriodEndDate { get; set; }
 
         [Newtonsoft.Json.JsonProperty("taxFileNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -21334,10 +22150,10 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("occupationCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string OccupationCode { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("everTransferredPropertyToANonResidentTrust", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("everTransferredPropertyToANonResidentTrust", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool EverTransferredPropertyToANonResidentTrust { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("assetsLocatedOutsideAustralia", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("assetsLocatedOutsideAustralia", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool AssetsLocatedOutsideAustralia { get; set; }
 
         [Newtonsoft.Json.JsonProperty("mainTradingName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -21348,9 +22164,6 @@ namespace Taxlab.ApiClientLibrary
 
         [Newtonsoft.Json.JsonProperty("motorVehicleExpensesActionCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string MotorVehicleExpensesActionCode { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("netBusinessIncome", Required = Newtonsoft.Json.Required.Always)]
-        public decimal NetBusinessIncome { get; set; }
 
         [Newtonsoft.Json.JsonProperty("businessNameType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string BusinessNameType { get; set; }
@@ -21376,43 +22189,40 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("nameCurrencyCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string NameCurrencyCode { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netSmallBusinessIncome", Required = Newtonsoft.Json.Required.Always)]
-        public decimal NetSmallBusinessIncome { get; set; }
-
         [Newtonsoft.Json.JsonProperty("businessNameCurrencyCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string BusinessNameCurrencyCode { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("nonresidentTrustForeignIncomeToWhichNoBeneficiaryEntitled", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("nonresidentTrustForeignIncomeToWhichNoBeneficiaryEntitled", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NonresidentTrustForeignIncomeToWhichNoBeneficiaryEntitled { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("incomeOfTheTrustEstate", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("incomeOfTheTrustEstate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal IncomeOfTheTrustEstate { get; set; }
 
         [Newtonsoft.Json.JsonProperty("taxPayableByTrustee", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string TaxPayableByTrustee { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("nonResidentBeneficiaries", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("nonResidentBeneficiaries", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool NonResidentBeneficiaries { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("beneficiaryUnderLegalDisabilityEntitledToIncomeOfAnotherTrust", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("beneficiaryUnderLegalDisabilityEntitledToIncomeOfAnotherTrust", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool BeneficiaryUnderLegalDisabilityEntitledToIncomeOfAnotherTrust { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("unpaidPresentEntitlement", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("unpaidPresentEntitlement", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal UnpaidPresentEntitlement { get; set; }
 
         [Newtonsoft.Json.JsonProperty("unpaidPresentEntitlementCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string UnpaidPresentEntitlementCode { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("upePaymentAttributableToUnrealisedGain", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("upePaymentAttributableToUnrealisedGain", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool UpePaymentAttributableToUnrealisedGain { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("upeDebtForgiveness", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("upeDebtForgiveness", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool UpeDebtForgiveness { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("dependentChildren", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("dependentChildren", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int DependentChildren { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("childSupportPaid", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("childSupportPaid", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ChildSupportPaid { get; set; }
 
         [Newtonsoft.Json.JsonProperty("optOutTemporaryFullExpensing", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -21424,14 +22234,13 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("valueOfAssetsOptedOutTemporaryFullExpensing", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal? ValueOfAssetsOptedOutTemporaryFullExpensing { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("numberOfAssetsUsingTemporaryFullExpensing", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("numberOfAssetsUsingTemporaryFullExpensing", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int NumberOfAssetsUsingTemporaryFullExpensing { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("temporaryFullExpensingDeductions", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("temporaryFullExpensingDeductions", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TemporaryFullExpensingDeductions { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("alternativeIncomeTest", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("alternativeIncomeTest", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TriState AlternativeIncomeTest { get; set; }
 
@@ -21444,31 +22253,31 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("valueOfAssetsOptedOutBackingBusinessInvestment", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal? ValueOfAssetsOptedOutBackingBusinessInvestment { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("firstYearAcceleratedDepreciationDeductionsBackingBusinessInvestment", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("firstYearAcceleratedDepreciationDeductionsBackingBusinessInvestment", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal FirstYearAcceleratedDepreciationDeductionsBackingBusinessInvestment { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("instantAssetWriteOffNonBusinesssEntities", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("instantAssetWriteOffNonBusinesssEntities", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal InstantAssetWriteOffNonBusinesssEntities { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("adjustableValuesAtYearEnd", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("adjustableValuesAtYearEnd", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal AdjustableValuesAtYearEnd { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("subsequentYearAcceleratedDepreciationDeductionsBackingBusinessInvestment", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("subsequentYearAcceleratedDepreciationDeductionsBackingBusinessInvestment", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal SubsequentYearAcceleratedDepreciationDeductionsBackingBusinessInvestment { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("miningAndTransportCapitalAllocatedToProjectPool", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("miningAndTransportCapitalAllocatedToProjectPool", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal MiningAndTransportCapitalAllocatedToProjectPool { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("deductionForDeclineInValueIntangibleExplorationOrProspectingAssets", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("deductionForDeclineInValueIntangibleExplorationOrProspectingAssets", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DeductionForDeclineInValueIntangibleExplorationOrProspectingAssets { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("deductionForDeclineInValueTangibleExplorationOrProspectingAssets", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("deductionForDeclineInValueTangibleExplorationOrProspectingAssets", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DeductionForDeclineInValueTangibleExplorationOrProspectingAssets { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("deductionForCertainAssets", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("deductionForCertainAssets", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DeductionForCertainAssets { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("deductionForGeneralSmallBusinessPool", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("deductionForGeneralSmallBusinessPool", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DeductionForGeneralSmallBusinessPool { get; set; }
 
         [Newtonsoft.Json.JsonProperty("aggregatedTurnover", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -21477,26 +22286,38 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("aggregatedTurnoverRange", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string AggregatedTurnoverRange { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("higherEducationLoanProgramBalance", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("higherEducationLoanProgramBalance", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal HigherEducationLoanProgramBalance { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("vetStudentLoanBalance", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("vetStudentLoanBalance", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal VetStudentLoanBalance { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("studentFinancialSupplementSchemeBalance", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("studentFinancialSupplementSchemeBalance", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal StudentFinancialSupplementSchemeBalance { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("studentStartupLoanBalance", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("studentStartupLoanBalance", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal StudentStartupLoanBalance { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("abstudyStudentStartupLoanBalance", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("abstudyStudentStartupLoanBalance", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal AbstudyStudentStartupLoanBalance { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("tradeSupportLoanBalance", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("tradeSupportLoanBalance", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TradeSupportLoanBalance { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("studyAndTrainingLoansBalance", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("studyAndTrainingLoansBalance", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal StudyAndTrainingLoansBalance { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("netBusinessIncome", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal? NetBusinessIncome { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("netSmallBusinessIncome", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal? NetSmallBusinessIncome { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("smallBusinessIncomeFromDistributions", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal? SmallBusinessIncomeFromDistributions { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("otherBusinessIncome", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal? OtherBusinessIncome { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public TaxYearWorkpaperSlug Slug { get; set; }
@@ -21537,89 +22358,101 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class ForeignIncomeTaxOffsetsWorkpaper
     {
-        [Newtonsoft.Json.JsonProperty("foreignSourceAssessableIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("foreignSourceAssessableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ForeignSourceAssessableIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("foreignSourceNetCapitalGains", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("foreignSourceNetCapitalGains", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ForeignSourceNetCapitalGains { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("foreignSourceLossesUtilised", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("foreignSourceLossesUtilised", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ForeignSourceLossesUtilised { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("foreignSourceTaxableIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("foreignSourceIncomeDistributed", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal ForeignSourceIncomeDistributed { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("foreignSourceTaxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ForeignSourceTaxableIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("domesticSourceAssessableIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("domesticSourceAssessableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DomesticSourceAssessableIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("domesticSourceNetCapitalGains", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("domesticSourceNetCapitalGains", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DomesticSourceNetCapitalGains { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("domesticSourceLossesUtilised", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("domesticSourceLossesUtilised", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DomesticSourceLossesUtilised { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("assessableIncome", Required = Newtonsoft.Json.Required.Always)]
-        public decimal AssessableIncome { get; set; }
+        [Newtonsoft.Json.JsonProperty("domesticSourceIncomeDistributed", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal DomesticSourceIncomeDistributed { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netCapitalGains", Required = Newtonsoft.Json.Required.Always)]
-        public decimal NetCapitalGains { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("lossesUtilised", Required = Newtonsoft.Json.Required.Always)]
-        public decimal LossesUtilised { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("taxableIncome", Required = Newtonsoft.Json.Required.Always)]
-        public decimal TaxableIncome { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("domesticSourceTaxPayable", Required = Newtonsoft.Json.Required.Always)]
-        public decimal DomesticSourceTaxPayable { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("domesticSourceTaxAndMedicarePayable", Required = Newtonsoft.Json.Required.Always)]
-        public decimal DomesticSourceTaxAndMedicarePayable { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("domesticSourceTaxableIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("domesticSourceTaxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DomesticSourceTaxableIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxPayable", Required = Newtonsoft.Json.Required.Always)]
-        public decimal TaxPayable { get; set; }
+        [Newtonsoft.Json.JsonProperty("assessableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal AssessableIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxAndMedicarePayable", Required = Newtonsoft.Json.Required.Always)]
-        public decimal TaxAndMedicarePayable { get; set; }
+        [Newtonsoft.Json.JsonProperty("netCapitalGains", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal NetCapitalGains { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("inverseDomesticSourceTaxAndMedicarePayable", Required = Newtonsoft.Json.Required.Always)]
-        public decimal InverseDomesticSourceTaxAndMedicarePayable { get; set; }
+        [Newtonsoft.Json.JsonProperty("lossesUtilised", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal LossesUtilised { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("foreignIncomeTaxOffsetDeMinimisAdjustment", Required = Newtonsoft.Json.Required.Always)]
-        public decimal ForeignIncomeTaxOffsetDeMinimisAdjustment { get; set; }
+        [Newtonsoft.Json.JsonProperty("netDistributionOfIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal NetDistributionOfIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("foreignIncomeTaxOffsetLimit", Required = Newtonsoft.Json.Required.Always)]
-        public decimal ForeignIncomeTaxOffsetLimit { get; set; }
+        [Newtonsoft.Json.JsonProperty("taxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal TaxableIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("foreignTaxPaidAssessableIncome", Required = Newtonsoft.Json.Required.Always)]
-        public decimal ForeignTaxPaidAssessableIncome { get; set; }
+        [Newtonsoft.Json.JsonProperty("domesticSourceTaxPayable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal DomesticSourceTaxPayable { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("foreignTaxPaidTotal", Required = Newtonsoft.Json.Required.Always)]
-        public decimal ForeignTaxPaidTotal { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("foreignIncomeTaxOffsetRestriction", Required = Newtonsoft.Json.Required.Always)]
-        public decimal ForeignIncomeTaxOffsetRestriction { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("foreignIncomeTaxOffsetManualAdjustment", Required = Newtonsoft.Json.Required.Always)]
-        public decimal ForeignIncomeTaxOffsetManualAdjustment { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("foreignIncomeTaxOffsetAllowed", Required = Newtonsoft.Json.Required.Always)]
-        public decimal ForeignIncomeTaxOffsetAllowed { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("domesticSourceMedicareLevyPayable", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("domesticSourceMedicareLevyPayable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DomesticSourceMedicareLevyPayable { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("domesticSourceMedicareLevySurchargePayable", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("domesticSourceMedicareLevySurchargePayable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DomesticSourceMedicareLevySurchargePayable { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("medicareLevyPayable", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("domesticSourceTaxAndMedicarePayable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal DomesticSourceTaxAndMedicarePayable { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("taxPayable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal TaxPayable { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("medicareLevyPayable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal MedicareLevyPayable { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("medicareLevySurchargePayable", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("medicareLevySurchargePayable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal MedicareLevySurchargePayable { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("taxAndMedicarePayable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal TaxAndMedicarePayable { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("inverseDomesticSourceTaxAndMedicarePayable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal InverseDomesticSourceTaxAndMedicarePayable { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("foreignIncomeTaxOffsetDeMinimisAdjustment", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal ForeignIncomeTaxOffsetDeMinimisAdjustment { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("foreignIncomeTaxOffsetLimit", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal ForeignIncomeTaxOffsetLimit { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("foreignTaxPaidAssessableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal ForeignTaxPaidAssessableIncome { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("foreignTaxPaidDistributed", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal ForeignTaxPaidDistributed { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("foreignTaxPaidTotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal ForeignTaxPaidTotal { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("foreignIncomeTaxOffsetRestriction", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal ForeignIncomeTaxOffsetRestriction { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("foreignIncomeTaxOffsetManualAdjustment", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal ForeignIncomeTaxOffsetManualAdjustment { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("foreignIncomeTaxOffsetAllowed", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal ForeignIncomeTaxOffsetAllowed { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public TaxYearWorkpaperSlug Slug { get; set; }
@@ -21650,6 +22483,98 @@ namespace Taxlab.ApiClientLibrary
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
+    public partial class WorkpaperResponseOfSmallBusinessIncomeWorkpaper : WorkpaperResponse
+    {
+        [Newtonsoft.Json.JsonProperty("workpaper", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public SmallBusinessIncomeWorkpaper Workpaper { get; set; }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
+    public partial class SmallBusinessIncomeWorkpaper
+    {
+        [Newtonsoft.Json.JsonProperty("netBusinessIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal NetBusinessIncome { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("smallBusinessIncomeFromDistributions", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal SmallBusinessIncomeFromDistributions { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("otherBusinessIncome", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<OtherBusinessIncome> OtherBusinessIncome { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("netSmallBusinessIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal NetSmallBusinessIncome { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("taxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal TaxableIncome { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("percentageSmallBusinessIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal PercentageSmallBusinessIncome { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("adjustedPercentageSmallBusinessIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal AdjustedPercentageSmallBusinessIncome { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("adjustmentToPercentageSmallBusinessIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal AdjustmentToPercentageSmallBusinessIncome { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("taxPayable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal TaxPayable { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("taxPayableOnSmallBusinessIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal TaxPayableOnSmallBusinessIncome { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("adjustmentRate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal AdjustmentRate { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("adjustmentAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal AdjustmentAmount { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("adjustmentLimit", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal AdjustmentLimit { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("smallBusinessTaxOffset", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal SmallBusinessTaxOffset { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public TaxYearWorkpaperSlug Slug { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("classification", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public TaxYearWorkpaperClassification Classification { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("journals", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<Journal> Journals { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("snapshots", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<Snapshot> Snapshots { get; set; }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
+    public partial class OtherBusinessIncome
+    {
+        [Newtonsoft.Json.JsonProperty("narration", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Narration { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("amount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal Amount { get; set; }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
+    public partial class UpsertSmallBusinessIncomeWorkpaperCommand : BaseTaxYearWorkpaperCommandOfSmallBusinessIncomeWorkpaper
+    {
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
+    public partial class BaseTaxYearWorkpaperCommandOfSmallBusinessIncomeWorkpaper : BaseTaxYearWorkpaperCommand
+    {
+        [Newtonsoft.Json.JsonProperty("workpaper", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public SmallBusinessIncomeWorkpaper Workpaper { get; set; }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class WorkpaperResponseOfMedicareWorkpaper : WorkpaperResponse
     {
         [Newtonsoft.Json.JsonProperty("workpaper", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -21660,129 +22585,125 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class MedicareWorkpaper
     {
-        [Newtonsoft.Json.JsonProperty("dependentChildren", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("dependentChildren", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int DependentChildren { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("medicareDependentChildren", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("medicareDependentChildren", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int MedicareDependentChildren { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("medicareFullExemptionDays", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("medicareFullExemptionDays", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal MedicareFullExemptionDays { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("medicareHalfExemptionDays", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("medicareHalfExemptionDays", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal MedicareHalfExemptionDays { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("medicareTemporaryResident", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("medicareTemporaryResident", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool MedicareTemporaryResident { get; set; }
 
         [Newtonsoft.Json.JsonProperty("privateHealthInsuranceDetails", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<PrivateHealthInsuranceDetails> PrivateHealthInsuranceDetails { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceWholeYear", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceWholeYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TriState PrivateHealthInsuranceWholeYear { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("medicareSurchargeDaysNotLiable", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("medicareSurchargeDaysNotLiable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int MedicareSurchargeDaysNotLiable { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxableIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TaxableIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("spouseTaxableIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("spouseTaxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal SpouseTaxableIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("medicareLevyBasePayable", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("medicareLevyBasePayable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal MedicareLevyBasePayable { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("medicareReductionForExemptDays", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("medicareReductionForExemptDays", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal MedicareReductionForExemptDays { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("medicareLevyPayable", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("medicareLevyPayable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal MedicareLevyPayable { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("medicareAdjustedTaxableIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("medicareAdjustedTaxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal MedicareAdjustedTaxableIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("spouseMedicareAdjustedTaxableIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("spouseMedicareAdjustedTaxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal SpouseMedicareAdjustedTaxableIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("medicareLevySurchargeRate", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("medicareLevySurchargeRate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal MedicareLevySurchargeRate { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("medicareLevySurchargePayable", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("medicareLevySurchargePayable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal MedicareLevySurchargePayable { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("medicareLevyAndSurchargePayable", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("medicareLevyAndSurchargePayable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal MedicareLevyAndSurchargePayable { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("exemptForeignIncomeTotal", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("exemptForeignIncomeTotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ExemptForeignIncomeTotal { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("reportableFringeBenefitsTotal", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("reportableFringeBenefitsTotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ReportableFringeBenefitsTotal { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("reportableEmployerSuperannuationContributionsTotal", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("reportableEmployerSuperannuationContributionsTotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ReportableEmployerSuperannuationContributionsTotal { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netFinancialInvestmentLoss", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("netFinancialInvestmentLoss", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NetFinancialInvestmentLoss { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netRentalLoss", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("netRentalLoss", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NetRentalLoss { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("firstHomeSuperSaverIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("firstHomeSuperSaverIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal FirstHomeSuperSaverIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("personalSuperannuationContributions", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("personalSuperannuationContributions", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PersonalSuperannuationContributions { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("trustDistributionAmountWithTaxPaid", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("trustDistributionAmountWithTaxPaid", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TrustDistributionAmountWithTaxPaid { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("spouseDistribtuionS98", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("spouseDistribtuionS98", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal SpouseDistribtuionS98 { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("superannuationLumpSumWithZeroRate", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("superannuationLumpSumWithZeroRate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal SuperannuationLumpSumWithZeroRate { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceRebateAdjustment", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceRebateAdjustment", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PrivateHealthInsuranceRebateAdjustment { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("medicareThresholdType", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("medicareThresholdType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public MedicareThresholdTypes MedicareThresholdType { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("medicareSurchargeThresholdType", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("medicareSurchargeThresholdType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public MedicareThresholdTypes MedicareSurchargeThresholdType { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("medicareLevyMinimumThreshold", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("medicareLevyMinimumThreshold", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal MedicareLevyMinimumThreshold { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("medicareLevyReducedThreshold", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("medicareLevyReducedThreshold", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal MedicareLevyReducedThreshold { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("familyIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("familyIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal FamilyIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("medicareLevySurchargeThresholdTier", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("medicareLevySurchargeThresholdTier", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int MedicareLevySurchargeThresholdTier { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("hasSpouseForPrivateHealthInsurance", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("hasSpouseForPrivateHealthInsurance", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool HasSpouseForPrivateHealthInsurance { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceThresholdType", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceThresholdType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public MedicareThresholdTypes PrivateHealthInsuranceThresholdType { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("incomeForPrivateHealthInsuranceThreshold", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("incomeForPrivateHealthInsuranceThreshold", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal IncomeForPrivateHealthInsuranceThreshold { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceThresholdTier", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceThresholdTier", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int PrivateHealthInsuranceThresholdTier { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -21820,19 +22741,19 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("privateHealthInsuranceTaxClaimCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string PrivateHealthInsuranceTaxClaimCode { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("privateHealthInsurancePremiums", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("privateHealthInsurancePremiums", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PrivateHealthInsurancePremiums { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceRebate", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceRebate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PrivateHealthInsuranceRebate { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceRebateRate", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceRebateRate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PrivateHealthInsuranceRebateRate { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceRebateAvailable", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceRebateAvailable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PrivateHealthInsuranceRebateAvailable { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceRebateAdjustment", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceRebateAdjustment", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PrivateHealthInsuranceRebateAdjustment { get; set; }
 
     }
@@ -21874,80 +22795,72 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class LossesScheduleWorkpaper
     {
-        [Newtonsoft.Json.JsonProperty("testLossUtilisedYearRange0", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("testLossUtilisedYearRange0", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TriState TestLossUtilisedYearRange0 { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("testLossUtilisedYearRange1", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("testLossUtilisedYearRange1", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TriState TestLossUtilisedYearRange1 { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("testLossUtilisedYearRange2", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("testLossUtilisedYearRange2", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TriState TestLossUtilisedYearRange2 { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("testLossUtilisedYearRange3", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("testLossUtilisedYearRange3", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TriState TestLossUtilisedYearRange3 { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("testLossUtilisedYearRange4", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("testLossUtilisedYearRange4", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TriState TestLossUtilisedYearRange4 { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("testLossUtilisedYearRange5", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("testLossUtilisedYearRange5", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TriState TestLossUtilisedYearRange5 { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("bctRevenueLosses", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("bctRevenueLosses", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal BctRevenueLosses { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("bctCapitalLosses", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("bctCapitalLosses", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal BctCapitalLosses { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("bctRevenueLossesCfwd", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("bctRevenueLossesCfwd", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal BctRevenueLossesCfwd { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("bctCapitalLossesCfwd", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("bctCapitalLossesCfwd", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal BctCapitalLossesCfwd { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("bctFurtherCalcsNeeded", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("bctFurtherCalcsNeeded", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TriState BctFurtherCalcsNeeded { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("cfcLossesCY", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("cfcLossesCY", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal CfcLossesCY { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("cfcLossesDeducted", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("cfcLossesDeducted", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal CfcLossesDeducted { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("cfcLossesCfwd", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("cfcLossesCfwd", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal CfcLossesCfwd { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("bctChangeoverTime", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("bctChangeoverTime", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool BctChangeoverTime { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("bctMaxNetAssetValueTest", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("bctMaxNetAssetValueTest", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TriState BctMaxNetAssetValueTest { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("bctUnrealisedNetLossCheck", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("bctUnrealisedNetLossCheck", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool BctUnrealisedNetLossCheck { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("bctUnrealisedNetLoss", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("bctUnrealisedNetLoss", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal BctUnrealisedNetLoss { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("licRevenueLossesCfwd", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("licRevenueLossesCfwd", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal LicRevenueLossesCfwd { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("licCapitalLossesCfwd", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("licCapitalLossesCfwd", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal LicCapitalLossesCfwd { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -21989,22 +22902,22 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class TaxOnTaxableIncomeWorkpaper
     {
-        [Newtonsoft.Json.JsonProperty("foreignSourceTaxableIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("foreignSourceTaxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ForeignSourceTaxableIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("domesticSourceTaxableIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("domesticSourceTaxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DomesticSourceTaxableIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxableIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TaxableIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("domesticSourceTaxPayable", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("domesticSourceTaxPayable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DomesticSourceTaxPayable { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxPayable", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxPayable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TaxPayable { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxRate", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxRate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TaxRate { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -22022,20 +22935,6 @@ namespace Taxlab.ApiClientLibrary
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class UpsertTaxOnTaxableIncomeWorkpaperCommand : BaseTaxYearWorkpaperCommandOfTaxOnTaxableIncomeWorkpaper
-    {
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class BaseTaxYearWorkpaperCommandOfTaxOnTaxableIncomeWorkpaper : BaseTaxYearWorkpaperCommand
-    {
-        [Newtonsoft.Json.JsonProperty("workpaper", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public TaxOnTaxableIncomeWorkpaper Workpaper { get; set; }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class WorkpaperResponseOfIncomeTestsWorkpaper : WorkpaperResponse
     {
         [Newtonsoft.Json.JsonProperty("workpaper", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -22049,70 +22948,70 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("reportableFringeBenefitsPaidByEmployerWithExemption", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<IncomeTestLine> ReportableFringeBenefitsPaidByEmployerWithExemption { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("reportableFringeBenefitsPaidByEmployerWithExemptionTotal", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("reportableFringeBenefitsPaidByEmployerWithExemptionTotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ReportableFringeBenefitsPaidByEmployerWithExemptionTotal { get; set; }
 
         [Newtonsoft.Json.JsonProperty("reportableFringeBenefitsPaidByEmployerWithoutExemption", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<IncomeTestLine> ReportableFringeBenefitsPaidByEmployerWithoutExemption { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("reportableFringeBenefitsPaidByEmployerWithoutExemptionTotal", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("reportableFringeBenefitsPaidByEmployerWithoutExemptionTotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ReportableFringeBenefitsPaidByEmployerWithoutExemptionTotal { get; set; }
 
         [Newtonsoft.Json.JsonProperty("reportableFringeBenefitsTaxNonReportable", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<IncomeTestLine> ReportableFringeBenefitsTaxNonReportable { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("reportableFringeBenefitsTaxNonReportableTotal", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("reportableFringeBenefitsTaxNonReportableTotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ReportableFringeBenefitsTaxNonReportableTotal { get; set; }
 
         [Newtonsoft.Json.JsonProperty("reportableEmployerSuperannuationContributions", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<IncomeTestLine> ReportableEmployerSuperannuationContributions { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("reportableEmployerSuperannuationContributionsTotal", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("reportableEmployerSuperannuationContributionsTotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ReportableEmployerSuperannuationContributionsTotal { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxFreeGovernmentPension", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxFreeGovernmentPension", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TaxFreeGovernmentPension { get; set; }
 
         [Newtonsoft.Json.JsonProperty("targetForeignIncome", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<IncomeTestLine> TargetForeignIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("targetForeignIncomeTotal", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("targetForeignIncomeTotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TargetForeignIncomeTotal { get; set; }
 
         [Newtonsoft.Json.JsonProperty("netFinancialInvestmentLoss", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<IncomeTestLine> NetFinancialInvestmentLoss { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netFinancialInvestmentLossTotal", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("netFinancialInvestmentLossTotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NetFinancialInvestmentLossTotal { get; set; }
 
         [Newtonsoft.Json.JsonProperty("netRentalPropertyLoss", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<IncomeTestLine> NetRentalPropertyLoss { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netRentalPropertyLossTotal", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("netRentalPropertyLossTotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NetRentalPropertyLossTotal { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("childSupportPaid", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("childSupportPaid", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ChildSupportPaid { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxableIncomeLessFirstHomeSuperSaver", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxableIncomeLessFirstHomeSuperSaver", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TaxableIncomeLessFirstHomeSuperSaver { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("adjustedTotalReportableFringeBenefitsAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("adjustedTotalReportableFringeBenefitsAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal AdjustedTotalReportableFringeBenefitsAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("totalReportableFringeBenefitsAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("totalReportableFringeBenefitsAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TotalReportableFringeBenefitsAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("adjustedTaxableIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("adjustedTaxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal AdjustedTaxableIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("personalSuperannuationContribution", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("personalSuperannuationContribution", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PersonalSuperannuationContribution { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("estimatedEligibleIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("estimatedEligibleIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal EstimatedEligibleIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("superannuationLumpSumWithZeroRate", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("superannuationLumpSumWithZeroRate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal SuperannuationLumpSumWithZeroRate { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -22132,11 +23031,10 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class IncomeTestLine
     {
-        [Newtonsoft.Json.JsonProperty("value", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("value", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal Value { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("adjustmentId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("adjustmentId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid AdjustmentId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("workpaperName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -22169,13 +23067,13 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class AccountingProfitWorkpaper
     {
-        [Newtonsoft.Json.JsonProperty("accountingProfit", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("accountingProfit", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal AccountingProfit { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("accountingAdjustmentsTotal", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("accountingAdjustmentsTotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal AccountingAdjustmentsTotal { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("adjustedAccountingProfit", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("adjustedAccountingProfit", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal AdjustedAccountingProfit { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -22189,20 +23087,6 @@ namespace Taxlab.ApiClientLibrary
 
         [Newtonsoft.Json.JsonProperty("snapshots", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<Snapshot> Snapshots { get; set; }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class UpsertAccountingProfitWorkpaperCommand : BaseTaxYearWorkpaperCommandOfAccountingProfitWorkpaper
-    {
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class BaseTaxYearWorkpaperCommandOfAccountingProfitWorkpaper : BaseTaxYearWorkpaperCommand
-    {
-        [Newtonsoft.Json.JsonProperty("workpaper", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public AccountingProfitWorkpaper Workpaper { get; set; }
 
     }
 
@@ -22217,13 +23101,13 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class TaxAdjustmentsWorkpaper
     {
-        [Newtonsoft.Json.JsonProperty("adjustedAccountingProfit", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("adjustedAccountingProfit", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal AdjustedAccountingProfit { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxAdjustmentsTotal", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxAdjustmentsTotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TaxAdjustmentsTotal { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netIncomeBeforeOutgoingDistributions", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("netIncomeBeforeOutgoingDistributions", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NetIncomeBeforeOutgoingDistributions { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -22237,20 +23121,6 @@ namespace Taxlab.ApiClientLibrary
 
         [Newtonsoft.Json.JsonProperty("snapshots", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<Snapshot> Snapshots { get; set; }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class UpsertTaxAdjustmentsWorkpaperCommand : BaseTaxYearWorkpaperCommandOfTaxAdjustmentsWorkpaper
-    {
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class BaseTaxYearWorkpaperCommandOfTaxAdjustmentsWorkpaper : BaseTaxYearWorkpaperCommand
-    {
-        [Newtonsoft.Json.JsonProperty("workpaper", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public TaxAdjustmentsWorkpaper Workpaper { get; set; }
 
     }
 
@@ -22300,7 +23170,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("typeOfTrustCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string TypeOfTrustCode { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("otherDistributionsFromPartnerships", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("otherDistributionsFromPartnerships", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal OtherDistributionsFromPartnerships { get; set; }
 
         [Newtonsoft.Json.JsonProperty("otherDeductionsRelatingToAmountsShownType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -22354,81 +23224,6 @@ namespace Taxlab.ApiClientLibrary
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class RentalPropertyInformation
-    {
-        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Description { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("officialName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string OfficialName { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("addressLine1", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string AddressLine1 { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("addressLine2", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string AddressLine2 { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("addressSuburb", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string AddressSuburb { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("addressState", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string AddressState { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("addressPostcode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string AddressPostcode { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("dateFirstEarnedIncome", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string DateFirstEarnedIncome { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("purchaseDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string PurchaseDate { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("purchasePrice", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell PurchasePrice { get; set; } = new NumericCell();
-
-        [Newtonsoft.Json.JsonProperty("saleDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string SaleDate { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("salePrice", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell SalePrice { get; set; } = new NumericCell();
-
-        [Newtonsoft.Json.JsonProperty("capitalGainOrLossOnSale", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell CapitalGainOrLossOnSale { get; set; } = new NumericCell();
-
-        [Newtonsoft.Json.JsonProperty("capitalAllowancesRecoupedOnSale", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell CapitalAllowancesRecoupedOnSale { get; set; } = new NumericCell();
-
-        [Newtonsoft.Json.JsonProperty("capitalWorksRecoupedOnSale", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell CapitalWorksRecoupedOnSale { get; set; } = new NumericCell();
-
-        [Newtonsoft.Json.JsonProperty("status", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public RentalPropertyStatus Status { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("loanRenegotiatedIndicator", Required = Newtonsoft.Json.Required.Always)]
-        public bool LoanRenegotiatedIndicator { get; set; }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
-    public enum RentalPropertyStatus
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"Archived")]
-        Archived = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"Active")]
-        Active = 1,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class RentalPropertyIncomeExpenses
     {
         [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -22437,16 +23232,19 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("taxpayerName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string TaxpayerName { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("weeksRented", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("weeksRented", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int WeeksRented { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("weeksAvailableForRent", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("weeksAvailableForRent", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int WeeksAvailableForRent { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("ownershipPercentageMine", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("loanRenegotiatedIndicator", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool LoanRenegotiatedIndicator { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("ownershipPercentageMine", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal OwnershipPercentageMine { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("ownershipPercentageTotal", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("ownershipPercentageTotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal OwnershipPercentageTotal { get; set; }
 
         [Newtonsoft.Json.JsonProperty("rentalIncome", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -22532,10 +23330,10 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Description { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("total", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("total", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal Total { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("mine", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("mine", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal Mine { get; set; }
 
         [Newtonsoft.Json.JsonProperty("rentalTransactions", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -22546,14 +23344,16 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class RentalTransactionOfNumericCellAndDecimal
     {
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Guid Id { get; set; }
+
         [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Description { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("total", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell Total { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("total", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell Total { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("mine", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("mine", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal Mine { get; set; }
 
     }
@@ -22561,13 +23361,16 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class RentalTransactionOfDecimalAndDecimal
     {
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Guid Id { get; set; }
+
         [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Description { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("total", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("total", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal Total { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("mine", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("mine", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal Mine { get; set; }
 
     }
@@ -22578,10 +23381,10 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Description { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("total", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("total", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal Total { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("mine", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("mine", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal Mine { get; set; }
 
         [Newtonsoft.Json.JsonProperty("rentalTransactions", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -22592,27 +23395,27 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class RentalTransactionOfNumericCellAndNumericCell
     {
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Guid Id { get; set; }
+
         [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Description { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("total", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell Total { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("total", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell Total { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("mine", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public NumericCell Mine { get; set; } = new NumericCell();
+        [Newtonsoft.Json.JsonProperty("mine", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public NumericCell Mine { get; set; }
 
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class CreateRentalPropertyWorkpaperResponse
     {
-        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Success { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("documentId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("documentId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid DocumentId { get; set; }
 
     }
@@ -22620,11 +23423,10 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class CreateRentalPropertyWorkpaperCommand
     {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
         [Newtonsoft.Json.JsonProperty("rentalPropertyInformation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -22666,13 +23468,13 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("rentalProperties", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<RentalPropertySummaryItem> RentalProperties { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("totalPurchasePrice", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("totalPurchasePrice", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TotalPurchasePrice { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("totalNetRent", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("totalNetRent", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TotalNetRent { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("totalShareNetRent", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("totalShareNetRent", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TotalShareNetRent { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -22692,84 +23494,38 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class RentalPropertySummaryItem
     {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Description { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("status", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("status", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public RentalPropertyStatus Status { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("purchasePrice", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("purchasePrice", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PurchasePrice { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netRent", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("netRent", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NetRent { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("ownershipPercentage", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("ownershipPercentage", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal OwnershipPercentage { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("shareofNetRent", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("shareofNetRent", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ShareofNetRent { get; set; }
 
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class GetRentalPropertiesSummaryViewQueryResponse : TreeDefinitionOfRentalPropertiesSummaryViewRow
+    public partial class GetRentalPropertiesSummaryViewQueryResponse : TreeGridDefinition
     {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class TreeDefinitionOfRentalPropertiesSummaryViewRow
-    {
-        [Newtonsoft.Json.JsonProperty("columnDefinitions", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<TreeColumnDefinition> ColumnDefinitions { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("rows", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<RentalPropertiesSummaryViewRow> Rows { get; set; }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class RentalPropertiesSummaryViewRow
-    {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.Guid Id { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Description { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("status", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public RentalPropertyStatus Status { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("purchasePrice", Required = Newtonsoft.Json.Required.Always)]
-        public decimal PurchasePrice { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("netRent", Required = Newtonsoft.Json.Required.Always)]
-        public decimal NetRent { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("ownershipPercentage", Required = Newtonsoft.Json.Required.Always)]
-        public decimal OwnershipPercentage { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("shareofNetRent", Required = Newtonsoft.Json.Required.Always)]
-        public decimal ShareofNetRent { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("rowConfig", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public TreeRowConfig RowConfig { get; set; }
 
     }
 
@@ -22790,19 +23546,16 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class UpdateRentalPropertyWorkpaperStatusCommand
     {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("documentId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("documentId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid DocumentId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("status", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("status", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public RentalPropertyStatus Status { get; set; }
 
@@ -22831,7 +23584,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("taxAgentDeclarationStatement", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string TaxAgentDeclarationStatement { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxAgentDeclarationStatementAccepted", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxAgentDeclarationStatementAccepted", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool TaxAgentDeclarationStatementAccepted { get; set; }
 
         [Newtonsoft.Json.JsonProperty("taxAgentSignatureFirstName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -22852,7 +23605,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("taxAgentContactFullName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string TaxAgentContactFullName { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxAgentContactPhoneType", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxAgentContactPhoneType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public PhoneType TaxAgentContactPhoneType { get; set; }
 
         [Newtonsoft.Json.JsonProperty("taxAgentContactPhoneAreaCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -22867,7 +23620,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("taxPayerDeclarationStatement", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string TaxPayerDeclarationStatement { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxPayerDeclarationStatementAccepted", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxPayerDeclarationStatementAccepted", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool TaxPayerDeclarationStatementAccepted { get; set; }
 
         [Newtonsoft.Json.JsonProperty("taxPayerSignatureFirstName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -22885,7 +23638,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("taxAgentContactPhoneUsageCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string TaxAgentContactPhoneUsageCode { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("hoursTakenToPrepareForm", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("hoursTakenToPrepareForm", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int HoursTakenToPrepareForm { get; set; }
 
         [Newtonsoft.Json.JsonProperty("taxPayerDeclarationStatementTypeCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -22903,7 +23656,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("taxPayerContactPhoneUsageCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string TaxPayerContactPhoneUsageCode { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxPayerContactPhoneType", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxPayerContactPhoneType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public PhoneType TaxPayerContactPhoneType { get; set; }
 
         [Newtonsoft.Json.JsonProperty("taxPayerContactPhoneAreaCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -22939,7 +23692,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("noticesRecipientContactPhoneUsageCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string NoticesRecipientContactPhoneUsageCode { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("noticesRecipientContactPhoneType", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("noticesRecipientContactPhoneType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public PhoneType NoticesRecipientContactPhoneType { get; set; }
 
         [Newtonsoft.Json.JsonProperty("noticesRecipientContactPhoneAreaCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -23016,78 +23769,77 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class DomesticMedicareWorkpaper
     {
-        [Newtonsoft.Json.JsonProperty("dependentChildren", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("dependentChildren", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int DependentChildren { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("medicareDependentChildren", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("medicareDependentChildren", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int MedicareDependentChildren { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("childSupportPaid", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("childSupportPaid", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ChildSupportPaid { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("medicareFullExemptionDays", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("medicareFullExemptionDays", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal MedicareFullExemptionDays { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("medicareHalfExemptionDays", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("medicareHalfExemptionDays", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal MedicareHalfExemptionDays { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("medicareSurchargeDaysNotLiable", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("medicareSurchargeDaysNotLiable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int MedicareSurchargeDaysNotLiable { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("domesticSourceTaxableIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("domesticSourceTaxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DomesticSourceTaxableIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("domesticSourceMedicareAdjustedTaxableIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("domesticSourceMedicareAdjustedTaxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DomesticSourceMedicareAdjustedTaxableIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("spouseTaxableIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("spouseTaxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal SpouseTaxableIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("spouseMedicareAdjustedTaxableIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("spouseMedicareAdjustedTaxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal SpouseMedicareAdjustedTaxableIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("domesticSourceFamilyAdjustedTaxableIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("domesticSourceFamilyAdjustedTaxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DomesticSourceFamilyAdjustedTaxableIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("domesticSourceMedicareLevyBasePayable", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("domesticSourceMedicareLevyBasePayable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DomesticSourceMedicareLevyBasePayable { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("domesticSourceMedicareReductionForExemptDays", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("domesticSourceMedicareReductionForExemptDays", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DomesticSourceMedicareReductionForExemptDays { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("domesticSourceMedicareLevyPayable", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("domesticSourceMedicareLevyPayable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DomesticSourceMedicareLevyPayable { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("domesticSourceMedicareLevySurchargeRate", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("domesticSourceMedicareLevySurchargeRate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DomesticSourceMedicareLevySurchargeRate { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("domesticSourceBaseMedicareLevySurchargePayable", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("domesticSourceBaseMedicareLevySurchargePayable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DomesticSourceBaseMedicareLevySurchargePayable { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("domesticSourceMedicareLevySurchargeReductionForExemptDays", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("domesticSourceMedicareLevySurchargeReductionForExemptDays", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DomesticSourceMedicareLevySurchargeReductionForExemptDays { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("domesticSourceMedicareLevySurchargePayable", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("domesticSourceMedicareLevySurchargePayable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DomesticSourceMedicareLevySurchargePayable { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("domesticSourceMedicareLevyAndSurchargePayable", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("domesticSourceMedicareLevyAndSurchargePayable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DomesticSourceMedicareLevyAndSurchargePayable { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("medicareThresholdType", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("medicareThresholdType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public MedicareThresholdTypes MedicareThresholdType { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("medicareLevyMinimumThreshold", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("medicareLevyMinimumThreshold", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal MedicareLevyMinimumThreshold { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("medicareLevyReducedThreshold", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("medicareLevyReducedThreshold", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal MedicareLevyReducedThreshold { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("domesticFamilyIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("domesticFamilyIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DomesticFamilyIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("medicareLevySurchargeThresholdTier", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("medicareLevySurchargeThresholdTier", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int MedicareLevySurchargeThresholdTier { get; set; }
 
         [Newtonsoft.Json.JsonProperty("slug", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -23105,20 +23857,6 @@ namespace Taxlab.ApiClientLibrary
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class UpsertDomesticMedicareWorkpaperCommand : BaseTaxYearWorkpaperCommandOfDomesticMedicareWorkpaper
-    {
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class BaseTaxYearWorkpaperCommandOfDomesticMedicareWorkpaper : BaseTaxYearWorkpaperCommand
-    {
-        [Newtonsoft.Json.JsonProperty("workpaper", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public DomesticMedicareWorkpaper Workpaper { get; set; }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class WorkpaperResponseOfSpouseWorkpaper : WorkpaperResponse
     {
         [Newtonsoft.Json.JsonProperty("workpaper", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -23132,10 +23870,10 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("linkedSpouseTaxpayerId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid? LinkedSpouseTaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("hasSpouse", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("hasSpouse", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool HasSpouse { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("isMarriedFullYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("isMarriedFullYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsMarriedFullYear { get; set; }
 
         [Newtonsoft.Json.JsonProperty("marriedFrom", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -23144,7 +23882,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("marriedTo", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string MarriedTo { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("hasDiedThisYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("hasDiedThisYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool HasDiedThisYear { get; set; }
 
         [Newtonsoft.Json.JsonProperty("lastname", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -23159,61 +23897,61 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("dateOfBirth", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string DateOfBirth { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxableIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TaxableIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxableIncomeLessFirstHomeSuperSaver", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxableIncomeLessFirstHomeSuperSaver", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TaxableIncomeLessFirstHomeSuperSaver { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("trustIncomeNotIncludedInTaxableIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("trustIncomeNotIncludedInTaxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TrustIncomeNotIncludedInTaxableIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("familyTrustDistributionWhereTaxPaid", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("familyTrustDistributionWhereTaxPaid", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal FamilyTrustDistributionWhereTaxPaid { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("reportableFringeBenefitsPaidByEmployerWithExemptionTotal", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("reportableFringeBenefitsPaidByEmployerWithExemptionTotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ReportableFringeBenefitsPaidByEmployerWithExemptionTotal { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("reportableFringeBenefitsPaidByEmployerWithoutExemptionTotal", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("reportableFringeBenefitsPaidByEmployerWithoutExemptionTotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ReportableFringeBenefitsPaidByEmployerWithoutExemptionTotal { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("reportableFringeBenefitsTotal", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("reportableFringeBenefitsTotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ReportableFringeBenefitsTotal { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("governmentPensions", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("governmentPensions", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal GovernmentPensions { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("governmentAllowances", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("governmentAllowances", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal GovernmentAllowances { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("governmentPensionAndAllowancesTotal", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("governmentPensionAndAllowancesTotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal GovernmentPensionAndAllowancesTotal { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("pensionExempt", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("pensionExempt", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PensionExempt { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("employerAndPersonalSuperannuationContributions", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("employerAndPersonalSuperannuationContributions", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal EmployerAndPersonalSuperannuationContributions { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxFreeGovernmentPension", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxFreeGovernmentPension", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TaxFreeGovernmentPension { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("targetForeignIncomeTotal", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("targetForeignIncomeTotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TargetForeignIncomeTotal { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netInvestmentLoss", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("netInvestmentLoss", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NetInvestmentLoss { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("childSupportPaid", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("childSupportPaid", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ChildSupportPaid { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("superannuationLumpSumWithZeroRate", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("superannuationLumpSumWithZeroRate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal SuperannuationLumpSumWithZeroRate { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("adjustedTaxableIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("adjustedTaxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal AdjustedTaxableIncome { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("medicareAdjustedTaxableIncome", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("medicareAdjustedTaxableIncome", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal MedicareAdjustedTaxableIncome { get; set; }
 
         [Newtonsoft.Json.JsonProperty("journals", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -23270,20 +24008,6 @@ namespace Taxlab.ApiClientLibrary
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class UpsertRevenueLossesWorkpaperCommand : BaseTaxYearWorkpaperCommandOfRevenueLossesWorkpaper
-    {
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class BaseTaxYearWorkpaperCommandOfRevenueLossesWorkpaper : BaseTaxYearWorkpaperCommand
-    {
-        [Newtonsoft.Json.JsonProperty("workpaper", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public RevenueLossesWorkpaper Workpaper { get; set; }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class WorkpaperResponseOfCapitalGainsWorkpaper : WorkpaperResponse
     {
         [Newtonsoft.Json.JsonProperty("workpaper", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -23294,109 +24018,109 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class CapitalGainsWorkpaper
     {
-        [Newtonsoft.Json.JsonProperty("currentYearGains", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("currentYearGains", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal CurrentYearGains { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("currentYearLosses", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("currentYearLosses", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal CurrentYearLosses { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("currentYearLossesApplied", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("currentYearLossesApplied", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal CurrentYearLossesApplied { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("currentYearLossesUsed", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("currentYearLossesUsed", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal CurrentYearLossesUsed { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("currentYearNetGain", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("currentYearNetGain", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal CurrentYearNetGain { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("currentYearNetLoss", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("currentYearNetLoss", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal CurrentYearNetLoss { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("priorLossesAvailable", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("priorLossesAvailable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PriorLossesAvailable { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("priorLossesApplied", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("priorLossesApplied", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PriorLossesApplied { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("priorLossesUsed", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("priorLossesUsed", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal PriorLossesUsed { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netCapitalGainBeforeLossesTransferredIn", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("netCapitalGainBeforeLossesTransferredIn", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NetCapitalGainBeforeLossesTransferredIn { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netCapitalLossBeforeLossesTransferredIn", Required = Newtonsoft.Json.Required.Always)]
-        public decimal NetCapitalLossBeforeLossesTransferredIn { get; set; }
+        [Newtonsoft.Json.JsonProperty("priorLossesCarryForward", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal PriorLossesCarryForward { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("capitalLossesTransferredInAvailable", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("capitalLossesTransferredInAvailable", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal CapitalLossesTransferredInAvailable { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("capitalLossesTransferredInApplied", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("capitalLossesTransferredInApplied", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal CapitalLossesTransferredInApplied { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("capitalLossesTransferredInUsed", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("capitalLossesTransferredInUsed", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal CapitalLossesTransferredInUsed { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("totalCapitalLossesApplied", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("totalCapitalLossesApplied", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TotalCapitalLossesApplied { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netCapitalGainBeforeConcessions", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("netCapitalGainBeforeConcessions", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NetCapitalGainBeforeConcessions { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netCapitalLossBeforeConcessions", Required = Newtonsoft.Json.Required.Always)]
-        public decimal NetCapitalLossBeforeConcessions { get; set; }
+        [Newtonsoft.Json.JsonProperty("lossesTransferredInCarryForward", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public decimal LossesTransferredInCarryForward { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("discountAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("discountAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal DiscountAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netCapitalGainAfterDiscount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("netCapitalGainAfterDiscount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NetCapitalGainAfterDiscount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("activeAssetReductionAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("activeAssetReductionAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal ActiveAssetReductionAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netCapitalGainAfterActiveAssetReduction", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("netCapitalGainAfterActiveAssetReduction", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NetCapitalGainAfterActiveAssetReduction { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("retirementExemptionAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("retirementExemptionAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal RetirementExemptionAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netCapitalGainAfterRetirementExemption", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("netCapitalGainAfterRetirementExemption", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NetCapitalGainAfterRetirementExemption { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("rolloverConcessionAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("rolloverConcessionAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal RolloverConcessionAmount { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("totalSmallBusinessConcessionsApplied", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("totalSmallBusinessConcessionsApplied", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal TotalSmallBusinessConcessionsApplied { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("netCapitalGain", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("netCapitalGain", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal NetCapitalGain { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("isCapitalGainScheduleRequired", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("isCapitalGainScheduleRequired", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsCapitalGainScheduleRequired { get; set; }
 
         [Newtonsoft.Json.JsonProperty("exemptionOrRolloverCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string ExemptionOrRolloverCode { get; set; }
+        public System.Collections.Generic.ICollection<string> ExemptionOrRolloverCode { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("isExemptionOrRolloverApplied", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("isExemptionOrRolloverApplied", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsExemptionOrRolloverApplied { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("smallBusiness15YearExemptionExemptCapitalGainAmount", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("smallBusiness15YearExemptionExemptCapitalGainAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal SmallBusiness15YearExemptionExemptCapitalGainAmount { get; set; }
 
         [Newtonsoft.Json.JsonProperty("smallBusiness15YearExemptionCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string SmallBusiness15YearExemptionCode { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("capitalGainsDisregardedForeignResident", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("capitalGainsDisregardedForeignResident", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal CapitalGainsDisregardedForeignResident { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("capitalGainsDisregardedScripForScripRollover", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("capitalGainsDisregardedScripForScripRollover", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal CapitalGainsDisregardedScripForScripRollover { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("capitalGainsDisregardedIntercompanyAssetRollover", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("capitalGainsDisregardedIntercompanyAssetRollover", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal CapitalGainsDisregardedIntercompanyAssetRollover { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("capitalGainsDisregardedDemergingEntity", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("capitalGainsDisregardedDemergingEntity", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal CapitalGainsDisregardedDemergingEntity { get; set; }
 
         [Newtonsoft.Json.JsonProperty("journals", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -23410,87 +24134,6 @@ namespace Taxlab.ApiClientLibrary
 
         [Newtonsoft.Json.JsonProperty("classification", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public TaxYearWorkpaperClassification Classification { get; set; }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class GetCapitalGainsViewQueryResponse : TreeDefinitionOfCapitalGainsViewRow
-    {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.Guid TaxpayerId { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
-        public int TaxYear { get; set; }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class TreeDefinitionOfCapitalGainsViewRow
-    {
-        [Newtonsoft.Json.JsonProperty("columnDefinitions", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<TreeColumnDefinition> ColumnDefinitions { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("rows", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<CapitalGainsViewRow> Rows { get; set; }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class CapitalGainsViewRow
-    {
-        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Description { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("totalGains", Required = Newtonsoft.Json.Required.Always)]
-        public decimal TotalGains { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("totalLosses", Required = Newtonsoft.Json.Required.Always)]
-        public decimal TotalLosses { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("rows", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<CapitalGainsViewRow> Rows { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("columns", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<CapitalGainsViewColumn> Columns { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("rowConfig", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public TreeRowConfig RowConfig { get; set; }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class CapitalGainsViewColumn
-    {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Id { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("value", Required = Newtonsoft.Json.Required.Always)]
-        public decimal Value { get; set; }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class CreateCapitalGainOrLossTransactionWorkpaperResponse
-    {
-        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.Always)]
-        public bool Success { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("documentId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.Guid DocumentId { get; set; }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class CreateCapitalGainOrLossTransactionWorkpaperCommand
-    {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.Guid TaxpayerId { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
-        public int TaxYear { get; set; }
 
     }
 
@@ -23514,11 +24157,10 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class UpsertBusinessAdjustmentsMappingCommand
     {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
         [Newtonsoft.Json.JsonProperty("fromBusinessAdjustmentItems", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -23535,12 +24177,10 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class AdjustmentItem
     {
-        [Newtonsoft.Json.JsonProperty("adjustmentId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("adjustmentId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid AdjustmentId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("businessId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("businessId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid BusinessId { get; set; }
 
     }
@@ -23548,18 +24188,16 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class UpsertManualBusinessAdjustmentCommand
     {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
         [Newtonsoft.Json.JsonProperty("manualBusinessAdjustmentItem", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public BusinessAdjustmentItem ManualBusinessAdjustmentItem { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("toBusinessId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("toBusinessId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid ToBusinessId { get; set; }
 
     }
@@ -23567,82 +24205,35 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class DeleteManualBusinessAdjustmentCommand
     {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
         [Newtonsoft.Json.JsonProperty("manualBusinessAdjustmentItem", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public BusinessAdjustmentItem ManualBusinessAdjustmentItem { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("fromBusinessId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("fromBusinessId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid FromBusinessId { get; set; }
 
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class DividendsInterestScheduleViewResponse : TreeDefinitionOfDividendsInterestScheduleViewRow
+    public partial class DividendsInterestScheduleViewResponse : TreeGridDefinition
     {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class TreeDefinitionOfDividendsInterestScheduleViewRow
-    {
-        [Newtonsoft.Json.JsonProperty("columnDefinitions", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<TreeColumnDefinition> ColumnDefinitions { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("rows", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<DividendsInterestScheduleViewRow> Rows { get; set; }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class DividendsInterestScheduleViewRow
-    {
-        [Newtonsoft.Json.JsonProperty("documentId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.Guid DocumentId { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("investorId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string InvestorId { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("investorName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string InvestorName { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("totalFrankedDividends", Required = Newtonsoft.Json.Required.Always)]
-        public decimal TotalFrankedDividends { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("totalFrankingCredits", Required = Newtonsoft.Json.Required.Always)]
-        public decimal TotalFrankingCredits { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("totalUnfrankedDividendsNotConduitForeignIncome", Required = Newtonsoft.Json.Required.Always)]
-        public decimal TotalUnfrankedDividendsNotConduitForeignIncome { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("totalUnfrankedDividendsConduitForeignIncome", Required = Newtonsoft.Json.Required.Always)]
-        public decimal TotalUnfrankedDividendsConduitForeignIncome { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("totalInterest", Required = Newtonsoft.Json.Required.Always)]
-        public decimal TotalInterest { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("rowConfig", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public TreeRowConfig RowConfig { get; set; }
 
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class WorkpaperSyncCommandResponse
     {
-        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool Success { get; set; }
 
     }
@@ -23679,11 +24270,10 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class IncomeTaxContext
     {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
         [Newtonsoft.Json.JsonProperty("version", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -23695,16 +24285,16 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("taxFileNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string TaxFileNumber { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("entityType", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("entityType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int EntityType { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("packType", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("packType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int PackType { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("isLocked", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("isLocked", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsLocked { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("isArchived", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("isArchived", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsArchived { get; set; }
 
         [Newtonsoft.Json.JsonProperty("incomeTaxYears", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -23721,22 +24311,19 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class IncomeTaxYear
     {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Id { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("startDate", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("startDate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset StartDate { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("balanceDate", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("balanceDate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset BalanceDate { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("isLocked", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("isLocked", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsLocked { get; set; }
 
     }
@@ -23755,8 +24342,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class SubscriptionContext
     {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -23767,7 +24353,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class UserContext
     {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("email", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -23790,15 +24376,13 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class IncomeTaxLookups
     {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("entityType", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("entityType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public EntityType EntityType { get; set; }
 
@@ -23819,7 +24403,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Description { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("isDefault", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("isDefault", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsDefault { get; set; }
 
         [Newtonsoft.Json.JsonProperty("reference", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -23830,8 +24414,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class TaxpayerAddressLookup
     {
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Id { get; set; }
 
         [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -23864,7 +24447,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("countryCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string CountryCode { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("addressType", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("addressType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public TaxpayerAddressType AddressType { get; set; }
 
         [Newtonsoft.Json.JsonProperty("usageCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -23873,10 +24456,10 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("currencyCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string CurrencyCode { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("overseasIndicator", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("overseasIndicator", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool OverseasIndicator { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("isDefault", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("isDefault", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsDefault { get; set; }
 
     }
@@ -23898,23 +24481,22 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class GetUserContextResponse
     {
-        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("taxpayerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid TaxpayerId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("version", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Version { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("userId", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("userId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int UserId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("username", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Username { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("entityType", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("entityType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int EntityType { get; set; }
 
         [Newtonsoft.Json.JsonProperty("userDomain", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -23926,17 +24508,16 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("taxpayerName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string TaxpayerName { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("balanceDate", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonProperty("balanceDate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string BalanceDate { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("isTaxpayerArchived", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("isTaxpayerArchived", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsTaxpayerArchived { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("taxpayerPackType", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("taxpayerPackType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxpayerPackType { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("isContextLocked", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("isContextLocked", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool IsContextLocked { get; set; }
 
         [Newtonsoft.Json.JsonProperty("instanceId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -23961,7 +24542,7 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class Permissions
     {
-        [Newtonsoft.Json.JsonProperty("userId", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("userId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int UserId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("featureName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
