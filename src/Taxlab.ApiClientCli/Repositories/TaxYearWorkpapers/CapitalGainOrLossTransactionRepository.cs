@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using NodaTime;
 using TaxLab;
@@ -21,12 +22,13 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
             string category = "1",
             LocalDate? purchaseDate = null,
             decimal purchaseAmount = 0m,
-            decimal purchaseAdjustment = 0m,
+            List<CapitalGainOrLossTransaction> purchaseAdjustment = null,
             LocalDate? disposalDate = null,
+            List<CapitalGainOrLossTransaction> disposalAdjustment = null,
             decimal disposalAmount = 0m,
             decimal discountAmount = 0m,
-            decimal currentYearLossApplied = 0m,
-            decimal priorLossApplied = 0m,
+            decimal currentYearLossesApplied = 0m,
+            decimal priorLossesApplied = 0m,
             decimal capitalLossesTransferredInApplied = 0m,
             bool isEligibleForDiscount = false,
             bool isEligibleForActiveAssetReduction = false,
@@ -39,12 +41,22 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
             {
                 TaxpayerId = taxpayerId,
                 TaxYear = taxYear,
+                InitialValue = new CapitalGainOrLossTransactionWorkpaperInitialValue
+                {
+                    Category = category,
+                    Description = description,
+                    DisposalAmount = disposalAmount,
+                    PurchaseAmount = purchaseAmount
+                }
             };
 
             var createCapitalGainOrLossTransactionResponse = await Client.Workpapers_CreateCapitalGainOrLossTransactionWorkpaperAsync(createCapitalGainOrLossTransactionCommand)
                 .ConfigureAwait(false);
 
             var getWorkpaperResponse = await GetCapitalGainOrLossTransactionWorkpaperAsync(taxpayerId, taxYear, createCapitalGainOrLossTransactionResponse);
+
+            purchaseAdjustment ??= new List<CapitalGainOrLossTransaction>();
+            disposalAdjustment ??= new List<CapitalGainOrLossTransaction>();
 
             var workpaper = getWorkpaperResponse.Workpaper;
             workpaper.Description = description;
@@ -55,9 +67,10 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
             workpaper.PurchaseAdjustment = purchaseAdjustment;
             workpaper.DisposalDate = disposalDate.ToAtoDateString();
             workpaper.DisposalAmount = disposalAmount;
+            workpaper.DisposalAdjustment = disposalAdjustment;
             workpaper.DiscountAmount = discountAmount;
-            workpaper.CurrentYearLossApplied = currentYearLossApplied;
-            workpaper.PriorLossApplied = priorLossApplied;
+            workpaper.CurrentYearLossesApplied = currentYearLossesApplied;
+            workpaper.PriorLossesApplied = priorLossesApplied;
             workpaper.CapitalLossesTransferredInApplied = capitalLossesTransferredInApplied;
             workpaper.IsEligibleForDiscount = isEligibleForDiscount;
             workpaper.IsEligibleForActiveAssetReduction = isEligibleForActiveAssetReduction;
@@ -73,7 +86,7 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
                 TaxYear = taxYear,
                 DocumentIndexId = getWorkpaperResponse.DocumentIndexId,
                 CompositeRequest = true,
-                WorkpaperType = WorkpaperType.RentalPropertyWorkpaper,
+                WorkpaperType = WorkpaperType.CapitalGainOrLossTransactionWorkpaper,
                 Workpaper = getWorkpaperResponse.Workpaper
             };
 
