@@ -13,7 +13,7 @@ namespace Taxlab.ApiClientCli.Repositories.Taxpayer
         {
         }
 
-        public async Task<TaxPaymentsResponse> CreateAsync(
+        public async Task<TaxPaymentResponse> CreateAsync(
             Guid taxpayerId,
             int taxYear = 0,
             string description = "description",

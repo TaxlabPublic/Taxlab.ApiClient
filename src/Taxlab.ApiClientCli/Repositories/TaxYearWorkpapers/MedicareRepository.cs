@@ -25,7 +25,7 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
             int medicareSurchargeDaysNotLiable = 0)
         {
             var workpaperResponse = await Client
-                .Workpapers_GetMedicareWorkpaperAsync(taxpayerId, taxYear, WorkpaperType.MedicareWorkpaper, Guid.Empty, false, false, false)
+                .Workpapers_GetMedicareWorkpaperAsync(taxpayerId, taxYear)
                 .ConfigureAwait(false);
 
             var workpaper = workpaperResponse.Workpaper;
@@ -56,7 +56,7 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
         public async Task<WorkpaperResponseOfMedicareWorkpaper> GetMedicareWorkpaperAsync(Guid taxpayerId, int taxYear)
         {
             var workpaperResponse = await Client
-              .Workpapers_GetMedicareWorkpaperAsync(taxpayerId, taxYear, WorkpaperType.MedicareWorkpaper, Guid.Empty, false, false, false)
+              .Workpapers_GetMedicareWorkpaperAsync(taxpayerId, taxYear)
               .ConfigureAwait(false);
 
             return workpaperResponse;

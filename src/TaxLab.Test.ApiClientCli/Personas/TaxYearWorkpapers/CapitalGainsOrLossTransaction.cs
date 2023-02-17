@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OfficeOpenXml.FormulaParsing.Excel.Functions.Database;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using Taxlab.ApiClientCli.Implementations;
@@ -41,9 +42,7 @@ namespace TaxLab.Test.ApiClientCli.Personas.TaxYearWorkpapers
 
 
             var getCapitalGainOrLossTransactionWorkpaperResponse = await client
-                .Workpapers_GetCapitalGainOrLossTransactionWorkpaperAsync(taxpayerId, taxYear,
-                    WorkpaperType.CapitalGainOrLossTransactionWorkpaper,
-                    createCapitalGainOrLossTransactionWorkpaperResponse.DocumentId, false, false, false)
+                .Workpapers_GetCapitalGainOrLossTransactionWorkpaperAsync(taxpayerId, taxYear, createCapitalGainOrLossTransactionWorkpaperResponse.DocumentId)
                 .ConfigureAwait(false);
 
 

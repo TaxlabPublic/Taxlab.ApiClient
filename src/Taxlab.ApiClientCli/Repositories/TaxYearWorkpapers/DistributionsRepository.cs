@@ -139,7 +139,7 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
         public async Task<WorkpaperResponseOfCapitalGainOrLossTransactionWorkpaper> GetCapitalGainOrLossTransactionWorkpaperAsync(Guid taxpayerId, int taxYear, CreateCapitalGainOrLossTransactionWorkpaperResponse createCapitalGainOrLossTransactionResponse)
         {
             var workpaperResponse = await Client
-                .Workpapers_GetCapitalGainOrLossTransactionWorkpaperAsync(taxpayerId, taxYear, WorkpaperType.CapitalGainOrLossTransactionWorkpaper, createCapitalGainOrLossTransactionResponse.DocumentId, false, false, false)
+                .Workpapers_GetCapitalGainOrLossTransactionWorkpaperAsync(taxpayerId, taxYear, createCapitalGainOrLossTransactionResponse.DocumentId)
                 .ConfigureAwait(false);
 
             return workpaperResponse;

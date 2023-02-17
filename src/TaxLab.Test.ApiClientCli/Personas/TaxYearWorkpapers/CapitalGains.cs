@@ -33,7 +33,7 @@ namespace TaxLab.Test.ApiClientCli.Workpapers.TaxYearWorkpapers
             
             // get the capital gains workpaper and check the contents
             var capitalGainsWorkpaper = await client
-                .Workpapers_GetCapitalGainsWorkpaperAsync(taxpayer.Id, taxYear, WorkpaperType.CapitalGainsWorkpaper, Guid.Empty, false, false, true)
+                .Workpapers_GetCapitalGainsWorkpaperAsync(taxpayer.Id, taxYear)
                 .ConfigureAwait(false);
 
             Assert.Equal(203896.52m, capitalGainsWorkpaper.Workpaper.CurrentYearGains);
