@@ -18072,7 +18072,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("taxYear", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int TaxYear { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("items", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonProperty("items", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<Journal> Items { get; set; }
 
     }
@@ -18098,10 +18098,10 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("entityController", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string EntityController { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Description { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("caption", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonProperty("caption", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Caption { get; set; }
 
         [Newtonsoft.Json.JsonProperty("grossAmount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -23903,9 +23903,14 @@ namespace Taxlab.ApiClientLibrary
         public string Header { get; set; }
 
         [Newtonsoft.Json.JsonProperty("format", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public DataFormat Format { get; set; }
 
+        [Newtonsoft.Json.JsonProperty("includesTotal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool IncludesTotal { get; set; }
+
         [Newtonsoft.Json.JsonProperty("textAlign", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TextAlign TextAlign { get; set; }
 
         [Newtonsoft.Json.JsonProperty("editOptions", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -23913,51 +23918,47 @@ namespace Taxlab.ApiClientLibrary
 
     }
 
-    /// <summary>
-    /// 0 = Text
-    /// <br/>1 = Number
-    /// <br/>2 = Currency
-    /// <br/>3 = NumericCell
-    /// <br/>4 = Date
-    /// <br/>5 = Percentage
-    /// <br/>6 = YesNo
-    /// </summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v11.0.0.0))")]
     public enum DataFormat
     {
 
+        [System.Runtime.Serialization.EnumMember(Value = @"Text")]
         Text = 0,
 
+        [System.Runtime.Serialization.EnumMember(Value = @"Number")]
         Number = 1,
 
+        [System.Runtime.Serialization.EnumMember(Value = @"Currency")]
         Currency = 2,
 
+        [System.Runtime.Serialization.EnumMember(Value = @"NumericCell")]
         NumericCell = 3,
 
+        [System.Runtime.Serialization.EnumMember(Value = @"Date")]
         Date = 4,
 
+        [System.Runtime.Serialization.EnumMember(Value = @"Percentage")]
         Percentage = 5,
 
+        [System.Runtime.Serialization.EnumMember(Value = @"YesNo")]
         YesNo = 6,
 
     }
 
-    /// <summary>
-    /// 0 = Left
-    /// <br/>1 = Right
-    /// <br/>2 = Center
-    /// <br/>3 = Justify
-    /// </summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v11.0.0.0))")]
     public enum TextAlign
     {
 
+        [System.Runtime.Serialization.EnumMember(Value = @"Left")]
         Left = 0,
 
+        [System.Runtime.Serialization.EnumMember(Value = @"Right")]
         Right = 1,
 
+        [System.Runtime.Serialization.EnumMember(Value = @"Center")]
         Center = 2,
 
+        [System.Runtime.Serialization.EnumMember(Value = @"Justify")]
         Justify = 3,
 
     }
@@ -24028,9 +24029,11 @@ namespace Taxlab.ApiClientLibrary
         public object Value { get; set; }
 
         [Newtonsoft.Json.JsonProperty("format", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public DataFormat? Format { get; set; }
 
         [Newtonsoft.Json.JsonProperty("textAlign", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public TextAlign? TextAlign { get; set; }
 
         [Newtonsoft.Json.JsonProperty("editOptions", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -24201,10 +24204,10 @@ namespace Taxlab.ApiClientLibrary
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class PrivateHealthInsuranceDetails
     {
-        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceMemberNumber", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceMemberNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string PrivateHealthInsuranceMemberNumber { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceInsurerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceInsurerId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string PrivateHealthInsuranceInsurerId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("privateHealthInsuranceStartDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -24213,10 +24216,10 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("privateHealthInsuranceEndDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string PrivateHealthInsuranceEndDate { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceBenefitCode", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceBenefitCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string PrivateHealthInsuranceBenefitCode { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceTaxClaimCode", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonProperty("privateHealthInsuranceTaxClaimCode", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string PrivateHealthInsuranceTaxClaimCode { get; set; }
 
         [Newtonsoft.Json.JsonProperty("privateHealthInsurancePremiums", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -25075,7 +25078,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Id { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Description { get; set; }
 
         [Newtonsoft.Json.JsonProperty("total", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -25092,7 +25095,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Id { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Description { get; set; }
 
         [Newtonsoft.Json.JsonProperty("total", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -25126,7 +25129,7 @@ namespace Taxlab.ApiClientLibrary
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Id { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Description { get; set; }
 
         [Newtonsoft.Json.JsonProperty("total", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
