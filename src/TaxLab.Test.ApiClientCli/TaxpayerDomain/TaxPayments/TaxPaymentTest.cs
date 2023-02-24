@@ -13,10 +13,7 @@ namespace TaxLab.Test.ApiClientCli.TaxpayerDomain.TaxPayments
         [Fact]
         public async void CreateTaxPayment()
         {
-            string baseUrl = "https://preview.taxlab.online/api-internal/";
-            HttpClient httpclient = new HttpClient();
-            var authService = new AuthService();
-            TaxlabApiClient client = new TaxlabApiClient(baseUrl, httpclient, authService);
+            TaxlabApiClient client = TestSetup.GetTaxlabApiClient();
 
             var repo = new TaxPaymentRepository(client);
             var taxYear = 2021;

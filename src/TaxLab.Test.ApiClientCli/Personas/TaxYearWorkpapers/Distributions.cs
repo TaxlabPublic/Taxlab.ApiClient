@@ -13,10 +13,7 @@ namespace TaxLab.Test.ApiClientCli.Workpapers.TaxYearWorkpapers
         [Fact]
         public async void CreateTaxpayerWithDistributionsWorkpapers()
         {
-            string baseUrl = "https://preview.taxlab.online/api-internal/";
-            HttpClient httpclient = new HttpClient();
-            var authService = new AuthService();
-            TaxlabApiClient client = new TaxlabApiClient(baseUrl, httpclient, authService);
+            TaxlabApiClient client = TestSetup.GetTaxlabApiClient();
 
             var repo = new IndividualWithTrustDistribution();
             var taxYear = 2021;

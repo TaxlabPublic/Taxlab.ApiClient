@@ -26,10 +26,7 @@ namespace TaxLab.Test.ApiClientCli.ImportFromExcel
         [Fact]
         public async void MapTaxPayerImports()
         {
-            string baseUrl = "https://preview.taxlab.online/api-internal/";
-            HttpClient httpclient = new HttpClient();
-            var authService = new AuthService();
-            TaxlabApiClient client = new TaxlabApiClient(baseUrl, httpclient, authService);
+            TaxlabApiClient client = TestSetup.GetTaxlabApiClient();
 
             var filename = "ImportData.xlsx";
 
