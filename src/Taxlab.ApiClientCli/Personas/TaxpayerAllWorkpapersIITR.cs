@@ -19,7 +19,7 @@ namespace Taxlab.ApiClientCli.Personas
         private TaxlabApiClient Client;
 
         //set your test taxpayer values here
-        private const string FirstName = "Individual";
+        private const string FirstName = "IndividualThree";
         private const string LastName = "Zey";
         private const string TaxFileNumber = "32989432";
         private const EntityType TaxpayerEntity = EntityType.IndividualAU;
@@ -342,6 +342,12 @@ namespace Taxlab.ApiClientCli.Personas
                0.7m,
                1m
            ).ConfigureAwait(false);
+
+            var medicareWorkpaperFactory = new MedicareRepository(Client);
+            await medicareWorkpaperFactory.CreateAsync(taxpayer.Id,
+                TaxYear);
+
+
 
             var allAdjustmentWorkpapers = await Client.Workpapers_AdjustmentWorkpapersAsync(taxpayer.Id, TaxYear, null)
                 .ConfigureAwait(false);
