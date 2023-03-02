@@ -4,35 +4,44 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Taxlab.ApiClientCli.Implementations;
+using NodaTime;
+using System;
+using System.Collections.Generic;
+using System.Numerics;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Linq;
+using Taxlab.ApiClientCli.Implementations;
 using Taxlab.ApiClientCli.Repositories.Taxpayer;
+using Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers;
+using Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers;
 using Taxlab.ApiClientCli.Workpapers.TaxYearWorkpapers;
 using Taxlab.ApiClientLibrary;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Taxlab.ApiClientCli.Personas
 {
 
-    public class TaxpayerAllWorkpapersNITR
+    public class TaxpayerAllWorkpapersNITR : BaseScopedTests
     {
         private TaxlabApiClient Client;
 
         //set your test taxpayer values here
-        private const string FirstName = "Zey";
-        private const string LastName = "Notindividual";
+        private const string FirstName = "Notindividual";
+        private const string LastName = "Zey";
         private const string TaxFileNumber = "32989432";
         private const EntityType TaxpayerEntity = EntityType.CompanyAU;
         private const int TaxYear = 2021;
         private  LocalDate _balanceDate = new LocalDate(2021, 6, 30);
+        private TaxpayerDto _taxpayer;
 
-        [Fact]
-        public async void TestAllWorkpapers()
+        public TaxpayerAllWorkpapersNITR(ITestOutputHelper output) : base(output)
         {
-            Client = TestSetup.GetTaxlabApiClient();
-            var taxpayerResponse = await CreateTaxpayer(Client);
 
         }
 
-        private async Task<TaxpayerResponse> CreateTaxpayer(TaxlabApiClient client)
+        private async Task<TaxpayerResponse> CreateTaxpayer(TaxlabApiClient Client)
         {
             var taxpayerService = new TaxpayerRepository(Client);
 
@@ -42,11 +51,11 @@ namespace Taxlab.ApiClientCli.Personas
                 TaxFileNumber);
 
             var taxpayer = taxpayerResponse.Content;
-            client.TaxpayerId = taxpayer.Id;
-            client.Taxyear = TaxYear;
-            client.TaxpayerEntity = TaxpayerEntity;
+            Client.TaxpayerId = taxpayer.Id;
+            Client.Taxyear = TaxYear;
+            Client.TaxpayerEntity = TaxpayerEntity;
 
-            var taxReturnRepository = new TaxReturnRepository(client);
+            var taxReturnRepository = new TaxReturnRepository(Client);
             var taxReturnResponse = await taxReturnRepository.CreateAsync(taxpayer.Id,
                 TaxYear,
                 _balanceDate,
@@ -58,7 +67,7 @@ namespace Taxlab.ApiClientCli.Personas
                 throw new Exception(taxReturnResponse.Message);
             }
 
-            var details = new TaxpayerDetailsRepository(client);
+            var details = new TaxpayerDetailsRepository(Client);
             await details.CreateAsync(taxpayer.Id,
                 TaxYear,
                 dateOfBirth: new LocalDate(1975, 4, 12),
@@ -83,9 +92,25 @@ namespace Taxlab.ApiClientCli.Personas
             return taxpayerResponse;
         }
 
-        
 
-        
+        protected override async Task SetupTest()
+        {
+            Client = TestSetup.GetTaxlabApiClient();
+            var taxpayerResponse = await CreateTaxpayer(Client);
+            _taxpayer = taxpayerResponse.Content;
+        }
+
+        [Fact]
+        public async void NITRWorkpapersInRepositoriesTest()
+        {
+            CreateTaxpayerTest();
+        }
+
+        [Fact]
+        public void CreateTaxpayerTest()
+        {
+            Assert.Equal($"{FirstName}", _taxpayer.TaxpayerName);
+        }
 
 
     }
