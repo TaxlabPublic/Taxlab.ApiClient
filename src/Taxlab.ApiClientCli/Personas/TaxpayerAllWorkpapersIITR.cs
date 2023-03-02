@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Taxlab.ApiClientCli.Implementations;
 using Taxlab.ApiClientCli.Repositories.Taxpayer;
 using Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers;
@@ -93,11 +94,13 @@ namespace Taxlab.ApiClientCli.Personas
             _taxpayer = taxpayerResponse.Content;
         }
 
+
         [Fact]
         public async void IITRWorkpapersInRepositoriesTest()
         {
             CreateTaxpayerTest();
             await TestLookUpFetch();
+            await SpouseWorkpaperTest();
             await AnnuityWorkpaperTest();
             await AttributedPersonalServicesIncomeWorkpaperTest();
             await DeductibleCarExpenseWorkpaperTest();
@@ -561,7 +564,10 @@ namespace Taxlab.ApiClientCli.Personas
                1m
            ).ConfigureAwait(false);
 
+            var workpaperResponseOfRentalPropertiesSummaryWorkpaper = await new RentalPropertiesSummaryRepository(Client).GetRentalSummaryWorkpaperAsync(_taxpayer.Id, TaxYear).ConfigureAwait(false);
+
             Assert.Equal(_taxpayer.Id, workpaperResponseOfRentalPropertyWorkpaper.Workpaper.Slug.TaxpayerId);
+            Assert.True(workpaperResponseOfRentalPropertiesSummaryWorkpaper.Success);
         }
 
         [Fact]
@@ -639,6 +645,67 @@ namespace Taxlab.ApiClientCli.Personas
 
             Assert.Equal(_taxpayer.Id, workpaperResponseOfCapitalGainOrLossTransactionWorkpaper.Workpaper.Slug.TaxpayerId);
         }
+
+
+        [Fact]
+        public async Task SpouseWorkpaperTest()
+        {
+
+            string firstName = "Mary";
+            string lastName = "NzCitizen";
+            string taxFileNumber = "329823478";
+            var balanceDate = new LocalDate(2021, 6, 30);
+            var startDate = balanceDate.PlusYears(-1).PlusDays(-1);
+
+            var taxpayerService = new TaxpayerRepository(Client);
+            var taxpayerResponse = await taxpayerService.CreateAsync(TaxYear,
+                firstName,
+                lastName,
+                taxFileNumber);
+
+            var spouseTaxpayer = taxpayerResponse.Content;
+            Client.TaxpayerId = spouseTaxpayer.Id;
+
+            var taxReturnRepository = new TaxReturnRepository(Client);
+            var taxReturnResponse = await taxReturnRepository.CreateAsync(spouseTaxpayer.Id,
+                 TaxYear,
+                 balanceDate,
+                 startDate);
+
+            if (taxReturnResponse.Success == false)
+            {
+                throw new Exception(taxReturnResponse.Message);
+            }
+
+            var details = new TaxpayerDetailsRepository(Client);
+            await details.CreateAsync(spouseTaxpayer.Id,
+                TaxYear,
+                dateOfBirth: new LocalDate(1975, 4, 12),
+                dateOfDeath: new LocalDate(2020, 12, 31),
+                finalReturn: true,
+                mobilePhoneNumber: "0402698741",
+                daytimeAreaPhoneCode: "613",
+                daytimePhoneNumber: "54835123",
+                emailAddress: "mary@hotmail.com",
+                bsbNumber: "553026",
+                bankAccountName: "Bank of Melbourne",
+                bankAccountNumber: "15987456"
+            );
+
+            Client.TaxpayerId = _taxpayer.Id;
+            var spouseRepository = new SpouseRepository(Client);
+            var workpaperResponseOfSpouseWorkpaper = await spouseRepository.CreateAsync(_taxpayer.Id,
+                TaxYear,
+                LinkedSpouseTaxpayerId: spouseTaxpayer.Id,
+                IsMarriedFullYear: false,
+                MarriedFrom: startDate,
+                MarriedTo: startDate.PlusDays(100),
+                HasDiedThisYear: false
+            );
+
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfSpouseWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
 
         [Fact]
         public async Task AllAdjustmentWorkpapersFetch()
