@@ -99,7 +99,7 @@ namespace Taxlab.ApiClientCli.Workpapers.TaxYearWorkpapers
                 TaxYear = taxYear,
                 DocumentIndexId = workpaperResponse.DocumentIndexId,
                 CompositeRequest = true,
-                WorkpaperType = WorkpaperType.DeclarationsWorkpaper,
+                WorkpaperType = WorkpaperType.IncomingDistributionsWorkpaper,
                 Workpaper = workpaperResponse.Workpaper
             };
 

@@ -11,28 +11,132 @@ using Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers;
 using Taxlab.ApiClientCli.Workpapers.TaxYearWorkpapers;
 using Taxlab.ApiClientLibrary;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Taxlab.ApiClientCli.Personas
 {
-    public class TaxpayerAllWorkpapersIITR
+    public class TaxpayerAllWorkpapersIITR  : BaseScopedTests
     {
+        
+
         private TaxlabApiClient Client;
 
         //set your test taxpayer values here
-        private const string FirstName = "Individualfour";
-        private const string LastName = "Zey";
+        private const string FirstName = "Individual";
+        private const string LastName = "Zeyto";
         private const string TaxFileNumber = "32989432";
         private const EntityType TaxpayerEntity = EntityType.IndividualAU;
         private const int TaxYear = 2021;
         private LocalDate _balanceDate = new LocalDate(2021, 6, 30);
+        private TaxpayerDto _taxpayer;
 
-        [Fact]
-        public async void TestAllWorkpapers()
+        public TaxpayerAllWorkpapersIITR(ITestOutputHelper output) : base(output)
+        {
+
+        }
+
+        private async Task<TaxpayerResponse> CreateTaxpayer(TaxlabApiClient Client)
+        {
+            var taxpayerService = new TaxpayerRepository(Client);
+
+            var taxpayerResponse = await taxpayerService.CreateAsync(TaxYear,
+                FirstName,
+                LastName,
+                TaxFileNumber);
+
+            var taxpayer = taxpayerResponse.Content;
+            Client.TaxpayerId = taxpayer.Id;
+            Client.Taxyear = TaxYear;
+            Client.TaxpayerEntity = TaxpayerEntity;
+
+            var taxReturnRepository = new TaxReturnRepository(Client);
+            var taxReturnResponse = await taxReturnRepository.CreateAsync(taxpayer.Id,
+                TaxYear,
+                _balanceDate,
+                _balanceDate.PlusYears(-1).PlusDays(-1));
+
+
+            if (taxReturnResponse.Success == false)
+            {
+                throw new Exception(taxReturnResponse.Message);
+            }
+
+            var details = new TaxpayerDetailsRepository(Client);
+            await details.CreateAsync(taxpayer.Id,
+                TaxYear,
+                dateOfBirth: new LocalDate(1975, 4, 12),
+                dateOfDeath: new LocalDate(2020, 12, 31),
+                finalReturn: true,
+                mobilePhoneNumber: "0402698741",
+                daytimeAreaPhoneCode: "613",
+                daytimePhoneNumber: "54835123",
+                emailAddress: "JohnC12@hotmail.com",
+                bsbNumber: "553026",
+                bankAccountName: "Bank of Melbourne",
+                bankAccountNumber: "15987456",
+                higherEducationLoanProgramBalance: 100,
+                vetStudentLoanBalance: 200,
+                studentFinancialSupplementSchemeBalance: 300,
+                studentStartupLoanBalance: 400,
+                abstudyStudentStartupLoanBalance: 500,
+                tradeSupportLoanBalance: 600,
+                smallBusinessIndicator: false
+            );
+
+            return taxpayerResponse;
+        }
+
+        protected override async Task SetupTest()
         {
             Client = TestSetup.GetTaxlabApiClient();
             var taxpayerResponse = await CreateTaxpayer(Client);
-            var taxpayer = taxpayerResponse.Content;
+            _taxpayer = taxpayerResponse.Content;
+        }
 
+        [Fact]
+        public async void IITRWorkpapersInRepositoriesTest()
+        {
+            CreateTaxpayerTest();
+            await TestLookUpFetch();
+            await AnnuityWorkpaperTest();
+            await AttributedPersonalServicesIncomeWorkpaperTest();
+            await DeductibleCarExpenseWorkpaperTest();
+            await EmploymentTerminationPaymentWorkpaperTest();
+            await FirstHomeSuperSaverWorkpaperWorkpaperTest();
+            await ForeignEmploymentIncomeWorkpaperTest();
+            await ForeignIncomeWorkpaperTest();
+            await ForeignPensionOrAnnuityWorkpaperTest();
+            await OtherIncomeWorkpaperTest();
+            await SuperannuationIncomeStreamWorkpaperTest();
+            await SuperannuationLumpSumPaymentWorkpaperTest();
+            await EmploymentIncomeWorkpaperTest();
+            await DividendIncomeWorkpaperTest();
+            await InterestIncomeWorkpaperTest();
+            await PersonalSuperannuationContributionWorkpaperTest();
+            await GovernmentAllowanceWorkpaperTest();
+            await GovernmentPensionWorkpaperTest();
+            await OtherDeductionWorkpaperTest();
+            await DeclarationsWorkpaperTest();
+            await RentalPropertyWorkpaperTest();
+            await MedicareWorkpaperTest();
+            await BusinessIncomeExpensesWorkpaperTest();
+            await DistributionsWorkpaperTest();
+            await IncomingDistributionsWorkpaperTest();
+            await CapitalGainOrLossTransactionWorkpaperTest();
+            await AllAdjustmentWorkpapersFetch();
+            await allTaxYearWorkpapersFetch();
+        }
+
+
+        [Fact]
+        public void CreateTaxpayerTest()
+        {
+            Assert.Equal($"{FirstName}",_taxpayer.TaxpayerName); 
+        }
+
+        [Fact]
+        public async Task TestLookUpFetch()
+        {
             var lookups = new LookupsRepository(Client);
             var lookupsArray = await lookups.GetAllLookups();
 
@@ -40,8 +144,16 @@ namespace Taxlab.ApiClientCli.Personas
 
             var countryListFetched = lookupsArray.Lookups.TryGetValue("Common/RegionLookups/CountryCodes", out countryLookup);
 
-            var annuityWorkpaperFactory = new AnnuityRepository(Client);
-            await annuityWorkpaperFactory.CreateAsync(taxpayer.Id,
+            Assert.True(countryListFetched);
+        }
+
+
+
+        [Fact]
+        public async Task AnnuityWorkpaperTest()
+        {
+            var annuityRepository = new AnnuityRepository(Client);
+            var workpaperResponseOfAnnuityWorkpaper = await annuityRepository.CreateAsync(_taxpayer.Id,
                 TaxYear,
                 payersName: $"{FirstName} {LastName}",
                 abn: "3874923",
@@ -49,8 +161,14 @@ namespace Taxlab.ApiClientCli.Personas
                 deductibleAmount: 300m,
                 taxPaid: 100m);
 
-            var attributedPersonalServicesIncomeWorkpaperFactory = new AttributedPersonalServicesIncomeRepository(Client);
-            await attributedPersonalServicesIncomeWorkpaperFactory.CreateAsync(taxpayer.Id,
+            Assert.Equal(_taxpayer.Id,workpaperResponseOfAnnuityWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task AttributedPersonalServicesIncomeWorkpaperTest()
+        {
+            var attributedPersonalServicesIncomeRepository = new AttributedPersonalServicesIncomeRepository(Client);
+            var workpaperResponseOfAttributedPersonalServicesIncomeWorkpaper = await attributedPersonalServicesIncomeRepository.CreateAsync(_taxpayer.Id,
                 TaxYear,
                 payersName: $"{FirstName} {LastName}",
                 abn: "3874923",
@@ -58,44 +176,105 @@ namespace Taxlab.ApiClientCli.Personas
                 taxPaid: 300m,
                 reportableSuperContributions: 100m);
 
-            var deductibleCarExpenseWorkpaperFactory = new DeductibleCarExpenseRepository(Client);
-            await deductibleCarExpenseWorkpaperFactory.CreateAsync(taxpayer.Id,
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfAttributedPersonalServicesIncomeWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task DeductibleCarExpenseWorkpaperTest()
+        {
+            var deductibleCarExpenseRepository = new DeductibleCarExpenseRepository(Client);
+            var workpaperResponseOfDeductibleCarExpenseWorkpaper = await deductibleCarExpenseRepository.CreateAsync(_taxpayer.Id,
                 TaxYear);
 
-            var employmentTerminationPaymentWorkpaperFactory = new EmploymentTerminationPaymentRepository(Client);
-            await employmentTerminationPaymentWorkpaperFactory.CreateAsync(taxpayer.Id,
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfDeductibleCarExpenseWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task EmploymentTerminationPaymentWorkpaperTest()
+        {
+            var employmentTerminationPaymentRepository = new EmploymentTerminationPaymentRepository(Client);
+            var workpaperResponseOfEmploymentTerminationPaymentWorkpaper = await employmentTerminationPaymentRepository.CreateAsync(_taxpayer.Id,
                 TaxYear);
 
-            var firstHomeSuperSaverWorkpaperFactory = new FirstHomeSuperSaverRepository(Client);
-            await firstHomeSuperSaverWorkpaperFactory.CreateAsync(taxpayer.Id,
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfEmploymentTerminationPaymentWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task FirstHomeSuperSaverWorkpaperWorkpaperTest()
+        {
+            var firstHomeSuperSaverRepository = new FirstHomeSuperSaverRepository(Client);
+            var workpaperResponseOfFirstHomeSuperSaverWorkpaper = await firstHomeSuperSaverRepository.CreateAsync(_taxpayer.Id,
                 TaxYear);
 
-            var foreignEmploymentIncomeWorkpaperFactory = new ForeignEmploymentIncomeRepository(Client);
-            await foreignEmploymentIncomeWorkpaperFactory.CreateAsync(taxpayer.Id,
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfFirstHomeSuperSaverWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task ForeignEmploymentIncomeWorkpaperTest()
+        {
+            var foreignEmploymentIncomeRepository = new ForeignEmploymentIncomeRepository(Client);
+            var workpaperResponseOfForeignEmploymentIncomeWorkpaper =
+                await foreignEmploymentIncomeRepository.CreateAsync(_taxpayer.Id,
+                    TaxYear);
+
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfForeignEmploymentIncomeWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task ForeignIncomeWorkpaperTest()
+        {
+            var foreignIncomeRepository = new ForeignIncomeRepository(Client);
+            var workpaperResponseOfForeignIncomeWorkpaper = await foreignIncomeRepository.CreateAsync(_taxpayer.Id,
                 TaxYear);
 
-            var foreignIncomeWorkpaperFactory = new ForeignIncomeRepository(Client);
-            await foreignIncomeWorkpaperFactory.CreateAsync(taxpayer.Id,
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfForeignIncomeWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task ForeignPensionOrAnnuityWorkpaperTest()
+        {
+            var foreignPensionOrAnnuityRepository = new ForeignPensionOrAnnuityRepository(Client);
+            var workpaperResponseOfForeignPensionOrAnnuityWorkpaper = await foreignPensionOrAnnuityRepository.CreateAsync(_taxpayer.Id,
                 TaxYear);
 
-            var foreignPensionOrAnnuityWorkpaperFactory = new ForeignPensionOrAnnuityRepository(Client);
-            await foreignPensionOrAnnuityWorkpaperFactory.CreateAsync(taxpayer.Id,
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfForeignPensionOrAnnuityWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task OtherIncomeWorkpaperTest()
+        {
+            var otherIncomeRepository = new OtherIncomeRepository(Client);
+            var workpaperResponseOfOtherIncomeWorkpaper = await otherIncomeRepository.CreateAsync(_taxpayer.Id,
                 TaxYear);
 
-            var otherIncomeWorkpaperFactory = new OtherIncomeRepository(Client);
-            await otherIncomeWorkpaperFactory.CreateAsync(taxpayer.Id,
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfOtherIncomeWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task SuperannuationIncomeStreamWorkpaperTest()
+        {
+            var superannuationIncomeStreamRepository = new SuperannuationIncomeStreamRepository(Client);
+            var workpaperResponseOfSuperannuationIncomeStreamWorkpaper = await superannuationIncomeStreamRepository.CreateAsync(_taxpayer.Id,
                 TaxYear);
 
-            var superannuationIncomeStreamWorkpaperFactory = new SuperannuationIncomeStreamRepository(Client);
-            await superannuationIncomeStreamWorkpaperFactory.CreateAsync(taxpayer.Id,
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfSuperannuationIncomeStreamWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task SuperannuationLumpSumPaymentWorkpaperTest()
+        {
+            var superannuationLumpSumPaymentRepository = new SuperannuationLumpSumPaymentRepository(Client);
+            var workpaperResponseOfSuperannuationLumpSumPaymentWorkpaper = await superannuationLumpSumPaymentRepository.CreateAsync(_taxpayer.Id,
                 TaxYear);
 
-            var superannuationLumpSumPaymentWorkpaperFactory = new SuperannuationLumpSumPaymentRepository(Client);
-            await superannuationLumpSumPaymentWorkpaperFactory.CreateAsync(taxpayer.Id,
-                TaxYear);
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfSuperannuationLumpSumPaymentWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
 
-            var employmentIncomeWorkpaperFactory = new EmploymentIncomeRepository(Client);
-            await employmentIncomeWorkpaperFactory.CreateAsync(taxpayer.Id,
+        [Fact]
+        public async Task EmploymentIncomeWorkpaperTest()
+        {
+            var employmentIncomeRepository = new EmploymentIncomeRepository(Client);
+            var workpaperResponseOfEmploymentIncomeStatementWorkpaper = await employmentIncomeRepository.CreateAsync(_taxpayer.Id,
                 TaxYear,
                 employerName: "ABC Company Limited",
                 governmentIdentifier: "",
@@ -104,8 +283,14 @@ namespace Taxlab.ApiClientCli.Personas
                 allowanceIncome: 310m
             );
 
-            var dividendWorkpaperFactory = new DividendIncomeRepository(Client);
-            await dividendWorkpaperFactory.CreateAsync(taxpayer.Id,
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfEmploymentIncomeStatementWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task DividendIncomeWorkpaperTest()
+        {
+            var dividendIncomeRepository = new DividendIncomeRepository(Client);
+            var workpaperResponseOfDividendIncomeWorkpaper = await dividendIncomeRepository.CreateAsync(_taxpayer.Id,
                 TaxYear,
                 "ABC Company Limited",
                 "123456789",
@@ -115,8 +300,14 @@ namespace Taxlab.ApiClientCli.Personas
                 300m,
                 -10m);
 
-            var interestWorkpaperFactory = new InterestIncomeRepository(Client);
-            await interestWorkpaperFactory.CreateAsync(taxpayer.Id,
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfDividendIncomeWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task InterestIncomeWorkpaperTest()
+        {
+            var interestIncomeRepository = new InterestIncomeRepository(Client);
+            var workpaperResponseOfInterestIncomeWorkpaper = await interestIncomeRepository.CreateAsync(_taxpayer.Id,
                 TaxYear,
                 "Our financial institution name",
                 "123456789",
@@ -124,8 +315,14 @@ namespace Taxlab.ApiClientCli.Personas
                 1000m,
                 -200m);
 
-            var personalSuperannuationContributionFactory = new PersonalSuperannuationContributionRepository(Client);
-            await personalSuperannuationContributionFactory.CreateAsync(taxpayer.Id,
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfInterestIncomeWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task PersonalSuperannuationContributionWorkpaperTest()
+        {
+            var personalSuperannuationContributionRepository = new PersonalSuperannuationContributionRepository(Client);
+            var workpaperResponseOfPersonalSuperannuationContributionWorkpaper = await personalSuperannuationContributionRepository.CreateAsync(_taxpayer.Id,
                 TaxYear,
                 "XYZ Company Limited",
                 "123456789",
@@ -136,8 +333,14 @@ namespace Taxlab.ApiClientCli.Personas
                 true
             );
 
-            var governmentAllowanceFactory = new GovernmentAllowanceRepository(Client);
-            await governmentAllowanceFactory.CreateAsync(taxpayer.Id,
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfPersonalSuperannuationContributionWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task GovernmentAllowanceWorkpaperTest()
+        {
+            var governmentAllowanceRepository = new GovernmentAllowanceRepository(Client);
+            var workpaperResponseOfGovernmentAllowanceWorkpaper = await governmentAllowanceRepository.CreateAsync(_taxpayer.Id,
                 TaxYear,
                 "Allowance",
                 "testDescription",
@@ -145,30 +348,42 @@ namespace Taxlab.ApiClientCli.Personas
                 1000m
             );
 
-            var governmentPensionFactory = new GovernmentPensionRepository(Client);
-            await governmentPensionFactory.CreateAsync(taxpayer.Id,
+
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfGovernmentAllowanceWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task GovernmentPensionWorkpaperTest()
+        {
+            var governmentPensionRepository = new GovernmentPensionRepository(Client);
+            var workpaperResponseOfGovernmentPensionWorkpaper = await governmentPensionRepository.CreateAsync(_taxpayer.Id,
                 TaxYear,
                 "testDescription",
                 1000m,
                 1000m
             );
 
-            var chartiableDonation = new OtherDeductionRepository(Client);
-            await chartiableDonation.CreateAsync(taxpayer.Id,
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfGovernmentPensionWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task OtherDeductionWorkpaperTest()
+        {
+            var otherDeductionRepository = new OtherDeductionRepository(Client);
+            var workpaperResponseOfOtherDeductionsWorkpaper = await otherDeductionRepository.CreateAsync(_taxpayer.Id,
                 TaxYear,
                 -10000m,
                 ReturnDisclosureTypes.AUIndividualGiftsOrDonations
             );
 
-            var expense = new OtherDeductionRepository(Client);
-            await expense.CreateAsync(taxpayer.Id,
-                TaxYear,
-                -10000m,
-                ReturnDisclosureTypes.AUDividend
-            );
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfOtherDeductionsWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
 
-            var declarationsWorkpaperFactory = new DeclarationsRepository(Client);
-            await declarationsWorkpaperFactory.CreateAsync(taxpayer.Id,
+        [Fact]
+        public async Task DeclarationsWorkpaperTest()
+        {
+            var declarationsRepository = new DeclarationsRepository(Client);
+            var workpaperResponseOfDeclarationsWorkpaper = await declarationsRepository.CreateAsync(_taxpayer.Id,
                 TaxYear,
                 taxAgentNumber: "",
                 taxAgentAbn: "",
@@ -183,7 +398,14 @@ namespace Taxlab.ApiClientCli.Personas
                 taxAgentSignatureLastName: "Citizen"
             );
 
-            var rentalPropertyWorkpaperFactory = new RentalPropertyRepository(Client);
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfDeclarationsWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task RentalPropertyWorkpaperTest()
+        {
+
+            var rentalPropertyRepository = new RentalPropertyRepository(Client);
 
             var rentalPropertyInformation = new RentalPropertyInformation
             {
@@ -251,18 +473,14 @@ namespace Taxlab.ApiClientCli.Personas
             var insurance = new RentalTransactionCollectionOfNumericCellAndDecimal
             {
                 Description = "Insurance",
-                //Total = 216000,
-                //Mine = 151200,
                 RentalTransactions = new List<RentalTransactionOfNumericCellAndDecimal>
                      {
                          new RentalTransactionOfNumericCellAndDecimal {
                              Description = "Insurance",
                              Total = new NumericCell
                              {
-                                 //Value = 216000,
                                  Formula = "700"
                              },
-                             //Mine = 151200
                          }
                      }
             };
@@ -311,7 +529,7 @@ namespace Taxlab.ApiClientCli.Personas
                      }
             };
 
-            await rentalPropertyWorkpaperFactory.CreateAsync(taxpayer.Id,
+            var workpaperResponseOfRentalPropertyWorkpaper = await rentalPropertyRepository.CreateAsync(_taxpayer.Id,
                TaxYear,
                $"{FirstName} {LastName}",
                rentalPropertyInformation,
@@ -343,17 +561,34 @@ namespace Taxlab.ApiClientCli.Personas
                1m
            ).ConfigureAwait(false);
 
-            var medicareWorkpaperFactory = new MedicareRepository(Client);
-            await medicareWorkpaperFactory.CreateAsync(taxpayer.Id,
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfRentalPropertyWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task MedicareWorkpaperTest()
+        {
+            var medicareRepository = new MedicareRepository(Client);
+            var workpaperResponseOfMedicareWorkpaper = await medicareRepository.CreateAsync(_taxpayer.Id,
                 TaxYear);
 
-            var businessIncomeExpensesWorkpaperFactory = new BusinessIncomeExpensesRepository(Client);
-            await businessIncomeExpensesWorkpaperFactory.CreateAsync(taxpayer.Id,
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfMedicareWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task BusinessIncomeExpensesWorkpaperTest()
+        {
+            var businessIncomeExpensesRepository = new BusinessIncomeExpensesRepository(Client);
+            var workpaperResponseOfBusinessIncomeExpensesWorkpaper = await businessIncomeExpensesRepository.CreateAsync(_taxpayer.Id,
                 TaxYear);
 
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfBusinessIncomeExpensesWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
 
-            var distributionFactory = new DistributionsRepository(Client);
-            await distributionFactory.CreateAsync(taxpayerId: taxpayer.Id,
+        [Fact]
+        public async Task DistributionsWorkpaperTest()
+        {
+            var distributionsRepository = new DistributionsRepository(Client);
+            var workpaperResponseOfDistributionsWorkpaper = await distributionsRepository.CreateAsync(taxpayerId: _taxpayer.Id,
                 taxYear: TaxYear,
                 taxpayerName: "Distribution From Trust ABC",
                 typeOfTrustCode: "C",
@@ -362,12 +597,25 @@ namespace Taxlab.ApiClientCli.Personas
 
             );
 
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfDistributionsWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task IncomingDistributionsWorkpaperTest()
+        {
             var incomingDistributionsRepository = new IncomingDistributionsRepository(Client);
-            var workpaperResponseOfIncomingDistributionsWorkpaper = await incomingDistributionsRepository.CreateAsync(taxpayer.Id,
+            var workpaperResponseOfIncomingDistributionsWorkpaper = await incomingDistributionsRepository.CreateAsync(
+                _taxpayer.Id,
                 TaxYear);
 
-            var capitalGainOrLossTransactionWorkpaperFactory = new CapitalGainOrLossTransactionRepository(Client);
-            await capitalGainOrLossTransactionWorkpaperFactory.CreateAsync(taxpayerId: taxpayer.Id,
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfIncomingDistributionsWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task CapitalGainOrLossTransactionWorkpaperTest()
+        {
+            var capitalGainOrLossTransactionRepository = new CapitalGainOrLossTransactionRepository(Client);
+            var workpaperResponseOfCapitalGainOrLossTransactionWorkpaper = await capitalGainOrLossTransactionRepository.CreateAsync(taxpayerId: _taxpayer.Id,
                 taxYear: TaxYear,
                 description: "Capital Gain Or Loss Transaction",
                 category: "1",
@@ -387,69 +635,29 @@ namespace Taxlab.ApiClientCli.Personas
                 retirementExemptionAmount: 0m,
                 isEligibleForRolloverConcession: false,
                 rolloverConcessionAmount: 0m
-                );
-
-
-            var allAdjustmentWorkpapers = await Client.Workpapers_AdjustmentWorkpapersAsync(taxpayer.Id, TaxYear, null)
-                .ConfigureAwait(false);
-
-            var allATaxYearWorkpapers = await Client.Workpapers_TaxYearWorkpapersAsync(taxpayer.Id, TaxYear, null)
-                .ConfigureAwait(false);
-
-            //Assert.True(countryListFetched);
-
-            
-        }
-
-        private async Task<TaxpayerResponse> CreateTaxpayer(TaxlabApiClient Client)
-        {
-            var taxpayerService = new TaxpayerRepository(Client);
-
-            var taxpayerResponse = await taxpayerService.CreateAsync(TaxYear,
-                FirstName,
-                LastName,
-                TaxFileNumber);
-
-            var taxpayer = taxpayerResponse.Content;
-            Client.TaxpayerId = taxpayer.Id;
-            Client.Taxyear = TaxYear;
-            Client.TaxpayerEntity = TaxpayerEntity;
-
-            var taxReturnRepository = new TaxReturnRepository(Client);
-            var taxReturnResponse = await taxReturnRepository.CreateAsync(taxpayer.Id,
-                TaxYear,
-                _balanceDate,
-                _balanceDate.PlusYears(-1).PlusDays(-1));
-
-
-            if (taxReturnResponse.Success == false)
-            {
-                throw new Exception(taxReturnResponse.Message);
-            }
-
-            var details = new TaxpayerDetailsRepository(Client);
-            await details.CreateAsync(taxpayer.Id,
-                TaxYear,
-                dateOfBirth: new LocalDate(1975, 4, 12),
-                dateOfDeath: new LocalDate(2020, 12, 31),
-                finalReturn: true,
-                mobilePhoneNumber: "0402698741",
-                daytimeAreaPhoneCode: "613",
-                daytimePhoneNumber: "54835123",
-                emailAddress: "JohnC12@hotmail.com",
-                bsbNumber: "553026",
-                bankAccountName: "Bank of Melbourne",
-                bankAccountNumber: "15987456",
-                higherEducationLoanProgramBalance: 100,
-                vetStudentLoanBalance: 200,
-                studentFinancialSupplementSchemeBalance: 300,
-                studentStartupLoanBalance: 400,
-                abstudyStudentStartupLoanBalance: 500,
-                tradeSupportLoanBalance: 600,
-                smallBusinessIndicator: false
             );
 
-            return taxpayerResponse;
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfCapitalGainOrLossTransactionWorkpaper.Workpaper.Slug.TaxpayerId);
         }
+
+        [Fact]
+        public async Task AllAdjustmentWorkpapersFetch()
+        {
+            var allAdjustmentWorkpapers = await Client.Workpapers_AdjustmentWorkpapersAsync(_taxpayer.Id, TaxYear, null)
+                .ConfigureAwait(false);
+
+            Assert.True(allAdjustmentWorkpapers.Success);
+        }
+
+        [Fact]
+        public async Task allTaxYearWorkpapersFetch()
+        {
+            var allTaxYearWorkpapers = await Client.Workpapers_TaxYearWorkpapersAsync(_taxpayer.Id, TaxYear, null)
+                .ConfigureAwait(false);
+
+            Assert.True(allTaxYearWorkpapers.Success);
+        }
+
+        
     }
 }
