@@ -11,8 +11,8 @@ namespace Taxlab.ApiClientCli.Implementations
         private static readonly HttpClient HttpClient = new HttpClient();
 
         //choose api location
-        private static readonly string BaseUrl = "https://localhost:44359/";
-        //private static readonly string BaseUrl = "https://preview.taxlab.online/api-internal/";
+        //private static readonly string BaseUrl = "https://localhost:44359/";
+        private static readonly string BaseUrl = "https://preview.taxlab.online/api-internal/";
 
         //add B2C token or jwtToken based on scenario
         private static readonly string Token = "add token here";
