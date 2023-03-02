@@ -131,7 +131,7 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
         public async Task<WorkpaperResponseOfRentalPropertyWorkpaper> GetRentalPropertyWorkpaperAsync(Guid taxpayerId, int taxYear, CreateRentalPropertyWorkpaperResponse createRentalPropertyResponse)
         {
             var workpaperResponse = await Client
-                .Workpapers_GetRentalPropertyWorkpaperAsync(taxpayerId, taxYear, WorkpaperType.RentalPropertyWorkpaper, createRentalPropertyResponse.DocumentId, false, false, false)
+                .Workpapers_GetRentalPropertyWorkpaperAsync(taxpayerId, taxYear, createRentalPropertyResponse.DocumentId)
                 .ConfigureAwait(false);
 
             return workpaperResponse;

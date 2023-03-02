@@ -14,10 +14,7 @@ namespace TaxLab.Test.ApiClientCli.Workpapers.TaxYearWorkpapers
         [Fact]
         public async void CreateTaxpayerWithCapitalGainsWorkpapers()
         {
-            string baseUrl = "https://preview.taxlab.online/api-internal/";
-            HttpClient httpclient = new HttpClient();
-            var authService = new AuthService();
-            TaxlabApiClient client = new TaxlabApiClient(baseUrl, httpclient, authService);
+            TaxlabApiClient client = TestSetup.GetTaxlabApiClient();
 
             var repo = new IndividualWithPropertyCapitalGain();
             var taxYear = 2021;
@@ -33,7 +30,7 @@ namespace TaxLab.Test.ApiClientCli.Workpapers.TaxYearWorkpapers
             
             // get the capital gains workpaper and check the contents
             var capitalGainsWorkpaper = await client
-                .Workpapers_GetCapitalGainsWorkpaperAsync(taxpayer.Id, taxYear, WorkpaperType.CapitalGainsWorkpaper, Guid.Empty, false, false, true)
+                .Workpapers_GetCapitalGainsWorkpaperAsync(taxpayer.Id, taxYear)
                 .ConfigureAwait(false);
 
             Assert.Equal(203896.52m, capitalGainsWorkpaper.Workpaper.CurrentYearGains);

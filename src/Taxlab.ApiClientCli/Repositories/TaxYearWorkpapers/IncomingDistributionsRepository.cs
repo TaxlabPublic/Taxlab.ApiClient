@@ -52,7 +52,7 @@ namespace Taxlab.ApiClientCli.Workpapers.TaxYearWorkpapers
         )
         {
             var workpaperResponse = await Client
-                .Workpapers_GetIncomingDistributionsWorkpaperAsync(taxpayerId, taxYear, WorkpaperType.TaxpayerDetailsWorkpaper, Guid.Empty, false, false, true)
+                .Workpapers_GetIncomingDistributionsWorkpaperAsync(taxpayerId, taxYear)
                 .ConfigureAwait(false);
 
             var workpaper = workpaperResponse.Workpaper;
@@ -99,7 +99,7 @@ namespace Taxlab.ApiClientCli.Workpapers.TaxYearWorkpapers
                 TaxYear = taxYear,
                 DocumentIndexId = workpaperResponse.DocumentIndexId,
                 CompositeRequest = true,
-                WorkpaperType = WorkpaperType.DeclarationsWorkpaper,
+                WorkpaperType = WorkpaperType.IncomingDistributionsWorkpaper,
                 Workpaper = workpaperResponse.Workpaper
             };
 

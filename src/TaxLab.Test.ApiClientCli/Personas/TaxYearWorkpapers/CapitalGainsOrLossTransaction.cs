@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using Taxlab.ApiClientCli.Implementations;
 using Taxlab.ApiClientLibrary;
 using Xunit;
@@ -12,10 +11,7 @@ namespace TaxLab.Test.ApiClientCli.Personas.TaxYearWorkpapers
         [Fact]
         public async void CreateCapitalGainsOrLossTransactionWorkpapers()
         {
-            string baseUrl = "https://preview.taxlab.online/api-internal/";
-            HttpClient httpclient = new HttpClient();
-            var authService = new AuthService();
-            TaxlabApiClient client = new TaxlabApiClient(baseUrl, httpclient, authService);
+            TaxlabApiClient client = TestSetup.GetTaxlabApiClient();
 
             var taxpayerId = new Guid("af77567b-6968-4b2a-b4c4-6db0fa4f9647");
             var taxYear = 2023;
@@ -41,9 +37,7 @@ namespace TaxLab.Test.ApiClientCli.Personas.TaxYearWorkpapers
 
 
             var getCapitalGainOrLossTransactionWorkpaperResponse = await client
-                .Workpapers_GetCapitalGainOrLossTransactionWorkpaperAsync(taxpayerId, taxYear,
-                    WorkpaperType.CapitalGainOrLossTransactionWorkpaper,
-                    createCapitalGainOrLossTransactionWorkpaperResponse.DocumentId, false, false, false)
+                .Workpapers_GetCapitalGainOrLossTransactionWorkpaperAsync(taxpayerId, taxYear, createCapitalGainOrLossTransactionWorkpaperResponse.DocumentId)
                 .ConfigureAwait(false);
 
 
