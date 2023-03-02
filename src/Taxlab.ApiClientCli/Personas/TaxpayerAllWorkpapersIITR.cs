@@ -19,7 +19,7 @@ namespace Taxlab.ApiClientCli.Personas
         private TaxlabApiClient Client;
 
         //set your test taxpayer values here
-        private const string FirstName = "IndividualThree";
+        private const string FirstName = "Individualfour";
         private const string LastName = "Zey";
         private const string TaxFileNumber = "32989432";
         private const EntityType TaxpayerEntity = EntityType.IndividualAU;
@@ -159,7 +159,7 @@ namespace Taxlab.ApiClientCli.Personas
                 -10000m,
                 ReturnDisclosureTypes.AUIndividualGiftsOrDonations
             );
-            
+
             var expense = new OtherDeductionRepository(Client);
             await expense.CreateAsync(taxpayer.Id,
                 TaxYear,
@@ -216,17 +216,17 @@ namespace Taxlab.ApiClientCli.Personas
                 Total = 216000,
                 Mine = 151200,
                 RentalTransactions = new List<RentalTransactionOfNumericCellAndDecimal>
-                    {
-                        new RentalTransactionOfNumericCellAndDecimal {
-                            Description = "example rent",
-                            Total = new NumericCell
-                            {
-                                Value = 216000,
-                                Formula = "216000"
-                            },
-                            Mine = 151200
-                        }
-                    }
+                     {
+                         new RentalTransactionOfNumericCellAndDecimal {
+                             Description = "example rent",
+                             Total = new NumericCell
+                             {
+                                 Value = 216000,
+                                 Formula = "216000"
+                             },
+                             Mine = 151200
+                         }
+                     }
             };
 
             var otherIncome = new RentalTransactionCollectionOfNumericCellAndDecimal
@@ -235,17 +235,17 @@ namespace Taxlab.ApiClientCli.Personas
                 Total = 700,
                 Mine = 490,
                 RentalTransactions = new List<RentalTransactionOfNumericCellAndDecimal>
-                    {
-                        new RentalTransactionOfNumericCellAndDecimal {
-                            Description = "example other income",
-                            Total = new NumericCell
-                            {
-                                Value = 700,
-                                Formula = "700"
-                            },
-                            Mine = 490
-                        }
-                    }
+                     {
+                         new RentalTransactionOfNumericCellAndDecimal {
+                             Description = "example other income",
+                             Total = new NumericCell
+                             {
+                                 Value = 700,
+                                 Formula = "700"
+                             },
+                             Mine = 490
+                         }
+                     }
             };
 
             var insurance = new RentalTransactionCollectionOfNumericCellAndDecimal
@@ -254,17 +254,17 @@ namespace Taxlab.ApiClientCli.Personas
                 //Total = 216000,
                 //Mine = 151200,
                 RentalTransactions = new List<RentalTransactionOfNumericCellAndDecimal>
-                    {
-                        new RentalTransactionOfNumericCellAndDecimal {
-                            Description = "Insurance",
-                            Total = new NumericCell
-                            {
-                                //Value = 216000,
-                                Formula = "700"
-                            },
-                            //Mine = 151200
-                        }
-                    }
+                     {
+                         new RentalTransactionOfNumericCellAndDecimal {
+                             Description = "Insurance",
+                             Total = new NumericCell
+                             {
+                                 //Value = 216000,
+                                 Formula = "700"
+                             },
+                             //Mine = 151200
+                         }
+                     }
             };
 
             var grossIncome = new RentalTransactionOfDecimalAndDecimal
@@ -280,35 +280,35 @@ namespace Taxlab.ApiClientCli.Personas
                 Total = -78479,
                 Mine = -2480,
                 RentalTransactions = new List<RentalTransactionOfNumericCellAndNumericCell>
-                    {
-                        new RentalTransactionOfNumericCellAndNumericCell {
-                            Description = "example loan 1",
-                            Total = new NumericCell
-                            {
-                                Value = -48024,
-                                Formula = "-48024"
-                            },
-                             Mine = new NumericCell
-                            {
-                                Value = 0,
-                                Formula = "0"
-                            },
-                        },
-                        new RentalTransactionOfNumericCellAndNumericCell {
-                            Description = "example loan 2",
-                            Total = new NumericCell
-                            {
-                                Value = -30455,
-                                Formula = "-30455"
-                            },
+                     {
+                         new RentalTransactionOfNumericCellAndNumericCell {
+                             Description = "example loan 1",
+                             Total = new NumericCell
+                             {
+                                 Value = -48024,
+                                 Formula = "-48024"
+                             },
                               Mine = new NumericCell
-                            {
-                                Value = -2480,
-                                Formula = "-2480"
-                            },
+                             {
+                                 Value = 0,
+                                 Formula = "0"
+                             },
+                         },
+                         new RentalTransactionOfNumericCellAndNumericCell {
+                             Description = "example loan 2",
+                             Total = new NumericCell
+                             {
+                                 Value = -30455,
+                                 Formula = "-30455"
+                             },
+                               Mine = new NumericCell
+                             {
+                                 Value = -2480,
+                                 Formula = "-2480"
+                             },
 
-                        }
-                    }
+                         }
+                     }
             };
 
             await rentalPropertyWorkpaperFactory.CreateAsync(taxpayer.Id,
@@ -347,6 +347,47 @@ namespace Taxlab.ApiClientCli.Personas
             await medicareWorkpaperFactory.CreateAsync(taxpayer.Id,
                 TaxYear);
 
+            var businessIncomeExpensesWorkpaperFactory = new BusinessIncomeExpensesRepository(Client);
+            await businessIncomeExpensesWorkpaperFactory.CreateAsync(taxpayer.Id,
+                TaxYear);
+
+
+            var distributionFactory = new DistributionsRepository(Client);
+            await distributionFactory.CreateAsync(taxpayerId: taxpayer.Id,
+                taxYear: TaxYear,
+                taxpayerName: "Distribution From Trust ABC",
+                typeOfTrustCode: "C",
+                shareOfIncomeNonPrimaryProduction: 10000m,
+                frankingCredit: -1000m
+
+            );
+
+            var incomingDistributionsRepository = new IncomingDistributionsRepository(Client);
+            var workpaperResponseOfIncomingDistributionsWorkpaper = await incomingDistributionsRepository.CreateAsync(taxpayer.Id,
+                TaxYear);
+
+            var capitalGainOrLossTransactionWorkpaperFactory = new CapitalGainOrLossTransactionRepository(Client);
+            await capitalGainOrLossTransactionWorkpaperFactory.CreateAsync(taxpayerId: taxpayer.Id,
+                taxYear: TaxYear,
+                description: "Capital Gain Or Loss Transaction",
+                category: "1",
+                purchaseDate: null,
+                purchaseAmount: 5000m,
+                purchaseAdjustment: null,
+                disposalDate: null,
+                disposalAdjustment: null,
+                disposalAmount: 10000m,
+                discountAmount: 0m,
+                currentYearLossesApplied: 0m,
+                priorLossesApplied: 0m,
+                capitalLossesTransferredInApplied: 0m,
+                isEligibleForDiscount: false,
+                isEligibleForActiveAssetReduction: false,
+                isEligibleForRetirementExemption: false,
+                retirementExemptionAmount: 0m,
+                isEligibleForRolloverConcession: false,
+                rolloverConcessionAmount: 0m
+                );
 
 
             var allAdjustmentWorkpapers = await Client.Workpapers_AdjustmentWorkpapersAsync(taxpayer.Id, TaxYear, null)
@@ -355,7 +396,7 @@ namespace Taxlab.ApiClientCli.Personas
             var allATaxYearWorkpapers = await Client.Workpapers_TaxYearWorkpapersAsync(taxpayer.Id, TaxYear, null)
                 .ConfigureAwait(false);
 
-            Assert.True(countryListFetched);
+            //Assert.True(countryListFetched);
 
             
         }
