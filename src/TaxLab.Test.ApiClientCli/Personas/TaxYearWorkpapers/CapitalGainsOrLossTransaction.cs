@@ -1,7 +1,5 @@
-﻿using OfficeOpenXml.FormulaParsing.Excel.Functions.Database;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using Taxlab.ApiClientCli.Implementations;
 using Taxlab.ApiClientLibrary;
 using Xunit;
