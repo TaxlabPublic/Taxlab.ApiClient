@@ -19,6 +19,7 @@ using Taxlab.ApiClientCli.Workpapers.TaxYearWorkpapers;
 using Taxlab.ApiClientLibrary;
 using Xunit;
 using Xunit.Abstractions;
+using Taxlab.ApiClientCli.Repositories.AdjustmentWorkpapers;
 
 namespace Taxlab.ApiClientCli.Personas
 {
@@ -104,12 +105,144 @@ namespace Taxlab.ApiClientCli.Personas
         public async void NITRWorkpapersInRepositoriesTest()
         {
             CreateTaxpayerTest();
+            await DepreciatingAssetsDisposalsWorkpaperTest();
+            await DepreciatingAssetsFirstDeductedWorkpaperTest();
+            await DepreciationWorkpaperTest();
+            await DividendIncomeNonIndividualWorkpaperTest();
+            await ExpensesCapitalisedForTaxWorkpaperTest();
+            await ForeignDeductionNonIndividualWorkpaperTest();
+            await ForeignIncomeNonIndividualWorkpaperTest();
+            await DepreciationWorkpaperTest();
+            await PermanentDifferenceWorkpaperTest();
+            await SelfEducationDeductionWorkpaperTest();
+            await TemporaryDifferenceWorkpaperTest();
         }
 
         [Fact]
         public void CreateTaxpayerTest()
         {
             Assert.Equal($"{FirstName}", _taxpayer.TaxpayerName);
+        }
+
+        [Fact]
+        public async Task DividendIncomeNonIndividualWorkpaperTest()
+        {
+            var dividendIncomeNonIndividualRepository = new DividendIncomeNonIndividualRepository(Client);
+            var workpaperResponseOfDividendIncomeNonIndividualWorkpaper = await dividendIncomeNonIndividualRepository.CreateAsync(
+                _taxpayer.Id,
+                TaxYear);
+
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfDividendIncomeNonIndividualWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task DepreciatingAssetsDisposalsWorkpaperTest()
+        {
+            var depreciatingAssetsDisposalsRepository = new DepreciatingAssetsDisposalsRepository(Client);
+            var workpaperResponseOfDepreciatingAssetsDisposalsWorkpaper = await depreciatingAssetsDisposalsRepository.CreateAsync(
+                _taxpayer.Id,
+                TaxYear);
+
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfDepreciatingAssetsDisposalsWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task DepreciatingAssetsFirstDeductedWorkpaperTest()
+        {
+            var depreciatingAssetsFirstDeductedRepository = new DepreciatingAssetsFirstDeductedRepository(Client);
+            var workpaperResponseOfDepreciatingAssetsFirstDeductedWorkpaper = await depreciatingAssetsFirstDeductedRepository.CreateAsync(
+                _taxpayer.Id,
+                TaxYear);
+
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfDepreciatingAssetsFirstDeductedWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task DepreciationWorkpaperTest()
+        {
+            var depreciationRepository = new DepreciationRepository(Client);
+            var workpaperResponseOfDepreciationWorkpaper = await depreciationRepository.CreateAsync(
+                _taxpayer.Id,
+                TaxYear);
+
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfDepreciationWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task ExpensesCapitalisedForTaxWorkpaperTest()
+        {
+            var expensesCapitalisedForTaxRepository = new ExpensesCapitalisedForTaxRepository(Client);
+            var workpaperResponseOfExpensesCapitalisedForTaxWorkpaper = await expensesCapitalisedForTaxRepository.CreateAsync(
+                _taxpayer.Id,
+                TaxYear);
+
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfExpensesCapitalisedForTaxWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task ForeignDeductionNonIndividualWorkpaperTest()
+        {
+            var foreignDeductionNonIndividualRepository = new ForeignDeductionNonIndividualRepository(Client);
+            var workpaperResponseOfForeignDeductionNonIndividualWorkpaper = await foreignDeductionNonIndividualRepository.CreateAsync(
+                _taxpayer.Id,
+                TaxYear);
+
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfForeignDeductionNonIndividualWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task ForeignIncomeNonIndividualWorkpaperTest()
+        {
+            var foreignIncomeNonIndividualRepository = new ForeignIncomeNonIndividualRepository(Client);
+            var workpaperResponseOfForeignIncomeNonIndividualWorkpaper = await foreignIncomeNonIndividualRepository.CreateAsync(
+                _taxpayer.Id,
+                TaxYear);
+
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfForeignIncomeNonIndividualWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task InterestIncomeNonIndividualWorkpaperTest()
+        {
+            var interestIncomeNonIndividualRepository = new InterestIncomeNonIndividualRepository(Client);
+            var workpaperResponseOfForeignIncomeNonIndividualWorkpaper = await interestIncomeNonIndividualRepository.CreateAsync(
+                _taxpayer.Id,
+                TaxYear);
+
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfForeignIncomeNonIndividualWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task PermanentDifferenceWorkpaperTest()
+        {
+            var permanentDifferenceRepository = new PermanentDifferenceRepository(Client);
+            var workpaperResponseOfPermanentDifferenceWorkpaper = await permanentDifferenceRepository.CreateAsync(
+                _taxpayer.Id,
+                TaxYear);
+
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfPermanentDifferenceWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task SelfEducationDeductionWorkpaperTest()
+        {
+            var selfEducationDeductionRepository = new SelfEducationDeductionRepository(Client);
+            var workpaperResponseOfSelfEducationDeductionWorkpaper = await selfEducationDeductionRepository.CreateAsync(
+                _taxpayer.Id,
+                TaxYear);
+
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfSelfEducationDeductionWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task TemporaryDifferenceWorkpaperTest()
+        {
+            var temporaryDifferenceRepository = new TemporaryDifferenceRepository(Client);
+            var workpaperResponseOfTemporaryDifferenceWorkpaperWorkpaper = await temporaryDifferenceRepository.CreateAsync(
+                _taxpayer.Id,
+                TaxYear);
+
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfTemporaryDifferenceWorkpaperWorkpaper.Workpaper.Slug.TaxpayerId);
         }
 
 

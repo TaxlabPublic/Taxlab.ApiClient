@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Taxlab.ApiClientCli.Implementations;
+using Taxlab.ApiClientCli.Repositories.AdjustmentWorkpapers;
 using Taxlab.ApiClientCli.Repositories.Taxpayer;
 using Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers;
 using Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers;
@@ -24,7 +25,7 @@ namespace Taxlab.ApiClientCli.Personas
 
         //set your test taxpayer values here
         private const string FirstName = "Individual";
-        private const string LastName = "Zeyto";
+        private const string LastName = "Zeyb";
         private const string TaxFileNumber = "32989432";
         private const EntityType TaxpayerEntity = EntityType.IndividualAU;
         private const int TaxYear = 2021;
@@ -126,6 +127,11 @@ namespace Taxlab.ApiClientCli.Personas
             await DistributionsWorkpaperTest();
             await IncomingDistributionsWorkpaperTest();
             await CapitalGainOrLossTransactionWorkpaperTest();
+            await DepreciatingAssetsDisposalsWorkpaperTest();
+            await DepreciatingAssetsFirstDeductedWorkpaperTest();
+            await DepreciationWorkpaperTest();
+            await ExpensesCapitalisedForTaxWorkpaperTest();
+            await ForeignEmploymentIncomeStatementWorkpaperTest();
             await AllAdjustmentWorkpapersFetch();
             await allTaxYearWorkpapersFetch();
         }
@@ -704,6 +710,82 @@ namespace Taxlab.ApiClientCli.Personas
             );
 
             Assert.Equal(_taxpayer.Id, workpaperResponseOfSpouseWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task DepreciatingAssetsDisposalsWorkpaperTest()
+        {
+            var depreciatingAssetsDisposalsRepository = new DepreciatingAssetsDisposalsRepository(Client);
+            var workpaperResponseOfDepreciatingAssetsDisposalsWorkpaper = await depreciatingAssetsDisposalsRepository.CreateAsync(
+                _taxpayer.Id,
+                TaxYear);
+
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfDepreciatingAssetsDisposalsWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task DepreciatingAssetsFirstDeductedWorkpaperTest()
+        {
+            var depreciatingAssetsFirstDeductedRepository = new DepreciatingAssetsFirstDeductedRepository(Client);
+            var workpaperResponseOfDepreciatingAssetsFirstDeductedWorkpaper = await depreciatingAssetsFirstDeductedRepository.CreateAsync(
+                _taxpayer.Id,
+                TaxYear);
+
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfDepreciatingAssetsFirstDeductedWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task DepreciationWorkpaperTest()
+        {
+            var depreciationRepository = new DepreciationRepository(Client);
+            var workpaperResponseOfDepreciationWorkpaper = await depreciationRepository.CreateAsync(
+                _taxpayer.Id,
+                TaxYear);
+
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfDepreciationWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task ExpensesCapitalisedForTaxWorkpaperTest()
+        {
+            var expensesCapitalisedForTaxRepository = new ExpensesCapitalisedForTaxRepository(Client);
+            var workpaperResponseOfExpensesCapitalisedForTaxWorkpaper = await expensesCapitalisedForTaxRepository.CreateAsync(
+                _taxpayer.Id,
+                TaxYear);
+
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfExpensesCapitalisedForTaxWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task ForeignEmploymentIncomeStatementWorkpaperTest()
+        {
+            var foreignEmploymentIncomeStatementRepository = new ForeignEmploymentIncomeStatementRepository(Client);
+            var workpaperResponseOfForeignEmploymentIncomeStatementWorkpaper = await foreignEmploymentIncomeStatementRepository.CreateAsync(
+                taxpayerId : _taxpayer.Id,
+                taxYear : TaxYear,
+                employerName : "",
+                governmentIdentifier : "",
+                foreignIncomeType : "",
+                grossIncome : 0m,
+                taxWithheld : 0m,
+                reportableFringeBenefits : 0m,
+                isEmployerExemptFromFbt : TriState.Unset,
+                superannuationContributions : 0m,
+                paymentAIncome : 0m,
+                paymentAType : "",
+                paymentDIncome : 0m,
+                paymentEIncome : 0m,
+                paymentsInArrears : new List<Payments>(),
+                paymentsInArrearsTotal : 0m,
+                foreignWorkRelatedDeductions : 0m,
+                netIncome : 0m,
+                taxPaid : 0m,
+                nonRefundableTaxOffset : 0m,
+                residencyStatus : "",
+                countriesOfResidence : new List<CountryOfResidence>(),
+                permanentDifference : 0m);
+
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfForeignEmploymentIncomeStatementWorkpaper.Workpaper.Slug.TaxpayerId);
         }
 
 
