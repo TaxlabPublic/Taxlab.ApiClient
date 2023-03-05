@@ -133,8 +133,15 @@ namespace Taxlab.ApiClientCli.Personas
             await ExpensesCapitalisedForTaxWorkpaperTest();
             await ForeignEmploymentIncomeStatementWorkpaperTest();
             await SelfEducationDeductionWorkpaperTest();
+            await AccountingProfitWorkpaperTest();
+            await CapitalGainsWorkpaperTest();
+            await ForeignIncomeTaxOffsetsWorkpaperTest();
+            await GovernmentSuperContributionsWorkpaperTest();
+            await SelfEducationWorkpaperTest();
+            await SmallBusinessIncomeWorkpaperTest();
+            
             await AllAdjustmentWorkpapersFetch();
-            await allTaxYearWorkpapersFetch();
+            await AllTaxYearWorkpapersFetch();
         }
 
 
@@ -812,7 +819,7 @@ namespace Taxlab.ApiClientCli.Personas
         }
 
         [Fact]
-        public async Task allTaxYearWorkpapersFetch()
+        public async Task AllTaxYearWorkpapersFetch()
         {
             var allTaxYearWorkpapers = await Client.Workpapers_TaxYearWorkpapersAsync(_taxpayer.Id, TaxYear, null)
                 .ConfigureAwait(false);
@@ -820,6 +827,70 @@ namespace Taxlab.ApiClientCli.Personas
             Assert.True(allTaxYearWorkpapers.Success);
         }
 
+        [Fact]
+        public async Task AccountingProfitWorkpaperTest()
+        {
+            var repository = new AccountingProfitRepository(Client);
+            var response = await repository.GetAsync(_taxpayer.Id, TaxYear);
+
+            Assert.NotNull(response.Workpaper);
+            Assert.True(response.Success);
+            Assert.Equal(_taxpayer.Id, response.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task CapitalGainsWorkpaperTest()
+        {
+            var repository = new CapitalGainsRepository(Client);
+            var response = await repository.GetAndUpsertAsync(_taxpayer.Id, TaxYear);
+
+            Assert.NotNull(response.Workpaper);
+            Assert.True(response.Success);
+            Assert.Equal(_taxpayer.Id, response.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task ForeignIncomeTaxOffsetsWorkpaperTest()
+        {
+            var repository = new ForeignIncomeTaxOffsetsRepository(Client);
+            var response = await repository.GetAndUpsertAsync(_taxpayer.Id, TaxYear);
+
+            Assert.NotNull(response.Workpaper);
+            Assert.True(response.Success);
+            Assert.Equal(_taxpayer.Id, response.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task GovernmentSuperContributionsWorkpaperTest()
+        {
+            var repository = new GovernmentSuperContributionsRepository(Client);
+            var response = await repository.GetAndUpsertAsync(_taxpayer.Id, TaxYear);
+
+            Assert.NotNull(response.Workpaper);
+            Assert.True(response.Success);
+            Assert.Equal(_taxpayer.Id, response.Workpaper.Slug.TaxpayerId);
+        }
         
+        [Fact]
+        public async Task SelfEducationWorkpaperTest()
+        {
+            var repository = new SelfEducationRepository(Client);
+            var response = await repository.GetAndUpsertAsync(_taxpayer.Id, TaxYear);
+
+            Assert.NotNull(response.Workpaper);
+            Assert.True(response.Success);
+            Assert.Equal(_taxpayer.Id, response.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task SmallBusinessIncomeWorkpaperTest()
+        {
+            var repository = new SmallBusinessIncomeRepository(Client);
+            var response = await repository.GetAndUpsertAsync(_taxpayer.Id, TaxYear);
+
+            Assert.NotNull(response.Workpaper);
+            Assert.True(response.Success);
+            Assert.Equal(_taxpayer.Id, response.Workpaper.Slug.TaxpayerId);
+        }
     }
 }

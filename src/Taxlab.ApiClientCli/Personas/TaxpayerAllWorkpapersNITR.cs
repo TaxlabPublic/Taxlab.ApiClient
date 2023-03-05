@@ -116,6 +116,11 @@ namespace Taxlab.ApiClientCli.Personas
             await DepreciationWorkpaperTest();
             await PermanentDifferenceWorkpaperTest();
             await TemporaryDifferenceWorkpaperTest();
+            
+            await CapitalGainsWorkpaperTest();
+            await ForeignIncomeTaxOffsetsWorkpaperTest();
+            await LossesScheduleWorkpaperTest();
+            await TaxOnTaxableIncomeWorkpaperTest();
         }
 
         [Fact]
@@ -233,7 +238,49 @@ namespace Taxlab.ApiClientCli.Personas
 
             Assert.Equal(_taxpayer.Id, workpaperResponseOfTemporaryDifferenceWorkpaperWorkpaper.Workpaper.Slug.TaxpayerId);
         }
+        
+        [Fact]
+        public async Task CapitalGainsWorkpaperTest()
+        {
+            var repository = new CapitalGainsRepository(Client);
+            var response = await repository.GetAndUpsertAsync(_taxpayer.Id, TaxYear);
 
+            Assert.NotNull(response.Workpaper);
+            Assert.True(response.Success);
+            Assert.Equal(_taxpayer.Id, response.Workpaper.Slug.TaxpayerId);
+        }
 
+        [Fact]
+        public async Task ForeignIncomeTaxOffsetsWorkpaperTest()
+        {
+            var repository = new ForeignIncomeTaxOffsetsRepository(Client);
+            var response = await repository.GetAndUpsertAsync(_taxpayer.Id, TaxYear);
+
+            Assert.NotNull(response.Workpaper);
+            Assert.True(response.Success);
+            Assert.Equal(_taxpayer.Id, response.Workpaper.Slug.TaxpayerId);
+        }
+        
+        [Fact]
+        public async Task LossesScheduleWorkpaperTest()
+        {
+            var repository = new LossesScheduleRepository(Client);
+            var response = await repository.GetAndUpsertAsync(_taxpayer.Id, TaxYear);
+
+            Assert.NotNull(response.Workpaper);
+            Assert.True(response.Success);
+            Assert.Equal(_taxpayer.Id, response.Workpaper.Slug.TaxpayerId);
+        }
+        
+        [Fact]
+        public async Task TaxOnTaxableIncomeWorkpaperTest()
+        {
+            var repository = new TaxOnTaxableIncomeRepository(Client);
+            var response = await repository.GetAsync(_taxpayer.Id, TaxYear);
+
+            Assert.NotNull(response.Workpaper);
+            Assert.True(response.Success);
+            Assert.Equal(_taxpayer.Id, response.Workpaper.Slug.TaxpayerId);
+        }
     }
 }
