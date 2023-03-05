@@ -30,7 +30,7 @@ namespace Taxlab.ApiClientCli.Personas
 
         //set your test taxpayer values here
         private const string FirstName = "Notindividual";
-        private const string LastName = "Zey";
+        private const string LastName = "ZeyCompany";
         private const string TaxFileNumber = "32989432";
         private const EntityType TaxpayerEntity = EntityType.CompanyAU;
         private const int TaxYear = 2021;
@@ -49,7 +49,8 @@ namespace Taxlab.ApiClientCli.Personas
             var taxpayerResponse = await taxpayerService.CreateAsync(TaxYear,
                 FirstName,
                 LastName,
-                TaxFileNumber);
+                TaxFileNumber,
+                TaxpayerEntity);
 
             var taxpayer = taxpayerResponse.Content;
             Client.TaxpayerId = taxpayer.Id;
@@ -114,7 +115,6 @@ namespace Taxlab.ApiClientCli.Personas
             await ForeignIncomeNonIndividualWorkpaperTest();
             await DepreciationWorkpaperTest();
             await PermanentDifferenceWorkpaperTest();
-            await SelfEducationDeductionWorkpaperTest();
             await TemporaryDifferenceWorkpaperTest();
         }
 
@@ -221,17 +221,6 @@ namespace Taxlab.ApiClientCli.Personas
                 TaxYear);
 
             Assert.Equal(_taxpayer.Id, workpaperResponseOfPermanentDifferenceWorkpaper.Workpaper.Slug.TaxpayerId);
-        }
-
-        [Fact]
-        public async Task SelfEducationDeductionWorkpaperTest()
-        {
-            var selfEducationDeductionRepository = new SelfEducationDeductionRepository(Client);
-            var workpaperResponseOfSelfEducationDeductionWorkpaper = await selfEducationDeductionRepository.CreateAsync(
-                _taxpayer.Id,
-                TaxYear);
-
-            Assert.Equal(_taxpayer.Id, workpaperResponseOfSelfEducationDeductionWorkpaper.Workpaper.Slug.TaxpayerId);
         }
 
         [Fact]

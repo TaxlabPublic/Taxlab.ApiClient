@@ -132,6 +132,7 @@ namespace Taxlab.ApiClientCli.Personas
             await DepreciationWorkpaperTest();
             await ExpensesCapitalisedForTaxWorkpaperTest();
             await ForeignEmploymentIncomeStatementWorkpaperTest();
+            await SelfEducationDeductionWorkpaperTest();
             await AllAdjustmentWorkpapersFetch();
             await allTaxYearWorkpapersFetch();
         }
@@ -786,6 +787,18 @@ namespace Taxlab.ApiClientCli.Personas
                 permanentDifference : 0m);
 
             Assert.Equal(_taxpayer.Id, workpaperResponseOfForeignEmploymentIncomeStatementWorkpaper.Workpaper.Slug.TaxpayerId);
+        }
+
+
+        [Fact]
+        public async Task SelfEducationDeductionWorkpaperTest()
+        {
+            var selfEducationDeductionRepository = new SelfEducationDeductionRepository(Client);
+            var workpaperResponseOfSelfEducationDeductionWorkpaper = await selfEducationDeductionRepository.CreateAsync(
+                _taxpayer.Id,
+                TaxYear);
+
+            Assert.Equal(_taxpayer.Id, workpaperResponseOfSelfEducationDeductionWorkpaper.Workpaper.Slug.TaxpayerId);
         }
 
 
