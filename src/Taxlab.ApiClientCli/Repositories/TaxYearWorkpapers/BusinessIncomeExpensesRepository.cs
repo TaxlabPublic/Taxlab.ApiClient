@@ -51,7 +51,7 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
         public async Task<WorkpaperResponseOfBusinessIncomeExpensesWorkpaper> GetBusinessIncomeExpensesWorkpaperAsync(Guid taxpayerId, int taxYear)
         {
             var workpaperResponse = await Client
-                .Workpapers_GetBusinessIncomeExpensesWorkpaperAsync(taxpayerId, taxYear)
+                .Workpapers_GetBusinessIncomeExpensesWorkpaperAsync(taxpayerId, taxYear, Guid.NewGuid())
                 .ConfigureAwait(false);
 
             return workpaperResponse;

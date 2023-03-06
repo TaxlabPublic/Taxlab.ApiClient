@@ -25,7 +25,7 @@ namespace Taxlab.ApiClientCli.Personas
 
         //set your test taxpayer values here
         private const string FirstName = "Individual";
-        private const string LastName = "Zeyb";
+        private const string LastName = "Zeytra";
         private const string TaxFileNumber = "32989432";
         private const EntityType TaxpayerEntity = EntityType.IndividualAU;
         private const int TaxYear = 2021;
