@@ -25,8 +25,8 @@ namespace Taxlab.ApiClientCli.Personas
 
         //set your test taxpayer values here
         private const string FirstName = "Individual";
-        private const string LastName = "Zeytra";
-        private const string TaxFileNumber = "32989432";
+        private const string LastName = "Zeyto";
+        private const string TaxFileNumber = "3298689";
         private const EntityType TaxpayerEntity = EntityType.IndividualAU;
         private const int TaxYear = 2021;
         private LocalDate _balanceDate = new LocalDate(2021, 6, 30);
@@ -887,6 +887,17 @@ namespace Taxlab.ApiClientCli.Personas
         {
             var repository = new SmallBusinessIncomeRepository(Client);
             var response = await repository.GetAndUpsertAsync(_taxpayer.Id, TaxYear);
+
+            Assert.NotNull(response.Workpaper);
+            Assert.True(response.Success);
+            Assert.Equal(_taxpayer.Id, response.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task NonCollectableCapitalLossesWorkpaperTest()
+        {
+            var repository = new NonCollectableCapitalLossesRepository(Client);
+            var response = await repository.CreateAsync(_taxpayer.Id, TaxYear);
 
             Assert.NotNull(response.Workpaper);
             Assert.True(response.Success);
