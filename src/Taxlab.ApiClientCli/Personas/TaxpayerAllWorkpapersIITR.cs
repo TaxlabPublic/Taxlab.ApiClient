@@ -25,7 +25,7 @@ namespace Taxlab.ApiClientCli.Personas
 
         //set your test taxpayer values here
         private const string FirstName = "Individual";
-        private const string LastName = "Zeyto";
+        private const string LastName = "Zeytransaction";
         private const string TaxFileNumber = "3298689";
         private const EntityType TaxpayerEntity = EntityType.IndividualAU;
         private const int TaxYear = 2021;
@@ -139,7 +139,9 @@ namespace Taxlab.ApiClientCli.Personas
             await GovernmentSuperContributionsWorkpaperTest();
             await SelfEducationWorkpaperTest();
             await SmallBusinessIncomeWorkpaperTest();
-            
+            await NonCollectableCapitalLossesWorkpaperTest();
+
+
             await AllAdjustmentWorkpapersFetch();
             await AllTaxYearWorkpapersFetch();
         }

@@ -120,6 +120,8 @@ namespace Taxlab.ApiClientCli.Personas
             await CapitalGainsWorkpaperTest();
             await ForeignIncomeTaxOffsetsWorkpaperTest();
             await LossesScheduleWorkpaperTest();
+            await NonCollectableCapitalLossesWorkpaperTest();
+            await FrankingAccountWorkpaperTest();
             await TaxOnTaxableIncomeWorkpaperTest();
         }
 
