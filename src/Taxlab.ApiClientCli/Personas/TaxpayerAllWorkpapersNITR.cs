@@ -120,6 +120,8 @@ namespace Taxlab.ApiClientCli.Personas
             await CapitalGainsWorkpaperTest();
             await ForeignIncomeTaxOffsetsWorkpaperTest();
             await LossesScheduleWorkpaperTest();
+            await NonCollectableCapitalLossesWorkpaperTest();
+            await FrankingAccountWorkpaperTest();
             await TaxOnTaxableIncomeWorkpaperTest();
         }
 
@@ -277,6 +279,28 @@ namespace Taxlab.ApiClientCli.Personas
         {
             var repository = new TaxOnTaxableIncomeRepository(Client);
             var response = await repository.GetAsync(_taxpayer.Id, TaxYear);
+
+            Assert.NotNull(response.Workpaper);
+            Assert.True(response.Success);
+            Assert.Equal(_taxpayer.Id, response.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task NonCollectableCapitalLossesWorkpaperTest()
+        {
+            var repository = new NonCollectableCapitalLossesRepository(Client);
+            var response = await repository.CreateAsync(_taxpayer.Id, TaxYear);
+
+            Assert.NotNull(response.Workpaper);
+            Assert.True(response.Success);
+            Assert.Equal(_taxpayer.Id, response.Workpaper.Slug.TaxpayerId);
+        }
+
+        [Fact]
+        public async Task FrankingAccountWorkpaperTest()
+        {
+            var repository = new FrankingAccountRepository(Client);
+            var response = await repository.CreateAsync(_taxpayer.Id, TaxYear);
 
             Assert.NotNull(response.Workpaper);
             Assert.True(response.Success);
