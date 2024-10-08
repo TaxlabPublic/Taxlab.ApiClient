@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using NodaTime;
 using TaxLab;
 using Taxlab.ApiClientCli.Workpapers.Shared;
 using Taxlab.ApiClientLibrary;
@@ -22,7 +21,7 @@ namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
             string accountNumber = "",
             string fundABN = "",
             string fundTFN = "",
-            LocalDate lastEligibleDate = new LocalDate(),
+            DateOnly lastEligibleDate = default,
             decimal contribution = 0m,
             bool didYouReceiveAnAcknowledgement = false
         )
@@ -44,7 +43,7 @@ namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
             workpaper.PersonalSuperannuationAccountNumber = accountNumber;
             workpaper.FundABN = fundABN;
             workpaper.FundTFN = fundTFN;
-            workpaper.LastEligibleDate = lastEligibleDate.ToAtoDateString();
+            workpaper.LastEligibleDate = new DateTime(lastEligibleDate.Year, lastEligibleDate.Month, lastEligibleDate.Day);
             workpaper.ReceiveAnAcknowledgement = didYouReceiveAnAcknowledgement;
 
             var command = new UpsertPersonalSuperannuationContributionWorkpaperCommand()
@@ -56,7 +55,7 @@ namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
                 CompositeRequest = true
             };
 
-            var commandResponse = await Client.Workpapers_PostPersonalSuperannuationContributionWorkpaperAsync(command)
+            var commandResponse = await Client.Workpapers_UpsertPersonalSuperannuationContributionWorkpaperAsync(command)
                 .ConfigureAwait(false);
 
             return commandResponse;

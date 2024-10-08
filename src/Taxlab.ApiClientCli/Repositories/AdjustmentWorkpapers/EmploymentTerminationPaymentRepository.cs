@@ -25,6 +25,12 @@ namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
             decimal taxPaid = 0m
             )
         {
+            DateTime? paymentDateTime = null;
+            if (DateTime.TryParse(paymentDate, out var d))
+            {
+                paymentDateTime = d;
+            }
+
             var workpaperResponse = await Client
                 .Workpapers_GetEmploymentTerminationPaymentWorkpaperAsync(
                     taxpayerId,
@@ -40,7 +46,7 @@ namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
             workpaper.CountryCode = countryCode;
             workpaper.EmployerName = employerName;
             workpaper.Abn = abn;
-            workpaper.PaymentDate = paymentDate;
+            workpaper.PaymentDate = paymentDateTime;
             workpaper.NonTaxableAmount = nonTaxableAmount.ToNumericCell();
             workpaper.TaxableAmount = taxableAmount.ToNumericCell();
             workpaper.TaxPaid = taxPaid.ToNumericCell();
@@ -54,7 +60,7 @@ namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
                 CompositeRequest = true
             };
 
-            var commandResponse = await Client.Workpapers_PostEmploymentTerminationPaymentWorkpaperAsync(command)
+            var commandResponse = await Client.Workpapers_UpsertEmploymentTerminationPaymentWorkpaperAsync(command)
                 .ConfigureAwait(false);
 
             return commandResponse;

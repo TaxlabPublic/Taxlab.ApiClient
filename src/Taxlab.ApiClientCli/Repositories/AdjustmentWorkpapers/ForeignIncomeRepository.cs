@@ -56,7 +56,7 @@ namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
                 CompositeRequest = true
             };
 
-            var commandResponse = await Client.Workpapers_PostForeignIncomeWorkpaperAsync(command)
+            var commandResponse = await Client.Workpapers_UpsertForeignIncomeWorkpaperAsync(command)
                 .ConfigureAwait(false);
 
             return commandResponse;

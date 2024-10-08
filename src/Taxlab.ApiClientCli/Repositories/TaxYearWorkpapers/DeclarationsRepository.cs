@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using NodaTime;
+
 using TaxLab;
 using Taxlab.ApiClientCli.Workpapers.Shared;
 using Taxlab.ApiClientLibrary;
@@ -80,11 +80,10 @@ namespace Taxlab.ApiClientCli.Workpapers.TaxYearWorkpapers
                 TaxYear = taxYear,
                 DocumentIndexId = workpaperResponse.DocumentIndexId,
                 CompositeRequest = true,
-                WorkpaperType = WorkpaperType.DeclarationsWorkpaper,
                 Workpaper = workpaperResponse.Workpaper
             };
 
-            var upsertResponse = await Client.Workpapers_PostDeclarationsWorkpaperAsync(upsertCommand)
+            var upsertResponse = await Client.Workpapers_UpsertDeclarationsWorkpaperAsync(upsertCommand)
                 .ConfigureAwait(false);
 
             return upsertResponse;

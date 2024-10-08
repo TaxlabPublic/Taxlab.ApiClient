@@ -1,10 +1,10 @@
-﻿using NodaTime;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Taxlab.ApiClientCli.Implementations;
-using NodaTime;
+
 using System;
 using System.Collections.Generic;
 using System.Numerics;
@@ -34,7 +34,7 @@ namespace Taxlab.ApiClientCli.Personas
         private const string TaxFileNumber = "32989432";
         private const EntityType TaxpayerEntity = EntityType.CompanyAU;
         private const int TaxYear = 2021;
-        private  LocalDate _balanceDate = new LocalDate(2021, 6, 30);
+        private  DateOnly _balanceDate = new DateOnly(2021, 6, 30);
         private TaxpayerDto _taxpayer;
 
         public TaxpayerAllWorkpapersNITR(ITestOutputHelper output) : base(output)
@@ -61,7 +61,7 @@ namespace Taxlab.ApiClientCli.Personas
             var taxReturnResponse = await taxReturnRepository.CreateAsync(taxpayer.Id,
                 TaxYear,
                 _balanceDate,
-                _balanceDate.PlusYears(-1).PlusDays(-1));
+                _balanceDate.AddYears(-1).AddDays(1));
 
 
             if (taxReturnResponse.Success == false)
@@ -72,8 +72,8 @@ namespace Taxlab.ApiClientCli.Personas
             var details = new TaxpayerDetailsRepository(Client);
             await details.CreateAsync(taxpayer.Id,
                 TaxYear,
-                dateOfBirth: new LocalDate(1975, 4, 12),
-                dateOfDeath: new LocalDate(2020, 12, 31),
+                dateOfBirth: new DateOnly(1975, 4, 12),
+                dateOfDeath: new DateOnly(2020, 12, 31),
                 finalReturn: true,
                 mobilePhoneNumber: "0402698741",
                 daytimeAreaPhoneCode: "613",

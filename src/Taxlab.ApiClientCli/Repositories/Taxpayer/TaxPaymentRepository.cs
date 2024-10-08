@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using NodaTime;
 using TaxLab;
 using Taxlab.ApiClientCli.Workpapers.Shared;
 using Taxlab.ApiClientLibrary;
@@ -19,7 +18,7 @@ namespace Taxlab.ApiClientCli.Repositories.Taxpayer
             string description = "description",
             int transactionTypeId = 0,
             bool applyToTaxableIncome = true,
-            LocalDate Date = new LocalDate(),
+            DateOnly Date = default,
             decimal amount = 0
         )
         {
@@ -30,7 +29,7 @@ namespace Taxlab.ApiClientCli.Repositories.Taxpayer
                 Description = description,
                 TransactionTypeId = transactionTypeId,
                 ApplyToTaxableIncome = applyToTaxableIncome,
-                Date = Date.ToAtoDateString(),
+                Date = Date.ToString("yyyy-MM-dd"),
                 Amount = amount
             };
 

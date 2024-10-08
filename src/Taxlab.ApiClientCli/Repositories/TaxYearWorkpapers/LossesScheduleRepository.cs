@@ -11,19 +11,19 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
         {
         }
 
-        public async Task<WorkpaperResponseOfLossesScheduleWorkpaper> GetAndUpsertAsync(
+        public async Task<WorkpaperResponseOfLossDisclosuresWorkpaper> GetAndUpsertAsync(
             Guid taxpayerId,
             int taxYear)
         {
             var workpaperResponse = await GetTaxYearWorkpaperAsync(
                 taxpayerId,
                 taxYear,
-                (taxpayer, year) => Client.Workpapers_GetLossesScheduleWorkpaperAsync(taxpayer, year));
+                (taxpayer, year) => Client.Workpapers_GetLossDisclosuresWorkpaperAsync(taxpayer, year));
 
             ModifyWorkpaper(workpaperResponse);
             
             var upsertCommand =
-                BuildUpsertCommand<WorkpaperResponseOfLossesScheduleWorkpaper, UpsertLossesScheduleWorkpaperCommand>(
+                BuildUpsertCommand<WorkpaperResponseOfLossDisclosuresWorkpaper, UpsertLossDisclosuresWorkpaperCommand>(
                     taxpayerId,
                     taxYear,
                     workpaperResponse,
@@ -33,12 +33,12 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
 
             var response = await ExecuteCommandAsync(
                 upsertCommand,
-                cmd => Client.Workpapers_PostLossesScheduleWorkpaperAsync(cmd));
+                cmd => Client.Workpapers_UpsertLossDisclosuresWorkpaperAsync(cmd));
 
             return response;
         }
 
-        private static void ModifyWorkpaper(WorkpaperResponseOfLossesScheduleWorkpaper workpaperResponse)
+        private static void ModifyWorkpaper(WorkpaperResponseOfLossDisclosuresWorkpaper workpaperResponse)
         {
             var workpaper = workpaperResponse.Workpaper;
             workpaper.BctCapitalLosses += 100m;

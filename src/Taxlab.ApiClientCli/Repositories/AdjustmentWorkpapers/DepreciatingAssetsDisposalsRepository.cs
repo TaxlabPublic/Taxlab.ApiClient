@@ -59,12 +59,12 @@ namespace Taxlab.ApiClientCli.Repositories.AdjustmentWorkpapers
             workpaper.GainLossOnDisposalAccounting = gainLossOnDisposalTax;
             workpaper.GainLossOnDisposalTax = gainLossOnDisposalTax;
             workpaper.DifferenceFromAccount = differenceFromAccount;
-            workpaper.AccoutingCapitalGainOnDisposalDescription = accoutingCapitalGainOnDisposalDescription;
-            workpaper.AccoutingCapitalGainOnDisposal = accoutingCapitalGainOnDisposal;
+            workpaper.AccountingCapitalGainOnDisposalDescription = accoutingCapitalGainOnDisposalDescription;
+            workpaper.AccountingCapitalGainOnDisposal = accoutingCapitalGainOnDisposal;
             workpaper.AccountingRevenueGainLossOnDisposalDescription = accountingRevenueGainLossOnDisposalDescription;
             workpaper.AccountingRevenueGainLossOnDisposal = accountingRevenueGainLossOnDisposal;
-            workpaper.AssesableDeductibleBalancingEventDescription = assesableDeductibleBalancingEventDescription;
-            workpaper.AssesableDeductibleBalancingEvent = assesableDeductibleBalancingEvent;
+            workpaper.AssessableDeductibleBalancingEventDescription = assesableDeductibleBalancingEventDescription;
+            workpaper.AssessableDeductibleBalancingEvent = assesableDeductibleBalancingEvent;
             workpaper.TaxReturnDisclosureTypeId = taxReturnDisclosureTypeId;
             workpaper.AssetCategory = assetCategory;
             workpaper.SimplifiedDepreciationIndicator = simplifiedDepreciationIndicator;
@@ -79,7 +79,7 @@ namespace Taxlab.ApiClientCli.Repositories.AdjustmentWorkpapers
                 CompositeRequest = true
             };
 
-            var commandResponse = await Client.Workpapers_PostDepreciatingAssetsDisposalsWorkpaperAsync(command)
+            var commandResponse = await Client.Workpapers_UpsertDepreciatingAssetsDisposalsWorkpaperAsync(command)
                 .ConfigureAwait(false);
 
             return commandResponse;

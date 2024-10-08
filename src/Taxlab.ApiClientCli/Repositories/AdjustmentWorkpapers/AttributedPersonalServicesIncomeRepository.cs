@@ -50,7 +50,7 @@ namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
                 CompositeRequest = true
             };
 
-            var commandResponse = await Client.Workpapers_PostAttributedPersonalServicesIncomeWorkpaperAsync(command)
+            var commandResponse = await Client.Workpapers_UpsertAttributedPersonalServicesIncomeWorkpaperAsync(command)
                 .ConfigureAwait(false);
 
             return commandResponse;

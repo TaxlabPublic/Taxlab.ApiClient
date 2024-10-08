@@ -14,40 +14,7 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
 
         }
 
-        public async Task<WorkpaperResponseOfRentalPropertiesSummaryWorkpaper> CreateAsync(
-            Guid taxpayerId,
-            int taxYear,
-            RentalPropertySummaryItem[] rentalProperties,
-            decimal totalPurchasePrice,
-            decimal totalNetRent,
-            decimal totalShareNetRent)
-        {
-            var workpaperResponse = await GetRentalSummaryWorkpaperAsync(taxpayerId, taxYear);
-
-            var workpaper = workpaperResponse.Workpaper;
-            workpaper.RentalProperties = rentalProperties;
-            workpaper.TotalPurchasePrice = totalPurchasePrice;
-            workpaper.TotalNetRent = totalNetRent;
-            workpaper.TotalShareNetRent = totalShareNetRent;
-
-            // Update command for our new workpaper
-            var upsertCommand = new UpsertRentalPropertiesSummaryWorkpaperCommand()
-            {
-                TaxpayerId = taxpayerId,
-                TaxYear = taxYear,
-                DocumentIndexId = workpaperResponse.DocumentIndexId,
-                CompositeRequest = true,
-                WorkpaperType = WorkpaperType.RentalPropertiesSummaryWorkpaper,
-                Workpaper = workpaperResponse.Workpaper
-            };
-
-            var upsertResponse = await Client.Workpapers_PostRentalPropertiesSummaryWorkpaperAsync(upsertCommand)
-                .ConfigureAwait(false);
-
-            return upsertResponse;
-        }
-
-        public async Task<WorkpaperResponseOfRentalPropertiesSummaryWorkpaper> GetRentalSummaryWorkpaperAsync(Guid taxpayerId, int taxYear)
+        public async Task<WorkpaperResponseOfRentalPropertiesSummaryWorkpaperView> GetRentalSummaryWorkpaperAsync(Guid taxpayerId, int taxYear)
         {
             var workpaperResponse = await Client
               .Workpapers_GetRentalPropertiesSummaryWorkpaperAsync(taxpayerId, taxYear)

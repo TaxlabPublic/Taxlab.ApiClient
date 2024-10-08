@@ -33,7 +33,7 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
 
             var response = await ExecuteCommandAsync(
                 upsertCommand,
-                cmd => Client.Workpapers_PostSmallBusinessIncomeWorkpaperAsync(cmd));
+                cmd => Client.Workpapers_UpsertSmallBusinessIncomeWorkpaperAsync(cmd));
 
             return response;
         }

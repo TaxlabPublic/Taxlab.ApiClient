@@ -64,7 +64,7 @@ namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
                 CompositeRequest = true
             };
 
-            var commandResponse = await Client.Workpapers_PostDeductibleCarExpenseWorkpaperAsync(command)
+            var commandResponse = await Client.Workpapers_UpsertDeductibleCarExpenseWorkpaperAsync(command)
                 .ConfigureAwait(false);
 
             return commandResponse;

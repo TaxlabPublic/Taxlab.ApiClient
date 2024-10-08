@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using NodaTime;
-using TaxLab;
 using Taxlab.ApiClientCli.Workpapers.Shared;
 using Taxlab.ApiClientLibrary;
 
@@ -16,16 +14,16 @@ namespace Taxlab.ApiClientCli.Repositories.Taxpayer
         public async Task<TaxReturnResponse> CreateAsync(
             Guid taxpayerId,
             int taxYear = 0,
-            LocalDate balanceDate = new LocalDate(),
-            LocalDate startDate = new LocalDate()
+            DateOnly balanceDate = default,
+            DateOnly startDate = default
         )
         {
             var newTaxReturnCommand = new UpsertTaxReturnCommand()
             {
                 TaxpayerId = taxpayerId,
                 TaxYear = taxYear,
-                BalanceDate = balanceDate.ToAtoDateString(),
-                StartDate = startDate.ToAtoDateString()
+                BalanceDate = balanceDate.ToString("yyyy-MM-dd"),
+                StartDate = startDate.ToString("yyyy-MM-dd")
             };
 
             var taxReturnResponse = await Client.Taxpayers_PutTaxReturnAsync(newTaxReturnCommand).ConfigureAwait(false);

@@ -1,4 +1,4 @@
-﻿using NodaTime;
+﻿
 using System;
 using System.Threading.Tasks;
 using Taxlab.ApiClientCli.Workpapers.Shared;
@@ -18,8 +18,8 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
              int taxYear,
              Guid? LinkedSpouseTaxpayerId,
              bool IsMarriedFullYear = true,
-             LocalDate? MarriedFrom = null,
-             LocalDate? MarriedTo = null,
+             DateOnly? MarriedFrom = null,
+             DateOnly? MarriedTo = null,
              bool HasDiedThisYear = false
 
             )
@@ -32,8 +32,8 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
             workpaper.LinkedSpouseTaxpayerId = LinkedSpouseTaxpayerId;
             workpaper.HasSpouse = false;
             workpaper.IsMarriedFullYear = false;
-            workpaper.MarriedFrom = MarriedFrom.ToAtoDateString();
-            workpaper.MarriedTo = MarriedTo.ToAtoDateString();
+            workpaper.MarriedFrom = MarriedFrom?.ToDateTime(default);
+            workpaper.MarriedTo = MarriedTo?.ToDateTime(default);
             workpaper.HasDiedThisYear = true;
 
             // Update command for our new workpaper
@@ -43,11 +43,10 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
                 TaxYear = taxYear,
                 DocumentIndexId = Guid.Empty,
                 CompositeRequest = true,
-                WorkpaperType = WorkpaperType.SpouseWorkpaper,
                 Workpaper = spouseWorkpaperResponse.Workpaper
             };
 
-            var upsertSpouseResponse = await Client.Workpapers_PostSpouseWorkpaperAsync(upsertSpouseDetailsCommand)
+            var upsertSpouseResponse = await Client.Workpapers_UpsertSpouseWorkpaperAsync(upsertSpouseDetailsCommand)
                 .ConfigureAwait(false);           
 
             return upsertSpouseResponse;

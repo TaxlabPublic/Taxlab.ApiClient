@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Net.Http;
-using NodaTime;
+
 using Taxlab.ApiClientCli.Implementations;
 using Taxlab.ApiClientCli.Repositories.Taxpayer;
 using Taxlab.ApiClientLibrary;
@@ -25,7 +25,7 @@ namespace TaxLab.Test.ApiClientCli.TaxpayerDomain.TaxPayments
                 "Pay as you go - Withholding",
                 20130, // PAYG ID
                 true,
-                new LocalDate(2021, 1, 1),
+                new DateOnly(2021, 1, 1),
                 -1000);
         }
     }

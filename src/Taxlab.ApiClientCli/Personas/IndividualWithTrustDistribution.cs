@@ -1,4 +1,4 @@
-﻿using NodaTime;
+﻿
 using System;
 using Taxlab.ApiClientLibrary;
 using Taxlab.ApiClientCli.Repositories.Taxpayer;
@@ -12,8 +12,8 @@ namespace Taxlab.ApiClientCli.Personas
     {
         public async Task<TaxpayerDto> CreateAsync(TaxlabApiClient client, string firstName, string lastName, string taxFileNumber, int taxYear)
         {
-            var balanceDate = new LocalDate(taxYear, 6, 30);
-            var startDate = balanceDate.PlusYears(-1).PlusDays(-1);
+            var balanceDate = new DateOnly(taxYear, 6, 30);
+            var startDate = balanceDate.AddYears(-1).AddDays(1);
 
             Console.WriteLine("== Step: Creating taxpayer ==========================================================");
             var taxpayerService = new TaxpayerRepository(client);
@@ -38,33 +38,12 @@ namespace Taxlab.ApiClientCli.Personas
                 throw new Exception(taxReturnResponse.Message);
             }
 
-            Console.WriteLine("== Step: Creating Distributions workpaper ==========================================================");
-            var distribution1 = new DistributionsRepository(client);
-            await distribution1.CreateAsync(taxpayerId: taxpayer.Id,
-                taxYear: taxYear,
-                taxpayerName:"Distribution From Trust ABC",
-                typeOfTrustCode:"C",
-                shareOfIncomeNonPrimaryProduction:10000m,
-                 frankingCredit:-1000m
-            
-            );
-
-            Console.WriteLine("== Step: Creating Distributions workpaper ==========================================================");
-            var distribution2 = new DistributionsRepository(client);
-            await distribution2.CreateAsync(taxpayerId: taxpayer.Id,
-                taxYear: taxYear,
-                taxpayerName: "Distribution From Trust XYZ",
-                typeOfTrustCode: "C",
-                shareOfIncomeNonPrimaryProduction: 20000m,
-                frankingCredit: -2000m
-
-            );
             Console.WriteLine("== Step: Populating taxpayer details workpaper ==========================================================");
             var details = new TaxpayerDetailsRepository(client);
             await details.CreateAsync(taxpayer.Id,
                 taxYear,
-                dateOfBirth: new LocalDate(1975, 4, 12),
-                dateOfDeath: new LocalDate(2020, 12, 31),
+                dateOfBirth: new DateOnly(1975, 4, 12),
+                dateOfDeath: new DateOnly(2020, 12, 31),
                 finalReturn: true,
                 mobilePhoneNumber: "0402698741",
                 daytimeAreaPhoneCode: "613",

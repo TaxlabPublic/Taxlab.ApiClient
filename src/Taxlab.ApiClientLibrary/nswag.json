@@ -1,7 +1,7 @@
 {
   "documentGenerator": {
     "fromDocument": {
-      "url": "https://taxlab-api-uat.azurewebsites.net/api-internal/swagger/openapiv1/swagger.json",
+      "url": "https://app-tl-api-uat-aue-01.azurewebsites.net/swagger/openapiv1/swagger.json",
       "newLineBehavior": "Auto"
     }
   },

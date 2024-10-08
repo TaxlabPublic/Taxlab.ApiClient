@@ -1,4 +1,4 @@
-﻿using NodaTime;
+﻿
 using Spire.Xls;
 using System;
 using System.Collections.Generic;
@@ -102,14 +102,14 @@ namespace TaxLab.Test.ApiClientCli.ImportFromExcel.Services
             }
         }
 
-        public LocalDate GetDate(string date)
+        public DateOnly GetDate(string date)
         {
             if (date == "")
             {
-                return LocalDate.FromDateTime(DateTime.Now);
+                return DateOnly.FromDateTime(DateTime.Now);
             }else
             {
-                return LocalDate.FromDateTime(DateTime.Parse(date));
+                return DateOnly.FromDateTime(DateTime.Parse(date));
             }
         }
         public bool GetBool(string boolStr)

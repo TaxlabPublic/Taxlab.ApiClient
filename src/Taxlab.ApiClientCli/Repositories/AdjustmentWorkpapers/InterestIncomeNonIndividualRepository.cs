@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using NodaTime;
 using TaxLab;
 using Taxlab.ApiClientCli.Workpapers.Shared;
 using Taxlab.ApiClientLibrary;
@@ -19,7 +18,7 @@ namespace Taxlab.ApiClientCli.Repositories.AdjustmentWorkpapers
         public async Task<WorkpaperResponseOfInterestIncomeNonIndividualWorkpaper> CreateAsync(
             Guid taxpayerId,
             int taxYear,
-            LocalDate datePaid = new LocalDate(),
+            DateOnly datePaid = new DateOnly(),
             decimal grossIncome = 0m,
             decimal taxPaid = 0m,
             decimal netIncome = 0m,
@@ -36,7 +35,7 @@ namespace Taxlab.ApiClientCli.Repositories.AdjustmentWorkpapers
                 .ConfigureAwait(false);
 
             var workpaper = workpaperResponse.Workpaper;
-            workpaper.DatePaid = datePaid.ToAtoDateString();
+            workpaper.DatePaid = new DateTime(datePaid.Year, datePaid.Month, datePaid.Day);
             workpaper.GrossIncome = grossIncome.ToNumericCell();
             workpaper.TaxPaid = taxPaid.ToNumericCell();
             workpaper.NetIncome = netIncome;
@@ -52,7 +51,7 @@ namespace Taxlab.ApiClientCli.Repositories.AdjustmentWorkpapers
                 CompositeRequest = true
             };
 
-            var commandResponse = await Client.Workpapers_PostInterestIncomeNonIndividualWorkpaperAsync(command)
+            var commandResponse = await Client.Workpapers_UpsertInterestIncomeNonIndividualWorkpaperAsync(command)
                 .ConfigureAwait(false);
 
             return commandResponse;

@@ -44,12 +44,23 @@ namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
                     CancellationToken.None)
                 .ConfigureAwait(false);
 
+            DateTime? start = null;
+            DateTime? end = null;
+            if (DateTime.TryParse(paymentStartDate, out var s))
+            {
+                start = s;
+            }
+            if (DateTime.TryParse(paymentStartDate, out var e))
+            {
+                end = e;
+            }
+
             var workpaper = workpaperResponse.Workpaper;
             workpaper.PayersName = payersName;
             workpaper.Abn = abn;
             workpaper.IsDeathBenefit = isDeathBenefit;
-            workpaper.PaymentStartDate = paymentStartDate;
-            workpaper.PaymentEndDate = paymentEndDate;
+            workpaper.PaymentStartDate = start;
+            workpaper.PaymentEndDate = end;
             workpaper.IncomeStreamTaxFree = incomeStreamTaxFree.ToNumericCell();
             workpaper.LumpsumArrearsTaxFree = lumpsumArrearsTaxFree.ToNumericCell();
             workpaper.IncomeStreamTaxed = incomeStreamTaxed.ToNumericCell();
@@ -70,7 +81,7 @@ namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
                 CompositeRequest = true
             };
 
-            var commandResponse = await Client.Workpapers_PostSuperannuationIncomeStreamWorkpaperAsync(command)
+            var commandResponse = await Client.Workpapers_UpsertSuperannuationIncomeStreamWorkpaperAsync(command)
                 .ConfigureAwait(false);
 
             return commandResponse;

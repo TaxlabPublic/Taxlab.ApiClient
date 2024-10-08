@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using NodaTime;
 using TaxLab;
 using Taxlab.ApiClientCli.Workpapers.Shared;
 using Taxlab.ApiClientLibrary;
@@ -24,8 +23,8 @@ namespace Taxlab.ApiClientCli.Workpapers.TaxYearWorkpapers
             decimal attributedForeignIncomeUnlistedCountry = 0m,
             decimal otherAssessableForeignIncome = 0m,
             decimal frankingCredit = 0m,
-            decimal australianFrankingCreditsFromANewZealandCompanyCredit = 0m,
-            decimal capitalGains = 0m,
+            decimal australianFrankingCreditsFromNewZealandCompany = 0m,
+            decimal netCapitalGain = 0m,
             decimal foreignIncomeTaxOffset = 0m,                        
             decimal shareOfNationalRentalAffordabilitySchemeTaxOffset = 0m,
             decimal shareOfCreditForTaxWithheldForeignResidentWithholdingExcludingCapitalGains = 0m,
@@ -39,9 +38,9 @@ namespace Taxlab.ApiClientCli.Workpapers.TaxYearWorkpapers
             decimal s983AssessableAmount = 0m,
             decimal s984AssessableAmount = 0m,
             decimal amountOnWhichFamilyTrustDistributionTaxHasBeenPaid = 0m,
-            decimal deductionsAgainstFrankedDistributions = 0m,
-            decimal deductionsAgainstPrimaryProduction = 0m,
-            decimal deductionsAgainstNonPrimaryProduction = 0m,
+            decimal deductionsAgainstFrankedDistributionsFromTrust = 0m,
+            decimal deductionsAgainstPrimaryProductionFromTrust = 0m,
+            decimal deductionsAgainstNonPrimaryProductionFromTrust = 0m,
             decimal landcareOperationsWaterFacilityFencingAssetAndFodderStorageDeductions = 0m,
             decimal deferredNonCommercialLossDeductionPrimaryProduction = 0m,
             decimal otherDeductionsPrimaryProduction = 0m,
@@ -58,38 +57,38 @@ namespace Taxlab.ApiClientCli.Workpapers.TaxYearWorkpapers
             var workpaper = workpaperResponse.Workpaper;
             workpaper.Distributions.Add(new IncomingDistribution()
             {           
-                ShareOfIncomePrimaryProduction = shareOfIncomePrimaryProduction,
-                ShareOfIncomeNonPrimaryProduction = shareOfNonPrimaryProductionIncome,
-                FrankedDistributions = frankedDistributions,             
-                AttributedForeignIncomeListedCountry = attributedForeignIncomeListedCountry,
-                AttributedForeignIncomeUnlistedCountry = attributedForeignIncomeUnlistedCountry,
-                OtherAssessableForeignSourceIncome = otherAssessableForeignIncome,
-                FrankingCredit = frankingCredit,
-                AustralianFrankingCreditsFromANewZealandCompanyCredit = australianFrankingCreditsFromANewZealandCompanyCredit,
-                CapitalGains = capitalGains,
-                ForeignIncomeTaxOffset = foreignIncomeTaxOffset,          
-                ShareOfNationalRentalAffordabilitySchemeTaxOffset = shareOfNationalRentalAffordabilitySchemeTaxOffset,               
-                ShareOfCreditForTaxWithheldForeignResidentWithholdingExcludingCapitalGains = shareOfCreditForTaxWithheldForeignResidentWithholdingExcludingCapitalGains,
-                TfnAmountsWithheld = tfnAmountWithheld,
-                ShareOfCreditForTfnAmountsWithheldFromPaymentsFromCloselyHeldTrusts = shareOfCreditForTfnAmountsWithheldFromPaymentsFromCloselyHeldTrusts,
-                CreditForTaxWithheldWhereAbnNotQuoted = creditForTaxWithheldWhereAbnNotQuoted,     
-                ShareOfCreditForTaxPaidByTrustee = shareOfCreditForTaxPaidByTrustee,
-                ShareOfNetSmallBusinessIncome = shareOfNetSmallBusinessIncome,
-                ShareOfNetFinancialInvestmentIncomeOrLoss = shareOfNetFinancialInvestmentIncomeOrLoss,
-                ShareOfNetRentalPropertyIncomeOrLoss = shareOfNetRentalPropertyIncomeOrLoss,
-                S983AssessableAmount = s983AssessableAmount,
-                S984AssessableAmount = s984AssessableAmount,
-                AmountOnWhichFamilyTrustDistributionTaxHasBeenPaid = amountOnWhichFamilyTrustDistributionTaxHasBeenPaid,
-                DeductionsAgainstFrankedDistributions = deductionsAgainstFrankedDistributions,
-                DeductionsAgainstPrimaryProduction = deductionsAgainstPrimaryProduction,
-                DeductionsAgainstNonPrimaryProduction = deductionsAgainstNonPrimaryProduction,
-                LandcareOperationsWaterFacilityFencingAssetAndFodderStorageDeductions = landcareOperationsWaterFacilityFencingAssetAndFodderStorageDeductions,
-                DeferredNonCommercialLossDeductionPrimaryProduction = deferredNonCommercialLossDeductionPrimaryProduction,
-                OtherDeductionsPrimaryProduction = otherDeductionsPrimaryProduction,
-                DeductionsRelatingToFinancialInvestmentAmounts = deductionsRelatingToFinancialInvestmentAmounts,
-                DeductionsRelatingToRentalProperties = deductionsRelatingToRentalProperties,
-                DeferredNonCommercialLossDeductionNonPrimaryProduction = deferredNonCommercialLossDeductionNonPrimaryProduction,
-                OtherDeductionsNonPrimaryProduction = otherDeductionsNonPrimaryProduction
+                ShareOfIncomePrimaryProduction = shareOfIncomePrimaryProduction.ToNumericCell(),
+                ShareOfIncomeNonPrimaryProduction = shareOfNonPrimaryProductionIncome.ToNumericCell(),
+                FrankedDistributions = frankedDistributions.ToNumericCell(),             
+                AttributedForeignIncomeListedCountry = attributedForeignIncomeListedCountry.ToNumericCell(),
+                AttributedForeignIncomeUnlistedCountry = attributedForeignIncomeUnlistedCountry.ToNumericCell(),
+                OtherAssessableForeignSourceIncome = otherAssessableForeignIncome.ToNumericCell(),
+                FrankingCredit = frankingCredit.ToNumericCell(),
+                AustralianFrankingCreditsFromNewZealandCompany = australianFrankingCreditsFromNewZealandCompany.ToNumericCell(),
+                NetCapitalGain = netCapitalGain.ToNumericCell(),
+                ForeignIncomeTaxOffset = foreignIncomeTaxOffset.ToNumericCell(),          
+                ShareOfNationalRentalAffordabilitySchemeTaxOffset = shareOfNationalRentalAffordabilitySchemeTaxOffset.ToNumericCell(),               
+                ShareOfCreditForTaxWithheldForeignResidentWithholdingExcludingCapitalGains = shareOfCreditForTaxWithheldForeignResidentWithholdingExcludingCapitalGains.ToNumericCell(),
+                TfnAmountsWithheld = tfnAmountWithheld.ToNumericCell(),
+                ShareOfCreditForTfnAmountsWithheldFromPaymentsFromCloselyHeldTrusts = shareOfCreditForTfnAmountsWithheldFromPaymentsFromCloselyHeldTrusts.ToNumericCell(),
+                CreditForTaxWithheldWhereAbnNotQuoted = creditForTaxWithheldWhereAbnNotQuoted.ToNumericCell(),     
+                ShareOfCreditForTaxPaidByTrustee = shareOfCreditForTaxPaidByTrustee.ToNumericCell(),
+                ShareOfNetSmallBusinessIncome = shareOfNetSmallBusinessIncome.ToNumericCell(),
+                ShareOfNetFinancialInvestmentIncomeOrLoss = shareOfNetFinancialInvestmentIncomeOrLoss.ToNumericCell(),
+                ShareOfNetRentalPropertyIncomeOrLoss = shareOfNetRentalPropertyIncomeOrLoss.ToNumericCell(),
+                S983AssessableAmount = s983AssessableAmount.ToNumericCell(),
+                S984AssessableAmount = s984AssessableAmount.ToNumericCell(),
+                AmountOnWhichFamilyTrustDistributionTaxHasBeenPaid = amountOnWhichFamilyTrustDistributionTaxHasBeenPaid.ToNumericCell(),
+                DeductionsAgainstFrankedDistributionsFromTrust = deductionsAgainstFrankedDistributionsFromTrust.ToNumericCell(),
+                DeductionsAgainstPrimaryProductionIncomeFromTrust = deductionsAgainstPrimaryProductionFromTrust.ToNumericCell(),
+                DeductionsAgainstNonPrimaryProductionIncomeFromTrust = deductionsAgainstNonPrimaryProductionFromTrust.ToNumericCell(),
+                LandcareOperationsWaterFacilityFencingAssetAndFodderStorageDeductions = landcareOperationsWaterFacilityFencingAssetAndFodderStorageDeductions.ToNumericCell(),
+                DeferredNonCommercialLossDeductionPrimaryProduction = deferredNonCommercialLossDeductionPrimaryProduction.ToNumericCell(),
+                OtherDeductionsPrimaryProduction = otherDeductionsPrimaryProduction.ToNumericCell(),
+                DeductionsRelatingToFinancialInvestmentAmounts = deductionsRelatingToFinancialInvestmentAmounts.ToNumericCell(),
+                DeductionsRelatingToRentalProperties = deductionsRelatingToRentalProperties.ToNumericCell(),
+                DeferredNonCommercialLossDeductionNonPrimaryProduction = deferredNonCommercialLossDeductionNonPrimaryProduction.ToNumericCell(),
+                OtherDeductionsNonPrimaryProduction = otherDeductionsNonPrimaryProduction.ToNumericCell()
             });
 
             // Update command for our new workpaper
@@ -99,11 +98,10 @@ namespace Taxlab.ApiClientCli.Workpapers.TaxYearWorkpapers
                 TaxYear = taxYear,
                 DocumentIndexId = workpaperResponse.DocumentIndexId,
                 CompositeRequest = true,
-                WorkpaperType = WorkpaperType.IncomingDistributionsWorkpaper,
                 Workpaper = workpaperResponse.Workpaper
             };
 
-            var upsertResponse = await Client.Workpapers_PostIncomingDistributionsWorkpaperAsync(upsertCommand)
+            var upsertResponse = await Client.Workpapers_UpsertIncomingDistributionsWorkpaperAsync(upsertCommand)
                 .ConfigureAwait(false);
 
             return upsertResponse;

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using NodaTime;
 using TaxLab;
 using Taxlab.ApiClientCli.Workpapers.Shared;
 using Taxlab.ApiClientLibrary;
@@ -20,11 +19,11 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
             int taxYear,
             string description,
             string category = "1",
-            LocalDate? purchaseDate = null,
+            DateOnly? purchaseDate = null,
             decimal purchaseAmount = 0m,
-            List<CapitalGainOrLossTransaction> purchaseAdjustment = null,
-            LocalDate? disposalDate = null,
-            List<CapitalGainOrLossTransaction> disposalAdjustment = null,
+            List<CapitalGainOrLossTransactionAdjustment> purchaseAdjustment = null,
+            DateOnly? disposalDate = null,
+            List<CapitalGainOrLossTransactionAdjustment> disposalAdjustment = null,
             decimal disposalAmount = 0m,
             decimal discountAmount = 0m,
             decimal currentYearLossesApplied = 0m,
@@ -55,17 +54,21 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
 
             var getWorkpaperResponse = await GetCapitalGainOrLossTransactionWorkpaperAsync(taxpayerId, taxYear, createCapitalGainOrLossTransactionResponse);
 
-            purchaseAdjustment ??= new List<CapitalGainOrLossTransaction>();
-            disposalAdjustment ??= new List<CapitalGainOrLossTransaction>();
+            purchaseAdjustment ??= new List<CapitalGainOrLossTransactionAdjustment>();
+            disposalAdjustment ??= new List<CapitalGainOrLossTransactionAdjustment>();
 
             var workpaper = getWorkpaperResponse.Workpaper;
             workpaper.Description = description;
             workpaper.DisposalAmount = disposalAmount;
             workpaper.Category = category;
-            workpaper.PurchaseDate = purchaseDate.ToAtoDateString();
+            workpaper.PurchaseDate = purchaseDate == null 
+                ? null 
+                : (DateTimeOffset?)new DateTimeOffset(new DateTime(purchaseDate.Value.Year, purchaseDate.Value.Month, purchaseDate.Value.Day));
             workpaper.PurchaseAmount = purchaseAmount;
             workpaper.PurchaseAdjustment = purchaseAdjustment;
-            workpaper.DisposalDate = disposalDate.ToAtoDateString();
+            workpaper.DisposalDate = disposalDate == null
+                ? null
+                : (DateTimeOffset?)new DateTimeOffset(new DateTime(disposalDate.Value.Year, disposalDate.Value.Month, disposalDate.Value.Day));
             workpaper.DisposalAmount = disposalAmount;
             workpaper.DisposalAdjustment = disposalAdjustment;
             workpaper.DiscountAmount = discountAmount;
@@ -86,17 +89,19 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
                 TaxYear = taxYear,
                 DocumentIndexId = getWorkpaperResponse.DocumentIndexId,
                 CompositeRequest = true,
-                WorkpaperType = WorkpaperType.CapitalGainOrLossTransactionWorkpaper,
                 Workpaper = getWorkpaperResponse.Workpaper
             };
 
-            var upsertResponse = await Client.Workpapers_PostCapitalGainOrLossTransactionWorkpaperAsync(upsertCommand)
+            var upsertResponse = await Client.Workpapers_UpsertCapitalGainOrLossTransactionWorkpaperAsync(upsertCommand)
                 .ConfigureAwait(false);
 
             return upsertResponse;
         }
 
-        public async Task<WorkpaperResponseOfCapitalGainOrLossTransactionWorkpaper> GetCapitalGainOrLossTransactionWorkpaperAsync(Guid taxpayerId, int taxYear, CreateCapitalGainOrLossTransactionWorkpaperResponse createCapitalGainOrLossTransactionResponse)
+        public async Task<WorkpaperResponseOfCapitalGainOrLossTransactionWorkpaper> GetCapitalGainOrLossTransactionWorkpaperAsync(
+            Guid taxpayerId, 
+            int taxYear, 
+            WorkpaperResponseOfCapitalGainOrLossTransactionWorkpaper createCapitalGainOrLossTransactionResponse)
         {
             var workpaperResponse = await Client
                 .Workpapers_GetCapitalGainOrLossTransactionWorkpaperAsync(taxpayerId, taxYear, createCapitalGainOrLossTransactionResponse.DocumentId)

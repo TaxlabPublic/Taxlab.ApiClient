@@ -13,7 +13,7 @@ using Taxlab.ApiClientCli.Repositories.Taxpayer;
 using TaxLab.Test.ApiClientCli.ImportFromExcel.Services;
 using TaxLab.Test.ApiClientCli.ImportFromExcel.Models;
 using Taxlab.ApiClientCli.Workpapers.TaxYearWorkpapers;
-using NodaTime;
+
 using Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers;
 
 namespace TaxLab.Test.ApiClientCli.ImportFromExcel
@@ -34,8 +34,8 @@ namespace TaxLab.Test.ApiClientCli.ImportFromExcel
             List<TaxpayerImport> imports = importService.CreateTaxpayerFromExcelAsync(filename);
 
             const int taxYear = 2021;
-            var balanceDate = new LocalDate(2021, 6, 30);
-            var startDate = balanceDate.PlusYears(-1).PlusDays(-1);
+            var balanceDate = new DateOnly(2021, 6, 30);
+            var startDate = balanceDate.AddYears(-1).AddDays(1);
 
             foreach (var import in imports)
             {
@@ -70,7 +70,7 @@ namespace TaxLab.Test.ApiClientCli.ImportFromExcel
                     await details.CreateAsync(taxpayer.Id,
                         taxYear,
                         dateOfBirth: import.DateOfBirth,
-                        dateOfDeath: new LocalDate(2020, 12, 31),
+                        dateOfDeath: new DateOnly(2020, 12, 31),
                         finalReturn: true,
                         mobilePhoneNumber: "0402698741",
                         daytimeAreaPhoneCode: "613",

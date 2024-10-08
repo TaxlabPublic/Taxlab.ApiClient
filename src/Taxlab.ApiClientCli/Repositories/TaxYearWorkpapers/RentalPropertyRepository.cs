@@ -101,11 +101,10 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
                 TaxYear = taxYear,
                 DocumentIndexId = getWorkpaperResponse.DocumentIndexId,
                 CompositeRequest = true,
-                WorkpaperType = WorkpaperType.RentalPropertyWorkpaper,
                 Workpaper = getWorkpaperResponse.Workpaper
             };
 
-            var upsertResponse = await Client.Workpapers_PostRentalPropertyWorkpaperAsync(upsertCommand)
+            var upsertResponse = await Client.Workpapers_UpsertRentalPropertyWorkpaperAsync(upsertCommand)
                 .ConfigureAwait(false);
 
             return upsertResponse;
@@ -128,7 +127,7 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
             return deleteResponse;
         }
 
-        public async Task<WorkpaperResponseOfRentalPropertyWorkpaper> GetRentalPropertyWorkpaperAsync(Guid taxpayerId, int taxYear, CreateRentalPropertyWorkpaperResponse createRentalPropertyResponse)
+        public async Task<WorkpaperResponseOfRentalPropertyWorkpaper> GetRentalPropertyWorkpaperAsync(Guid taxpayerId, int taxYear, WorkpaperResponseOfRentalPropertyWorkpaper createRentalPropertyResponse)
         {
             var workpaperResponse = await Client
                 .Workpapers_GetRentalPropertyWorkpaperAsync(taxpayerId, taxYear, createRentalPropertyResponse.DocumentId)

@@ -44,11 +44,10 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
                 TaxYear = taxYear,
                 DocumentIndexId = workpaperResponse.DocumentIndexId,
                 CompositeRequest = true,
-                WorkpaperType = WorkpaperType.MedicareWorkpaper,
                 Workpaper = workpaperResponse.Workpaper
             };
 
-            var upsertResponse = await Client.Workpapers_PostMedicareWorkpaperAsync(upsertCommand)
+            var upsertResponse = await Client.Workpapers_UpsertMedicareWorkpaperAsync(upsertCommand)
                 .ConfigureAwait(false);
 
             return upsertResponse;

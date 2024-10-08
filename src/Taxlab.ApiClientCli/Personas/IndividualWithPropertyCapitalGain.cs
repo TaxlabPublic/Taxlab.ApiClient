@@ -1,4 +1,4 @@
-﻿using NodaTime;
+﻿
 using System;
 using System.Collections.Generic;
 using Taxlab.ApiClientLibrary;
@@ -13,8 +13,8 @@ namespace Taxlab.ApiClientCli.Personas
     {
         public async Task<TaxpayerDto> CreateAsync(TaxlabApiClient client, string firstName, string lastName, string taxFileNumber, int taxYear)
         {
-            var balanceDate = new LocalDate(taxYear, 6, 30);
-            var startDate = balanceDate.PlusYears(-1).PlusDays(-1);
+            var balanceDate = new DateOnly(taxYear, 6, 30);
+            var startDate = balanceDate.AddYears(-1).AddDays(1);
 
             Console.WriteLine("== Step: Creating taxpayer ==========================================================");
             var taxpayerService = new TaxpayerRepository(client);
@@ -45,10 +45,10 @@ namespace Taxlab.ApiClientCli.Personas
                 taxYear: taxYear,
                 description: "Real estate in AU",
                 category: "5",
-                purchaseDate: new LocalDate(2019, 5, 1),
+                purchaseDate: new DateOnly(2019, 5, 1),
                 purchaseAmount: 10000m,
-                purchaseAdjustment: new List<CapitalGainOrLossTransaction>(),
-                disposalDate: new LocalDate(2021, 5, 31),
+                purchaseAdjustment: new List<CapitalGainOrLossTransactionAdjustment>(),
+                disposalDate: new DateOnly(2021, 5, 31),
                 disposalAmount: 130000m,
                 discountAmount: 0m,
                 currentYearLossesApplied: -1000,
@@ -68,9 +68,9 @@ namespace Taxlab.ApiClientCli.Personas
                 taxYear: taxYear,
                 description: "Shares on ASX",
                 category: "1",
-                purchaseDate: new LocalDate(2019, 5, 1),
+                purchaseDate: new DateOnly(2019, 5, 1),
                 purchaseAmount: 2000m,
-                disposalDate: new LocalDate(2021, 5, 31),
+                disposalDate: new DateOnly(2021, 5, 31),
                 disposalAmount: 85896.52m,
                 priorLossesApplied: -1000m,
                 isEligibleForDiscount: true
@@ -80,8 +80,8 @@ namespace Taxlab.ApiClientCli.Personas
             var details = new TaxpayerDetailsRepository(client);
             await details.CreateAsync(taxpayer.Id,
                 taxYear,
-                dateOfBirth: new LocalDate(1975, 4, 12),
-                dateOfDeath: new LocalDate(2020, 12, 31),
+                dateOfBirth: new DateOnly(1975, 4, 12),
+                dateOfDeath: new DateOnly(2020, 12, 31),
                 finalReturn: true,
                 mobilePhoneNumber: "0402698741",
                 daytimeAreaPhoneCode: "613",
