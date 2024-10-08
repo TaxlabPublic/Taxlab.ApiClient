@@ -48,7 +48,7 @@ namespace Taxlab.ApiClientCli.Repositories.AdjustmentWorkpapers
                 CompositeRequest = true
             };
 
-            var commandResponse = await Client.Workpapers_PostDepreciatingAssetsFirstDeductedWorkpaperAsync(command)
+            var commandResponse = await Client.Workpapers_UpsertDepreciatingAssetsFirstDeductedWorkpaperAsync(command)
                 .ConfigureAwait(false);
 
             return commandResponse;

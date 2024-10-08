@@ -43,29 +43,29 @@ namespace TaxLab.Test.ApiClientCli.Personas.TaxYearWorkpapers
 
             var capitalGainOrLossTransactionWorkpaper = getCapitalGainOrLossTransactionWorkpaperResponse.Workpaper;
 
-            capitalGainOrLossTransactionWorkpaper.PurchaseDate = "2022-07-01";
-            capitalGainOrLossTransactionWorkpaper.PurchaseAdjustment = new List<CapitalGainOrLossTransaction>
+            capitalGainOrLossTransactionWorkpaper.PurchaseDate = new DateTimeOffset(DateTime.Parse("2022-07-01"));
+            capitalGainOrLossTransactionWorkpaper.PurchaseAdjustment = new List<CapitalGainOrLossTransactionAdjustment>
             {
-                new CapitalGainOrLossTransaction()
+                new CapitalGainOrLossTransactionAdjustment()
                 {
                     Amount = 250.0m,
                     Description = "Purchase adjustment 1"
                 },
-                new CapitalGainOrLossTransaction()
+                new CapitalGainOrLossTransactionAdjustment()
                 {
                     Amount = 250.0m,
                     Description = "Purchase adjustment 2"
                 }
             };
-            capitalGainOrLossTransactionWorkpaper.DisposalDate = "2022-07-02";
-            capitalGainOrLossTransactionWorkpaper.DisposalAdjustment = new List<CapitalGainOrLossTransaction>
+            capitalGainOrLossTransactionWorkpaper.DisposalDate = new DateTimeOffset(DateTime.Parse("2022-07-02"));
+            capitalGainOrLossTransactionWorkpaper.DisposalAdjustment = new List<CapitalGainOrLossTransactionAdjustment>
             {
-                new CapitalGainOrLossTransaction()
+                new CapitalGainOrLossTransactionAdjustment()
                 {
                     Amount = 500.0m,
                     Description = "Disposal adjustment 1"
                 },
-                new CapitalGainOrLossTransaction()
+                new CapitalGainOrLossTransactionAdjustment()
                 {
                     Amount = 500.0m,
                     Description = "Disposal adjustment 2"
@@ -82,12 +82,11 @@ namespace TaxLab.Test.ApiClientCli.Personas.TaxYearWorkpapers
                 TaxpayerId = taxpayerId,
                 TaxYear = taxYear,
                 DocumentIndexId = getCapitalGainOrLossTransactionWorkpaperResponse.DocumentIndexId,
-                Workpaper = capitalGainOrLossTransactionWorkpaper,
-                WorkpaperType = WorkpaperType.CapitalGainOrLossTransactionWorkpaper
+                Workpaper = capitalGainOrLossTransactionWorkpaper
             };
 
             var upsert =
-                await client.Workpapers_PostCapitalGainOrLossTransactionWorkpaperAsync(
+                await client.Workpapers_UpsertCapitalGainOrLossTransactionWorkpaperAsync(
                     upsertCapitalGainsOrLossTransactionCommand).ConfigureAwait(false);
 
             Assert.Equal(capitalGainOrLossTransactionWorkpaper.PurchaseDate, upsert.Workpaper.PurchaseDate);

@@ -1,4 +1,4 @@
-﻿using NodaTime;
+﻿
 using System;
 using System.Threading.Tasks;
 using Taxlab.ApiClientLibrary;
@@ -16,8 +16,8 @@ namespace Taxlab.ApiClientCli.Personas
             const string lastName = "Citizen";
             const string taxFileNumber = "32989432";
             const int taxYear = 2021;
-            var balanceDate = new LocalDate(2021, 6, 30);
-            var startDate = balanceDate.PlusYears(-1).PlusDays(-1);
+            var balanceDate = new DateOnly(2021, 6, 30);
+            var startDate = balanceDate.AddYears(-1).AddDays(1);
 
             Console.WriteLine("== Step: Creating taxpayer ==========================================================");
             var taxpayerService = new TaxpayerRepository(client);

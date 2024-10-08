@@ -7,7 +7,11 @@ namespace TaxLab
     {
         public static NumericCell ToNumericCell(this decimal value)
         {
-            return new NumericCell() {Formula = value.ToString(CultureInfo.InvariantCulture)};
+            return new NumericCell()
+            {
+                Value = value,
+                Formula = value.ToString(CultureInfo.InvariantCulture)
+            };
         }
     }
 }

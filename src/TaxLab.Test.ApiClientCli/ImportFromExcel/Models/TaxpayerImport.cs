@@ -1,4 +1,4 @@
-﻿using NodaTime;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,7 +14,7 @@ namespace TaxLab.Test.ApiClientCli.ImportFromExcel.Models
         public string TaxpayerOrFirstName { get; set; }
         public string LastName { get; set; }
         public EntityType EntityType { get; set; }
-        public LocalDate DateOfBirth { get; set; }
+        public DateOnly DateOfBirth { get; set; }
         public string BsbNumber { get; set; }
         public string BankAccountNumber { get; set; }
         public string BalanceAccountName { get; set; }

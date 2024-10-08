@@ -36,10 +36,16 @@ namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
                     CancellationToken.None)
                 .ConfigureAwait(false);
 
+            DateTime? paymentDateTime = null;
+            if (DateTime.TryParse(paymentDate, out var p))
+            {
+                paymentDateTime = p;
+            }
+
             var workpaper = workpaperResponse.Workpaper;
             workpaper.PayersName = payersName;
             workpaper.Abn = abn;
-            workpaper.PaymentDate = paymentDate;
+            workpaper.PaymentDate = paymentDateTime;
             workpaper.TaxableAmount = taxableAmount.ToNumericCell();
             workpaper.UntaxedAmount = untaxedAmount.ToNumericCell();
             workpaper.NonTaxableAmount = nonTaxableAmount.ToNumericCell();
@@ -54,7 +60,7 @@ namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
                 CompositeRequest = true
             };
 
-            var commandResponse = await Client.Workpapers_PostSuperannuationLumpSumPaymentWorkpaperAsync(command)
+            var commandResponse = await Client.Workpapers_UpsertSuperannuationLumpSumPaymentWorkpaperAsync(command)
                 .ConfigureAwait(false);
 
             return commandResponse;

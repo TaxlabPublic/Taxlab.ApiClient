@@ -17,7 +17,7 @@ namespace Taxlab.ApiClientCli.Workpapers.Shared
             Guid taxpayerId, 
             int taxYear,
             Func<Guid, int, Task<TWorkpaperResponse>> getFunc)
-            where TWorkpaperResponse : WorkpaperResponse
+            where TWorkpaperResponse : IMultiTaxYearWorkpaperResponse
         {
             var workpaperResponse = await getFunc(taxpayerId, taxYear)
                 .ConfigureAwait(false);
@@ -30,7 +30,7 @@ namespace Taxlab.ApiClientCli.Workpapers.Shared
             int taxYear,
             TWorkpaperResponse workpaperResponse,
             WorkpaperType workpaperType)
-            where TWorkpaperResponse : WorkpaperResponse
+            where TWorkpaperResponse : IMultiTaxYearWorkpaperResponse
             where TUpsertWorkpaperCommand : BaseTaxYearWorkpaperCommand, new()
         {
             var upsertCommand = new TUpsertWorkpaperCommand
@@ -38,8 +38,7 @@ namespace Taxlab.ApiClientCli.Workpapers.Shared
                 TaxpayerId = taxpayerId,
                 TaxYear = taxYear,
                 DocumentIndexId = workpaperResponse.DocumentIndexId,
-                CompositeRequest = true,
-                WorkpaperType = workpaperType
+                CompositeRequest = true
             };
 
             return upsertCommand;
@@ -48,7 +47,7 @@ namespace Taxlab.ApiClientCli.Workpapers.Shared
         protected async Task<TWorkpaperResponse> ExecuteCommandAsync<TWorkpaperResponse, TUpsertWorkpaperCommand>(
             TUpsertWorkpaperCommand upsertCommand,
             Func<TUpsertWorkpaperCommand, Task<TWorkpaperResponse>> upsertFunc)
-            where TWorkpaperResponse : WorkpaperResponse
+            where TWorkpaperResponse : IMultiTaxYearWorkpaperResponse
             where TUpsertWorkpaperCommand : BaseTaxYearWorkpaperCommand, new()
         {
 

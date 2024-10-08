@@ -38,11 +38,10 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
                 TaxYear = taxYear,
                 DocumentIndexId = workpaperResponse.DocumentIndexId,
                 CompositeRequest = true,
-                WorkpaperType = WorkpaperType.BusinessIncomeExpensesWorkpaper,
                 Workpaper = workpaperResponse.Workpaper
             };
 
-            var upsertResponse = await Client.Workpapers_PostBusinessIncomeExpensesWorkpaperAsync(upsertCommand)
+            var upsertResponse = await Client.Workpapers_UpsertBusinessIncomeExpensesWorkpaperAsync(upsertCommand)
                 .ConfigureAwait(false);
 
             return upsertResponse;
@@ -51,7 +50,7 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
         public async Task<WorkpaperResponseOfBusinessIncomeExpensesWorkpaper> GetBusinessIncomeExpensesWorkpaperAsync(Guid taxpayerId, int taxYear)
         {
             var workpaperResponse = await Client
-                .Workpapers_GetBusinessIncomeExpensesWorkpaperAsync(taxpayerId, taxYear)
+                .Workpapers_GetBusinessIncomeExpensesWorkpaperAsync(taxpayerId, taxYear, Guid.Empty)
                 .ConfigureAwait(false);
 
             return workpaperResponse;

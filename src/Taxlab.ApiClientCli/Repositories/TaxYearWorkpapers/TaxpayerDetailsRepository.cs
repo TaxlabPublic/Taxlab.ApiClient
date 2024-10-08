@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using NodaTime;
 using TaxLab;
 using Taxlab.ApiClientCli.Workpapers.Shared;
 using Taxlab.ApiClientLibrary;
@@ -17,8 +16,8 @@ namespace Taxlab.ApiClientCli.Workpapers.TaxYearWorkpapers
         public async Task<WorkpaperResponseOfTaxpayerDetailsWorkpaper> CreateAsync(
             Guid taxpayerId,
             int taxYear,
-            LocalDate dateOfBirth,
-            LocalDate? dateOfDeath = null,
+            DateOnly dateOfBirth,
+            DateOnly? dateOfDeath = null,
             bool nameChangedSinceLastReturn = false,
             bool finalReturn = false,
             bool hasAddressChangedSinceLastReturn = false,
@@ -27,8 +26,8 @@ namespace Taxlab.ApiClientCli.Workpapers.TaxYearWorkpapers
             string daytimePhoneNumber ="",
             string emailAddress ="",
             string residencyStatus ="",
-            LocalDate? residencyStartDate = null,
-            LocalDate? residencyEndDate = null,
+            DateOnly? residencyStartDate = null,
+            DateOnly? residencyEndDate = null,
             string bsbNumber ="",
             string bankAccountNumber ="",
             string bankAccountName ="",
@@ -52,8 +51,8 @@ namespace Taxlab.ApiClientCli.Workpapers.TaxYearWorkpapers
 
             var workpaper = taxpayerDetailsWorkpaperResponse.Workpaper;
             workpaper.NameChangedSinceLastReturn = nameChangedSinceLastReturn;
-            workpaper.DateOfBirth = dateOfBirth.ToAtoDateString();
-            workpaper.DateOfDeath = dateOfDeath.ToAtoDateString();
+            workpaper.DateOfBirth = dateOfBirth.ToDateTime(default);
+            workpaper.DateOfDeath = dateOfDeath?.ToDateTime(default);
             workpaper.FinalReturn = finalReturn;
             workpaper.HasAddressChangedSinceLastReturn = hasAddressChangedSinceLastReturn;
             workpaper.MobilePhoneNumber = mobilePhoneNumber;
@@ -61,8 +60,8 @@ namespace Taxlab.ApiClientCli.Workpapers.TaxYearWorkpapers
             workpaper.DaytimePhoneNumber = daytimePhoneNumber;
             workpaper.EmailAddress = emailAddress;
             workpaper.ResidencyStatus = residencyStatus;
-            workpaper.ResidencyStartDate = residencyStartDate.ToString();
-            workpaper.ResidencyEndDate = residencyEndDate.ToString();
+            workpaper.ResidencyStartDate = residencyStartDate?.ToDateTime(default);
+            workpaper.ResidencyEndDate = residencyEndDate?.ToDateTime(default);
             workpaper.BsbNumber = bsbNumber;
             workpaper.BankAccountNumber = bankAccountNumber;
             workpaper.BankAccountName = bankAccountName;
@@ -86,11 +85,10 @@ namespace Taxlab.ApiClientCli.Workpapers.TaxYearWorkpapers
                 TaxYear = taxYear,
                 DocumentIndexId = taxpayerDetailsWorkpaperResponse.DocumentIndexId,
                 CompositeRequest = true,
-                WorkpaperType = WorkpaperType.TaxpayerDetailsWorkpaper,
                 Workpaper = taxpayerDetailsWorkpaperResponse.Workpaper
             };
 
-            var upsertTaxpayerDetailsResponse = await Client.Workpapers_PostTaxpayerDetailsWorkpaperAsync(upsertTaxpayerDetailsCommand)
+            var upsertTaxpayerDetailsResponse = await Client.Workpapers_UpsertTaxpayerDetailsWorkpaperAsync(upsertTaxpayerDetailsCommand)
                 .ConfigureAwait(false);
 
             return upsertTaxpayerDetailsResponse;

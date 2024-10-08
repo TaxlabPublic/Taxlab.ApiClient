@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using NodaTime;
 using TaxLab;
 using Taxlab.ApiClientCli.Workpapers.Shared;
 using Taxlab.ApiClientLibrary;
@@ -128,7 +127,7 @@ namespace Taxlab.ApiClientCli.Repositories.AdjustmentWorkpapers
                 CompositeRequest = true
             };
 
-            var commandResponse = await Client.Workpapers_PostTemporaryDifferenceWorkpaperAsync(command)
+            var commandResponse = await Client.Workpapers_UpsertTemporaryDifferenceWorkpaperAsync(command)
                 .ConfigureAwait(false);
 
             return commandResponse;

@@ -1,4 +1,4 @@
-﻿using NodaTime;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Numerics;
@@ -29,7 +29,7 @@ namespace Taxlab.ApiClientCli.Personas
         private const string TaxFileNumber = "32989432";
         private const EntityType TaxpayerEntity = EntityType.IndividualAU;
         private const int TaxYear = 2021;
-        private LocalDate _balanceDate = new LocalDate(2021, 6, 30);
+        private DateOnly _balanceDate = new DateOnly(2021, 6, 30);
         private TaxpayerDto _taxpayer;
 
         public TaxpayerAllWorkpapersIITR(ITestOutputHelper output) : base(output)
@@ -55,7 +55,7 @@ namespace Taxlab.ApiClientCli.Personas
             var taxReturnResponse = await taxReturnRepository.CreateAsync(taxpayer.Id,
                 TaxYear,
                 _balanceDate,
-                _balanceDate.PlusYears(-1).PlusDays(-1));
+                _balanceDate.AddYears(-1).AddDays(1));
 
 
             if (taxReturnResponse.Success == false)
@@ -66,8 +66,8 @@ namespace Taxlab.ApiClientCli.Personas
             var details = new TaxpayerDetailsRepository(Client);
             await details.CreateAsync(taxpayer.Id,
                 TaxYear,
-                dateOfBirth: new LocalDate(1975, 4, 12),
-                dateOfDeath: new LocalDate(2020, 12, 31),
+                dateOfBirth: new DateOnly(1975, 4, 12),
+                dateOfDeath: new DateOnly(2020, 12, 31),
                 finalReturn: true,
                 mobilePhoneNumber: "0402698741",
                 daytimeAreaPhoneCode: "613",
@@ -124,7 +124,6 @@ namespace Taxlab.ApiClientCli.Personas
             await RentalPropertyWorkpaperTest();
             await MedicareWorkpaperTest();
             await BusinessIncomeExpensesWorkpaperTest();
-            await DistributionsWorkpaperTest();
             await IncomingDistributionsWorkpaperTest();
             await CapitalGainOrLossTransactionWorkpaperTest();
             await DepreciatingAssetsDisposalsWorkpaperTest();
@@ -433,8 +432,8 @@ namespace Taxlab.ApiClientCli.Personas
                 AddressSuburb = "Hillside",
                 AddressState = "VIC",
                 AddressPostcode = "3037",
-                DateFirstEarnedIncome = "2017-03-15",
-                PurchaseDate = "2017-01-10",
+                DateFirstEarnedIncome = new DateTimeOffset(DateTime.Parse("2017-03-15")),
+                PurchaseDate = new DateTimeOffset(DateTime.Parse("2017-01-10")),
                 PurchasePrice = new NumericCell
                 {
                     Value = 4900000,
@@ -605,22 +604,6 @@ namespace Taxlab.ApiClientCli.Personas
         }
 
         [Fact]
-        public async Task DistributionsWorkpaperTest()
-        {
-            var distributionsRepository = new DistributionsRepository(Client);
-            var workpaperResponseOfDistributionsWorkpaper = await distributionsRepository.CreateAsync(taxpayerId: _taxpayer.Id,
-                taxYear: TaxYear,
-                taxpayerName: "Distribution From Trust ABC",
-                typeOfTrustCode: "C",
-                shareOfIncomeNonPrimaryProduction: 10000m,
-                frankingCredit: -1000m
-
-            );
-
-            Assert.Equal(_taxpayer.Id, workpaperResponseOfDistributionsWorkpaper.Workpaper.Slug.TaxpayerId);
-        }
-
-        [Fact]
         public async Task IncomingDistributionsWorkpaperTest()
         {
             var incomingDistributionsRepository = new IncomingDistributionsRepository(Client);
@@ -668,8 +651,8 @@ namespace Taxlab.ApiClientCli.Personas
             string firstName = "Mary";
             string lastName = "NzCitizen";
             string taxFileNumber = "329823478";
-            var balanceDate = new LocalDate(2021, 6, 30);
-            var startDate = balanceDate.PlusYears(-1).PlusDays(-1);
+            var balanceDate = new DateOnly(2021, 6, 30);
+            var startDate = balanceDate.AddYears(-1).AddDays(1);
 
             var taxpayerService = new TaxpayerRepository(Client);
             var taxpayerResponse = await taxpayerService.CreateAsync(TaxYear,
@@ -694,8 +677,8 @@ namespace Taxlab.ApiClientCli.Personas
             var details = new TaxpayerDetailsRepository(Client);
             await details.CreateAsync(spouseTaxpayer.Id,
                 TaxYear,
-                dateOfBirth: new LocalDate(1975, 4, 12),
-                dateOfDeath: new LocalDate(2020, 12, 31),
+                dateOfBirth: new DateOnly(1975, 4, 12),
+                dateOfDeath: new DateOnly(2020, 12, 31),
                 finalReturn: true,
                 mobilePhoneNumber: "0402698741",
                 daytimeAreaPhoneCode: "613",
@@ -713,7 +696,7 @@ namespace Taxlab.ApiClientCli.Personas
                 LinkedSpouseTaxpayerId: spouseTaxpayer.Id,
                 IsMarriedFullYear: false,
                 MarriedFrom: startDate,
-                MarriedTo: startDate.PlusDays(100),
+                MarriedTo: startDate.AddDays(100),
                 HasDiedThisYear: false
             );
 

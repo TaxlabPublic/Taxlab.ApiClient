@@ -1,5 +1,4 @@
-﻿using NodaTime;
-using System;
+﻿using System;
 using Taxlab.ApiClientLibrary;
 using Taxlab.ApiClientCli.Repositories.Taxpayer;
 using Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers;
@@ -16,8 +15,8 @@ namespace Taxlab.ApiClientCli.Personas
             const string lastName = "Citizen";
             const string taxFileNumber = "32989432";
             const int taxYear = 2021;
-            var balanceDate = new LocalDate(2021, 6, 30);
-            var startDate = balanceDate.PlusYears(-1).PlusDays(-1);
+            var balanceDate = new DateOnly(2021, 6, 30);
+            var startDate = balanceDate.AddYears(-1).AddDays(1);
 
             Console.WriteLine("== Step: Creating taxpayer ==========================================================");
             var taxpayerService = new TaxpayerRepository(client);
@@ -78,8 +77,8 @@ namespace Taxlab.ApiClientCli.Personas
             var details = new TaxpayerDetailsRepository(client);
             await details.CreateAsync(taxpayer.Id,
                 taxYear,
-                dateOfBirth: new LocalDate(1975, 4, 12),
-                dateOfDeath: new LocalDate(2020, 12, 31),
+                dateOfBirth: new DateOnly(1975, 4, 12),
+                dateOfDeath: new DateOnly(2020, 12, 31),
                 finalReturn: true,
                 mobilePhoneNumber: "0402698741",
                 daytimeAreaPhoneCode: "613",

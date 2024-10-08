@@ -33,7 +33,7 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
 
             var response = await ExecuteCommandAsync(
                 upsertCommand,
-                cmd => Client.Workpapers_PostForeignIncomeTaxOffsetsWorkpaperAsync(cmd));
+                cmd => Client.Workpapers_UpsertForeignIncomeTaxOffsetsWorkpaperAsync(cmd));
 
             return response;
         }

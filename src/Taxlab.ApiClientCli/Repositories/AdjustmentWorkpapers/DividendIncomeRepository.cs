@@ -54,7 +54,7 @@ namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
                 CompositeRequest = true
             };
 
-            var commandResponse = await Client.Workpapers_PostDividendIncomeWorkpaperAsync(command)
+            var commandResponse = await Client.Workpapers_UpsertDividendIncomeWorkpaperAsync(command)
                 .ConfigureAwait(false);
 
             return commandResponse;

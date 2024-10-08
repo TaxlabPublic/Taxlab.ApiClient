@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using NodaTime;
+
 using TaxLab;
 using Taxlab.ApiClientCli.Workpapers.Shared;
 using Taxlab.ApiClientLibrary;
@@ -56,7 +56,7 @@ namespace Taxlab.ApiClientCli.Repositories.AdjustmentWorkpapers
                 CompositeRequest = true
             };
 
-            var commandResponse = await Client.Workpapers_PostSelfEducationDeductionWorkpaperAsync(command)
+            var commandResponse = await Client.Workpapers_UpsertSelfEducationDeductionWorkpaperAsync(command)
                 .ConfigureAwait(false);
 
             return commandResponse;
