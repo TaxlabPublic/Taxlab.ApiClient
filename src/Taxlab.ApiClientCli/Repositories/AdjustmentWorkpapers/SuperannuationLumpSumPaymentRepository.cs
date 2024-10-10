@@ -29,7 +29,7 @@ namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
                 .Workpapers_GetSuperannuationLumpSumPaymentWorkpaperAsync(
                     taxpayerId,
                     taxYear,
-                    Guid.NewGuid(),
+                    Guid.Empty,
                     null,
                     null,
                     null,

@@ -30,7 +30,7 @@ namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
                 .Workpapers_GetPersonalSuperannuationContributionWorkpaperAsync(
                     taxpayerId,
                     taxYear,
-                    Guid.NewGuid(),
+                    Guid.Empty,
                     null,
                     null,
                     null,

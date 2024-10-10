@@ -17,4 +17,5 @@ namespace Taxlab.ApiClientLibrary
     public partial class WorkpaperResponseOfGovernmentSuperContributionsWorkpaper : IMultiTaxYearWorkpaperResponse { }
     public partial class WorkpaperResponseOfSelfEducationWorkpaper : IMultiTaxYearWorkpaperResponse { }
     public partial class WorkpaperResponseOfSmallBusinessIncomeWorkpaper : IMultiTaxYearWorkpaperResponse { }
+    public partial class WorkpaperResponseOfOutgoingDistributionsWorkpaper : IMultiTaxYearWorkpaperResponse { }
 }

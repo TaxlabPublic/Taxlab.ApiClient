@@ -26,7 +26,8 @@ namespace Taxlab.ApiClientCli.Repositories.AdjustmentWorkpapers
             var workpaperResponse = await Client
                 .Workpapers_GetForeignDeductionNonIndividualWorkpaperAsync(
                     taxpayerId,
-                    taxYear, Guid.NewGuid(),
+                    taxYear, 
+                    Guid.Empty,
                     null,
                     null,
                     null,

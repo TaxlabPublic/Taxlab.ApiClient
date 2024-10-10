@@ -24,7 +24,7 @@ namespace Taxlab.ApiClientCli.Workpapers.AdjustmentWorkpapers
                 .Workpapers_GetFirstHomeSuperSaverWorkpaperAsync(
                     taxpayerId,
                     taxYear,
-                    Guid.NewGuid(),
+                    Guid.Empty,
                     null,
                     null,
                     null,

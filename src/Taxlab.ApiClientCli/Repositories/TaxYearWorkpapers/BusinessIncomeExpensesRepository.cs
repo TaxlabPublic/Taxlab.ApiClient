@@ -23,28 +23,23 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
             BusinessNonPrimaryProductionTypes nonPrimaryProductionType = BusinessNonPrimaryProductionTypes.None
             )
         {
-            var workpaperResponse = await GetBusinessIncomeExpensesWorkpaperAsync(taxpayerId, taxYear);
-
-            var workpaper = workpaperResponse.Workpaper;
-            workpaper.BusinessName = businessName;
-            workpaper.BusinessIncomeType = businessIncomeType;
-            workpaper.ProductionType = productionType;
-            workpaper.NonPrimaryProductionType = nonPrimaryProductionType;
-
-            // Update command for our new workpaper
-            var upsertCommand = new UpsertBusinessIncomeExpensesWorkpaperCommand()
+            var createCommand = new CreateBusinessIncomeExpensesWorkpaperCommand()
             {
                 TaxpayerId = taxpayerId,
                 TaxYear = taxYear,
-                DocumentIndexId = workpaperResponse.DocumentIndexId,
-                CompositeRequest = true,
-                Workpaper = workpaperResponse.Workpaper
+                InitialValue = new BusinessIncomeExpensesWorkpaperInitialValue
+                {
+                    BusinessName = businessName,
+                    BusinessIncomeType = businessIncomeType,
+                    ProductionType = productionType,
+                    NonPrimaryProductionType = nonPrimaryProductionType
+                }
             };
 
-            var upsertResponse = await Client.Workpapers_UpsertBusinessIncomeExpensesWorkpaperAsync(upsertCommand)
+            var createResponse = await Client.Workpapers_CreateBusinessIncomeExpensesWorkpaperAsync(createCommand)
                 .ConfigureAwait(false);
 
-            return upsertResponse;
+            return createResponse;
         }
 
         public async Task<WorkpaperResponseOfBusinessIncomeExpensesWorkpaper> GetBusinessIncomeExpensesWorkpaperAsync(Guid taxpayerId, int taxYear)

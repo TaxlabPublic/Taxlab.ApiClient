@@ -27,7 +27,8 @@ namespace Taxlab.ApiClientCli.Repositories.AdjustmentWorkpapers
             var workpaperResponse = await Client
                 .Workpapers_GetInterestIncomeNonIndividualWorkpaperAsync(
                     taxpayerId,
-                    taxYear, Guid.NewGuid(),
+                    taxYear, 
+                    Guid.Empty,
                     null,
                     null,
                     null,
