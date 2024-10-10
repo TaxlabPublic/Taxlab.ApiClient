@@ -23,7 +23,6 @@ using Taxlab.ApiClientCli.Repositories.AdjustmentWorkpapers;
 
 namespace Taxlab.ApiClientCli.Personas
 {
-
     public class TaxpayerAllWorkpapersNITR : BaseScopedTests
     {
         private TaxlabApiClient Client;

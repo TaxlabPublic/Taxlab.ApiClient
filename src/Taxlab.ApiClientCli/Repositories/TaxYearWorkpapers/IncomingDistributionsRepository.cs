@@ -13,6 +13,17 @@ namespace Taxlab.ApiClientCli.Workpapers.TaxYearWorkpapers
 
         }
 
+        public async Task<WorkpaperResponseOfIncomingDistributionsWorkpaper> GetAsync(
+            Guid taxpayerId,
+            int taxYear)
+        {
+            var workpaperResponse = await Client
+                .Workpapers_GetIncomingDistributionsWorkpaperAsync(taxpayerId, taxYear)
+                .ConfigureAwait(false);
+
+            return workpaperResponse;
+        }
+
         public async Task<WorkpaperResponseOfIncomingDistributionsWorkpaper> CreateAsync(
             Guid taxpayerId,
             int taxYear,

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Taxlab.ApiClientCli.Workpapers.Shared;
 using Taxlab.ApiClientLibrary;
 
@@ -46,10 +47,13 @@ namespace Taxlab.ApiClientCli.Repositories.TaxYearWorkpapers
             decimal ownershipPercentageMine = 0m,
             decimal ownershipPercentageTotal = 0m)
         {
+            var initialValue = new RentalPropertyWorkpaperInitialValue();
             var createRentalPropertyCommand = new CreateRentalPropertyWorkpaperCommand()
             {
                 TaxpayerId = taxpayerId,
                 TaxYear = taxYear,
+                InitialValue = initialValue,
+                RentalPropertyInformation = initialValue
             };
             
             var createRentalPropertyResponse = await Client.Workpapers_CreateRentalPropertyWorkpaperAsync(createRentalPropertyCommand)

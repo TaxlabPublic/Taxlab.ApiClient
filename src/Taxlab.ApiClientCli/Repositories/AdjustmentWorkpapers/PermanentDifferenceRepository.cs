@@ -28,7 +28,7 @@ namespace Taxlab.ApiClientCli.Repositories.AdjustmentWorkpapers
                 .Workpapers_GetPermanentDifferenceWorkpaperAsync(
                     taxpayerId,
                     taxYear, 
-                    Guid.NewGuid(),
+                    Guid.Empty,
                     null,
                     null,
                     null,
